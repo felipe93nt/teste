@@ -16,6 +16,25 @@ public class AlterarFormatoMensagemViewHelper extends AbstractViewHelper {
 	private static final long serialVersionUID = 6728360388728831027L;
 
 	private String nivelAutorizacao = "";
+	private String interfaceSaaAtiva = "";
+
+	public String getInterfaceSaaAtiva() {
+		return interfaceSaaAtiva;
+	}
+
+	public void setInterfaceSaaAtiva(String interfaceSaaAtiva) {
+		this.interfaceSaaAtiva = interfaceSaaAtiva;
+	}
+
+	public void setListaCamposIntegrantesVO(
+			List<CampoIntegranteVO> listaCamposIntegrantesVO) {
+		this.listaCamposIntegrantesVO = listaCamposIntegrantesVO;
+	}
+
+	public void setListaCamposVO(List<CampoIntegranteVO> listaCamposVO) {
+		this.listaCamposVO = listaCamposVO;
+	}
+
 	private List<CampoIntegranteVO> listaCamposIntegrantesVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> listaCamposVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> campoIntegranteSelecionado = new ArrayList<CampoIntegranteVO>();

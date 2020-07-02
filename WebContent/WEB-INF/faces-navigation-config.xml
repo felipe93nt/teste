@@ -138,17 +138,16 @@
 			<from-outcome>alcada.incluir.parametrizacao.alcada</from-outcome>
 			<to-view-id>/content/usuarioAlcada/alcada/incluirParametrizacaoAlcada.xhtml</to-view-id>
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>alcada.consultar.parametrizacao.alcada</from-outcome>
 			<to-view-id>/content/usuarioAlcada/alcada/consultarParametrizacaoAlcada.xhtml</to-view-id>
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>alcada.alterar.parametrizacao.alcada</from-outcome>
 			<to-view-id>/content/usuarioAlcada/alcada/alterarParametrizacaoAlcada.xhtml</to-view-id>
 		</navigation-case>
-		
 
 		<!-- Inicio Treinamento -->
 

@@ -61,6 +61,7 @@ public class ConsultarFormatoMensagemBean extends
 		f1.setNivelAutorizacao("Dupla Alçada");
 		f1.setUltimaAtualizacao("23/06/2020 11:45");
 		f1.setUsuario("F123456");
+		f1.setStatus("Ativa");
 		viewHelper.getListaFormatos().add(f1);
 		FormatoMensagemVO f2 = new FormatoMensagemVO();
 		f2.setIdentificacao("2");
@@ -71,6 +72,7 @@ public class ConsultarFormatoMensagemBean extends
 		f2.setNivelAutorizacao("Feito/Confer.");
 		f2.setUltimaAtualizacao("22/06/2020 16:32");
 		f2.setUsuario("F123456");
+		f2.setStatus("Inativa");
 		viewHelper.getListaFormatos().add(f2);
 
 	}

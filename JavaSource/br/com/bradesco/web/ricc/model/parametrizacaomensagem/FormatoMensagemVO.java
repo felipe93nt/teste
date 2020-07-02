@@ -12,13 +12,14 @@ public class FormatoMensagemVO implements Comparable<InstructionCodeVO> {
 	private String nivelAutorizacao = "";
 	private String ultimaAtualizacao = "";
 	private String usuario = "";
+	private String status = "";
 
 	public FormatoMensagemVO() {
 	}
 
 	public FormatoMensagemVO(String identificacao, String mt, String descricao,
 			String inicioVigencia, String fimVigencia, String nivelAutorizacao,
-			String ultimaAtualizacao, String usuario) {
+			String ultimaAtualizacao, String usuario, String status) {
 		this.identificacao = identificacao;
 		this.mt = mt;
 		this.descricao = descricao;
@@ -27,6 +28,7 @@ public class FormatoMensagemVO implements Comparable<InstructionCodeVO> {
 		this.nivelAutorizacao = nivelAutorizacao;
 		this.ultimaAtualizacao = ultimaAtualizacao;
 		this.usuario = usuario;
+		this.status = status;
 	}
 
 	public String getIdentificacao() {
@@ -91,6 +93,14 @@ public class FormatoMensagemVO implements Comparable<InstructionCodeVO> {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

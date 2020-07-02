@@ -24,7 +24,7 @@ AbstractBean<DetalharPermissoesViewHelper> {
 	 */
 	private static final long serialVersionUID = 1631866463606968265L;
 
-	private String paginaAnterior = "nav_index";
+	private String paginaAnterior = RiccConstants.TELA_CONSULTAR_PERMISSOES;
 
 	/*
 	 * (non-Javadoc)

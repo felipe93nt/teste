@@ -64,12 +64,25 @@
 					</awb-h:panelGrid>
 
 					<awb-h:panelGrid columns="2" style="margin-left: 0px">
-						<awb-h:outputLabel value="#{msgs.label_somente_vigentes}: "
+						<awb-h:outputLabel value="#{msgs.label_vigencia_atual}: "
 							styleClass="HtmlOutputLabelBoldBradesco" />
 						<awb-h:panelGrid>
 							<awb-h:selectBooleanCheckbox value="" />
 						</awb-h:panelGrid>
 					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="2" style="margin-left:12px">
+					<awb-h:outputLabel value="#{msgs.label_formato_completo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco"
+						value="#{msgs.label_ambos}">
+						<awb-f:selectItem itemValue="#{msgs.label_sim}"
+							itemLabel="#{msgs.label_sim}" style="width:100px;" />
+						<awb-f:selectItem itemValue="#{msgs.label_nao}"
+							itemLabel="#{msgs.label_nao}" style="width:100px" />
+						<awb-f:selectItem itemValue="#{msgs.label_ambos}"
+							itemLabel="#{msgs.label_ambos}" style="width:100px" />
+					</awb-h:selectOneRadio>
 				</awb-h:panelGrid>
 
 				<awb-h:panelGrid columns="3" style="margin-left:35px">
@@ -77,7 +90,7 @@
 						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 6px" />
 					<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
 						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
-							style="font-size:10px;width:200px;margin-top:0px;height:19px; !important"
+							style="font-size:10px;width:300px;margin-top:0px;height:19px; !important"
 							value="#">
 							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
 							<awb-f:selectItem itemLabel="103 Single Customer Credit Transfer"
@@ -131,6 +144,14 @@
 									styleClass="tableFontStyle" />
 							</awb-f:facet>
 							<awb-h:outputLabel value="#{item.mt}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_status}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.status}" />
 						</awb-br:scrollableColumn>
 
 						<awb-br:scrollableColumn>

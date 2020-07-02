@@ -16,13 +16,33 @@ public class DetalharFormatoMensagemViewHelper extends AbstractViewHelper {
 	private static final long serialVersionUID = 6728360388728831027L;
 
 	private String nivelAutorizacao = "label_feito_conferido";
+	private String interfaceSaaAtiva = "";
+
+	public String getInterfaceSaaAtiva() {
+		return interfaceSaaAtiva;
+	}
+
+	public void setInterfaceSaaAtiva(String interfaceSaaAtiva) {
+		this.interfaceSaaAtiva = interfaceSaaAtiva;
+	}
+
+	public void setListaCamposIntegrantesVO(
+			List<CampoIntegranteVO> listaCamposIntegrantesVO) {
+		this.listaCamposIntegrantesVO = listaCamposIntegrantesVO;
+	}
+
+	public void setListaCamposVO(List<CampoIntegranteVO> listaCamposVO) {
+		this.listaCamposVO = listaCamposVO;
+	}
+
 	private List<CampoIntegranteVO> listaCamposIntegrantesVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> listaCamposVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> campoIntegranteSelecionado = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> campoSelecionado = new ArrayList<CampoIntegranteVO>();
 	private Boolean btnRemoverCampoIntegrante = Boolean.FALSE;
 	private Boolean btnAdicionarCampoIntegrante = Boolean.FALSE;
-	private Date inicioVigencia = new GregorianCalendar(2018, Calendar.JUNE, 4).getTime();
+	private Date inicioVigencia = new GregorianCalendar(2018, Calendar.JUNE, 4)
+			.getTime();
 
 	@Override
 	public void inicializar() {
