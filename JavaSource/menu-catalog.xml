@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns="http://www.bradesco.com/menu">
+	<menuItem id="1" action="" labelKey="menu.labelKey.intranet">
+
+		<menuItem id="2" action="" actionListener="" labelKey="label_manutencao">
+			<menuItem id="3" labelKey="label_manutencao_mensagem" title="label_vazia" />
+			<menuItem id="4" action="#{incluirMensagemBean.iniciarPagina}"
+				labelKey="label_incluir" />
+			<menuItem id="4" action="#{manutencaoMensagemBean.iniciarPagina}"
+				labelKey="label_consultar" />
+			<menuItem id="3" labelKey="label_manutencao_template" title="label_vazia" />
+			<menuItem id="4" action="#{incluirTemplateBean.iniciarPagina}"
+				labelKey="label_incluir" />
+			<menuItem id="4" action="#{consultarTemplateBean.iniciarPagina}"
+				labelKey="label_consultar" />
+		</menuItem>
+
+		<menuItem id="2" action="" actionListener=""
+			labelKey="label_parametrizacao">
+			<menuItem id="3" labelKey="label_componente_mensagem" title="label_vazia" />
+			<menuItem id="4" action="#{componenteMensagemBean.iniciarPagina}"
+				labelKey="label_incluir" />
+			<menuItem id="4"
+				action="#{consultarComponenteMensagemBean.iniciarPagina}" labelKey="label_consultar" />
+			<menuItem id="3" labelKey="label_formato_mensagem" title="label_vazia" />
+			<menuItem id="4" action="#{formatosMensagemBean.iniciarPagina}"
+				labelKey="label_incluir" />
+			<menuItem id="4" action="#{consultarFormatoMensagemBean.iniciarPagina}"
+				labelKey="label_consultar" />
+			<menuItem id="3" labelKey="label_usuarios" title="label_vazia" />
+			<menuItem id="4" action="#{incluirPermissoesBean.iniciarPagina}"
+				labelKey="label_incluir" />
+			<menuItem id="4" action="#{consultarPermissoesBean.iniciarPagina}"
+				labelKey="label_consultar" />
+			<menuItem id="3" labelKey="label_alcadas" title="label_vazia" />
+			<menuItem id="4" action="#" labelKey="label_incluir" />
+			<menuItem id="4" action="#" labelKey="label_consultar" />
+		</menuItem>
+
+
+		<!-- <menuItem id="2" action="" actionListener="" labelKey="label_parametrizacao"> 
+			<menuItem id="3" labelKey="label_parametrizacao" title="label_parametrizacao" 
+			/> <menuItem id="4" action="#{parametrizacaoRelatorioBean.iniciarPagina}" 
+			labelKey="label_parametrizacao_relatorio" /> </menuItem> <menuItem id="2" 
+			action="" actionListener="" labelKey="label_cadastro"> <menuItem id="3" labelKey="label_cadastro" 
+			title="label_cadastro" /> <menuItem id="4" action="#{cadastramentoRicBean.iniciarPagina}" 
+			labelKey="label_cadastramento_ric" /> </menuItem> <menuItem id="2" action="" 
+			actionListener="" labelKey="label_dupla_validacao"> <menuItem id="3" labelKey="label_dupla_validacao" 
+			title="label_dupla_validacao" /> <menuItem id="4" action="#{duplaValidacaoBean.iniciarPagina}" 
+			labelKey="label_parametrizacao_relatorio" /> </menuItem> <menuItem id="2" 
+			action="" actionListener="" labelKey="label_treinamento"> <menuItem id="3" 
+			labelKey="label_treinamento" title="label_treinamento" /> <menuItem id="4" 
+			action="#{ajudaTreinamentoBean.iniciarPagina}" labelKey="label_treinamento_ajuda" 
+			/> <menuItem id="3" labelKey="label_treinamento_equipes" title="label_treinamento_equipes" 
+			/> <menuItem id="4" action="#{equipe1Bean.iniciarPagina}" labelKey="label_treinamento_equipe1" 
+			/> <menuItem id="4" action="#{equipe2Bean.iniciarPagina}" labelKey="label_treinamento_equipe2" 
+			/> <menuItem id="4" action="#{equipe3Bean.iniciarPagina}" labelKey="label_treinamento_equipe3" 
+			/> <menuItem id="4" action="#{equipe4Bean.iniciarPagina}" labelKey="label_treinamento_equipe4" 
+			/> <menuItem id="3" labelKey="label_anderson" title="label_anderson" /> <menuItem 
+			id="4" action="#{andersonClienteBean.iniciarPagina}" labelKey="label_treinamento_cadastro_cliente" 
+			/> <menuItem id="4" action="#{andersonClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{andersonTesteCadastroBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_andre" 
+			title="label_andre" /> <menuItem id="4" action="#{andreClienteBean.iniciarPagina}" 
+			labelKey="label_andre_cadastro_cliente" /> <menuItem id="4" action="#{andreClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{andreTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_claudio" 
+			title="label_claudio" /> <menuItem id="4" action="#{claudioClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{claudioConsultaClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{claudioTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_enrico" 
+			title="label_enrico" /> <menuItem id="4" action="#{enricoClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{enricoClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{enricoTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_enzo" 
+			title="label_enzo" /> <menuItem id="4" action="#{enzoClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_enzo_cliente" /> <menuItem id="4" action="#{enzoClienteBean.iniciarPaginaDois}" 
+			labelKey="label_treinamento_consulta_enzo_cliente" /> <menuItem id="4" action="#{enzoTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_felipe" 
+			title="label_felipe" /> <menuItem id="4" action="#{felipeClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{felipeConsultarClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{felipeTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="4" action="#{felipeExperimentoBean.iniciarPagina}" 
+			labelKey="Experimento De Treinamento" /> <menuItem id="3" labelKey="label_guilherme" 
+			title="label_guilherme" /> <menuItem id="4" action="#{guilhermeClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{guilhermeClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{guilhermeTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" title="label_gustavo" 
+			labelKey="label_gustavo"/> <menuItem id="4" labelKey="label_treinamento_cadastro_cliente" 
+			action="#{gustavoClienteBean.iniciarPagina}"/> <menuItem id="4" labelKey="label_treinamento_consulta_cliente" 
+			action="#{gustavoClienteConsultaBean.iniciarPagina}"/> <menuItem id="4" action="#{gustavoTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_isaac" 
+			title="label_isaac" /> <menuItem id="4" action="#{isaacClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{isaacClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{isaacTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_joao" 
+			title="label_joao" /> <menuItem id="4" action="#{joaoCarlosClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{joaoCarlosClienteConsultaBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{joaoCarlosTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_gil" 
+			title="label_gil" /> <menuItem id="4" action="#{joaogilClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{joaogilClienteBean.iniciarConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{joaogilTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_leonardo" 
+			title="label_leonardo" /> <menuItem id="4" action="#{leonardoClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_title_leonardo_cliente" /> <menuItem id="4" action="#{leonardoClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{leonardoTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_matheus" 
+			title="label_matheus" /> <menuItem id="4" action="#{matheusClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{matheusClienteBean.iniciarPaginaConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{matheusTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_natalia" 
+			title="label_natalia" /> <menuItem id="4" action="#{nataliaClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{nataliaClienteBean.iniciaPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{nataliaTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_pedro" 
+			title="label_pedro" /> <menuItem id="4" action="#{pedroClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{pedroClienteConsultaBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{pedroTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="4" action="#{pedroSwrmBean.iniciarPagina}" 
+			labelKey="label_treinamento_swrm" /> <menuItem id="3" labelKey="label_vinicius" 
+			title="label_vinicius" /> <menuItem id="4" action="#{viniciusClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{viniciusClienteBean.iniciarConsulta}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{viniciusTesteBean.iniciarTeste}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_vitoria" 
+			title="label_vitoria" /> <menuItem id="4" action="#{vitoriaClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_vitoria_cliente"/> <menuItem id="4" action="#{vitoriaClienteConsultaBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{vitoriaTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> <menuItem id="3" labelKey="label_wellington" 
+			title="label_wellington" /> <menuItem id="4" action="#{wellingtonClienteBean.iniciarPagina}" 
+			labelKey="label_treinamento_cadastro_cliente" /> <menuItem id="4" action="#{wellingtonClienteConsultaBean.iniciarPagina}" 
+			labelKey="label_treinamento_consulta_cliente" /> <menuItem id="4" action="#{wellingtonTesteBean.iniciarPagina}" 
+			labelKey="label_treinamento_teste" /> </menuItem> <menuItem id="2" action="" 
+			actionListener="" labelKey="label_pedro"> <menuItem id="3" labelKey="label_pedro" 
+			title="label_pedro" /> <menuItem id="4" action="#{pedroBean.iniciarPagina}" 
+			labelKey="label_cadastro" /> </menuItem> -->
+
+		<!-- <menuItem id="2" action="" actionListener="" labelKey="label_questionarios"> 
+			<menuItem id="3" labelKey="Segmento" title="label_cadastro" /> <menuItem 
+			id="4" action="#{questionarioAltoVarejoBean.iniciarPagina}" labelKey="label_questionario_altovarejo" 
+			/> <menuItem id="4" action="#{questionarioCorporateBean.iniciarPagina}" labelKey="label_questionario_corporate" 
+			/> <menuItem id="4" action="#{questionarioEmpresasBean.iniciarPagina}" labelKey="label_questionario_empresas" 
+			/> <menuItem id="3" labelKey="Setor" title="label_cadastro" /> <menuItem 
+			id="4" action="#{questionarioAgronegocioBean.iniciarPagina}" labelKey="label_questionario_agronegocio" 
+			/> <menuItem id="4" action="#{questionarioImobiliarioBean.iniciarPagina}" 
+			labelKey="label_questionario_imobiliario" /> <menuItem id="4" action="#{questionarioTransportesBean.iniciarPagina}" 
+			labelKey="label_questionario_transportes" /> <menuItem id="4" action="#{questionarioProjetoBean.iniciarPagina}" 
+			labelKey="label_questionario_projetos" /> <menuItem id="3" labelKey="Consulta" 
+			title="label_consultar" /> <menuItem id="4" action="#{consultaQuestionarioEmpresasBean.iniciarPagina}" 
+			labelKey="label_questionario_empresas" /> <menuItem id="4" action="#{consultaQuestionarioAgronegocioBean.iniciarPagina}" 
+			labelKey="label_questionario_agronegocio" /> <menuItem id="4" action="#{consultaQuestionarioImobiliarioBean.iniciarPagina}" 
+			labelKey="label_questionario_imobiliario" /> <menuItem id="4" action="#{consultaQuestionarioTransportesBean.iniciarPagina}" 
+			labelKey="label_questionario_transportes" /> <menuItem id="4" action="#{consultaQuestionarioProjetoBean.iniciarPagina}" 
+			labelKey="label_questionario_projetos" /> <menuItem id="4" action="#{consultaQuestionarioCorporateBean.iniciarPagina}" 
+			labelKey="label_questionario_corporate" /> <menuItem id="4" action="#{consultaQuestionarioAltoVarejoBean.iniciarPagina}" 
+			labelKey="label_questionario_altovarejo" /> </menuItem> -->
+	</menuItem>
+</menu>
+

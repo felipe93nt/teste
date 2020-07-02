@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="FRWKW090" type="FWOPG">
+  <properties />
+  <header>
+    <property name="FWO">HEADER</property>
+  </header>
+  <inputdependencies />  
+  <input maxBytes="26">
+    <register name="FRWKW090-BLOCO-HEADER">
+      <field name="FRWKW090-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKW090" />
+      <field name="FRWKW090-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="26" />
+    </register>
+    <register name="FRWKW090-BLOCO-ENTRADA">
+      <field name="FRWKW090-VERSAO-APLIC" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="FRWKW090-QTDE-REG-PAG" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="FRWKW090-QTDE-REG-MAIN" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+  <outputdependencies/>
+  <output maxBytes="26">
+    <register name="FRWKW090-BLOCO-HEADER">
+      <field name="FRWKW090-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKW090" />
+      <field name="FRWKW090-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="26" />
+    </register>
+    <register name="FRWKW090-BLOCO-ENTRADA">
+      <field name="FRWKW090-VERSAO-APLIC" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="FRWKW090-QTDE-REG-PAG" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="FRWKW090-QTDE-REG-MAIN" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>

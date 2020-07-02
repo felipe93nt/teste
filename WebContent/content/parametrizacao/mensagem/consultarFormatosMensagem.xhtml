@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_consultar_formato_mensagem')}" />
+	<ui:param name="passNumber" value="2" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathConsultarFormatoMensagem}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+		<awb-br:javascript src="/javascript/manutencao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:form id="pesquisaFormatoMensagemFormID">
+			<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+				style="margin-top: 10px;">
+
+
+				<awb-h:panelGrid columns="2" style="margin-left: 65px">
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_vigencia}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="2">
+							<awb-h:panelGrid columns="2" style="marging-top: 0px; !important">
+								<awb-h:outputLabel value="#{msgs.label_de} "
+									styleClass="HtmlOutputLabelBoldBradesco" />
+								<awb-br:calendar id="inicioVigencia" value="#"
+									titulo="CalendÃ¡rio InÃ­cio" alt="Calendario"
+									altDia="Campo Dia InÃ­cio" altMes="Campo MÃªs InÃ­cio"
+									altAno="Campo Ano InÃ­cio" onFieldFilled="errorStyleChanger"
+									onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2" style="marging-top: 0px; !important">
+								<awb-h:outputLabel value="#{msgs.label_ate} "
+									styleClass="HtmlOutputLabelBoldBradesco" />
+								<awb-br:calendar id="fimVigencia" value="#"
+									titulo="CalendÃ¡rio InÃ­cio" alt="Calendario"
+									altDia="Campo Dia InÃ­cio" altMes="Campo MÃªs InÃ­cio"
+									altAno="Campo Ano InÃ­cio" onFieldFilled="errorStyleChanger"
+									onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'" />
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 0px">
+						<awb-h:outputLabel value="#{msgs.label_somente_vigentes}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid>
+							<awb-h:selectBooleanCheckbox value="" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="3" style="margin-left:35px">
+					<awb-h:outputLabel value="#{msgs.label_codigo_mt}:"
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 6px" />
+					<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+							style="font-size:10px;width:200px;margin-top:0px;height:19px; !important"
+							value="#">
+							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
+							<awb-f:selectItem itemLabel="103 Single Customer Credit Transfer"
+								itemValue="1" />
+							<awb-f:selectItem
+								itemLabel="103 STP Single Customer Credit Transfer"
+								itemValue="2" />
+							<awb-f:selectItem itemLabel="110 Advice of Cheque(s)"
+								itemValue="3" />
+							<awb-f:selectItem
+								itemLabel="111 Request of Stop Payment of a Cheque"
+								itemValue="4" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid>
+						<awb-h:commandButton id="btnPesquisar" style="margin-left:-4px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_pesquisar}" type="button"
+							onclick="esconderTabela()">
+						</awb-h:commandButton>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+		</awb-h:form>
+		<awb-h:form id="formTabela">
+			<div id="divTabela" style="display: none">
+				<awb-h:panelGrid id="tabela" cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+				<f:ajax event="click" render="formBotoes:painelBotoes"
+					immediate="true" execute="@this"
+					listener="#{consultarFormatoMensagemBean.habilitarBotoes}" />
+				<awb-br:keepState pdcDataScrollerID="dataScroller"
+					stateID="RICCIAAA" resource="cws">
+					<awb-br:scrollableDataTable displayWidth="1000px" width="1000px"
+						id="tabelaFormatosMensagem" var="item" rows="10"
+						selectionMode="selectOne"
+						selection="#{consultarFormatoMensagemBean.viewHelper.itemSelecionado}"
+						value="#{consultarFormatoMensagemBean.viewHelper.listaFormatosVO}">
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_ident}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.identificacao}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_mt}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.mt}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_descricao}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.descricao}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_inicio_vigencia}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.inicioVigencia}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_fim_vigencia}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.fimVigencia}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_nivel_autoriz}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.nivelAutorizacao}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_ultima_atualiz}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.ultimaAtualizacao}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_usuario}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.usuario}" />
+						</awb-br:scrollableColumn>
+
+					</awb-br:scrollableDataTable>
+				</awb-br:keepState>
+
+				<awb-h:panelGrid id="gridPaginacao" style="padding-left: 28%;">
+					<awb-br:awbDataScroller id="dataScroller" resource="cws"
+						for="tabelaFormatosMensagem"
+						actionListener="#{cadastramentoRicBean.paginar}"
+						stateID="RICCIAAA" renderFacetsIfSinglePage="true">
+						<awb-f:facet name="first">
+							<awb-br:pdcCommandButton id="primeira"
+								styleClass="HtmlCommandButtonBradesco2"
+								value="#{msgs.label_primeira}" title="#{msgs.label_primeira}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastrewind">
+							<awb-br:pdcCommandButton id="retrocessoRapido"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_retrocesso}"
+								title="#{msgs.label_retrocesso}" />
+						</awb-f:facet>
+						<awb-f:facet name="previous">
+							<awb-br:pdcCommandButton id="anterior"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_anterior}"
+								title="#{msgs.label_anterior}" />
+						</awb-f:facet>
+						<awb-f:facet name="next">
+							<awb-br:pdcCommandButton id="proxima"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_proxima}"
+								title="#{msgs.label_proxima}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastforward">
+							<awb-br:pdcCommandButton id="avancoRapido"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_avanco}"
+								title="#{msgs.label_avanco}" />
+						</awb-f:facet>
+						<awb-f:facet name="last">
+							<awb-br:pdcCommandButton id="ultima"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_ultima}"
+								title="#{msgs.label_ultima}" />
+						</awb-f:facet>
+					</awb-br:awbDataScroller>
+				</awb-h:panelGrid>
+			</div>
+		</awb-h:form>
+		<awb-h:form id="formBotoes">
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+				columns="2" width="100%">
+
+				<awb-h:commandButton id="btnVoltar" style="margin-left:-4px;"
+					styleClass="HtmlCommandButtonBradesco2"
+					value="#{msgs.label_voltar}"
+					action="#{manutencaoMensagemBean.voltar}" immediate="true">
+				</awb-h:commandButton>
+
+				<awb-h:panelGroup style="float: right">
+					<awb-h:commandButton id="btnAlterar" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_alterar}"
+						disabled="#{not consultarFormatoMensagemBean.viewHelper.btnDetalhar}"
+						action="#{alterarFormatoMensagemBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					<awb-h:commandButton id="btnDetalhar" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_detalhar}"
+						disabled="#{not consultarFormatoMensagemBean.viewHelper.btnDetalhar}"
+						action="#{detalharFormatoMensagemBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					<awb-h:commandButton id="btnExcluir" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_excluir}"
+						disabled="#{not consultarFormatoMensagemBean.viewHelper.btnDetalhar}"
+						action="#{excluirFormatoMensagemBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+				</awb-h:panelGroup>
+
+			</awb-h:panelGrid>
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,35 @@
+.gridPrincipal{font-family : verdana, Geneva, Arial, Helvetica, sans-serif;font-size: 12px;color: #000000;width: expression(document.body.clientWidth - 30);vertical-align: top;padding-right: 0px;}
+.gridPrincipalImpressao{font-family : verdana, Geneva, Arial, Helvetica, sans-serif;font-size: 12px;color: #000000;vertical-align: top;padding-right: 0px;}
+.gridTelaComponente{font-family : verdana, Geneva, Arial, Helvetica, sans-serif;font-size: 12px;color: #000000;width: 100%;vertical-align: top;}
+.gridSecundaria{height: 100%;padding-bottom: 2px;}
+.gridSecundariaEsquerda{margin-bottom: 3px;height: 100%;text-align: left;}
+.noBorder{border: 0px;}
+.gridSecundariaDireita{margin-bottom: 3px;height: 100%;text-align: right;}
+.gridSecundariaPos{margin-bottom: 3px;margin-top: 15px;height: 100%;}
+.gridSecundariaColums{margin-bottom: 3px;height: 100%;width: auto;}
+.gridSecundariaCombo{margin-bottom: 4px;margin-top: 1px;height: 100%;}
+.gridInterna{margin-bottom: 5px;margin-right: 20px;height:100%;}
+.gridInternaAlinhada{margin-bottom: 5px;margin-right: 20px;height:100%;width: 100%;}
+.gridInternaComposta{margin-right: 5px;height:100%;}
+.gridInternaOrdenada{margin-right: 20px;margin-bottom: 3px;}
+.gridInternaOrdenadaDireita{margin-right: 20px;margin-bottom: 3px;text-align: right;width: 100%;}
+.gridInternaOrdenadaEsquerda{margin-right: 20px;margin-bottom: 3px;margin-top: 25px;text-align: left;width: 100%;}
+.gridInternaOrdenadaCentro{margin-right: 20px;margin-bottom: 3px;margin-top: 20px;text-align: center;width: 100%;}
+.gridInternaComboOrdenada{margin-right: 20px;margin-bottom: 4px;margin-top: 1px;}
+.gridBotao{width: 100%;margin-bottom: 9px;}
+.gridBotaoManterTabela{width: 100%;margin-bottom: 5px;}
+.gridBotaoEsquerda{text-align: left;width: 100%;}
+.gridBotaoDireita{text-align: right;width: 100%;}
+.gridSecundariaTabela {margin-bottom: 3px;height: 100%;width: 100%;}
+.gridSecundaria {margin-bottom: 3px;height: 100%;}
+.panelGroupBotaoRodape{ width: 100%; }
+.cols50{width: 50%;}
+.cols33{width: 33%;}
+.cols25{width: 25%;}
+.cols20{width: 20%;}
+.cols19{width: 19%;}
+.cols18{width: 19%;}
+.cols16{width: 16%;}
+.cols10{width: 10%;}
+.cols5{width: 5%;}
+.white-space-normal {white-space: normal !important;}

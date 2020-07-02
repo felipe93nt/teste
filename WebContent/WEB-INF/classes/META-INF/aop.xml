@@ -1,0 +1,13 @@
+<!DOCTYPE aspectj PUBLIC
+        "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+ 	<weaver>
+		<!-- <include within="br.com.bradesco.web.aq.application.*" /> -->
+	</weaver>
+	<aspects>
+		<aspect name="br.com.bradesco.web.ricc.aop.AdviceExcecao" />
+		<aspect name="br.com.bradesco.web.ricc.aop.AdviceAnterior" />
+		<aspect name="br.com.bradesco.web.ricc.aop.AdviceEncapsulado" />
+		<aspect name="br.com.bradesco.web.ricc.aop.AdvicePosterior" />
+	</aspects>
+</aspectj>

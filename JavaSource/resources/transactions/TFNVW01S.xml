@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="TFNVW01S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="13018">
+    <register name="TFNVW01S-HEADER">
+      <field name="TFNVW01S-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="TFNVW01S" />
+      <field name="TFNVW01S-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="13018" />
+    </register>
+    <register name="TFNVW01S-REGISTRO">
+      <register name="TFNVW01S-BLOCO-SAIDA">
+        <field name="TFNVW01S-NUM-CONSULTAS" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <register name="TFNVW01S-REG-SAIDA" minOccurs="0" maxOccurs="50" depends="TFNVW01S-NUM-CONSULTAS" dependsType="number">
+          <field name="TFNVW01S-CEXCEC-TRANS" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+          <field name="TFNVW01S-REXCEC-TRANS" pic="X(256)" length="256" bytes="256" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+      </register>
+    </register>
+  </output>
+</copybook>
+

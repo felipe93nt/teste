@@ -1,0 +1,112 @@
+.comboCustomTamanho1{width:263px;}
+.comboCustomTamanho3{width:243px;}
+.direita{float:right;padding-bottom:4px;}
+.HtmlCheckBradesco{padding-left: 5px; padding-bottom: 9px; padding-top: 9px;margin-right:20px;margin-top:2px; }
+.HtmlColumnBradesco{font-family: verdana; font-size: 10px}
+.HtmlCommandButtonBradesco {background-image:url(../imagens/bt_padrao.gif);height:21px;font-family: verdana;font-size: 10px;text-align : center;color: #000000;overflow:visible;width: auto;#width: 1px; _width: 1px;padding-left: 7px;padding-right: 7px;text-decoration: none;}
+.HtmlCommandButtonBradesco2{font-family: verdana; font-size: 10px;}
+.HtmlCommandButtonColorBradesco{font-family: verdana; font-size: 10px; background-color:#E23C41; color:white}
+.HtmlCommandLinkBradesco{font-family: verdana; font-size: 10px}
+.HtmlCommandLinkColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41 }
+.HtmlDataTableBradesco{font-family: verdana; font-size: 10px;white-space:nowrap;}
+.HtmlDataTableBradescoTaxa{font-family: verdana; font-size: 10px;white-space:nowrap; text-align: left;}
+.HtmlDataTableBradescoValorTaxa{font-family: verdana; font-size: 10px; text-align: right; width:100%; display: block;}
+.HtmlDataTableBradescoBoldTaxa{font-family: verdana; font-size: 10px; font-weight:bold; text-align: right;}
+.HtmlDataTableBradescoBold{font-family: verdana; font-size: 10px; font-weight:bold;}
+.HtmlDataTableBradescoBoldMonetario{font-family: verdana; font-size: 10px; text-align: right !important;}
+.HtmlDataTableBradescoBoldMonetarioTaxa{font-family: verdana; font-size: 10px; text-align: left; margin-right:2px;}
+.HtmlDataTableBradescoBoldOnMouse{font-weight: bold; text-align: center; font-size: 10px; font-family: verdana; color: #000000; text-align: left;}
+.HtmlDataTableBradescoValor{font-family: verdana; font-size: 10px; text-align: left;}
+.HtmlGraphicImageBradesco{font-family: verdana; font-size: 10px; border: none;}
+.HtmlImageSearchBradesco{vertical-align: middle;margin-left: 5px; margin-bottom: 3px;background-image: url(../imagens/botao_pesquisar.gif);}
+.HtmlImageSearchBradesco2{margin-left: 5px; margin-bottom: -3px; background-image: url(../imagens/botao_pesquisar.gif);}
+.HtmlImageSearchBradesco3{vertical-align: middle;margin-bottom: 3px;background-image: url(../imagens/botao_pesquisar.gif);}
+.HtmlInputSecretBradesco{font-family: verdana; font-size: 10px}
+.HtmlInputSecretColorBradesco{font-family: verdana; font-size: 10px; color:#58595B }
+.HtmlInputTextareaBradesco{font-family: verdana; font-size: 10px}
+.HtmlInputTextareaBradescoObrigatorio{font-family: verdana; font-size: 10px; background-color:#FFFBDE;}
+.HtmlInputTextareaColorBradesco{font-family: verdana; font-size: 10px; color:#58595B }
+.HtmlInputTextBradesco{font-family: verdana; font-size: 10px}
+.HtmlInputTextBradescoCalendar{font-family: verdana; font-size: 9px;text-align: left; margin-right:5px;}
+.HtmlInputTextBradescoTexto{font-family: verdana; font-size: 9px;text-align: left;margin-right:20px;}
+.HtmlInputTextBradescoTextoCaixaAlta{font-family: verdana; font-size: 9px;text-align: left;margin-right:20px;text-transform:uppercase;}
+.HtmlInputTextBradescoTextoMargLeft2{font-family: verdana; font-size: 9px;text-align: left;margin-left:2px;}
+.HtmlInputTextBradescoTextoMargRight2{font-family: verdana; font-size: 9px;text-align: left;margin-right:2px;}
+.HtmlInputTextBradescoValor{font-family: verdana; font-size: 9px;text-align: right;margin-right:20px;}
+.HtmlInputTextColorBradesco{font-family: verdana; font-size: 10px; color:#58595B }
+.HtmlInputTextBradescoObrigatorio{font-family: verdana; font-size: 10px; background-color:#FFFBDE;}
+.HtmlInputTextAreaBradescoObrigatorio{font-family: verdana; font-size: 10px; background-color:#FFFBDE;}
+.HtmlLinkBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; color:#000000; font-weight:bold}
+.HtmlLinkBradesco12{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#000000; font-weight:bold}
+.HtmlLinkBradescoNoUnderline{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; color:#000000;text-decoration: none; font-weight:bold}
+.HtmlMessageBradesco{font-family: verdana; font-size: 10px}
+.HtmlMessageColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41; font-weight:bold }
+.HtmlMessagesBradesco{font-family: verdana; font-size: 10px}
+.HtmlMessagesColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41; font-weight:bold }
+.HtmlOutputFormatBoldBradesco{font-family: verdana; font-size: 10px; font-weight:bold}
+.HtmlOutputFormatBoldBradescoMarg20{font-family: verdana; font-size: 10px; font-weight:bold; margin-left:20px;}
+.HtmlOutputFormatBoldBradescoMarg5{font-family: verdana; font-size: 10px; font-weight:bold; margin-left:5px;margin-right:20px;}
+.HtmlOutputFormatBradesco{font-family: verdana; font-size: 10px}
+.HtmlOutputFormatBradescoMarg20{font-family: verdana; font-size: 10px; margin-left:20px;}
+.HtmlOutputFormatBradescoMarg5{font-family: verdana; font-size: 10px; margin-left:5px;margin-right:20px;}
+.HtmlOutputFormatColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlOutputFormatTitleBradesco{font-family: verdana; font-size: 12px; font-weight:bold}
+.HtmlOutputFormatTitleColorBradesco{font-family: verdana; font-size: 12px; color:#E23C41; font-weight:bold}
+.HtmlOutputLabelBoldBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight:bold}
+.HtmlOutputLabelBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px}
+.HtmlOutputLabelColorBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; color:#E23C41}
+.HtmlOutputLabelTitleBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight:bold}
+.HtmlOutputLabelTitleColorBradesco{font-family: verdana, Arial, Helvetica, sans-serif;; font-size: 12px; color:#E23C41; font-weight:bold}
+.HtmlOutputLinkBoldBradesco{font-family: verdana; font-size: 10px; font-weight:bold}
+.HtmlOutputLinkBradesco{font-family: verdana; font-size: 10px}
+.HtmlOutputLinkColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlOutputLinkTitleBradesco{font-family: verdana; font-size: 12px; font-weight:bold}
+.HtmlOutputLinkTitleColorBradesco{font-family: verdana; font-size: 12px; color:#E23C41; font-weight:bold}
+.HtmlOutputTextBoldBradesco{font-family: verdana; font-size: 10px; font-weight:bold}
+.HtmlOutputTextBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px}
+.HtmlOutputTextBulletBoldBradesco{font-family: verdana; font-size: 10px; font-weight:bold}
+.HtmlOutputTextBulletRegularBradesco{font-family: verdana; font-size: 9px; color:#000000;  text-align: left;}
+.HtmlOutputTextColorBoldBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#E23C41; font-weight:bold}
+.HtmlOutputTextColorBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; color:#E23C41}
+.HtmlOutputTextColorBradesco10px{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 10px; color:#E23C41}
+.HtmlOutputTextRespostaBradesco{font-family: verdana; font-size: 10px; font-weight:bold}
+.HtmlOutputTextRotuloBradesco{font-family: verdana; font-size: 10px; color:#000000;  text-align: left;}
+.HtmlOutputTextTitleBradesco{font-family: verdana, Arial, Helvetica, sans-serif; font-size: 12px}
+.HtmlOutputTextTitleColorBradesco{font-family: verdana; font-size: 12px; color:#E23C41}
+.HtmlOutputTextTitleColorBradescoBold{font-family: verdana; font-size: 12px; color:#E23C41;font-weight:bold}
+.HtmlPanelGridBradesco{font-family: verdana; font-size: 10px}
+.HtmlPanelGroupBradesco{font-family: verdana; font-size: 10px}
+.HtmlRadioBradesco{padding-left: 5px; padding-bottom: 9px; padding-top: 9px;margin-right:20px;margin-top:2px; }
+.HtmlSelectBooleanCheckboxBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectBooleanCheckboxColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectManyCheckboxBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectManyCheckboxColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectManyListboxBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectManyListboxColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectManyMenuBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectManyMenuColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectOneListboxBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectOneListboxColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectOneMenuBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectOneMenuBradescoTexto{font-family: verdana; font-size: 9px;text-align: left; margin-top:1px;margin-right:20px;}
+.HtmlSelectOneMenuBradescoValor{font-family: verdana; font-size: 9px;text-align: right; margin-top:1px;margin-right:20px;}
+.HtmlSelectOneMenuColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.HtmlSelectOneRadioBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectOneRadioColorBradesco{font-family: verdana; font-size: 10px; color:#E23C41}
+.OutputBoldMonetario{font-family: verdana; font-size: 10px; text-align: right !important; font-weight:bold;}
+.panelGroupComLupa{margin-bottom: 1px;}
+.panelGridColumHeader10{width: 10%; text-align: left;}
+.panelGridColumHeader15{width: 18%; text-align: left;}
+.panelGridColumHeader20{width: 20%; text-align: left;}
+.panelGridColumHeader25{width: 25%; text-align: left;}
+.panelGridColumHeader30{width: 30%; text-align: left;}
+.panelGridColumHeader50{width: 40%; text-align: left;}
+.panelGridColumHeader60{width: 62%; text-align: left;}
+.panelGridColumHeader80{width: 80%; text-align: left;}
+.passNoSelected {font-family: Verdana;font-size: 10 px;font-weight: bold;background-image: url(../../imagens/icone_cinza.gif);background-repeat: no-repeat;width: 14px;text-align: center;color: #939393;vertical-align: middle;padding-right: 7px;padding-left: 3px;margin-top:8px;height:15px;}
+.passSelected {font-family: Verdana;font-size: 10 px;font-weight: bold;background-image: url(../../imagens/icone_vermelho.gif);background-repeat: no-repeat;width: 14px;text-align: center;color: #FFFFFF;vertical-align: middle;padding-right: 7px;padding-left: 3px;margin-top:8px;height:15px;}
+.selectionMenu {text-align: left;font-family: verdana;font-weight: bold;font-size: 17px;color: #555555;vertical-align: top;padding-top:0px; height:28px;}
+.textDefault {font-family: Verdana;font-size: 10 px;}
+.textPassNoSelected {font-family: Verdana;font-size: 10 px;font-weight: normal;text-align: left;color: #000000;vertical-align: middle;padding-right: 15px;padding-left: 2px;margin-top:8px;height:15px;}
+.textPassSelected {font-family: Verdana;font-size: 10 px;font-weight: bold;text-align: left;color: #000000;vertical-align: middle;padding-right: 15px;padding-left: 2px;margin-top:8px;height:15px;}
+.topo { position:absolute;top:150px;left: 9px;}

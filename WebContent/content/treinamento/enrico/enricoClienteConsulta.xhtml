@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_treinamento_consulta_cliente')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathEnricoCadastroCliente}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0" width="100%"
+			styleClass="gridPrincipal">
+			<awb-h:form id="formenricoCliente">
+
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_informacoes_pessoais}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.informacoesPessoais}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="6" cellpadding="0" cellspacing="10"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_nome}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.nome}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_cpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.cpf}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_rg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.rg}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_data_nascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.dataNascimento}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+				
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_endereco}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.endereco}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid columns="6" cellpadding="0" cellspacing="10"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_logradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.logradouro}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_numero}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.numero}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_complemento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.complemento}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_bairro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.bairro}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_combobox_cidade}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.cidade}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_combobox_estado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.estado}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+					
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_cep}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.cep}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+					
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_contato}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						size= "29" value="#{enricoClienteBean.viewHelper.contato}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="6" cellpadding="0" cellspacing="10"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_telefone}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.telefone}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_celular}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.celular}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enrico_email}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enricoClienteBean.viewHelper.enricoclienteVO.email}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					width="100%">
+
+					<awb-h:commandButton style="margin-left:-4px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}"
+						action="#{enricoClienteBean.voltar}" immediate="true">
+					</awb-h:commandButton>
+
+					<awb-h:panelGroup style="float: right">
+
+						
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:form>
+		</awb-h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>

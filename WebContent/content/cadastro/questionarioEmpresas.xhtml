@@ -1,0 +1,1932 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_questionario_empresas')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathQuestionarioEmpresas}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<ui:include src="/template/contadorSessao.xhtml" />
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentral.css" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/empresas/empresas.js" />
+		<awb-br:javascript src="/javascript/javaScripts.js" />
+
+
+		<awb-h:form id="formEmpresas" onsubmit="setScrollPos();"
+			onkeypress="blockEnter()">
+			<h:inputHidden id="scrollPointIndex" />
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+			<!-- Dados do GRUPO -->
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="#{msgs.label_grupo}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+					value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.codGrupo} - #{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.nomeGrupo}" />
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="Código de Controle: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel id="codRelatorio" style="font-size:11px"
+					value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.codRelatorio}"
+					styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<div class="scrollCentral">
+
+				<script type="text/javascript">
+					window.onload = function() {
+						atualizarTotalSituacaoFinanc();
+					}
+				</script>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+					style="margin-bottom:10px;" width="100%">
+					<awb-h:panelGroup>
+						<awb-h:outputLabel value="#{msgs.label_nome_relatorio}:"
+							styleClass="HtmlOutputLabelBoldBradesco"
+							style="margin-right: 10px;" />
+						<awb-h:inputText id="txtNomeRelatorio" size="140" maxlength="50"
+							styleClass="HtmlInputTextBradescoObrigatorio"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.nomeRelatorio}" />
+					</awb-h:panelGroup>
+
+				</awb-h:panelGrid>
+
+				<!-- **** 1. DESCREVER ATIVIDADE EMPRESA ****	-->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					border="0" width="100%">
+					<awb-h:outputLabel value="#{msgs.label_quest_corporate_descrever}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:inputTextarea rows="10" cols="159" id="IdTextAreaDescrever"
+						styleClass="HtmlInputTextareaBradescoObrigatorio"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descAtividadeEmpresa}"
+						onblur="imposeMaxLength(this, 5000)"
+						onkeydown="imposeMaxLength(this, 5000)"
+						onkeyup="imposeMaxLength(this, 5000)"
+						onkeypress="imposeMaxLength(this, 5000)" />
+					<br></br>
+				</awb-h:panelGrid>
+
+				<!-- **** 2. DESCREVER ORGANOGRAMA ****	-->
+
+				<awb-h:panelGrid cellpadding="1" cellspacing="0" columns="1"
+					border="0" width="100%">
+					<awb-h:outputLabel
+						value="#{msgs.label_quest_corporate_Organograma}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:inputTextarea rows="10" cols="159"
+						id="IdTextAreaOrnanograma"
+						styleClass="HtmlInputTextareaBradescoObrigatorio"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.organogramaControleAcionario}"
+						onblur="imposeMaxLength(this, 5000)"
+						onkeydown="imposeMaxLength(this, 5000)"
+						onkeyup="imposeMaxLength(this, 5000)"
+						onkeypress="imposeMaxLength(this, 5000)" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 3. QUADRO ADMINISTRATIVO ****	-->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					style="margin-top: 20px;" width="100%">
+
+					<awb-h:outputLabel value="3. #{msgs.label_quadro_administrativo}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+
+					<awb-h:outputLabel value="#{msgs.label_administracao}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.administracao}">
+						<awb-f:selectItem itemValue="1" itemLabel="#{msgs.label_familiar}" />
+						<awb-f:selectItem itemValue="2"
+							itemLabel="#{msgs.label_profissionalizada}" />
+					</awb-h:selectOneRadio>
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<awb-h:outputLabel value="#{msgs.label_plano_sucessao}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.planoSucessao}">
+						<awb-f:selectItem itemValue="1"
+							itemLabel="#{msgs.label_bem_definido}" />
+						<awb-f:selectItem itemValue="2"
+							itemLabel="#{msgs.label_em_processo_definicao}" />
+						<awb-f:selectItem itemValue="3"
+							itemLabel="#{msgs.label_nao_definido}" />
+					</awb-h:selectOneRadio>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+						style="margin-top:10px" width="831px;">
+						<awb-br:editableDataTable id="TableQuadroAdm" var="item"
+							width="840px" height="115px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.quadroAdministrativoSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaQuadroAdministrativo}">
+							<awb-br:editableColumn width="515px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_administradores}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtAdministradores" maxlength="70"
+									size="64" styleClass="HtmlInputTextBradescoObrigatorio"
+									value="#{item.administrador}" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="300px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_cargo}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtCargo" maxlength="30" size="40"
+									styleClass="HtmlInputTextBradescoObrigatorio"
+									value="#{item.cargo}" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+					</awb-h:panelGrid>
+
+					<awb-h:outputLabel value="#{msgs.label_detalhar_plano_sucessao}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						width="100%">
+						<awb-h:inputTextarea id="IdTextAreaDetalharSucessao"
+							styleClass="HtmlInputTextareaBradescoObrigatorio" rows="10"
+							cols="159"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descQuadroAdministrativo}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 4.DETALHAMENTO PATRIMONIO ****	-->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					style="margin-top: 20px;" width="100%">
+					<awb-h:outputLabel value="4. #{msgs.label_detalhamento_patrimonio}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+
+					<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+						style="margin-top: 10px;">
+
+						<awb-br:editableDataTable id="tableDetalhamentoPatrimonio"
+							var="item" width="840px" height="200px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.detalhamentoPatrimonioSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaDetalhamentoPatrimonio}">
+
+							<awb-br:editableColumn width="515px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_patrimonio_etc}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtPatrimonio" maxlength="30"
+									value="#{item.patrimonio}" size="45"
+									styleClass="HtmlInputTextBradesco" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="300px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_patrimonio_r$}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtValorPatrimonio"
+									onfocus="loadMasksJQuery()" alt="valorSemCasas15"
+									onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalpatrimonio()', 100);"
+									value="#{item.valorPatrimonio}"
+									styleClass="HtmlInputTextBradesco" size="30" />
+							</awb-br:editableColumn>
+
+						</awb-br:editableDataTable>
+						<awb-h:panelGrid columns="2" style="margin-top: 10px;"
+							width="100%">
+							<awb-h:outputLabel value="#{msgs.label_total}:"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:outputLabel id="lblTotalPatrimonio"
+								value="R$ mil #{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.valorTotalPatrimonioFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco"
+								style="float:right; margin-right: 15px;" />
+						</awb-h:panelGrid>
+
+						<awb-h:outputLabel value="#{msgs.label_comentarios}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+
+						<awb-h:inputTextarea rows="10" cols="159"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descDetalhamentoPatrimonio}"
+							styleClass="HtmlInputTextareaBradesco"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 5.CAPACIDADE PRODUTIVA ****	-->
+
+				<awb-h:panelGrid style="margin-top: 20px;">
+					<awb-h:outputLabel value="5. #{msgs.label_capacidade_produtiva}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+					style="margin-top: 5px;">
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						style="margin-top: 5px;">
+						<awb-h:panelGrid>
+
+							<awb-br:editableDataTable id="tableCapacidadeProdutiva"
+								var="item" width="1132px;" height="200px"
+								selectionMode="selectOne"
+								selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.capacidadeProdutivaSelecionado}"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaCapacidadeProdutiva}">
+
+								<awb-br:editableColumn width="350px">
+									<awb-f:facet name="header">
+										<awb-h:outputLabel value="#{msgs.label_plantas}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:inputText id="txtPlantas" maxlength="30"
+										value="#{item.plantas}" styleClass="HtmlInputTextBradesco" />
+								</awb-br:editableColumn>
+
+								<awb-br:editableColumn width="250px">
+									<awb-f:facet name="header">
+										<awb-h:outputLabel
+											value="Capacidade de #{msgs.label_producao_ton_ano}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:inputText id="txtCapacProducao"
+										onfocus="loadMasksJQuery()" alt="numero9Formatado"
+										onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotaisCapProdut()', 100);"
+										value="#{item.producao}" styleClass="HtmlInputTextBradesco" />
+								</awb-br:editableColumn>
+
+								<awb-br:editableColumn width="250px">
+									<awb-f:facet name="header">
+										<awb-h:outputLabel value="#{msgs.label_utilizada_ton_ano}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:inputText id="txtCapacUtilizada"
+										onfocus="loadMasksJQuery()" alt="numero9Formatado"
+										onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotaisCapProdut()', 100);"
+										value="#{item.utilizada}" styleClass="HtmlInputTextBradesco" />
+								</awb-br:editableColumn>
+
+								<awb-br:editableColumn width="250px">
+									<awb-f:facet name="header">
+										<awb-h:outputLabel value="#{msgs.label_utilizacao_percentual}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:inputText id="txtUtilPercentual"
+										onfocus="loadMasksJQuery()" alt="percentualDuasCasas"
+										onkeyup="vNumero(this,'9(3)V9(2)');"
+										value="#{item.utilizacaoPercentual}"
+										styleClass="HtmlInputTextBradesco" />
+								</awb-br:editableColumn>
+							</awb-br:editableDataTable>
+
+							<awb-h:panelGrid id="totalizadorCapacidadeProdutiva" border="0"
+								columns="3" cellspacing="0" cellpadding="0">
+								<awb-h:panelGrid width="360px">
+									<awb-h:outputLabel value="#{msgs.label_total}:"
+										styleClass="HtmlOutputLabelBoldBradesco" />
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="1" width="250px" style="float:right;">
+									<awb-h:outputLabel id="txtTotalCapacidade"
+										value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.totalCapacidadeFormatado}"
+										styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="1" width="250px" style="float:right;">
+									<awb-h:outputLabel id="txtTotalProducao"
+										value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.totalProducaoFormatado}"
+										styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+								</awb-h:panelGrid>
+							</awb-h:panelGrid>
+
+						</awb-h:panelGrid>
+						<awb-h:panelGrid cellpadding="0" cellspacing="">
+							<awb-h:outputLabel value="#{msgs.label_comentarios}"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:inputTextarea id="txtDescCapacProd" rows="10" cols="159"
+								styleClass="HtmlInputTextareaBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descCapacidadeProdutiva}"
+								onblur="imposeMaxLength(this, 5000)"
+								onkeydown="imposeMaxLength(this, 5000)"
+								onkeyup="imposeMaxLength(this, 5000)"
+								onkeypress="imposeMaxLength(this, 5000)" />
+						</awb-h:panelGrid>
+
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 6.PRINCIPAIS FORNECEDORES **** -->
+
+				<awb-h:panelGrid style="margin-top: 20px;" width="100%">
+					<awb-h:outputLabel value="6. #{msgs.label_principais_fornecedores}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid>
+						<awb-br:editableDataTable id="TableFornecedores" var="item"
+							width="840px" height="115px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.fornecedorSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaFornecedores}">
+							<awb-br:editableColumn width="665px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_fornecedores}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtFornecedores"
+									styleClass="HtmlInputTextBradescoObrigatorio" maxlength="80"
+									value="#{item.fornecedor}" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtPercentualFornecedor"
+									styleClass="HtmlInputTextBradescoObrigatorio"
+									style="float:right;padding-right:12px;"
+									value="#{item.porcentagem}" onfocus="loadMasksJQuery()"
+									alt="percentualDuasCasas" onkeyup="vNumero(this,'9(3)V9(2)');" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios}" />
+						<awb-h:inputTextarea cols="159" rows="10"
+							id="txtComentariosFornecedores"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descFornecedores}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+					<br />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" width="831px;">
+						<awb-br:editableDataTable id="TableCliente" var="item"
+							width="840px;" height="115px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.clienteSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaClientes}">
+							<awb-br:editableColumn width="665px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_clientes}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtFornecedores"
+									styleClass="HtmlInputTextBradesco" maxlength="80"
+									value="#{item.cliente}" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtPercentualClientes"
+									styleClass="HtmlInputTextBradesco"
+									style="float:right;padding-right:12px;"
+									value="#{item.porcentagem}" onfocus="loadMasksJQuery()"
+									alt="percentualDuasCasas" onkeyup="vNumero(this,'9(3)V9(2)');" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_informar_atraso}:" />
+						<awb-h:inputTextarea cols="159" rows="2" id="txtInformarAtraso"
+							styleClass="HtmlInputTextareaBradescoObrigatorio"
+							style="overflow-y:hidden"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.informarAtraso}"
+							onblur="imposeMaxLength(this, 100)"
+							onkeydown="imposeMaxLength(this, 100)"
+							onkeyup="imposeMaxLength(this, 100)"
+							onkeypress="imposeMaxLength(this, 100)" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" width="831px;">
+						<awb-br:editableDataTable id="TableFormaRecebimento" var="item"
+							width="840px" height="115px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.recebimentoSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaRecebimento}">
+							<awb-br:editableColumn width="665px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_forma_recebimento}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtFormaRecebimento" size="102"
+									styleClass="HtmlInputTextBradescoObrigatorio" maxlength="80"
+									value="#{item.formaRecebimento}" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtPorcFormaRecebimento"
+									styleClass="HtmlInputTextBradescoObrigatorio"
+									style="float:right;padding-right:12px;"
+									value="#{item.porcentagem}" onfocus="loadMasksJQuery()"
+									alt="percentualDuasCasas" onkeyup="vNumero(this,'9(3)V9(2)');" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios}" />
+						<awb-h:inputTextarea cols="159" rows="10" id="txtdescRecebimento"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descRecebimento}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid>
+						<awb-br:editableDataTable id="TableConcorrente" var="item"
+							width="840px" height="115px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.concorrenteSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaConcorrente}">
+							<awb-br:editableColumn width="815px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel
+										value="#{msgs.label_principais_concorrentes}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtPrincipaisConcorrentes"
+									styleClass="HtmlInputTextBradesco" maxlength="80"
+									value="#{item.concorrente}" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios}" />
+						<awb-h:inputTextarea cols="159" rows="10"
+							id="TxtComentariosConcorrentes"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descConcorrente}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+					<f:verbatim>
+						<br />
+					</f:verbatim>
+
+					<awb-h:panelGrid>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_detalhar_carterira_contratos}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid>
+
+						<awb-br:editableDataTable id="tableCarteiraContratos" var="item"
+							width="1285px" height="200px" selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.carteiraSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaCarteira}">
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_projeto_obra_servicos}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtProjeto"
+									styleClass="HtmlInputTextBradesco" maxlength="100"
+									value="#{item.projetoObraServico}" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_cliente}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtCliente"
+									styleClass="HtmlInputTextBradesco" maxlength="70"
+									value="#{item.cliente}" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_valor_contrato}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtValorContrato"
+									styleClass="HtmlInputTextBradesco"
+									style="float:right; padding-bottom:4px"
+									value="#{item.valorContrato}" onfocus="loadMasksJQuery()"
+									alt="valorSemCasas15"
+									onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotaisCarteiraContrato()', 100);" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_saldo_performar}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtSaldoPerformar"
+									styleClass="HtmlInputTextBradesco"
+									style="float:right; padding-bottom:4px"
+									value="#{item.saldoPerformar}" onfocus="loadMasksJQuery()"
+									alt="valorSemCasas15"
+									onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotaisCarteiraContrato()', 100);" />
+							</awb-br:editableColumn>
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_termino}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="dateDataTermino"
+									styleClass="HtmlInputTextBradesco"
+									style="float:right; padding-bottom:4px"
+									value="#{item.dataTermino}" onfocus="loadMasksJQuery()"
+									alt="data" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+
+						<awb-h:panelGrid id="totalizadorCarteiraContratos" border="0"
+							columns="3" cellspacing="0" cellpadding="0">
+							<awb-h:panelGrid width="510px">
+								<awb-h:outputLabel value="#{msgs.label_total}:"
+									styleClass="HtmlOutputLabelBoldBradesco" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2" width="255px" style="float:right;">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="R$ mil" style="float:right;" />
+								<awb-h:outputLabel id="txtTotalContrato"
+									value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.totalContratoFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2" width="255px" style="float:right;">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="R$ mil" style="float:right;" />
+								<awb-h:outputLabel id="txtTotalSaldoContrato"
+									value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.totalSaldoContratoFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios}" />
+						<awb-h:inputTextarea cols="159" rows="10"
+							id="txtComentariosCarteiraContratos"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descCarteira}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 7.SITUAÇÃO ECONOMICO-FINANCEIRA **** -->
+				<awb-h:panelGrid styleClass="gridSecundaria"
+					style="margin-bottom:20px;" width="100%">
+					<awb-h:panelGrid cellpadding="0" cellspacing="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="7. #{msgs.label_situacao_economico_financeira}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid columns="4" cellpadding="0" cellspacing="0"
+						id="faturamentoConsolidado">
+
+						<awb-h:panelGrid columns="2">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_faturamento_consolidado}" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:30px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}" />
+							<awb-h:inputText id="txtAnoUm" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:30px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}" />
+							<awb-h:inputText id="txtAnoDois" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:30px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								style="margin-right:10px;" value="#{msgs.label_ano}" />
+							<awb-h:inputText id="txtAnoTres" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+
+						<awb-h:inputText value="#{msgs.label_mes_1}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtJan1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.janeiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJan2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.janeiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJan3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.janeiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_2}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtFev1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.fevereiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtFev2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.fevereiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtFev3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.fevereiro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_3}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtMar1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.marco}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtMar2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.marco}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtMar3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.marco}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_4}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtAbr1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.abril}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtAbr2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.abril}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtAbr3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.abril}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_5}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtMai1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.maio}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtMai2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.maio}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtMai3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.maio}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_6}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtJun1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.junho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJun2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.junho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJun3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.junho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_7}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtJul1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.julho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJul2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.julho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtJul3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.julho}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_8}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtAgo1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.agosto}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtAgo2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.agosto}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtAgo3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.agosto}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_9}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtSet1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.setembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtSet2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.setembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtSet3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.setembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_10}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtOut1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.outubro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtOut2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.outubro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtOut3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.outubro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_11}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtNov1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.novembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtNov2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.novembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtNov3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.novembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+
+						<awb-h:inputText value="#{msgs.label_mes_12}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtDez1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.dezembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtDez2" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.dezembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+						<awb-h:inputText id="txtDez3" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.dezembro}"
+							alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotalSituacaoFinanc()', 100);" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="4" cellpadding="0" cellspacing="0"
+						id="txTotaisFaturamento" style="margin-top:-4px;">
+						<awb-h:inputText value="#{msgs.label_total}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+
+						<awb-h:inputText id="txtTotalUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtTotalDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtTotalTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText value="#{msgs.label_media}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+
+						<awb-h:inputText id="txtMediaUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoA.mediaFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtMediaDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoB.mediaFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtMediaTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoConsolidadoC.mediaFaturamentoFormatado}" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" border="" cellspacing="0"
+					cellpadding="0" style="margin-bottom:10px;">
+					<awb-h:panelGrid>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_abertura_faturamento}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoAberturaUm" onfocus="loadMasksJQuery()"
+							alt="numerico4"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.ano1}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoAberturaDois"
+							onfocus="loadMasksJQuery()" alt="numerico4"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.ano2}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText id="txtAnoAberturaTres"
+							onfocus="loadMasksJQuery()" alt="numerico4"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.ano3}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:inputText id="txtFat1Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha1.descricao}" />
+					<awb-h:inputText id="txtFat1P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha1.porcentagem1}" />
+					<awb-h:inputText id="txtFat1P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha1.porcentagem2}" />
+					<awb-h:inputText id="txtFat1P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha1.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat2Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha2.descricao}" />
+					<awb-h:inputText id="txtFat2P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha2.porcentagem1}" />
+					<awb-h:inputText id="txtFat2P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha2.porcentagem2}" />
+					<awb-h:inputText id="txtFat2P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha2.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat3Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha3.descricao}" />
+					<awb-h:inputText id="txtFat3P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha3.porcentagem1}" />
+					<awb-h:inputText id="txtFat3P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha3.porcentagem2}" />
+					<awb-h:inputText id="txtFat3P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha3.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat4Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha4.descricao}" />
+					<awb-h:inputText id="txtFat4P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha4.porcentagem1}" />
+					<awb-h:inputText id="txtFat4P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha4.porcentagem2}" />
+					<awb-h:inputText id="txtFat4P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha4.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat5Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha5.descricao}" />
+					<awb-h:inputText id="txtFat5P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha5.porcentagem1}" />
+					<awb-h:inputText id="txtFat5P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha5.porcentagem2}" />
+					<awb-h:inputText id="txtFat5P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha5.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat6Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						style="padding-right:5px"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha6.descricao}" />
+					<awb-h:inputText id="txtFat6P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha6.porcentagem1}" />
+					<awb-h:inputText id="txtFat6P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha6.porcentagem2}" />
+					<awb-h:inputText id="txtFat6P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						onkeyup="vNumero(this,'9(3)V9(2)');"
+						styleClass="HtmlInputTextBradesco"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.faturamentoSegmento.linha6.porcentagem3}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" border=""
+					style="margin-bottom:10px; margin-left:-2px">
+					<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0">
+						<awb-h:panelGrid columns="1" style="margin-left:-1px"
+							width="240px">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_highlights_empresa}:" />
+							<awb-h:inputText id="txtNomeHighlightsEmpresa" size="32"
+								styleClass="HtmlInputTextBradescoObrigatorio" maxlength="70"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.nomeHighlightsEmpresa}" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" cellspacing="0" width="200px;"
+							style="padding-top: 16px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_balanco}:" />
+							<awb-br:calendar id="CalendarBalanco1"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.balanco}" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" cellspacing="0" width="200px;"
+							style="padding-top: 16px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_balanco}:" />
+							<awb-br:calendar id="CalendarBalanco2"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.balanco}" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" cellspacing="0" width="200px;"
+							style="padding-top: 16px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_balanco}:" />
+							<awb-br:calendar id="CalendarBalanco3"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.balanco}" />
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid style="padding-top: 16px;">
+							<awb-h:commandButton id="btnNovoHighlights" title="Novo"
+								value="#{msgs.label_novo}" style="float: right"
+								styleClass="HtmlCommandButtonBradesco2"
+								action="#{questionarioEmpresasBean.botaoNovoHighlights}">
+								<awb-br:submitCheckClient />
+							</awb-h:commandButton>
+						</awb-h:panelGrid>
+
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid border="0" columns="4" cellpadding="0"
+						cellspacing="0" style="margin-left:5px">
+
+						<f:ajax event="click" render="btnNovoHighlights" />
+
+						<awb-h:inputText value="#{msgs.label_receita_liquida}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtReceita1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.receitaLiquida}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtReceita2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.receitaLiquida}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtReceita3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.receitaLiquida}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_contas_a_receber}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtContas1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.contasAReceber}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtContas2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.contasAReceber}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtContas3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.contasAReceber}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_estoques}:" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtEstoques1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.estoques}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtEstoques2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.estoques}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtEstoques3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.estoques}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_ger_bruta}:" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtGerBruta1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.gerBrutaCaixa}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtGerBruta2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.gerBrutaCaixa}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtGerBruta3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.gerBrutaCaixa}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_margem_operacional}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtMargem1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.margemOperacional}"
+							alt="percentualDuasCasasDecimaisNegativo"
+							onkeyup="vNumero(this,'9(3)V9(2)');" />
+						<awb-h:inputText id="txtMargem2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.margemOperacional}"
+							alt="percentualDuasCasasDecimaisNegativo"
+							onkeyup="vNumero(this,'9(3)V9(2)');" />
+						<awb-h:inputText id="txtMargem3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.margemOperacional}"
+							alt="percentualDuasCasasDecimaisNegativo"
+							onkeyup="vNumero(this,'9(3)V9(2)');" />
+
+						<awb-h:inputText value="#{msgs.label_lucro_prejuizo_liquido}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtPrejuizo1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.lucroPrejuizoLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtPrejuizo2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.lucroPrejuizoLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtPrejuizo3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.lucroPrejuizoLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_patrimonio_liquido}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtPatrimonio1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.patrimonioLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtPatrimonio2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.patrimonioLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtPatrimonio3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.patrimonioLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_endiv_financ_total}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtdivida1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.endividamentoFinanceiroTotal}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtdivida2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.endividamentoFinanceiroTotal}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtdivida3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.endividamentoFinanceiroTotal}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_disponibilidades}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtDisponibilidades1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.disponibilidades}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtDisponibilidades2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.disponibilidades}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtDisponibilidades3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.disponibilidades}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_endiv_financ_liquido}:"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="37" />
+						<awb-h:inputText id="txtEndividamento1" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsA.endividamentoFinanceiroLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtEndividamento2" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsB.endividamentoFinanceiroLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtEndividamento3" size="35"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.highlightsC.endividamentoFinanceiroLiquido}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios_situacao_atual}:" />
+				</awb-h:panelGrid>
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+						value="#{msgs.label_comentar_sobre_variacoes}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:inputTextarea cols="159" rows="10" id="txtDescFaturamento"
+						styleClass="HtmlInputTextareaBradescoObrigatorio"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descFaturamento}"
+						onblur="imposeMaxLength(this, 5000)"
+						onkeydown="imposeMaxLength(this, 5000)"
+						onkeyup="imposeMaxLength(this, 5000)"
+						onkeypress="imposeMaxLength(this, 5000)" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 8.ENDIVIDAMENTO BANCÁRIO **** -->
+				<awb-h:panelGrid styleClass="gridSecundaria" width="100%">
+					<awb-h:panelGrid cellpadding="0" cellspacing="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="8. #{msgs.label_endividamento_bancario}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid styleClass="gridInterna" width="100%">
+
+						<awb-br:editableDataTable id="tableEndividamentoBancario"
+							var="item" width="1285px" height="200px"
+							selectionMode="selectOne"
+							selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.endividamentoBancarioSelecionado}"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaEndividamentoBancario}">
+							<awb-br:editableColumn width="350px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_instituicao_financeira}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtInstituicao"
+									styleClass="HtmlInputTextBradescoObrigatorio" maxlength="70"
+									value="#{item.instituicaoFinanceira}" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_modalidade}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtModalidade" size="27"
+									styleClass="HtmlInputTextBradescoObrigatorio" maxlength="30"
+									value="#{item.modalidade}" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_saldo_reais}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtSaldo"
+									styleClass="HtmlInputTextBradesco"
+									style="float:right; padding-bottom:4px;" value="#{item.saldo}"
+									onfocus="loadMasksJQuery()" alt="valorSemCasas15"
+									onkeyup="vNumero(this,'9(15)');setTimeout('atualizarTotaisEndivBanc()', 100);" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_venc_final}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtVencimentoFinal" size="27"
+									styleClass="HtmlInputTextBradesco"
+									value="#{item.vencimentoFinal}"
+									style="float:right; padding-bottom:4px;"
+									onfocus="loadMasksJQuery()" alt="data" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="Amortização"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtAmortizacao" size="25"
+									styleClass="HtmlInputTextBradescoObrigatorio"
+									value="#{item.amortizacao}" maxlength="20" />
+							</awb-br:editableColumn>
+
+							<awb-br:editableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_garantia}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:inputText id="txtDescGarantia" size="50"
+									styleClass="HtmlInputTextBradescoObrigatorio"
+									value="#{item.descGarantia}" maxlength="100" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+
+						<awb-h:panelGrid id="totalizadorEndividamento" border="0"
+							columns="3" cellspacing="0" cellpadding="0">
+							<awb-h:panelGrid width="500px">
+								<awb-h:outputLabel value="#{msgs.label_total}:"
+									styleClass="HtmlOutputLabelBoldBradesco" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid />
+							<awb-h:panelGrid columns="2" width="205px" style="float:right;">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									style="float:right;" value="R$ mil" />
+								<awb-h:outputLabel id="txtTotalSaldo" style="float:right;"
+									value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.totalSaldoEndividamentoBancarioFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" />
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_divida_longo_prazo}" />
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios_justificativas_divergencia}:" />
+						<awb-h:inputTextarea cols="159" rows="10"
+							id="txtJustificativasBacen"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.descEndividamentoBancario}"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<br></br>
+
+				<!-- **** 9.EXPOSIÇÃO CAMBIAL E POLÍTICA DE HEDGE **** -->
+
+				<awb-h:panelGrid styleClass="gridSecundaria" width="100%">
+					<awb-h:panelGrid cellpadding="0" cellspacing="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="9. #{msgs.label_exp_cambial}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid columns="4" cellspacing="0" cellpadding="0">
+						<awb-h:panelGrid columns="2">
+							<awb-h:outputLabel value="#{msgs.label_volume_exportacao}"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:inputText id="txtMoedaExportacao" size="5"
+								styleClass="HtmlInputTextBradesco" maxlength="3"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.moedaExportacao}" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:40px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}" />
+							<awb-h:inputText id="txtAnoRetrasado" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeA.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:40px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}" />
+							<awb-h:inputText id="txtAnoPassado" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeB.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="3" style="margin-left:10px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_mes_ano}" />
+							<awb-h:inputText id="txtMes" size="1"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeC.mes}"
+								alt="numerico2" />
+							<awb-h:inputText id="txtAno" size="5"
+								styleClass="HtmlInputTextBradesco"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeC.ano}"
+								alt="numerico4" />
+						</awb-h:panelGrid>
+
+						<awb-h:inputText value="#{msgs.label_importacoes}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco"
+							style="padding-right:5px" size="58" />
+						<awb-h:inputText id="txtImportacoes1" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeA.importacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtImportacoes2" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeB.importacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtImportacoes3" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeC.importacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+
+						<awb-h:inputText value="#{msgs.label_exportacoes}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco"
+							style="padding-right:5px" size="58" />
+						<awb-h:inputText id="txtExportacoes1" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeA.exportacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtExportacoes2" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeB.exportacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+						<awb-h:inputText id="txtExportacoes3" size="27"
+							styleClass="HtmlInputTextBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.volumeC.exportacao}"
+							alt="valorSemCasas" onkeyup="vNumero(this,'9(15)');" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%" cellpadding="0" columns="1">
+
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_principais_paises}:" style="height:25px;" />
+						<awb-h:inputTextarea rows="10" cols="159" id="txtAreaPaises"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.paisesExportaImporta}"
+							style="margin:5px 0px;" onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_detalhe_protecao_cambial_empresa}:"
+							style="height:25px;" />
+						<awb-h:inputTextarea rows="10" cols="159"
+							id="txtAreaDetalheProtecao"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.detalheProtecaoCambialEmpresa}"
+							style="margin:5px 0px; " onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" />
+
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 10.PERSPECTIVAS **** -->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="10. #{msgs.label_perspectivas}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid cellpadding="0">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_projecao_enc_ano_fiscal}:" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" columns="1" width="100%"
+					style="margin-bottom:2px;">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						style="margin-left:225px" value="#{msgs.label_valor_R$}:" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					border="0" width="100%" style="margin-bottom:20px;">
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_faturamento_m}"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText id="inputTxtFaturamento" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.perspectiva.faturamento}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_ebitda_m}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText id="inputTxtEbitda" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.perspectiva.ebitda}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_lucro_liquido_m}"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText id="inputTxtLucro" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.perspectiva.lucroLiquido}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_divida_bancaria_m}"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText id="inputTxtDivida" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.perspectiva.dividaBancaria}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_posicao_caixa_m}"
+							readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText id="inputTxtPosicao" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							onkeyup="vNumero(this,'9(15)');"
+							value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.perspectiva.posicaoCaixa}" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" columns="1" width="830px">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_detalhar_estrategia}:" />
+					<awb-h:inputTextarea rows="10" cols="159" id="IdTextEstrategia"
+						styleClass="HtmlInputTextareaBradescoObrigatorio"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.detalheEstrategiaProjecao}"
+						style="margin: 5px 0px;" onblur="imposeMaxLength(this, 5000)"
+						onkeydown="imposeMaxLength(this, 5000)"
+						onkeyup="imposeMaxLength(this, 5000)"
+						onkeypress="imposeMaxLength(this, 5000)" />
+
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_principais_investimentos_concluidos}:" />
+					<awb-h:inputTextarea rows="10" cols="159" id="IdTextInvestimentos"
+						styleClass="HtmlInputTextareaBradescoObrigatorio"
+						value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.detalheInvestimentosConcluidosPlanejados}"
+						style="margin:5px 0px;" onblur="imposeMaxLength(this, 5000)"
+						onkeydown="imposeMaxLength(this, 5000)"
+						onkeyup="imposeMaxLength(this, 5000)"
+						onkeypress="imposeMaxLength(this, 5000)" />
+
+				</awb-h:panelGrid>
+				<br></br>
+
+				<awb-h:panelGrid width="100%">
+
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						style="margin-bottom:3px;"
+						value="#{msgs.label_relatorios_setoriais}" />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid columns="1"
+						style="width:250px; margin-left:-7px; ">
+						<awb-h:panelGrid columns="2" width="100%">
+							<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									style="margin-bottom:3px; " value="#{msgs.label_setor}" />
+								<awb-h:selectOneMenu id="cboSetor" style="margin-left:-1px;"
+									converter="#{simpleEntityConverter}"
+									styleClass="HtmlSelectOneMenuBradesco"
+									value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.setor}">
+									<f:ajax event="change" render="btnIncluirSetor" />
+									<awb-f:selectItem itemValue="" itemLabel="SELECIONE" />
+									<awb-f:selectItems var="item" itemValue="#{item}"
+										itemLabel="#{item.descricao}"
+										value="#{questionarioEmpresasBean.viewHelper.comboSetor}" />
+								</awb-h:selectOneMenu>
+							</awb-h:panelGrid>
+							<awb-h:panelGrid styleClass="gridBotaoDireita"
+								style="margin-top:18px; ">
+								<awb-h:commandButton id="btnIncluirSetor"
+									value="#{msgs.label_incluir}" title="Incluir"
+									disabled="#{empty questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.setor}"
+									styleClass="HtmlCommandButtonBradesco2"
+									action="#{questionarioEmpresasBean.incluirSetor}">
+									<awb-br:submitCheckClient />
+								</awb-h:commandButton>
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+						<awb-h:panelGrid width="100%"
+							rendered="#{not empty questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaSetor}">
+							<f:ajax event="click" render="btnEditarSetor btnExcluirSetor" />
+							<awb-br:scrollableDataTable id="TableSetor" var="item"
+								width="100%" rows="4" selectionMode="selectOne"
+								selection="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.setorSelecionado}"
+								value="#{questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.listaSetor}">
+
+								<awb-br:scrollableColumn width="210px">
+									<awb-f:facet name="header">
+										<awb-h:outputLabel value="#{msgs.label_setor}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel value="#{item.descricao}" />
+								</awb-br:scrollableColumn>
+
+							</awb-br:scrollableDataTable>
+							<awb-h:panelGroup style="float:right;">
+								<awb-h:commandButton id="btnExcluirSetor"
+									value="#{msgs.label_excluir}" title="Excluir"
+									disabled="#{empty questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.setorSelecionado}"
+									style="margin-right:5px;"
+									styleClass="HtmlCommandButtonBradesco2"
+									action="#{questionarioEmpresasBean.excluirSetor}">
+									<awb-br:submitCheckClient />
+								</awb-h:commandButton>
+								<awb-h:commandButton id="btnEditarSetor"
+									value="#{msgs.label_editar}"
+									styleClass="HtmlCommandButtonBradesco2" title="Editar"
+									disabled="#{empty questionarioEmpresasBean.viewHelper.questionarioEmpresasVO.setorSelecionado}"
+									action="#{questionarioEmpresasBean.alterarSetor}">
+									<awb-br:submitCheckClient />
+								</awb-h:commandButton>
+							</awb-h:panelGroup>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+			</div>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+				width="100%" border="0" style="margin-bottom:10px;"
+				styleClass="gridBotao">
+
+				<!--  COLUNA 1 -->
+				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+					value="#{msgs.label_voltar}" immediate="true"
+					action="#{cadastramentoRicBean.voltar}" title="Voltar"
+					style="margin-left:3px;">
+				</awb-h:commandButton>
+
+				<awb-h:panelGroup style="float: right">
+					<!--  COLUNA 2 -->
+					<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_salvar}" style="margin-right:5px;"
+						title="Salvar">
+						<f:ajax onevent="aguarde"
+							listener="#{questionarioEmpresasBean.salvar()}" execute="@form"
+							render="formModalMessages @form" />
+					</awb-h:commandButton>
+
+					<!--  COLUNA 3 -->
+					<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_concluir}" title="Concluir"
+						style="margin-right:5px">
+						<f:ajax onevent="aguarde"
+							listener="#{questionarioEmpresasBean.concluir()}" execute="@form"
+							render="formModalMessages @form" />
+					</awb-h:commandButton>
+
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<h:outputScript>
+				
+					function atualizarTotalpatrimonio(){
+						
+						var row = 0;
+						var somaAreaTotalPatrimonio = 0;
+						
+						$jB(function() {
+
+							$jB("#formEmpresas\\:tableDetalhamentoPatrimonio_-1").each(function(){
+									
+								$jB("tbody tr", $jB(this)).each(function(){
+
+									var txtValorPatrimonio = parseInt($jB("#formEmpresas\\:tableDetalhamentoPatrimonio_"+row+"\\:"+row+"\\:txtValorPatrimonio").val().replace(/\./g, ''));
+									
+									if(txtValorPatrimonio){
+										somaAreaTotalPatrimonio = somaAreaTotalPatrimonio + txtValorPatrimonio; 
+									}
+						    		row++;
+								});
+							});
+						});
+						$jB("#formEmpresas\\:lblTotalPatrimonio").text("R$ mil "+somaAreaTotalPatrimonio.toLocaleString('pt-BR'));
+					}
+					
+					function atualizarTotaisCapProdut(){
+						
+						var row = 0;
+						var somaAreaTotalProducao = 0;
+						var somaAreaTotalUtilizada = 0;
+						
+						$jB(function() {
+							$jB("#formEmpresas\\:tableCapacidadeProdutiva_-1").each(function(){
+									
+								$jB("tbody tr", $jB(this)).each(function(){
+
+									var txtCapacProducao = parseInt($jB("#formEmpresas\\:tableCapacidadeProdutiva_"+row+"\\:"+row+"\\:txtCapacProducao").val().replace(/\./g, ''));
+									
+									if(txtCapacProducao){
+										somaAreaTotalProducao = somaAreaTotalProducao + txtCapacProducao; 
+									}
+									
+									var txtCapacUtilizada = parseInt($jB("#formEmpresas\\:tableCapacidadeProdutiva_"+row+"\\:"+row+"\\:txtCapacUtilizada").val().replace(/\./g, ''));
+									
+									if(txtCapacUtilizada){
+										somaAreaTotalUtilizada = somaAreaTotalUtilizada + txtCapacUtilizada; 
+									}
+									
+						    		row++;
+								});
+							});
+						});
+						$jB("#formEmpresas\\:txtTotalCapacidade").text(somaAreaTotalProducao.toLocaleString('pt-BR'));
+						$jB("#formEmpresas\\:txtTotalProducao").text(somaAreaTotalUtilizada.toLocaleString('pt-BR'));
+					}
+					
+					function atualizarTotaisCarteiraContrato(){
+						
+						var row = 0;
+						var somaAreaTotalContrato = 0;
+						var somaAreaTotalSaldoPerformar = 0;
+						
+						$jB(function() {
+							$jB("#formEmpresas\\:tableCarteiraContratos_-1").each(function(){
+									
+								$jB("tbody tr", $jB(this)).each(function(){
+
+									var txtValorContrato = parseInt($jB("#formEmpresas\\:tableCarteiraContratos_"+row+"\\:"+row+"\\:txtValorContrato").val().replace(/\./g, ''));
+									
+									if(txtValorContrato){
+										somaAreaTotalContrato = somaAreaTotalContrato + txtValorContrato; 
+									}
+									
+									var txtSaldoPerformar = parseInt($jB("#formEmpresas\\:tableCarteiraContratos_"+row+"\\:"+row+"\\:txtSaldoPerformar").val().replace(/\./g, ''));
+									
+									if(txtSaldoPerformar){
+										somaAreaTotalSaldoPerformar = somaAreaTotalSaldoPerformar + txtSaldoPerformar; 
+									}
+									
+						    		row++;
+								});
+							});
+						});
+						$jB("#formEmpresas\\:txtTotalContrato").text(somaAreaTotalContrato.toLocaleString('pt-BR'));
+						$jB("#formEmpresas\\:txtTotalSaldoContrato").text(somaAreaTotalSaldoPerformar.toLocaleString('pt-BR'));
+					}
+					
+					function atualizarTotaisEndivBanc(){
+						var row = 0;
+						var somaAreaTotalSaldo = 0;
+						
+						$jB(function() {
+							$jB("#formEmpresas\\:tableEndividamentoBancario_-1").each(function(){
+									
+								$jB("tbody tr", $jB(this)).each(function(){
+
+									var txtSaldo = parseInt($jB("#formEmpresas\\:tableEndividamentoBancario_"+row+"\\:"+row+"\\:txtSaldo").val().replace(/\./g, ''));
+									
+									if(txtSaldo){
+										somaAreaTotalSaldo = somaAreaTotalSaldo + txtSaldo; 
+									}
+									
+						    		row++;
+								});
+							});
+						});
+						$jB("#formEmpresas\\:txtTotalSaldo").text(somaAreaTotalSaldo.toLocaleString('pt-BR'));
+					}
+					
+					function atualizarTotalSituacaoFinanc(){
+						
+						var ids1 = new Array('txtJan1', 'txtFev1', 'txtMar1', 'txtAbr1', 'txtMai1', 'txtJun1', 'txtJul1', 'txtAgo1', 'txtSet1', 'txtOut1', 'txtNov1', 'txtDez1');
+						var ids2 = new Array('txtJan2', 'txtFev2', 'txtMar2', 'txtAbr2', 'txtMai2', 'txtJun2', 'txtJul2', 'txtAgo2', 'txtSet2', 'txtOut2', 'txtNov2', 'txtDez2');
+						var ids3 = new Array('txtJan3', 'txtFev3', 'txtMar3', 'txtAbr3', 'txtMai3', 'txtJun3', 'txtJul3', 'txtAgo3', 'txtSet3', 'txtOut3', 'txtNov3', 'txtDez3');
+					
+						calcularTotal(ids1, 'txtTotalUm');
+						calcularMedia(ids1, 'txtMediaUm');
+						calcularTotal(ids2, 'txtTotalDois');
+						calcularMedia(ids2, 'txtMediaDois');
+						calcularTotal(ids3, 'txtTotalTres');
+						calcularMedia(ids3, 'txtMediaTres');
+					
+					}
+					
+					function calcularTotal(ids, campoTotal){
+					
+						var total = 0;
+						
+							for(var i = 0; i &lt; ids.length; i++){
+								var campo = parseInt($jB("#formEmpresas\\:"+ids[i]).val().replace(/\./g, ''));
+								if(campo){
+									total = total + campo; 
+								}
+							}
+						
+							$jB("#formEmpresas\\:"+campoTotal).val(total.toLocaleString('pt-BR'));
+					
+					}
+					
+					function calcularMedia(ids, campoTotal){
+					
+						var media = 0;
+						var qtd = 0;
+						
+							for(var i = 0; i &lt; ids.length; i++){
+								var campo = parseInt($jB("#formEmpresas\\:"+ids[i]).val().replace(/\./g, ''));
+								if(campo){
+									media = media + campo;
+									qtd++; 
+								}
+							}
+							if(qtd!=0){
+								media =  Math.round(media/qtd);
+							}
+							
+							$jB("#formEmpresas\\:"+campoTotal).val(media.toLocaleString('pt-BR'));
+					
+					}
+					
+				</h:outputScript>
+
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

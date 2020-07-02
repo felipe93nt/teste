@@ -1,0 +1,14 @@
+.error{FONT-SIZE: 10px;COLOR: red;FONT-FAMILY: Arial, Helvetica, sans-serif;TEXT-DECORATION: none}
+.panelGridColumHeader50{width: 40%; text-align: left;}
+.panelGridColumHeader30{width: 30%; text-align: left;}
+.panelGridColumHeader10{width: 10%; text-align: left;}
+.direita{align: right;}
+
+.color1 {background-color: #CDAF95; width: 60%; text-align: left}
+.color2 {background-color: #FFDAB9; width: 60%; text-align: left}
+
+/*Alterado por Fernanda*/
+.color3 {background-color: #E9E9E9; width: 45%; text-align: left; padding-left: 4;} /*#FFEFDB*/
+table.mainPanel {background-color: white; color:black;} /*#8B7D6B*/
+table.subMainPanel {background-color: #4C4E50; color:white; } /*//#CDAF95*/
+table.elementPanel {background-color: #838587  ; color:white; } /*//#FFEFDB*/

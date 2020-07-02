@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="TFNVW01E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="17">
+    <register name="TFNVW01E-HEADER">
+      <field name="TFNVW01E-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="TFNVW01E" />
+      <field name="TFNVW01E-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00017" />
+    </register>
+    <register name="TFNVW01E-REGISTRO">
+      <register name="TFNVW01E-BLOCO-ENTRADA">
+        <field name="TFNVW01E-CEXCEC-TRANS" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

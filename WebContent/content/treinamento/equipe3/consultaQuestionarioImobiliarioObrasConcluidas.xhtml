@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<div class="scrollCentralAbas">
+	<awb-h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"
+		width="98%" styleClass="gridPrincipal abaPanelGrid">
+		<awb-th:extDiv styleClass="abaDiv" style="border-radius: 5px;">
+			<awb-h:form id="formObrasConcluidas" onsubmit="setScrollPos('formObrasConcluidas')">
+			
+						<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+							<awb-th:extDiv style="overflow-x: scroll; width: 1300px;">
+								<awb-br:scrollableDataTable id="tblObrasConcluidas" var="item" width="3000px" height="200px;"
+									value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.listaObrasConcluidas}">
+									<awb-br:scrollableColumn width="180px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_incorporadora}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.incorporadora}"/>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="180px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_nome_empreendimento}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.nomeEmpreendimento}" />
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="180px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_bairro}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.bairro}" />
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="180px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_cidade_uf}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.cidade} / #{item.uf}" />
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="120px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_data_entrega}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.dataEntrega}" style="float:right;padding-bottom:4px;">
+											<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_recebidos}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valoresRecebidosFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_ate12meses}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valoresAte12MesesFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_1236meses}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valoresDe12Ate36MesesFormatado}" style="float:right;padding-bottom:4px;" >
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_apos36meses}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valoresApos36MesesFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="120px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_qtde_unidades}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.qtdeUnidadesFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_valor_estoque}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valorEstoqueFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_porcentagem_vendas}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.porcentagemVendas}" style="float:right;padding-bottom:4px;">
+											<f:converter converterId="valorConverter"/>
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									
+									<awb-br:scrollableColumn width="180px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_agente_financeiro}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.agenteFinanceiro}" />
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="150px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_saldo_devedor}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.saldoDevedorFormatado}" style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									
+								</awb-br:scrollableDataTable>
+								
+								<awb-h:panelGrid id="totalizadoresObrasConcluidas" columns="26"
+									cellpadding="0" cellspacing="0">
+									<awb-h:panelGrid width="250px;">
+										<awb-h:outputLabel value="#{msgs.label_total}:"
+											styleClass="HtmlOutputLabelBoldBradesco" />
+									</awb-h:panelGrid>
+									
+									<awb-h:panelGrid width="240px;"/>
+									<awb-h:panelGrid width="250px;"/>
+									<awb-h:panelGrid width="250px;"/>
+									<awb-h:panelGrid width="160px;"/>
+									
+									<awb-h:panelGrid columns="1" width="210px;">
+										<awb-h:outputLabel id="totalRecebidos"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.totalRecebidosFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="200px;">
+										<awb-h:outputLabel id="total12Meses"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.total12MesesFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="205px;">
+										<awb-h:outputLabel id="total12A36"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.total12A36Formatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="205px;">
+										<awb-h:outputLabel id="totalApos36"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.totalApos36Formatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="160px;">
+										<awb-h:outputLabel id="totalUnidades"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.totalUnidadesFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="205px;">
+										<awb-h:outputLabel id="totalValorEstoque"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.totalValorEstoqueFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid width="210px;"/>
+									<awb-h:panelGrid width="245px;"/>
+									<awb-h:panelGrid columns="1" width="200px;">
+										<awb-h:outputLabel id="totalSaldoDevedor"
+											value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.totalSaldoDevedorFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+								</awb-h:panelGrid>
+								
+							</awb-th:extDiv>
+						</awb-h:panelGrid>
+						
+						<awb-h:panelGrid width="100%">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_comentarios_obras_concluidas}" />
+							<awb-h:inputTextarea cols="250" size="35" rows="10" id="txtDescObrasConcluidas"
+								styleClass="HtmlInputTextareaBradesco" 
+								value="#{equipe3ConsultaQuestionarioImobiliarioBean.viewHelper.model.obrasConcluidas.descObrasConcluidas}"
+								readonly="true" />
+						</awb-h:panelGrid>
+			
+				</awb-h:form>
+		</awb-th:extDiv>
+	</awb-h:panelGrid>
+</div>
+
+
+</html>

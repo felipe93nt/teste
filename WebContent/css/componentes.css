@@ -1,0 +1,65 @@
+.HtmlOutputFormat{font-family: verdana; font-size: 10px; margin-left: 5px;}
+.HtmlCheckboxLabel{font-family: verdana; font-size: 10px; margin-left: 5px;}
+.HtmlCheckboxInterno{margin-top:16px;}
+.HtmlOutputFormatRed{font-family: verdana; font-size: 10px; margin-left: 5px; color: red;}
+.HtmlOutputFormatBold{font-family: verdana; font-size: 10px; font-weight:bold; margin-left: 5px;}
+.HtmlOutputFormatBoldRight{font-family: verdana; font-size: 10px; font-weight:bold; margin-left: 5px; text-align: right;}
+.HtmlOutputFormatBoldRed{font-family: verdana; font-size: 10px; font-weight:bold; margin-left: 5px; color: red;}
+.HtmlOutputTituloGrupo{font-family: verdana; font-size: 10px; font-weight:bold; margin-left: 0px; margin-bottom: 10px; margin-top: 10px;}
+.HtmlOutputFormatBoldRadio{font-family: verdana; font-size: 10px; font-weight:bold; margin-left: 2px;}
+.HtmlOutputFormatBoldRadioMargRight10{font-family: verdana; font-size: 10px; font-weight:bold; margin-right: 6px; margin-left: 2px;}
+.HtmlOutputFormatLabelA{font-family: verdana; font-size: 10px; margin-left: 3px;margin-right: 3px;}
+.HtmlOutputFormatLabelAPosInput{font-family: verdana; font-size: 10px; margin-left: 4px;margin-right: 3px;}
+.HtmlOutputFormatLabelAte{font-family: verdana; font-size: 10px; margin-left: 3px;margin-right: 3px;}
+.HtmlOutputFormatLabelANaoEditavel{font-family: verdana; font-size: 10px; margin-left: 3px;margin-right: -3px;}
+.HtmlOutputFormatSemMarginLeft{font-family: verdana; font-size: 10px;}
+.HtmlOutputFormatSemMarginLeftBold{font-family: verdana; font-size: 10px; font-weight:bold;}
+.HtmlSelectRadio{font-family: verdana; font-size: 10px; margin-left: 5px; padding:0px; margin:0px;}
+.HtmlSelectOneMenu{font-family: verdana; font-size: 9px; margin-top: 5px;}
+.HtmlSelectOneMenuObrigatorio{font-family: verdana; font-size: 9px; margin-top: 5px; background-color:#FFFBDE;}
+.HtmlSelectOneMenuDesabilitado{font-family: verdana; font-size: 9px; margin-top: 5px; background-color:#55557D;}
+.HtmlSelectOneMenuMargRight5{font-family: verdana; font-size: 9px;text-align: left; margin-right: 5px; margin-top: 5px;}
+.HtmlSelectOneMenuObrigatorioMargRight5{font-family: verdana; font-size: 9px;text-align: left; margin-right: 5px; margin-top: 5px; background-color:#FFFBDE;}
+.HtmlSelectDiaAnteriorProximo{font-family: verdana; font-size: 9px; margin-top: 5px; width: 75px;}
+.HtmlSelectTipoDiaLiquidacao{font-family: verdana; font-size: 9px; margin-top: 5px; width: 83px;}
+.HtmlSelectDiasCorridos{font-family: verdana; font-size: 9px; margin-top: 5px; width: 83px;}
+.HtmlSelectAtributo{font-family: verdana; font-size: 9px; margin-top: 5px; width: 120px;}
+.HtmlSelectOrdenacao{font-family: verdana; font-size: 9px; margin-top: 5px; width: 100px;}
+.HtmlSelectOneEmpresa{font-family: verdana; font-size: 9px; margin-top: 5px; width: 250px;}
+.HtmlSelectOneGerente{font-family: verdana; font-size: 9px; margin-top: 5px; width: 250px;}
+.HtmlSelectOneMotivo{font-family: verdana; font-size: 9px; margin-top: 5px; width: 250px;}
+.HtmlSelectOneOrigem{font-family: verdana; font-size: 9px; margin-top: 5px; width: 300px;}
+.HtmlSelectOneIndexador{font-family: verdana; font-size: 9px; margin-top: 5px; width: 250px;}
+.HtmlSelectOneApropInd{font-family: verdana; font-size: 9px; margin-top: 5px; width: 250px;}
+.HtmlSelectOneApropriacaoTaxa{font-family: verdana; font-size: 9px; margin-top: 5px; width: 300px;}
+.HtmlSelectOneCapitalizacao{font-family: verdana; font-size: 9px; margin-top: 5px; width: 300px;}
+.HtmlSelectOneTipoConta{font-family: verdana; font-size: 9px; margin-top: 5px; width: 200px;}
+.HtmlSelectOneMenuRelatorios{font-family: verdana; font-size: 9px; margin-top: 5px;}
+.HtmlInputTextCalendar{font-family: verdana; font-size: 9px;text-align: left; margin-right:4px; margin-top: 4px;}
+.HtmlInputTextCalendarObrigatorio{font-family: verdana; font-size: 9px;text-align: left; margin-right:4px; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputText{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px;}
+.HtmlInputTextMargRight2{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-right: 2px;}
+.HtmlInputTextMargLeft2{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-left: 2px;}
+.HtmlInputTextMargRight5{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-right: 5px;}
+.HtmlInputTextMargLeft5{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-left: 5px;}
+.HtmlInputTextCodigoLupa{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-right: 5px;}
+.HtmlInputTextDescricaoLupa{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; margin-left: 5px;}
+.HtmlInputTextCaixaAlta{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; text-transform: uppercase;}
+.HtmlInputTextObrigatorio{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputTextValor{font-family: verdana; font-size: 9px; text-align: right; margin-top: 4px;}
+.HtmlInputTextValorObrigatorio{font-family: verdana; font-size: 9px; text-align: right; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputTextObrigatorioMargRight5{font-family: verdana; font-size: 9px; text-align: left; margin-right: 5px; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputTextObrigatorioValorMargRight5{font-family: verdana; font-size: 9px; text-align: right; margin-right: 5px; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputTextGrid{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; border: 0px; background-color:#F9F9F9;}
+.HtmlInputTextAgencia{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 301px;}
+.HtmlInputTextProduto{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 220px;}
+.HtmlInputTextTipoGarantia{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 220px;}
+.HtmlInputTextOperacao{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 395px;}
+.HtmlInputTextCpfCnpj{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 125px;}
+.HtmlInputTextNumeroContrato{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 130px;}
+.HtmlInputTextRazao{font-family: verdana; font-size: 9px; text-align: left; margin-top: 4px; width: 10px;}
+.HtmlInputBordLess{border-style:none; border:0px;}
+.HtmlDataScroller{border-collapse: collapse; padding: 0;}
+.HtmlCheck{margin-top: 1px;}
+.HtmlLupaBradesco{vertical-align: middle;   margin-left: 5px; margin-right: 5px; margin-bottom: 3px;}
+.HtmlInputTextNumerico{}

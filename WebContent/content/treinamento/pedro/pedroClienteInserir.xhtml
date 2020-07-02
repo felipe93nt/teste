@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_treinamento_pedro_title_cliente')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathTreinamentoPedroCliente}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="10" width="100%"
+			styleClass="gridPrincipal">
+
+			<awb-h:form id="formTreinamentoPedroCliente">
+
+				<awb-h:panelGrid columns="10" cellpadding="5" cellspacing="20">
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_nome}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.nome}"
+						styleClass="HtmlInputTextBradesco" size="59" maxlength="47" 
+						style="margin-left:32px"/>
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_cpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.cpf}"
+						styleClass="HtmlInputTextBradesco" onfocus="loadMasksJQuery()"
+						alt="cpfCompleto" />
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_rg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.rg}"
+						styleClass="HtmlInputTextBradesco" onfocus="loadMasksJQuery()"
+						alt="pedroRgCompleto" style="width:129px" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_data_nascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{pedroClienteBean.viewHelper.dataNascimento}"
+						styleClass="HtmlInputTextBradesco" size="13"
+						onfocus="loadMasksJQuery()" alt="data" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_combo_sexo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; !important; margin-top:0px; width:123px"
+						value="#{pedroClienteBean.viewHelper.sexo}">
+						<awb-f:selectItem itemLabel="" />
+						<awb-f:selectItems
+							value="#{pedroClienteBean.viewHelper.comboSexo}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="8" cellpadding="5" cellspacing="20">
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_logradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.logradouro}"
+						styleClass="HtmlInputTextBradesco" size="59" maxlength="47" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_numero_logradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{pedroClienteBean.viewHelper.numeroLogradouro}"
+						styleClass="HtmlInputTextBradesco" size="5" maxlength="5"
+						onfocus="loadMasksJQuery()" alt="numerico" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_complemento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.complemento}"
+						styleClass="HtmlInputTextBradesco" style="width:85px"
+						maxlength="11" />
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_bairro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.bairro}"
+						styleClass="HtmlInputTextBradesco" size="62" maxlength="47"
+						style="margin-left:38px" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_combo_cidade}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; !important; margin-top:0px; width:100px"
+						value="#{pedroClienteBean.viewHelper.cidade}">
+						<awb-f:selectItem itemLabel="" />
+						<awb-f:selectItems
+							value="#{pedroClienteBean.viewHelper.comboCidade}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_combo_estado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; !important; margin-top:0px; width:58px"
+						value="#{pedroClienteBean.viewHelper.estado}">
+						<awb-f:selectItem itemLabel="" />
+						<awb-f:selectItems
+							value="#{pedroClienteBean.viewHelper.comboEstado}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_cep}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.cep}"
+						styleClass="HtmlInputTextBradesco" size="13" onfocus="loadMasksJQuery()"
+						alt="pedroCepCompleto" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="10" cellpadding="5" cellspacing="15">
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_telefone}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.telefone}"
+						styleClass="HtmlInputTextBradesco" onfocus="loadMasksJQuery()"
+						alt="pedroTelefoneResidencialComDdd" style="margin-left:27px" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_pedro_celular}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.celular}"
+						styleClass="HtmlInputTextBradesco" onfocus="loadMasksJQuery()"
+						alt="telefoneComDdd" />
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_pedro_email}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{pedroClienteBean.viewHelper.email}"
+						styleClass="HtmlInputTextBradesco" style="width:279px"
+						maxlength="41" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					width="100%">
+
+					<awb-h:panelGrid columns="2">
+
+						<awb-h:commandButton style="margin-left:-4px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_voltar}" action="#{pedroClienteBean.voltar}"
+							immediate="true">
+						</awb-h:commandButton>
+
+						<awb-h:commandButton id="btnSalvar" style="margin-left:1226px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_salvar}" action="#{pedroClienteBean.salvar}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+			</awb-h:form>
+
+		</awb-h:panelGrid>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

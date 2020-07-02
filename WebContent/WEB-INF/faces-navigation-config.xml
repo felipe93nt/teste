@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+	<!-- NAVEGACION -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+
+		<navigation-case>
+			<from-outcome>nav_index</from-outcome>
+			<to-view-id>/content/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/unsecure/logout.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Telas -->
+
+		<!-- Mensagem -->
+		<navigation-case>
+			<from-outcome>manutencao.mensagem.iniciar.consulta</from-outcome>
+			<to-view-id>/content/manutencao/mensagem/manutencaoMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.lista.mensagem</from-outcome>
+			<to-view-id>/content/manutencao/mensagem/listaMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.incluir.mensagem</from-outcome>
+			<to-view-id>/content/manutencao/mensagem/incluirMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.alterar.mensagem</from-outcome>
+			<to-view-id>/content/manutencao/mensagem/alterarMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.detalhar.mensagem</from-outcome>
+			<to-view-id>/content/manutencao/mensagem/detalharMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Template -->
+		<navigation-case>
+			<from-outcome>manutencao.incluir.template</from-outcome>
+			<to-view-id>/content/manutencao/template/incluirTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.consultar.template</from-outcome>
+			<to-view-id>/content/manutencao/template/consultarTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.listar.template</from-outcome>
+			<to-view-id>/content/manutencao/template/listarTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.detalhar.template</from-outcome>
+			<to-view-id>/content/manutencao/template/detalharTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manutencao.alterar.template</from-outcome>
+			<to-view-id>/content/manutencao/template/alterarTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Parametrização -->
+
+		<navigation-case>
+			<from-outcome>parametrizacao.componentes.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/incluirComponentesMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.incluir.formatos.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/incluirFormatosMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.consultar.componente.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/consultarComponentesMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.consultar.formatos.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/consultarFormatosMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.alterar.componentes.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/alterarComponentesMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.alterar.formatos.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/alterarFormatosMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.detalhar.formatos.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/detalharFormatosMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.excluir.formatos.mensagem</from-outcome>
+			<to-view-id>/content/parametrizacao/mensagem/excluirFormatosMensagem.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>consultar.permissoes</from-outcome>
+			<to-view-id>/content/permissoes/consultarPermissoes.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.incluir.permissoes</from-outcome>
+			<to-view-id>/content/permissoes/incluirPermissoes.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.detalhar.permissoes</from-outcome>
+			<to-view-id>/content/permissoes/detalharPermissoes.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>parametrizacao.alterar.permissoes</from-outcome>
+			<to-view-id>/content/permissoes/alterarPermissoes.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Treinamento -->
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe1.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe1/consultaQuestionarioCorporate.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe1.consulta.agronegocio.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe1/consultaQuestionarioAgronegocio.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe1.consulta.projeto.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe1/consultaQuestionarioProjeto.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe1.consulta.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe1/consultaQuestionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe1.consulta.transportes.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe1/consultaQuestionarioTransportes.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- TELA DE CONSULTA EQUIPE 2 -->
+
+		<navigation-case>
+			<from-outcome>equipe2.cadastro.consulta.questionario.empresas.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe2/consultaQuestionarioEmpresas.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.equipe2.questionario.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe2/consultaQuestionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Tela Equipe 3 Treinamento -->
+
+		<navigation-case>
+			<from-outcome>equipe3.consulta.questionario.altoVarejo.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe3/consultaQuestionarioAltoVarejo.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>equipe3.consulta.questionario.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe3/consultaQuestionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.projeto.equipe3.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe3/consultaQuestionarioProjeto.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.agronegocio.equipe3.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe3/consultaQuestionarioAgronegocio.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>equipe3.consulta.questionario.transportes.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe3/consultaQuestionarioTransportes.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- EQUIPE 4 -->
+		<navigation-case>
+			<from-outcome>cadastro.equipe4bean.consulta.questionario.largecorporate.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe4/consultaQuestionarioLargeCorporate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.equipe4bean.consulta.questionario.agronegocio.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe4/consultaQuestionarioAgronegocio.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.equipe4bean.consulta.questionario.projeto.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe4/consultaQuestionarioProjeto.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.equipe4bean.consulta.questionario.transportes.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe4/consultaQuestionarioTransportes.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.equipe4bean.consulta.questionario.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/equipe4/consultaQuestionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.ajuda.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/ajuda/ajudaTreinamento.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vinicius.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/vinicius/viniciusClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vinicius.consulta</from-outcome>
+			<to-view-id>/content/treinamento/vinicius/viniciusClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vinicius.teste</from-outcome>
+			<to-view-id>/content/treinamento/vinicius/viniciusTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>treinamento.gustavo.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/gustavo/gustavoClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.gustavo.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/gustavo/gustavoClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.gustavo.teste.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/gustavo/gustavoTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.gustavo.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/gustavo/gustavoTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>claudio.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/claudio/claudioCliente.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>claudio.cliente.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/claudio/consultaClienteClaudio.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>claudio.teste.cadastro</from-outcome>
+			<to-view-id>/content/treinamento/claudio/claudioTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>treinamento.natalia.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/natalia/nataliaCliente.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.natalia.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/natalia/nataliaClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.natalia.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/natalia/nataliaTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.natalia.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/natalia/nataliaTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>treinamento.guilherme.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/guilherme/guilhermeClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.guilherme.consultar.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/guilherme/guilhermeClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.guilherme.teste.consultar.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/guilherme/guilhermeTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.guilherme.teste.cadastrar.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/guilherme/guilhermeTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.felipe.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>felipe.iniciar.consultar</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>felipe.iniciar.teste.cadastro</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>felipe.iniciar.teste.consultar</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>felipe.iniciar.experiencia.cadastro</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeExperimentoCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>felipe.iniciar.experiencia.consultar</from-outcome>
+			<to-view-id>/content/treinamento/felipe/felipeExperimentoConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>matheus.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/matheus/matheusClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>matheus.consultar.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/matheus/matheusClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>matheus.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/matheus/matheusTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>matheus.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/matheus/matheusTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.cliente.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.swrm.teste.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroSwrmTeste.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.pedro.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/pedro/pedroConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vitoria.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/vitoria/vitoriaClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vitoria.consulta</from-outcome>
+			<to-view-id>/content/treinamento/vitoria/vitoriaClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vitoria.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/vitoria/vitoriaTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.vitoria.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/vitoria/vitoriaTesteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>enrico.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/enrico/enricoCliente.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>enrico.cliente.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/enrico/enricoClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>enrico.teste.cadastro</from-outcome>
+			<to-view-id>/content/treinamento/enrico/enricoTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>enrico.teste.consulta</from-outcome>
+			<to-view-id>/content/treinamento/enrico/enricoTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>joao.carlos.cadastro.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/joaoCarlos/joaoCarlosClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>joao.carlos.consulta.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/joaoCarlos/joaoCarlosClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>joao.carlos.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/joaoCarlos/joaoCarlosTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>joao.carlos.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/joaoCarlos/joaoCarlosTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.enzo.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/enzo/enzoClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.enzo.consulta</from-outcome>
+			<to-view-id>/content/treinamento/enzo/enzoClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.enzo.iniciarTesteCadastro</from-outcome>
+			<to-view-id>/content/treinamento/enzo/enzoTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.enzo.iniciarTesteConsulta</from-outcome>
+			<to-view-id>/content/treinamento/enzo/enzoTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.joaoGil.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/joaoGil/joaogilClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.joaoGil.iniciarConsulta</from-outcome>
+			<to-view-id>/content/treinamento/joaoGil/joaogilClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.joaogil.teste.consulta</from-outcome>
+			<to-view-id>/content/treinamento/joaoGil/joaogilTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.joaogil.teste.cadastro</from-outcome>
+			<to-view-id>/content/treinamento/joaoGil/joaogilTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>anderson.cliente.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/anderson/andersonClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>anderson.cliente.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/anderson/andersonClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>anderson.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/anderson/andersonTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>anderson.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/anderson/andersonTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.isaac.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/isaac/isaacClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.isaac.consulta</from-outcome>
+			<to-view-id>/content/treinamento/isaac/isaacClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.isaac.teste</from-outcome>
+			<to-view-id>/content/treinamento/isaac/isaacTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.isaac.teste.consulta</from-outcome>
+			<to-view-id>/content/treinamento/isaac/isaacTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.andre.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/andre/andreClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>consulta.treinamento.andre.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/andre/andreClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cadastro.teste.andre.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/andre/andreTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>consulta.teste.andre.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/andre/andreTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Treinamento Wellington -->
+
+		<navigation-case>
+			<from-outcome>treinamento.inserir.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/wellington/wellingtonClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.consultar.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/wellington/wellingtonClienteConsultar.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.inserir.teste.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/wellington/wellingtonTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.consultar.teste.cliente.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/wellington/wellingtonTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.leonardo.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/leonardo/leonardoClienteInserir.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.leonardo.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/leonardo/leonardoClienteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Regras de navegação teste leonardo -->
+		<navigation-case>
+			<from-outcome>treinamento.leonardo.teste.cadastro.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/leonardo/leonardoTesteCadastro.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>treinamento.leonardo.teste.consulta.iniciar</from-outcome>
+			<to-view-id>/content/treinamento/leonardo/leonardoTesteConsulta.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Parametrizacao -->
+
+		<navigation-case>
+			<from-outcome>parametrizacao.relatorio.iniciar</from-outcome>
+			<to-view-id>/content/parametrizacao/parametrizacaoRelatorio.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Cadastro -->
+
+		<navigation-case>
+			<from-outcome>cadastro.ric.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/cadastramentoRic.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cadastro.questionario.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Dupla Validacao -->
+
+		<navigation-case>
+			<from-outcome>duplavalidacao.parametrizacao.iniciar</from-outcome>
+			<to-view-id>/content/duplavalidacao/duplavalidacao.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Projetos -->
+
+		<navigation-case>
+			<from-outcome>cadastro.questionario.projeto.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioProjeto.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Corporate -->
+
+		<navigation-case>
+			<from-outcome>cadastro.ric.corporate.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioCorporate.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Large Corporate -->
+
+		<navigation-case>
+			<from-outcome>cadastro.ric.largecorporate.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioLargeCorporate.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Empresas -->
+
+		<navigation-case>
+			<from-outcome>cadastro.ric.empresas.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioEmpresas.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio AltoVarejo -->
+
+		<navigation-case>
+			<from-outcome>cadastro.ric.altoVarejo.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/altoVarejo.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Agronegocio -->
+
+		<navigation-case>
+			<from-outcome>cadastro.questionario.agronegocio.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioAgronegocio.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Questionario Transportes -->
+
+		<navigation-case>
+			<from-outcome>cadastro.questionario.transportes.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/questionarioTransportes.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- Inicio Telas de consulta -->
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.empresas.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioEmpresas.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.imobiliario.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioImobiliario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.altoVarejo.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioAltoVarejo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.projeto.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioProjeto.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.transportes.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioTransportes.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.corporate.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioCorporate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.largecorporate.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioLargeCorporate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastro.consulta.questionario.agronegocio.iniciar</from-outcome>
+			<to-view-id>/content/cadastro/consulta/consultaQuestionarioAgronegocio.xhtml</to-view-id>
+		</navigation-case>
+		<!-- Fim Telas de consulta -->
+
+	</navigation-rule>
+</faces-config>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_questionario_projetos')}" />
+	<ui:param name="passNumber" value="4" />
+	<ui:param name="paginaAnterior"
+		value="#{questionarioProjetoBean.paginaAnterior}" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.getPathQuestionarioSetor(paginaAnterior, 'label_projetos')}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<ui:include src="/template/contadorSessao.xhtml" />
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetoTemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentral.css" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/setor/projeto/projeto.js" />
+
+		<awb-h:form id="uploadForm" enctype="multipart/form-data">
+			<div style="display:none">
+				<awb-h:panelGrid columns="2" style="float: right">
+					<awb-br:fileUpload id="cpFileUpload"
+						value="#{questionarioProjetoBean.file}"
+						allowedTypes="TXT,EXE,DLL,RAR,ZIP,JAR,PDF,DOC,DOCX,PPT,PPS,XLS,XLSX,XLSM,JPG,GIF,PNG,HTML,MP3,WAV,MID,AVI,MPG,MKV,OGG,MP4,WMV,MOV,PSD,CDR,XML,CSS,PHP,ASP,ASPX,FLV,TAR,JSP,CFM,JS,SVG,TIF,FLA,SWF,DWG,SQL,CBL,CPY,JCL,B1,BAT,VB,AI,DBF,MDB"
+						fileSizeMax="10485760" required="false">
+					</awb-br:fileUpload>
+					<awb-h:commandButton id="btnUpload"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_upload_xls}" title="#{msgs.label_upload_xls}"
+						style="margin-right:5px"
+						action="#{questionarioProjetoBean.upload}">
+					</awb-h:commandButton>
+					<awb-h:messages></awb-h:messages>
+				</awb-h:panelGrid>
+			</div>
+		</awb-h:form>
+
+		<awb-h:form id="formQuestionarioProjeto" onsubmit="setScrollPos()"
+			onkeypress="blockEnter()">
+
+			<script type="text/javascript">
+				window.onload = function() {
+					bloquearUpload();
+				}
+			</script>
+
+			<h:inputHidden id="scrollPointIndex" />
+
+			<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid columns="3" style="float: right">
+				<awb-h:inputText id="txtUpload" disabled="true" size="50" />
+				<awb-h:commandButton id="btnSelecionar"
+					styleClass="HtmlCommandButtonBradesco2"
+					onclick="acionarFileUpload();" value="#{msgs.label_selecionar_xls}"
+					title="#{msgs.label_selecionar_xls}">
+					<f:ajax render="btnUploadVisible" />
+				</awb-h:commandButton>
+				<awb-h:commandButton id="btnUploadVisible"
+					value="#{msgs.label_upload_xls}" title="#{msgs.label_upload_xls}"
+					styleClass="HtmlCommandButtonBradesco2" onclick="acionarUpload();">
+					<f:ajax render="formQuestionarioProjeto" onevent="aguarde" />
+				</awb-h:commandButton>
+			</awb-h:panelGrid>
+
+			<!-- INICIO - Dados de Grupo e Relatório -->
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="#{msgs.label_grupo}:"
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{questionarioProjetoBean.viewHelper.model.grupoFormatado}"
+					styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:5px" />
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="#{msgs.label_numero_relatorio}:"
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{questionarioProjetoBean.viewHelper.model.codRelatorio}"
+					styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:5px" />
+			</awb-h:panelGrid>
+			<!-- FIM - Dados de Grupo e Relatório -->
+
+			<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+			<div class="scrollCentral">
+				<awb-h:panelGrid width="100%"
+					style="height: 200px; overflow-x: auto">
+
+					<!-- INICIO - 1. DESCRIÇÃO DO PROJETO -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+						border="0">
+						<awb-h:outputLabel value="#{msgs.label_nome_projeto}:"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText id="txt_questionarioProjeto_nomeProjeto"
+							maxlength="30" size="139" styleClass="HtmlInputTextBradesco"
+							value="#{questionarioProjetoBean.viewHelper.model.nomeProjeto}" />
+					</awb-h:panelGrid>
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="1. #{msgs.label_descricao_projeto}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputTextarea id="txt_questionarioProjeto_descProjeto"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" style="margin-top:5px"
+							cols="159" rows="10" styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioProjetoBean.viewHelper.model.descProjeto}" />
+					</awb-h:panelGrid>
+					<!-- FIM - 1. DESCRIÇÃO DO PROJETO -->
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<!-- INICIO - 2. ESTRUTURA SOCIETÁRIA -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="2. #{msgs.label_estrutura_societaria}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid styleClass="gridSecundaria" cellpadding="0"
+						cellspacing="0" columns="1" border="0">
+
+						<awb-br:editableDataTable id="tblAcionistas" var="obj"
+							width="840px" height="115px" selectionMode="selectOne"
+							value="#{questionarioProjetoBean.viewHelper.model.listEstruturaSocietaria}"
+							selection="#{questionarioProjetoBean.viewHelper.model.listEstruturaSocietariaSelecionado}">
+
+							<!--  COLUNA 1 -->
+							<awb-br:editableColumn width="715px" style="text-align:center;">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_acionistas}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.descAcionista}" size="132"
+									maxlength="70" />
+							</awb-br:editableColumn>
+
+
+							<!--  COLUNA 2 -->
+							<awb-br:editableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel
+										value="#{msgs.label_percentual} #{msgs.label_participacao}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.prcParticipacao}"
+									onfocus="loadMasksJQuery()" alt="percentualDuasCasas"
+									onkeyup="vNumero(this,'9(3)V9(2)');" size="5" />
+							</awb-br:editableColumn>
+
+						</awb-br:editableDataTable>
+
+					</awb-h:panelGrid>
+					<!-- FIM - 2. ESTRUTURA SOCIETÁRIA -->
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<!-- INICIO - 3. QUADRO DE USOS E FONTES -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="3. #{msgs.label_quadro_usos_fontes}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid styleClass="gridInterna" cellpadding="0"
+						cellspacing="0" columns="1" border="0">
+						<awb-h:outputLabel value="#{msgs.label_periodo}:"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="gridSecundaria" cellpadding="0"
+						cellspacing="0" columns="2" border="0">
+						<awb-h:panelGrid styleClass="gridInterna" cellpadding="0"
+							cellspacing="0" columns="1" border="0">
+							<awb-h:outputLabel value="#{msgs.label_inicio}"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-br:calendar id="txt_usosFontes_dtInicio"
+								value="#{questionarioProjetoBean.viewHelper.model.usosFontes.dtInicio}" />
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid styleClass="gridInterna" cellpadding="0"
+							cellspacing="0" columns="1" border="0">
+							<awb-h:outputLabel value="#{msgs.label_data_termino}"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-br:calendar id="txt_usosFontes_dtTermino"
+								value="#{questionarioProjetoBean.viewHelper.model.usosFontes.dtTermino}" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0" width="631px">
+
+						<!-- TABELA USOS -->
+						<awb-br:editableDataTable id="tblUsos" var="obj" width="540px"
+							height="200px" selectionMode="selectOne"
+							value="#{questionarioProjetoBean.viewHelper.model.listUsosFontes}">
+
+							<!-- COLUNA 1 -->
+							<awb-br:editableColumn width="406px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_usos}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.descUsosFontes}" maxlength="50" />
+							</awb-br:editableColumn>
+
+							<!-- COLUNA 2 -->
+							<awb-br:editableColumn width="110px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel
+										value="#{msgs.label_percentual} #{msgs.label_participacao}" />
+								</awb-f:facet>
+								<awb-h:inputText styleClass="colunaTabelaValor"
+									value="#{obj.prcParticipacao}" onfocus="loadMasksJQuery()"
+									alt="percentualDuasCasas" onkeyup="vNumero(this,'9(3)V9(2)');"
+									size="5" />
+							</awb-br:editableColumn>
+
+						</awb-br:editableDataTable>
+
+						<!-- VAZIO -->
+						<br></br>
+
+						<!-- VAZIO -->
+						<br></br>
+
+						<!-- VAZIO -->
+						<br></br>
+
+						<!-- TABELA FONTES -->
+						<awb-br:editableDataTable id="tblFontes" var="obj" width="540px"
+							height="200px" selectionMode="selectOne"
+							value="#{questionarioProjetoBean.viewHelper.model.listaFontes}">
+
+							<!-- COLUNA 1 -->
+							<awb-br:editableColumn width="406px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_fontes}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.descUsosFontes}" maxlength="50" />
+							</awb-br:editableColumn>
+
+							<!-- COLUNA 2 -->
+							<awb-br:editableColumn width="110px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel
+										value="#{msgs.label_percentual} #{msgs.label_participacao}" />
+								</awb-f:facet>
+								<awb-h:inputText styleClass="colunaTabelaValor"
+									value="#{obj.prcParticipacao}" onfocus="loadMasksJQuery()"
+									alt="percentualDuasCasas" onkeyup="vNumero(this,'9(3)V9(2)');"
+									size="5" />
+							</awb-br:editableColumn>
+
+						</awb-br:editableDataTable>
+
+					</awb-h:panelGrid>
+					<!-- FIM - 3. QUADRO DE USOS E FONTES -->
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<!-- INICIO - 4. STATUS DE EQUACIONAMENTO DO FOUNDING -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="4. #{msgs.label_status_equacionamento}:"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel
+							value="#{msgs.label_detalhar_fonte_financiamento}."
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputTextarea
+							id="txt_questionarioProjeto_descFonteFinanStatus"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" cols="159" rows="10"
+							style="margin-top:5px;" styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioProjetoBean.viewHelper.model.descFonteFinanStatus}" />
+					</awb-h:panelGrid>
+					<!-- FIM - 4. STATUS DE EQUACIONAMENTO DO FOUNDING -->
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<!-- INICIO - 5. CONSTRUTORES/FORNECEDORES -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel
+							value="5. #{msgs.label_construtores_fornecedores}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+						columns="1" width="834px">
+
+						<!-- CONSTRUTORES -->
+						<awb-br:editableDataTable id="TabelaConstrutores" height="115px"
+							width="834px" var="obj"
+							value="#{questionarioProjetoBean.viewHelper.model.listConstrutoresFornecedores}">
+							<awb-br:editableColumn width="691px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" #{msgs.label_construtores}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.descConstrutoresFornecedores}"
+									maxlength="30" />
+							</awb-br:editableColumn>
+						</awb-br:editableDataTable>
+
+						<br />
+
+						<!-- FORNECEDORES -->
+						<awb-br:editableDataTable id="TabelaFornecedores" height="115px"
+							width="834px" var="obj"
+							value="#{questionarioProjetoBean.viewHelper.model.listFornecedores}">
+							<awb-br:editableColumn width="691px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" #{msgs.label_fornecedores}" />
+								</awb-f:facet>
+								<awb-h:inputText value="#{obj.descConstrutoresFornecedores}"
+									maxlength="30" />
+							</awb-br:editableColumn>
+
+						</awb-br:editableDataTable>
+
+					</awb-h:panelGrid>
+					<!-- FIM - 5. CONSTRUTORES/FORNECEDORES -->
+
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+					<!-- INICIO - 6. STATUS DE LICENCIAMENTO SOCIOAMBIENTAL -->
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="6. #{msgs.label_status_licenciamento}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						border="0">
+						<awb-h:outputLabel value="#{msgs.label_comentarios}"
+							style="margin-right:5px;"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputTextarea
+							id="txt_questionarioProjeto_descComentariosStatusLicenciamento"
+							onblur="imposeMaxLength(this, 5000)"
+							onkeydown="imposeMaxLength(this, 5000)"
+							onkeyup="imposeMaxLength(this, 5000)"
+							onkeypress="imposeMaxLength(this, 5000)" cols="159" rows="10"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{questionarioProjetoBean.viewHelper.model.descComentariosStatusLicenciamento}" />
+					</awb-h:panelGrid>
+
+					<!-- RODAPÉ -->
+					<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+
+				</awb-h:panelGrid>
+
+			</div>
+
+			<awb-h:panelGrid styleClass="linhaPrincipal" />
+			<awb-h:panelGrid columns="2" border="0" cellpadding="0"
+				cellspacing="0" styleClass="gridBotao" id="gridBotoes">
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+					styleClass="gridBotaoEsquerda">
+					<awb-h:panelGroup>
+						<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_voltar}"
+							action="#{questionarioProjetoBean.voltar}" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+					styleClass="gridBotaoDireita">
+					<awb-h:panelGroup>
+						<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_salvar}"
+							actionListener="#{questionarioProjetoBean.salvar}">
+							<f:ajax execute="@form" render="formModalMessages"
+								onevent="aguarde" />
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<h:outputScript>
+				function acionarFileUpload(){
+					document.getElementById('uploadForm:cpFileUpload_file').click();
+
+					var conteudo = document.getElementById('uploadForm:cpFileUpload_text');
+					
+					if(conteudo.value == ""){
+						bloquearUpload();
+						document.getElementById('formQuestionarioProjeto').reload();				
+					}else{
+						document.getElementById('formQuestionarioProjeto:btnUploadVisible').disabled=false;	
+						document.getElementById('formQuestionarioProjeto:txtUpload').value = conteudo.value;
+					}
+				}
+				
+				function acionarUpload(){
+					document.getElementById('uploadForm:btnUpload').click();
+					bloquearUpload();
+				}
+				
+				function bloquearUpload(){
+					document.getElementById('formQuestionarioProjeto:btnUploadVisible').disabled=true;
+				}
+			</h:outputScript>
+
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+
+<div class="scrollCentralAbas">
+
+	<awb-h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" width="98%" styleClass="gridPrincipal abaPanelGrid" >
+				<awb-th:extDiv styleClass="abaDiv" style="border-radius: 5px;" >
+				<!--
+					ABA QUESTIONÁRIO
+				 -->
+				<awb-h:form id="formQuestionario" onsubmit="setScrollPos('formQuestionario')">
+					<awb-h:panelGrid id="gridQuestionario" border="0" cellpadding="0" cellspacing="0" width="100%" style="box-sizing: border-box; padding: 5px;"
+						styleClass="gridPrincipal" rendered="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.renderAbaQuestionario}">
+						
+						<!-- DADOS OPERACIONAIS -->
+						<awb-h:outputLabel value="#{msgs.label_dados_operacionais}" styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+						<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width="" border="0"
+							styleClass="gridSecundaria">
+								
+							<awb-h:outputLabel value="#{msgs.label_tipo_empreendimento}" styleClass="HtmlOutputLabelBoldBradesco"/>
+							<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0" width="" border="0"
+								styleClass="gridInterna">
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkResidencial" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.empreendimentoResidencial}"/>
+									<awb-h:outputLabel value="#{msgs.label_residencial}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkComercial" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.empreendimentoComercial}"/>
+									<awb-h:outputLabel value="#{msgs.label_comercial}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+							</awb-h:panelGrid>
+							
+							<awb-h:outputLabel value="#{msgs.label_publico_alvo}" styleClass="HtmlOutputLabelBoldBradesco"/>					
+							<awb-h:panelGrid columns="3" cellpadding="0" cellspacing="0" width="" border="0"
+								styleClass="gridInterna">
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkBaixaRenda" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.baixaRenda}"/>
+									<awb-h:outputLabel value="#{msgs.label_baixa_renda}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkClasseMedia" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+									value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.classeMedia}"/>
+									<awb-h:outputLabel value="#{msgs.label_classe_media}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkAltoPadrao" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.altoPadrao}"/>
+									<awb-h:outputLabel value="#{msgs.label_alto_padrao}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+							</awb-h:panelGrid>
+							
+							<awb-h:outputLabel value="#{msgs.label_politica_vendas}" styleClass="HtmlOutputLabelBoldBradesco"/>					
+							<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0" width="" border="0"
+								styleClass="gridInterna">
+								<awb-h:panelGrid columns="2" width="150px">
+									<awb-h:inputText id="txtPreChaves" styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.preChaves}" size="6"/>
+									<awb-h:outputLabel value="#{msgs.label_porc_prechaves}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="2" width="150px">
+									<awb-h:inputText id="txtProChaves" styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.posChaves}" size="6"/>
+									<awb-h:outputLabel value="#{msgs.label_porc_poschaves}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+							</awb-h:panelGrid>
+			
+							<awb-h:outputLabel value="#{msgs.label_construtora}" styleClass="HtmlOutputLabelBoldBradesco"/>
+							<awb-h:panelGrid columns="3" cellpadding="0" cellspacing="0" width="" border="0"
+								styleClass="gridInterna">
+								<awb-h:panelGrid columns="2" width="100px">
+									<awb-h:selectBooleanCheckbox id="chkPropria" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.propria}"/>
+									<awb-h:outputLabel value="#{msgs.label_propria}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:panelGrid columns="2" width="100px" style="margin-right:7px;">
+									<awb-h:selectBooleanCheckbox id="chkTerceirizada" styleClass="HtmlSelectBooleanCheckboxBradesco" disabled="true"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.terceirizada}">
+										<f:ajax event="click" render="txtTerceirizada"/>
+									</awb-h:selectBooleanCheckbox>
+									<awb-h:outputLabel value="#{msgs.label_terceirizada}" style="margin-left:-5px;" styleClass="HtmlOutputLabelBradesco"/>
+								</awb-h:panelGrid>
+								<awb-h:inputText id="txtTerceirizada" styleClass="HtmlInputTextBradesco" size="65"
+									value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.nomeTerceirizada}"
+									disabled="true"/>
+							</awb-h:panelGrid>
+							
+							<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width=""
+								styleClass="gridSecundaria">
+								<awb-h:outputLabel value="#{msgs.label_area_atuacao}" styleClass="HtmlOutputLabelBoldBradesco"/>
+								
+								<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width="" border="0"
+									style="margin-top:0px;" styleClass="gridInterna">
+									<awb-br:scrollableDataTable id="tblAreaAtuacao" var="item" height="200px;"
+										value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.listaAreaAtuacao}">
+										<awb-br:scrollableColumn width="400px">
+											<awb-f:facet name="header">
+												<awb-h:outputLabel value="#{msgs.label_estado}" styleClass="" />
+											</awb-f:facet>
+											<awb-h:outputLabel value="#{item.estado}" />
+										</awb-br:scrollableColumn>
+										<awb-br:scrollableColumn width="400px">
+											<awb-f:facet name="header">
+												<awb-h:outputLabel value="#{msgs.label_regiao}" styleClass="" />
+											</awb-f:facet>
+											<awb-h:outputLabel value="#{item.regiao}" />
+										</awb-br:scrollableColumn>
+									</awb-br:scrollableDataTable>
+									
+								</awb-h:panelGrid>
+								
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+						<!-- FIM DADOS OPERACIONAIS -->
+						
+						<!-- INICIO HISTORICO DE LANÇAMENTOS -->
+						<awb-h:outputLabel value="#{msgs.label_historico_lancamentos}" styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+						<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width=""
+							styleClass="gridSecundaria">
+							
+							<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width="" border="0"
+								style="margin-top:0px;" styleClass="gridInterna">
+								<awb-br:scrollableDataTable id="tblHistoricoLancamentos" var="item" height="200px;"
+									value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.listaHistoricoLancamentos}">
+									<awb-br:scrollableColumn width="100px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_ano}" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.ano}" style="float:right;padding-bottom:4px"/>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="200px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_vgv_lancado}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.vgvLancadoFormatado}" style="float:right;padding-bottom:4px">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="160px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_qtd_empreendimentos}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.qtdeEmpreendimentosFormatado}" style="float:right;padding-bottom:4px;padding-right:12px">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+								</awb-br:scrollableDataTable>
+								
+								<awb-h:panelGrid id="totalizadoresHistoricoLancamentos"
+									columns="4" cellpadding="0" cellspacing="0">
+									<awb-h:panelGrid width="200px;">
+										<awb-h:outputLabel value="#{msgs.label_total}:"
+											styleClass="HtmlOutputLabelBoldBradesco" />
+									</awb-h:panelGrid>
+									
+									<awb-h:panelGrid columns="2" width="410px;">
+										<awb-h:outputLabel value="R$ mil "
+											styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+										<awb-h:outputLabel id="vgvTotal"
+											value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.vgvTotalFormatado}"
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="1" width="320px;">
+										<awb-h:outputLabel id="qtdTotal"
+											value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.qtdTotalFormatado}"
+											style="float:right; padding-right:12px" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+								</awb-h:panelGrid>
+								
+								
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+						<!-- FIM HISTORICO DE LANÇAMENTOS -->
+						
+						<!-- INICIO LAND BANK -->
+						<awb-h:outputLabel value="#{msgs.label_land_bank}" styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+						<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width=""
+							styleClass="gridSecundaria">
+							
+							
+							<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" width="95%" border="0"
+								style="margin-top:0px;" styleClass="gridInterna">
+								<awb-br:scrollableDataTable id="tblLandBank" var="item" height="200px" 
+									value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.listaLandBank}">
+									<awb-br:scrollableColumn width="340px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_empreendimento}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.empreendimento}"/>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="340px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_localizacao}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.localizacao}" />
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="200px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_valor_terreno} #{msgs.label_reais_parenteses}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.valorTerrenoFormatado}" 
+											style="float:right;padding-bottom:4px;">
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="200px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_vgv_estimado}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.vgvEstimadoFormatado}"
+											style="float:right;padding-bottom:4px;"/>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="80px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_data_prevista}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.dataPrevista}" style="float:right;padding-bottom:4px;">
+											<awb-f:convertDateTime pattern="dd/MM/yyyy"/>
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+									<awb-br:scrollableColumn width="80px">
+										<awb-f:facet name="header">
+											<awb-h:outputLabel value="#{msgs.label_possui_onus}" styleClass="" />
+										</awb-f:facet>
+										<awb-h:outputLabel value="#{item.possuiOnus}">
+											<f:converter converterId="simNaoConverter"/>
+										</awb-h:outputLabel>
+									</awb-br:scrollableColumn>
+								</awb-br:scrollableDataTable>
+								 
+								<awb-h:panelGrid id="totalizadoresLandBank" columns="4" cellpadding="0" cellspacing="0">
+									<awb-h:panelGrid width="647px;">
+										<awb-h:outputLabel value="#{msgs.label_total}:" styleClass="HtmlOutputLabelBoldBradesco" />
+									</awb-h:panelGrid>
+									<awb-h:panelGrid/>
+									<awb-h:panelGrid columns="2" width="192px;">
+										<awb-h:outputLabel value="R$ mil " styleClass="HtmlOutputLabelBoldBradesco" style="padding-left:5px"/>
+										<awb-h:outputLabel value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.totalTerrenoFormatado}" 
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+									<awb-h:panelGrid columns="2" width="192px;">
+										<awb-h:outputLabel value="R$ mil " styleClass="HtmlOutputLabelBoldBradesco" style="padding-left:5px"/>
+										<awb-h:outputLabel value="#{equipe1ConsultaQuestionarioImobiliarioBean.viewHelper.model.questionario.totalProjetadaFormatado}" 
+											style="float:right;" styleClass="HtmlOutputLabelBoldBradesco">
+										</awb-h:outputLabel>
+									</awb-h:panelGrid>
+								</awb-h:panelGrid>
+								
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+						
+						<!-- FIM LAND BANK -->
+						
+					</awb-h:panelGrid>
+				</awb-h:form>
+			</awb-th:extDiv>
+			
+		</awb-h:panelGrid>
+</div>
+
+</html>

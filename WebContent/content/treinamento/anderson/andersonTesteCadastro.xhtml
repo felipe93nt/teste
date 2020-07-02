@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_treinamento_anderson_title_cadastro')}" />
+	<ui:param name="passNumber" value="4" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathAndersonTesteCadastro}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0" width="100%"
+			styleClass="gridPrincipal">
+			<awb-h:form id="formAndersonTeste">
+
+				<awb-h:panelGrid columns="5" cellpadding="5" cellspacing="0"
+					style="margin-top: 0px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_nome}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.nome}"
+						styleClass="HtmlInputTextBradesco" size="70" maxlength="55" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_cpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="cpf"
+						value="#{andersonTesteCadastroBean.viewHelper.cpf}"
+						styleClass="HtmlInputTextBradesco" size="21"
+						onfocus="loadMasksJQuery()" alt="cpfCompleto" />
+
+
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid columns="10" cellpadding="5" cellspacing="0"
+					style="margin-top: 0px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_rg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="rg"
+						value="#{andersonTesteCadastroBean.viewHelper.rg}"
+						styleClass="HtmlInputTextBradesco" size="20"
+						onfocus="loadMasksJQuery()" alt="rgCompletoAnderson" />
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_dataNascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="data"
+						value="#{andersonTesteCadastroBean.viewHelper.dataNascimento}"
+						styleClass="HtmlInputTextBradesco" size="17"
+						onfocus="loadMasksJQuery()" alt="data" />
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_sexo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:selectOneRadio
+						value="#{andersonTesteCadastroBean.viewHelper.sexo}"
+						styleClass="HtmlSelectOneRadioBradesco">
+						<awb-f:selectItem itemValue="M" itemLabel="Masculino" />
+						<awb-f:selectItem itemValue="F" itemLabel="Feminino" />
+					</awb-h:selectOneRadio>
+
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing=""
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="4" cellpadding="6" cellspacing="0"
+					style="margin-top:  5px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_logradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.logradouro}"
+						styleClass="HtmlInputTextBradesco" size="66" maxlength="50" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_numero}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.numero}"
+						styleClass="HtmlInputTextBradesco" size="13" maxlength="6"
+						onfocus="loadMasksJQuery()" alt="numerico6" />
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid id="panelEndereco" columns="4" cellpadding="5"
+					cellspacing="0" style="margin-top: 5px;">
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_complemento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.complemento}"
+						styleClass="HtmlInputTextBradesco" size="26" maxlength="21" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_bairro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.bairro}"
+						styleClass="HtmlInputTextBradesco" size="54" maxlength="44" />
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid columns="4" cellpadding="5" cellspacing="0"
+					style="margin-top: 5px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_cidade}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu id="comboCidade"
+						styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; width:420px; margin-top: 0px !important"
+						value="#{andersonTesteCadastroBean.viewHelper.cidade}">
+						<f:selectItem itemValue="" itemLabel="- Selecione uma Cidade -" />
+						<awb-f:selectItems
+							value="#{andersonTesteCadastroBean.viewHelper.comboCidade}"
+							var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-br:modalContent autoOpen="false" id="contentModalTest42"
+						openId="formAndersonTeste:botao"
+						closeId="formAndersonTeste:botaoFechar"
+						reRender="formAndersonTeste:comboCidade" resizable="false"
+						draggable="true" header="Cadastrar cidade" width="410"
+						height="200" 
+						onHideServerCallback="#{andersonTesteCadastroBean.viewHelper.showModal}">
+						<awb-h:panelGroup id="contents">
+							<awb-h:panelGrid columns="2">
+
+
+								<awb-h:column>Nome da Cidade: </awb-h:column>
+								<awb-h:column>
+									<awb-h:inputText
+										value="#{andersonTesteCadastroBean.viewHelper.nomeCidade}"
+										size="60" maxlength="59" />
+								</awb-h:column>
+
+
+
+
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2">
+								<awb-h:column>
+									<awb-h:messages></awb-h:messages>
+								</awb-h:column>
+							</awb-h:panelGrid>
+						</awb-h:panelGroup>
+						<f:facet name="buttons">
+							<awb-h:commandButton id="botaoFechar" style="float: left;"
+								value="Fechar" styleClass="HtmlCommandButtonBradesco2" />
+							<awb-h:commandButton style="float: right;" value="Cadastrar"
+								actionListener="#{andersonTesteCadastroBean.cadastrarCidade}"
+								styleClass="HtmlCommandButtonBradesco2">
+								<f:ajax execute="contents" render="contents"></f:ajax>
+							</awb-h:commandButton>
+						</f:facet>
+					</awb-br:modalContent>
+					<awb-h:commandButton id="botao" value="Cadastrar Cidade"
+						styleClass="HtmlCommandButtonBradesco2" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_estado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu id="comboEstado"
+						styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; width:420px; margin-top: 0px;  !important"
+						value="#{andersonTesteCadastroBean.viewHelper.estado}">
+						<f:selectItem itemValue="" itemLabel="- Selecione um Estado -" />
+						<awb-f:selectItems
+							value="#{andersonTesteCadastroBean.viewHelper.comboEstado}"
+							var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-br:modalContent autoOpen="false" id="modalCadastroEstado"
+						openId="formAndersonTeste:botaoCadastroEstado"
+						closeId="formAndersonTeste:botaoFechar2"
+						reRender="formAndersonTeste:comboEstado" resizable="false"
+						draggable="false" header="Cadastrar estado" width="410"
+						height="200">
+						<awb-h:panelGroup id="contents2">
+							<awb-h:panelGrid columns="2">
+								<awb-h:column>Nome do Estado: </awb-h:column>
+								<awb-h:column>
+									<awb-h:inputText
+										value="#{andersonTesteCadastroBean.viewHelper.nomeEstado}"
+										size="60" maxlength="59" />
+								</awb-h:column>
+
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2">
+								<awb-h:column>
+									<awb-h:messages></awb-h:messages>
+								</awb-h:column>
+							</awb-h:panelGrid>
+						</awb-h:panelGroup>
+						<f:facet name="buttons">
+							<awb-h:commandButton id="botaoFechar2" style="float: left;"
+								value="Fechar" styleClass="HtmlCommandButtonBradesco2"/>
+							<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+								style="float: right;" value="Cadastrar"
+								actionListener="#{andersonTesteCadastroBean.cadastrarEstado}">
+								<f:ajax execute="contents2" render="contents2"></f:ajax>
+
+							</awb-h:commandButton>
+						</f:facet>
+					</awb-br:modalContent>
+					<awb-h:commandButton id="botaoCadastroEstado"
+						value="Cadastrar Estado" styleClass="HtmlCommandButtonBradesco2" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_cep}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="cep"
+						value="#{andersonTesteCadastroBean.viewHelper.cep}"
+						styleClass="HtmlInputTextBradesco" size="19"
+						onfocus="loadMasksJQuery()" alt="cepCompletoAnderson" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="10" cellpadding="5" cellspacing="0"
+					style="margin-top: 5px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_telefone}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="telefone"
+						value="#{andersonTesteCadastroBean.viewHelper.telefone}"
+						styleClass="HtmlInputTextBradesco" size="15"
+						onfocus="loadMasksJQuery()" alt="telefoneNormalAnderson" />
+
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_celular}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="cel"
+						value="#{andersonTesteCadastroBean.viewHelper.celular}"
+						styleClass="HtmlInputTextBradesco" size="16"
+						onfocus="loadMasksJQuery()" alt="telefoneComDdd" />
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_email}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{andersonTesteCadastroBean.viewHelper.email}"
+						styleClass="HtmlInputTextBradesco" size="39" maxlength="35" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" width="100%">
+					<awb-h:panelGroup>
+						<awb-h:commandButton style="margin-left:-4px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_voltar}"
+							action="#{andersonTesteCadastroBean.voltar}" immediate="true">
+						</awb-h:commandButton>
+
+						<awb-h:commandButton id="btnSalvar" style="margin-left: 505px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_salvar}"
+							action="#{andersonTesteCadastroBean.salvar}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" width="100%"
+					rendered="#{andersonTesteCadastroBean.viewHelper.renderizarTabela}">
+					<f:ajax event="click" render="gridBotoes" immediate="true"
+						execute="@this"
+						listener="#{andersonTesteCadastroBean.habilitarBotoes}" />
+					<awb-br:scrollableDataTable id="tblCadastro" var="o" rows="5"
+						selectionMode="selectOne" width="100%"
+						selection="#{andersonTesteCadastroBean.viewHelper.itemSelecionado}"
+						value="#{andersonTesteCadastroBean.viewHelper.listaCadastramento}"
+						columnState="">
+
+
+						<awb-br:scrollableColumn id="colunaNome" width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_nome}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.nome}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_cpf}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.cpf}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_rg}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.rg}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_dataNascimento}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.dataNascimento}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="6%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_sexo}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel
+								value="#{o.sexo.equals('M')? 'MASCULINO':'FEMININO'}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_logradouro}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.logradouro}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_numero}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.numero}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_complemento}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.complemento}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_bairro}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.bairro}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_cidade}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.cidade}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_estado}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.estado}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_cep}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.cep}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_telefone}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.telefone}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="8%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_celular}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.celular}"
+								style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="13%">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel
+									value="#{msgs.label_treinamento_anderson_outputText_email}"
+									style="float: left;margin-left: 10px" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{o.email}" style="margin-left: 10px;" />
+						</awb-br:scrollableColumn>
+
+
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid id="gridPaginacao" style="padding-left: 35%;"
+					rendered="#{andersonTesteCadastroBean.viewHelper.renderizarTabela}">
+					<awb-br:awbDataScroller id="dataScroller" resource="cws"
+						for="tblCadastro"
+						actionListener="#{andersonTesteCadastroBean.paginar}"
+						stateID="RICCIAAA" renderFacetsIfSinglePage="true">
+						<awb-f:facet name="first">
+							<awb-br:pdcCommandButton id="primeira"
+								styleClass="HtmlCommandButtonBradesco2"
+								value="#{msgs.label_primeira}" title="#{msgs.label_primeira}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastrewind">
+							<awb-br:pdcCommandButton id="retrocessoRapido"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_retrocesso}"
+								title="#{msgs.label_retrocesso}" />
+						</awb-f:facet>
+						<awb-f:facet name="previous">
+							<awb-br:pdcCommandButton id="anterior"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_anterior}"
+								title="#{msgs.label_anterior}" />
+						</awb-f:facet>
+						<awb-f:facet name="next">
+							<awb-br:pdcCommandButton id="proxima"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_proxima}"
+								title="#{msgs.label_proxima}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastforward">
+							<awb-br:pdcCommandButton id="avancoRapido"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_avanco}"
+								title="#{msgs.label_avanco}" />
+						</awb-f:facet>
+						<awb-f:facet name="last">
+							<awb-br:pdcCommandButton id="ultima"
+								styleClass="HtmlCommandButtonBradesco2"
+								style="margin-left: 3px;" value="#{msgs.label_ultima}"
+								title="#{msgs.label_ultima}" />
+						</awb-f:facet>
+					</awb-br:awbDataScroller>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid id="gridBotoes" columns="1" border="0" width="100%"
+					styleClass="gridBotaoEsquerda"
+					rendered="#{andersonTesteCadastroBean.viewHelper.renderizarTabela}">
+					<awb-h:panelGroup styleClass="gridBotaoDireita">
+
+						<awb-h:commandButton id="btnConsultar" style="margin-right:5px"
+							disabled="#{not andersonTesteCadastroBean.viewHelper.btnConsultar}"
+							action="#{andersonTesteCadastroBean.iniciarPaginaConsulta}"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_consultar}">
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+
+			</awb-h:form>
+		</awb-h:panelGrid>
+		<h:outputScript>
+				function close(){
+					document.getElementById('formAndersonTeste:botaoFechar').click();
+					
+				}
+		
+		</h:outputScript>
+
+	</ui:define>
+</ui:composition>
+</html>

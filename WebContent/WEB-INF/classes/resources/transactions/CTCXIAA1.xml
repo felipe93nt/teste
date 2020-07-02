@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="CTCXIAA1" type="CWS">
+  <header>
+    <property name="FWO">BUSINESS</property>
+    <property name="Length">17126</property> 
+    <property name="RouterTransaction">FRWK1100</property>
+  </header>
+  <inputdependencies>
+    <dependency>FRWKGL01</dependency>
+    <dependency>GSEGGLAA</dependency>
+    <dependency>CTCXW09E</dependency>
+  </inputdependencies>
+  <input maxBytes="46" />
+  <outputdependencies>
+	<dependency>FRWKGL01</dependency>
+    <dependency>FRWKEBL2</dependency>
+    <dependency>FRWKEBL3</dependency>
+    <dependency>GSEGGLBB</dependency>
+    <dependency>CTCXW09S</dependency>
+  </outputdependencies>
+</copybook>
+

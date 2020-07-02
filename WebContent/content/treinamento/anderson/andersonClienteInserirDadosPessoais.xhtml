@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<div class="scrollCentralAbas">
+
+
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="10" width="100%"
+			styleClass="gridPrincipal">
+			
+
+				<awb-h:panelGrid columns="6" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_nome}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{andersonClienteBean.viewHelper.nome}"
+						styleClass="HtmlInputTextBradesco" size="55" maxlength="44"/>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_cpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-br:cpf labelCpf=""
+						value="#{andersonClienteBean.viewHelper.cpf}" id="componenteCPF"
+						titleInputsCpf="Campos do CPF"
+						titleLabelCpf="#{msgs.label_treinamento_anderson_outputText_cpf}: " />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_rg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{andersonClienteBean.viewHelper.rg}" onfocus="loadMasksJQuery()"
+						alt="rgCompletoAnderson"
+						styleClass="HtmlInputTextBradesco" size="15">
+						
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_dataNascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-br:calendar id="calendario"
+						value="#{andersonClienteBean.viewHelper.dataNascimento}"
+						titulo="Calendario" alt="Calendario" altDia="Campo Dia"
+						altMes="Campo Mês" altAno="Campo Ano"
+						onFieldFilled="errorStyleChanger"
+						onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+						 />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_anderson_outputText_sexo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneRadio
+						value="#{andersonClienteBean.viewHelper.sexo}"
+						styleClass="HtmlSelectOneRadioBradesco">
+						<awb-f:selectItem itemValue="M" itemLabel="Masculino" />
+						<awb-f:selectItem itemValue="F" itemLabel="Feminino" />
+					</awb-h:selectOneRadio>
+
+					</awb-h:panelGrid>
+					
+
+		
+		</awb-h:panelGrid>
+
+
+	</div>
+	
+</html>

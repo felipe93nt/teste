@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_detalhar_mensagem')}" />
+	<ui:param name="passNumber" value="4" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathDetalharMensagem}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="10" width="100%"
+			styleClass="gridPrincipal">
+
+			<awb-h:form id="manutencaoIncluirMensagemFormID">
+				<awb-h:panelGrid columns="3" width="250px" style="margin-left:80px">
+					<awb-h:panelGrid columns="2" width="250px">
+						<awb-h:outputLabel value="#{msgs.label_transmission_type}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="20"
+							size="20" value="SENT" disabled="true" style="margin-left:5px" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" width="250px" style="margin-left:5px">
+						<awb-h:outputLabel value="#{msgs.label_message_type}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							style="margin-left: -145px" value="MT103" disabled="true"
+							size="6" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="60"
+							size="60" value="Descrição MT103" style="margin-left:-100px"
+							disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:outputLabel value="#{msgs.label_dados_do_header}"
+					styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:60px" />
+
+				<awb-h:panelGrid id="painelDadosHeader" columns="2">
+
+					<awb-h:outputLabel value="#{msgs.label_basic_header}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:116px" />
+					<awb-h:panelGrid columns="5" cellspacing="2"
+						style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="F" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="2"
+							size="2" value="01" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="12"
+							size="16" value="BBDEBRS0ASPO" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="4"
+							size="4" value="0000" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="6"
+							size="6" value="000000" disabled="true" />
+					</awb-h:panelGrid>
+
+					<awb-h:outputLabel value="#{msgs.label_application_header}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:83px" />
+					<awb-h:panelGrid columns="6" cellspacing="2"
+						style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="I" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+							size="3" value="103" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="12"
+							size="16" value="BBDEBRS0ASPO" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="U" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="1" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+							size="2" value="001" disabled="true" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-f:verbatim>
+					<br />
+				</awb-f:verbatim>
+
+				<awb-h:outputLabel value="#{msgs.label_user_header} "
+					style="margin-left:60px" styleClass="HtmlOutputLabelBoldBradesco" />
+
+				<awb-h:panelGrid columns="6" id="painelUserHeader"
+					style="margin-left:93px">
+					<awb-h:outputLabel value="#{msgs.label_service_code_103}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+						size="3" style="margin-left:7px" disabled="true" />
+					<awb-h:outputLabel value="#{msgs.label_bank_priority_113}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:20px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="4"
+						size="4" style="margin-left:7px" disabled="true" />
+					<awb-h:outputLabel value="#{msgs.label_msg_user_ref_108}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:20px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="30"
+						size="30" style="margin-left:7px" disabled="true" />
+
+					<awb-h:outputLabel value="#{msgs.label_validation_119}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:15px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="8"
+						size="10" style="margin-left:7px" disabled="true" />
+					<awb-h:outputLabel value="#{msgs.label_service_type_111}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:20px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+						size="3" style="margin-left:7px" disabled="true" />
+					<awb-h:outputLabel value="#{msgs.label_end_to_end_ref_121}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:10px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="45" style="margin-left:7px" disabled="true" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top:10px" />
+
+				<!-- CAMPO 20 -->
+				<awb-h:panelGrid columns="2" id="painelSendersReference"
+					style="margin-left:57px">
+					<awb-h:outputLabel value="#{msgs.label_senders_reference_20}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="6"
+						size="8" style="margin-left:7px" disabled="true" value="Ref254" />
+				</awb-h:panelGrid>
+
+				<awb-f:verbatim>
+					<br />
+				</awb-f:verbatim>
+
+				<!-- CAMPO 13C -->
+				<awb-h:panelGrid columns="1" style="margin-left:207px">
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="RICCIAAA" resource="cws">
+						<awb-br:scrollableDataTable width="250px"
+							id="tabelaTimeIndication" var="item"
+							value="#{detalharMensagemBean.viewHelper.listaTimeIndicationVO}">
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_occur}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.occur}" style="float:right" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_code}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.code}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_time}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.time}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_sign}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.sign}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_offset}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.offset}" style="float:right" />
+							</awb-br:scrollableColumn>
+
+						</awb-br:scrollableDataTable>
+
+					</awb-br:keepState>
+				</awb-h:panelGrid>
+
+				<awb-f:verbatim>
+					<br />
+				</awb-f:verbatim>
+
+				<!-- CAMPO 23B -->
+				<awb-h:panelGrid columns="2" id="painelBankOperatingCode"
+					style="margin-left:39px">
+					<awb-h:outputLabel value="#{msgs.label_bank_operating_code_23b}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px;width:130px;margin-top:0px;height:18px;margin-left: 8px;"
+						value="#" disabled="true">
+						<f:selectItem itemValue="" itemLabel="CRED" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+
+
+				<!-- CAMPO 23E -->
+				<awb-h:panelGrid columns="1" style="margin-left:207px">
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="RICCIAAA" resource="cws">
+						<awb-br:scrollableDataTable width="200px"
+							id="tabelaInstructionCode" var="item"
+							value="#{detalharMensagemBean.viewHelper.listaInstructionCodeVO}">
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_occur}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.occur}" style="float:right" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_code}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.code}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_instruction}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.instruction}"
+									style="float:right" />
+							</awb-br:scrollableColumn>
+
+						</awb-br:scrollableDataTable>
+
+					</awb-br:keepState>
+				</awb-h:panelGrid>
+
+				<awb-f:verbatim>
+					<br />
+				</awb-f:verbatim>
+
+				<!-- CAMPO 26T -->
+				<awb-h:panelGrid columns="2" style="margin-left:65px">
+					<awb-h:outputLabel value="#{msgs.label_transf_type_code_26t}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="6"
+						size="8" style="margin-left:8px" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 32A -->
+				<awb-h:panelGrid columns="7" style="margin-left:49px">
+					<awb-h:outputLabel value="#{msgs.label_settlement_amount_32a}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel value="#{msgs.label_date}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:8px" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="8"
+						size="8" disabled="true" value="09/06/20" />
+					<awb-h:outputLabel value="#{msgs.label_currency}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px;width:130px;margin-top:0px;height:18px;margin-left: -1px;"
+						value="#" disabled="true">
+						<f:selectItem itemValue="" itemLabel="USD" />
+					</awb-h:selectOneMenu>
+					<awb-h:outputLabel value="#{msgs.label_amount}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="15"
+						size="15" disabled="true" value="10.000,00" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 33B -->
+				<awb-h:panelGrid columns="5" style="margin-left:59px">
+					<awb-h:outputLabel value="#{msgs.label_instructed_amount_33b}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel value="#{msgs.label_currency}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:8px" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px;width:130px;margin-top:0px;height:18px;margin-left: -1px;"
+						value="#" disabled="true">
+						<f:selectItem itemValue="" itemLabel="USD" />
+					</awb-h:selectOneMenu>
+					<awb-h:outputLabel value="#{msgs.label_amount}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="15"
+						size="15" disabled="true" value="10.000,00" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 36 -->
+				<awb-h:panelGrid columns="2" style="margin-left:90px">
+					<awb-h:outputLabel value="#{msgs.label_exchange_rate_36}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="10" style="margin-left:7px" disabled="true" value="0,9236" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 50F -->
+				<awb-h:panelGrid columns="1" style="margin-left:59px">
+					<awb-h:panelGrid columns="2" style="margin-left:-3px">
+						<awb-h:panelGrid columns="1" style="margin-left:-3px">
+							<awb-h:outputLabel value="#{msgs.label_ordering_customer_50}: "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="3" style="margin-left:1px">
+							<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+								size="1" value="F" disabled="true" />
+							<awb-h:outputLabel value="#{msgs.label_barra} "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco"
+								maxlength="9" size="9" value="123456789" disabled="true" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1"
+						style="margin-top: -12px;margin-left:141px">
+						<awb-h:panelGrid columns="2" style="margin-left:41px">
+							<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+								size="1" value="1" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco"
+								maxlength="35" size="35" value="MAN GEORGE" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+								size="1" value="2" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco"
+								maxlength="35" size="35" value="LOW STREET 7" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+								size="1" value="3" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco"
+								maxlength="35" size="35" value="DE FRANKFURT" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+								size="1" value="8" disabled="true" />
+							<awb-h:inputText styleClass="HtmlInputTextBradesco"
+								maxlength="35" size="35" value="7890" disabled="true" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 51A -->
+				<awb-h:panelGrid columns="2" style="margin-left:64px">
+					<awb-h:outputLabel value="#{msgs.label_sending_institution_51a}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="675746765" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 52 -->
+				<awb-h:panelGrid columns="2" style="margin-left:60px">
+					<awb-h:outputLabel value="#{msgs.label_ordering_institution_52}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 53 -->
+				<awb-h:panelGrid columns="2" style="margin-left:38px">
+					<awb-h:outputLabel value="#{msgs.label_senders_correspondent_53}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+				
+				<!-- CAMPO 54 -->
+				<awb-h:panelGrid columns="2" style="margin-left:29px">
+					<awb-h:outputLabel
+						value="#{msgs.label_receivers_correspondent_54}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 55 -->
+				<awb-h:panelGrid columns="2" style="margin-left:22px">
+					<awb-h:outputLabel
+						value="#{msgs.label_third_reimbursement_inst_55}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+				
+				<!-- CAMPO 56 -->
+				<awb-h:panelGrid columns="2" style="margin-left:35px">
+					<awb-h:outputLabel
+						value="#{msgs.label_intermediary_institution_56}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="3" style="margin-left:4px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="A" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:250px">
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+						size="9" value="ABNANL2A" disabled="true" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+						size="40" value="" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 57 -->
+				<awb-h:panelGrid columns="2" style="margin-left:35px">
+					<awb-h:outputLabel
+						value="#{msgs.label_account_with_institution_57}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="3" style="margin-left:7px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" value="a" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+							size="3" value="" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="3" style="margin-left:240px">
+					<awb-h:outputLabel value="#{msgs.label_barra} "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="8"
+						size="8" value="ABNANL2A" disabled="true" />
+
+				</awb-h:panelGrid>
+				<awb-h:panelGrid style="margin-left:251px">
+					<awb-h:inputTextarea id="textArea57"
+						binding="#{detalharMensagemBean.viewHelper.textArea57}" rows="4"
+						readonly="true" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 59/59A -->
+				<awb-h:panelGrid columns="2" style="margin-left:46px">
+					<awb-h:outputLabel value="#{msgs.label_beneficiary_customer_59}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="5" style="margin-left:8px">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="1"
+							size="1" disabled="true" />
+						<awb-h:outputLabel value="#{msgs.label_barra} "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="3"
+							size="3" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="9"
+							size="9" value="123456789" disabled="true" />
+					</awb-h:panelGrid>
+					<awb-h:outputLabel value="#{msgs.label_vazia} " />
+					<awb-h:panelGrid columns="1" style="margin-left:8px">
+						<awb-h:inputTextarea id="textArea59"
+							binding="#{detalharMensagemBean.viewHelper.textArea57}" rows="4"
+							style="margin-left:42px" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 70 -->
+				<awb-h:panelGrid columns="2" style="margin-left:39px">
+					<awb-h:outputLabel
+						value="#{msgs.label_remittance_information_70}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="30"
+						size="30" style="margin-left:10px" disabled="true" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 71A -->
+				<awb-h:panelGrid columns="2" style="margin-left:55px">
+					<awb-h:outputLabel value="#{msgs.label_details_of_charges_71a}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px;width:75px;margin-left:10px" value="#"
+						disabled="true">
+						<f:selectItem itemValue="" itemLabel="OUR" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 71F -->
+				<awb-h:panelGrid columns="2" style="margin-left:69px">
+					<awb-h:outputLabel value="#{msgs.label_senders_charges_71f}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="2">
+						<awb-h:commandButton id="btnAdicionarSendersCharges"
+							styleClass="HtmlCommandButtonBradesco2" style="margin-left:68px"
+							value="#{msgs.label_adicionar}" action="#" disabled="true">
+						</awb-h:commandButton>
+						<awb-h:commandButton id="btnRemoverSendersCharges"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_remover}" action="#" disabled="true">
+						</awb-h:commandButton>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="1" style="margin-left:210px">
+					<f:ajax event="click"
+						render="manutencaoIncluirMensagemFormID:btnRemoverSendersCharges"
+						immediate="true" execute="@this"
+						listener="#{detalharMensagemBean.habilitarBotoesSendersCharges}" />
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="RICCIAAA" resource="cws">
+						<awb-br:scrollableDataTable width="200px"
+							id="tabelaSendersCharges" var="item" selectionMode="selectOne"
+							selection="#{detalharMensagemBean.viewHelper.sendersChargesSelecionado}"
+							value="#{detalharMensagemBean.viewHelper.listaSendersChargesVO}">
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_occur}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.occur}" style="float:right" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_currency}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.currency}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_amount}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.amount}" style="float:right" />
+							</awb-br:scrollableColumn>
+
+						</awb-br:scrollableDataTable>
+
+					</awb-br:keepState>
+				</awb-h:panelGrid>
+
+				<awb-f:verbatim>
+					<br />
+				</awb-f:verbatim>
+
+				<!-- CAMPO 71G -->
+				<awb-h:panelGrid columns="5" style="margin-left:60px">
+					<awb-h:outputLabel value="#{msgs.label_receivers_charges_71g}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel value="#{msgs.label_currency}: "
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:8px" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px;width:100px;margin-top:0px;height:18px;margin-left: -4px; !important"
+						value="#" disabled="true">
+						<f:selectItem itemValue="" itemLabel="USD" />
+					</awb-h:selectOneMenu>
+					<awb-h:outputLabel value="#{msgs.label_amount}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="15"
+						size="14" disabled="true" value="10.000,00" />
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 72 -->
+				<awb-h:panelGrid columns="2" style="margin-left:75px">
+					<awb-h:panelGrid columns="2"
+						style="margin-top:-45px;margin-left:-3px">
+						<awb-h:outputLabel value="#{msgs.label_sender_to_rec_inf_72}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!-- CAMPO 77B -->
+				<awb-h:panelGrid columns="2" style="margin-left:46px">
+					<awb-h:panelGrid columns="2"
+						style="margin-top:-43px;margin-left:-3px">
+						<awb-h:outputLabel
+							value="#{msgs.label_regulatory_reporting_77b}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1">
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" maxlength="40"
+							size="40" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2" style="margin-left:156px">
+					<awb-h:outputLabel value="#{msgs.label_incluir_trailer_pde}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="1" style="margin-left:6px">
+						<awb-h:inputTextarea id="textAreaTrailer"
+							binding="#{detalharMensagemBean.viewHelper.textAreaTrailer}"
+							rows="4" style="width:350px" disabled="true" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					columns="2" width="100%">
+
+					<awb-h:commandButton id="btnVoltar" style="margin-left:-4px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}"
+						action="#{detalharMensagemBean.voltar}" immediate="true">
+					</awb-h:commandButton>
+
+					<awb-h:panelGroup style="float: right">
+						<awb-h:commandButton id="btnExcluir" style="margin-right: 4px;"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_excluir}" action="#">
+						</awb-h:commandButton>
+						<awb-h:commandButton id="btnImprimir"
+							style="margin-right: 4px;margin-left:10px"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_imprimir_com_trilha_de_auditoria}" action="#">
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+
+				</awb-h:panelGrid>
+
+			</awb-h:form>
+
+		</awb-h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>

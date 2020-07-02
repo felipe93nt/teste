@@ -1,0 +1,14 @@
+.aguarde {
+    display: none;
+    text-align: center;
+    background-color: black;
+    background: black;
+    min-height: 31px;
+    max-height: 31px;
+    min-width: 35px;
+    max-width: 35px;
+}
+
+.aguarde .ui-dialog-titlebar{
+	display: none;	
+}

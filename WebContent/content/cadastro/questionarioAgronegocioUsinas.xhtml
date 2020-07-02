@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<div class="scrollCentralAbas">
+
+	<awb-h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"
+		width="98%" id="abaUsinas"
+		styleClass="gridPrincipal abaPanelGrid">
+		<awb-th:extDiv styleClass="abaDiv" style="border-radius: 5px;">
+			<awb-h:panelGrid id="gridUsinas" cellpadding="0" cellspacing="0"
+				width="100%" columns="1" style="box-sizing:border-box;padding:5px;"
+				styleClass="gridPrincipal">
+				<h:inputHidden id="scrollPointIndex" />
+				<awb-h:panelGrid columns="2" cellpadding="3" cellspacing="0"
+					style="margin-bottom:10px;">
+					<awb-h:outputLabel value="#{msgs.label_nome_usina}:"
+						styleClass="HtmlOutputLabelBoldBradesco"
+						style="padding-right:10px;" />
+					<awb-h:inputText id="txtNomeUsina"
+						styleClass="HtmlInputTextBradesco" maxlength="30" size="70"
+						value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.nomeUsina}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="gridSecundaria" width="100%">
+					<awb-h:outputLabel
+						value="#{msgs.label_moagem} #{msgs.label_ktons_parenteses}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+						border="0" style="margin-bottom:10px;">
+
+						<awb-h:panelGrid />
+
+						<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano_safra}" style="float:right" />
+							<awb-h:inputText id="txtAnoMoagem1" size="5" 
+								onkeyup="atualizarAno1(this)"
+								styleClass="HtmlInputTextBradesco" alt="anoSafra"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.ano}">
+							</awb-h:inputText>
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano_safra}" style="float:right" />
+							<awb-h:inputText id="txtAnoMoagem2" size="5"
+								onkeyup="atualizarAno2(this)"
+								styleClass="HtmlInputTextBradesco" alt="anoSafra"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.ano}">
+							</awb-h:inputText>
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano_safra}" style="float:right" />
+							<awb-h:inputText id="txtAnoMoagem3" size="5"
+								onkeyup="atualizarAno3(this)"
+								styleClass="HtmlInputTextBradesco" alt="anoSafra"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.ano}">
+							</awb-h:inputText>
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano_safra}" style="float:right" />
+							<awb-h:inputText id="txtAnoMoagemP" size="5"
+								onkeyup="atualizarAno4(this)"
+								styleClass="HtmlInputTextBradesco" alt="anoSafra"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.ano}">
+							</awb-h:inputText>
+						</awb-h:panelGrid>
+
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							value="#{msgs.label_capacidade_moagem} #{msgs.label_ktons_parenteses}"
+							tabindex="-1" />
+						<awb-h:inputText id="txtCapacidadeMoagem1" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+							onkeyup="vNumero(this,'9(9)');"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.capacidadeMoagem}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCapacidadeMoagem2" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+							onkeyup="vNumero(this,'9(9)');"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.capacidadeMoagem}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCapacidadeMoagem3" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+							onkeyup="vNumero(this,'9(9)');"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.capacidadeMoagem}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCapacidadeMoagem4" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+							onkeyup="vNumero(this,'9(9)');"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.capacidadeMoagem}">
+						</awb-h:inputText>
+
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							value="#{msgs.label_cana_propria} #{msgs.label_em_propria_parenteses}"
+							tabindex="-1" />
+						<awb-h:inputText id="txtCanaAreaPropria1" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.canaAreaPropria}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaPropria2" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.canaAreaPropria}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaPropria3" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.canaAreaPropria}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaPropria4" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.canaAreaPropria}">
+						</awb-h:inputText>
+
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							value="#{msgs.label_cana_propria} #{msgs.label_em_arrendada_parenteses}"
+							tabindex="-1" />
+						<awb-h:inputText id="txtCanaAreaArrendada1" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.canaAreaArrendada}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaArrendada2" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.canaAreaArrendada}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaArrendada3" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.canaAreaArrendada}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaAreaArrendada4" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.canaAreaArrendada}">
+						</awb-h:inputText>
+
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							value="#{msgs.label_cana_terceiros}" tabindex="-1" />
+						<awb-h:inputText id="txtCanaTerceiros1" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.canaTerceiros}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaTerceiros2" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.canaTerceiros}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaTerceiros3" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.canaTerceiros}">
+						</awb-h:inputText>
+						<awb-h:inputText id="txtCanaTerceiros4" size="28"
+							styleClass="HtmlInputTextBradesco" alt="valorDuasCasasMax5"
+							onkeyup="vNumero(this,'9(3)V9(2)');setTimeout('atualizarTotalMoagem()', 100);"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.canaTerceiros}">
+						</awb-h:inputText>
+
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							value="#{msgs.label_total}" tabindex="-1" />
+						<awb-h:inputText id="txtAreaTotalUsinas1" disabled="true" size="28"
+							styleClass="HtmlInputTextBradesco" style="text-align:right"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.totalMoagem}" />
+						<awb-h:inputText id="txtAreaTotalUsinas2" disabled="true" size="28"
+							styleClass="HtmlInputTextBradesco" style="text-align:right"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.totalMoagem}" />
+						<awb-h:inputText id="txtAreaTotalUsinas3" disabled="true" size="28"
+							styleClass="HtmlInputTextBradesco" style="text-align:right"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.totalMoagem}" />
+						<awb-h:inputText id="txtAreaTotalUsinas4" disabled="true" size="28"
+							styleClass="HtmlInputTextBradesco" style="text-align:right"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.totalMoagem}" />
+						<awb-h:inputHidden id="txtAreaTotalUsinas1Hidden"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem1.totalMoagem}"/>
+						<awb-h:inputHidden id="txtAreaTotalUsinas2Hidden"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem2.totalMoagem}"/>
+						<awb-h:inputHidden id="txtAreaTotalUsinas3Hidden"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagem3.totalMoagem}"/>
+						<awb-h:inputHidden id="txtAreaTotalUsinas4Hidden"
+							value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoMoagemProjetado.totalMoagem}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="gridSecundaria" width="100%">
+						<awb-h:outputLabel
+							value="#{msgs.label_terra} #{msgs.label_ha_parenteses}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid cellpadding="0" cellspacing="0"
+							styleClass="linhaPrincipal" />
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:15px;">
+
+							<awb-h:panelGrid />
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoTerraUm" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoTerraDois" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoTerraTres" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoTerraProjetado" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_area_propria}" tabindex="-1" />
+							<awb-h:inputText id="txtPropriaTerra1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaPropria}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtPropriaTerra2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaPropria}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtPropriaTerra3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaPropria}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtPropriaTerra4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaPropria}">
+							</awb-h:inputText>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_area_arrendada}" tabindex="-1" />
+							<awb-h:inputText id="txtArrendadaTerra1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaArrendada}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtArrendadaTerra2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaArrendada}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtArrendadaTerra3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaArrendada}">
+							</awb-h:inputText>
+							<awb-h:inputText id="txtArrendadaTerra4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');setTimeout('atualizarTotalTerraHa()', 100);"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaArrendada}">
+							</awb-h:inputText>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_total}" tabindex="-1" />
+							<awb-h:inputText id="txtAreaTotalUsinasTerra1" disabled="true"
+								size="28" styleClass="HtmlInputTextBradesco"
+								style="text-align:right"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaTotal}" />
+							<awb-h:inputText id="txtAreaTotalUsinasTerra2" disabled="true"
+								size="28" styleClass="HtmlInputTextBradesco"
+								style="text-align:right"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaTotal}" />
+							<awb-h:inputText id="txtAreaTotalUsinasTerra3" disabled="true"
+								size="28" styleClass="HtmlInputTextBradesco"
+								style="text-align:right"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaTotal}" />
+							<awb-h:inputText id="txtAreaTotalUsinasTerra4" disabled="true"
+								size="28" styleClass="HtmlInputTextBradesco"
+								style="text-align:right"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaTotal}" />
+							<awb-h:inputHidden id="txtAreaTotalUsinasTerra1Hidden"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaTotal}"/>
+							<awb-h:inputHidden id="txtAreaTotalUsinasTerra2Hidden"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaTotal}"/>
+							<awb-h:inputHidden id="txtAreaTotalUsinasTerra3Hidden"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaTotal}"/>
+							<awb-h:inputHidden id="txtAreaTotalUsinasTerra4Hidden"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaTotal}"/>
+
+						</awb-h:panelGrid>
+
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:10px;">
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_area_renovacao} #{msgs.label_ha_parenteses}"
+								tabindex="-1" />
+							<awb-h:inputText id="txtAreaRenovacao1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaRenovacao}" />
+							<awb-h:inputText id="txtAreaRenovacao2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaRenovacao}" />
+							<awb-h:inputText id="txtAreaRenovacao3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaRenovacao}" />
+							<awb-h:inputText id="txtAreaRenovacao4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaRenovacao}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_area_expansao} #{msgs.label_ha_parenteses}"
+								tabindex="-1" />
+							<awb-h:inputText id="txtAreaExpansao1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra1.areaExpansao}" />
+							<awb-h:inputText id="txtAreaExpansao2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra2.areaExpansao}" />
+							<awb-h:inputText id="txtAreaExpansao3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerra3.areaExpansao}" />
+							<awb-h:inputText id="txtAreaExpansao4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorSemCasas9"
+								onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoTerraProjetado.areaExpansao}" />
+
+						</awb-h:panelGrid>
+
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="gridSecundaria" width="100%">
+						<awb-h:outputLabel
+							value="#{msgs.label_area_corte} #{msgs.label_ha_parenteses}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid cellpadding="0" cellspacing="0"
+							styleClass="linhaPrincipal" />
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:15px;">
+
+							<awb-h:panelGrid />
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoCorte1" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte1.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoCorte2" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte2.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoCorte3" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte3.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoCorte4" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorteProjetado.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_idade_canavial}" tabindex="-1" />
+							<awb-h:inputText id="txtMediaCanavial1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorUmaCasaMax4"
+								onkeyup="vNumero(this,'9(3)V9(1)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte1.idadeMediaCanavial}" />
+							<awb-h:inputText id="txtMediaCanavial2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorUmaCasaMax4"
+								onkeyup="vNumero(this,'9(3)V9(1)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte2.idadeMediaCanavial}" />
+							<awb-h:inputText id="txtMediaCanavial3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorUmaCasaMax4"
+								onkeyup="vNumero(this,'9(3)V9(1)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte3.idadeMediaCanavial}" />
+							<awb-h:inputText id="txtMediaCanavial4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorUmaCasaMax4"
+								onkeyup="vNumero(this,'9(3)V9(1)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorteProjetado.idadeMediaCanavial}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_porc_colheita_mecanizada}" tabindex="-1" />
+							<awb-h:inputText id="txtPorcMecanizada1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte1.porcentagemColheitaMecanizada}" />
+							<awb-h:inputText id="txtPorcMecanizada2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte2.porcentagemColheitaMecanizada}" />
+							<awb-h:inputText id="txtPorcMecanizada3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte3.porcentagemColheitaMecanizada}" />
+							<awb-h:inputText id="txtPorcMecanizada4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="percentualDuasCasas"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorteProjetado.porcentagemColheitaMecanizada}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_raio_canavial}" tabindex="-1" />
+							<awb-h:inputText id="txtRaioCanavial1" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorDuasCasas"
+								onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte1.raioMedioCanavial}" />
+							<awb-h:inputText id="txtRaioCanavial2" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorDuasCasas"
+								onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte2.raioMedioCanavial}" />
+							<awb-h:inputText id="txtRaioCanavial3" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorDuasCasas"
+								onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorte3.raioMedioCanavial}" />
+							<awb-h:inputText id="txtRaioCanavial4" size="28"
+								styleClass="HtmlInputTextBradesco" alt="valorDuasCasas"
+								onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoAreaCorteProjetado.raioMedioCanavial}" />
+
+						</awb-h:panelGrid>
+
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="gridSecundaria" width="100%">
+						<awb-h:outputLabel value="#{msgs.label_distribuicao_producao}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid cellpadding="0" cellspacing="0"
+							styleClass="linhaPrincipal" />
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:15px;">
+
+
+							<awb-h:panelGrid>
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_percentual}" style="float:right" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProducao1" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProducao2" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProducao3" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProducao4" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_acucar_cristal}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.acucarCristal}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.acucarCristal}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.acucarCristal}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.acucarCristal}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_acucar_vhp}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.acucarVhp}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.acucarVhp}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.acucarVhp}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.acucarVhp}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_acucar_organico}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.acucarOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.acucarOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.acucarOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.acucarOrganico}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_etanol_anidro}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.etanolAnidro}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.etanolAnidro}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.etanolAnidro}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.etanolAnidro}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_etanol_hidratado}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.etanolHidratado}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.etanolHidratado}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.etanolHidratado}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.etanolHidratado}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_etanol_organico}"
+								tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao1.etanolOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao2.etanolOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducao3.etanolOrganico}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="percentualDuasCasasDecimais"
+								onkeyup="vNumero(this,'9(3)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProducaoProjetado.etanolOrganico}" />
+
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="gridSecundaria" width="100%">
+						<awb-h:outputLabel value="#{msgs.label_produtividade}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid cellpadding="0" cellspacing="0"
+							styleClass="linhaPrincipal" />
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:15px;">
+
+							<awb-h:panelGrid />
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProdutividade1" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade1.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProdutividade2" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade2.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProdutividade3" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade3.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoProdutividade4" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividadeProjetado.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_prod_industrial}" tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade1.producaoIndustrial}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade2.producaoIndustrial}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividade3.producaoIndustrial}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoProdutividadeProjetado.producaoIndustrial}" />
+
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="gridSecundaria" width="100%">
+						<awb-h:outputLabel value="#{msgs.label_cogeracao_energia}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid cellpadding="0" cellspacing="0"
+							styleClass="linhaPrincipal" />
+						<awb-h:panelGrid columns="5" cellpadding="0" cellspacing="0"
+							border="0" style="margin-bottom:15px;">
+
+							<awb-h:panelGrid />
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoEnergia1" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia1.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoEnergia2" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia2.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" style="margin-left:20px" border="0">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoEnergia3" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia3.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:panelGrid columns="2" border="0" style="margin-left:20px">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+									value="#{msgs.label_ano_safra}" style="float:right" />
+								<awb-h:inputText id="txtAnoEnergia4" size="5"
+									styleClass="HtmlInputTextBradesco" alt="anoSafra"
+									disabled="true"
+									value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergiaProjetado.ano}" />
+							</awb-h:panelGrid>
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_potencia_instalada}" tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia1.potenciaInstalada}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia2.potenciaInstalada}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia3.potenciaInstalada}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergiaProjetado.potenciaInstalada}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_total_energia_vendida}" tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia1.totalEnergiaVendida}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia2.totalEnergiaVendida}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia3.totalEnergiaVendida}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorSemCasas9" onkeyup="vNumero(this,'9(9)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergiaProjetado.totalEnergiaVendida}" />
+
+							<awb-h:inputText readonly="true"
+								styleClass="HtmlOutputLabelBoldBradesco" size="56"
+								value="#{msgs.label_faturamento}" tabindex="-1" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorDuasCasas" onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia1.faturamento}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorDuasCasas" onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia2.faturamento}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorDuasCasas" onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergia3.faturamento}" />
+							<awb-h:inputText size="28" styleClass="HtmlInputTextBradesco"
+								alt="valorDuasCasas" onkeyup="vNumero(this,'9(15)V9(2)');"
+								value="#{questionarioAgronegocioBean.viewHelper.model.abaUsinas.anoCogeracaoEnergiaProjetado.faturamento}" />
+
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+			
+			<h:outputScript>
+			
+				function carregarDados2(){
+				
+					atualizarTotalMoagem();
+					atualizarTotalTerraHa();
+					
+					ano1 = document.getElementById("questionarioAgronegocioForm:txtAnoMoagem1");
+					ano2 = document.getElementById("questionarioAgronegocioForm:txtAnoMoagem2");
+					ano3 = document.getElementById("questionarioAgronegocioForm:txtAnoMoagem3");
+					ano4 = document.getElementById("questionarioAgronegocioForm:txtAnoMoagemP");
+					
+					atualizarAno1(ano1);
+					atualizarAno2(ano2);
+					atualizarAno3(ano3);
+					atualizarAno4(ano4);
+					
+				}
+			
+				function atualizarTotalMoagem(){
+					
+						var ids1 = new Array('txtCanaAreaPropria1', 'txtCanaAreaArrendada1', 'txtCanaTerceiros1');
+						var ids2 = new Array('txtCanaAreaPropria2', 'txtCanaAreaArrendada2', 'txtCanaTerceiros2');
+						var ids3 = new Array('txtCanaAreaPropria3', 'txtCanaAreaArrendada3', 'txtCanaTerceiros3');
+						var ids4 = new Array('txtCanaAreaPropria4', 'txtCanaAreaArrendada4', 'txtCanaTerceiros4');
+					
+						calcularTotal(ids1, 'txtAreaTotalUsinas1');
+						calcularTotal(ids1, 'txtAreaTotalUsinas1Hidden');
+						calcularTotal(ids2, 'txtAreaTotalUsinas2');
+						calcularTotal(ids2, 'txtAreaTotalUsinas2Hidden');
+						calcularTotal(ids3, 'txtAreaTotalUsinas3');
+						calcularTotal(ids3, 'txtAreaTotalUsinas3Hidden');
+						calcularTotal(ids4, 'txtAreaTotalUsinas4');
+						calcularTotal(ids4, 'txtAreaTotalUsinas4Hidden');
+					
+				}
+				
+				function atualizarTotalTerraHa(){
+					
+						var ids1 = new Array('txtPropriaTerra1', 'txtArrendadaTerra1');
+						var ids2 = new Array('txtPropriaTerra2', 'txtArrendadaTerra2');
+						var ids3 = new Array('txtPropriaTerra3', 'txtArrendadaTerra3');
+						var ids4 = new Array('txtPropriaTerra4', 'txtArrendadaTerra4');
+					
+						calcularTotal(ids1, 'txtAreaTotalUsinasTerra1');
+						calcularTotal(ids1, 'txtAreaTotalUsinasTerra1Hidden');
+						calcularTotal(ids2, 'txtAreaTotalUsinasTerra2');
+						calcularTotal(ids2, 'txtAreaTotalUsinasTerra2Hidden');
+						calcularTotal(ids3, 'txtAreaTotalUsinasTerra3');
+						calcularTotal(ids3, 'txtAreaTotalUsinasTerra3Hidden');
+						calcularTotal(ids4, 'txtAreaTotalUsinasTerra4');
+						calcularTotal(ids4, 'txtAreaTotalUsinasTerra4Hidden');
+					
+				}
+				
+				function calcularTotal(ids, campoTotal){
+					
+						var total = 0;
+						
+							for(var i = 0; i &lt; ids.length; i++){
+								var campo = parseFloat($jB("#questionarioAgronegocioForm\\:"+ids[i]).val().replace(/\./g, '').replace(',','.'));
+								if(campo){
+									total = total + campo; 
+								}
+							}
+						
+							$jB("#questionarioAgronegocioForm\\:"+campoTotal).val(total.toLocaleString('pt-BR'));
+					
+				}
+				
+				function atualizarAno1(ano){
+					var a = ano.value;
+					if (a){
+						$jB("#questionarioAgronegocioForm\\:txtAnoTerraUm").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoCorte1").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProducao1").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProdutividade1").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoEnergia1").val(a);
+					}
+				}
+				
+				function atualizarAno2(ano){
+					var a = ano.value;
+					if (a){
+						$jB("#questionarioAgronegocioForm\\:txtAnoTerraDois").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoCorte2").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProducao2").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProdutividade2").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoEnergia2").val(a);
+					}
+				}
+				
+				function atualizarAno3(ano){
+					var a = ano.value;
+					if (a){
+						$jB("#questionarioAgronegocioForm\\:txtAnoTerraTres").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoCorte3").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProducao3").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProdutividade3").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoEnergia3").val(a);
+					}
+				}
+				
+				function atualizarAno4(ano){
+					var a = ano.value;
+					if (a){
+						$jB("#questionarioAgronegocioForm\\:txtAnoTerraProjetado").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoCorte4").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProducao4").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoProdutividade4").val(a);
+						$jB("#questionarioAgronegocioForm\\:txtAnoEnergia4").val(a);
+					}
+				}
+			
+			</h:outputScript>
+			
+		</awb-th:extDiv>
+	</awb-h:panelGrid>
+</div>
+</html>

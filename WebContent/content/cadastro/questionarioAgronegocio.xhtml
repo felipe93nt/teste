@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_questionario_agronegocio')}" />
+	<ui:param name="passNumber" value="4" />
+	<ui:param name="paginaAnterior"
+		value="#{questionarioAgronegocioBean.paginaAnterior}" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.getPathQuestionarioSetor(paginaAnterior, 'label_agronegocio')}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<ui:include src="/template/contadorSessao.xhtml" />
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentralAbas.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+		<awb-br:javascript src="/javascript/setor/agronegocio/agronegocio.js" />
+
+		<awb-h:form id="uploadForm" enctype="multipart/form-data">
+			<div style="display: none">
+				<awb-h:panelGrid columns="2" style="float: right">
+					<awb-br:fileUpload id="cpFileUpload"
+						value="#{questionarioAgronegocioBean.file}"
+						allowedTypes="TXT,EXE,DLL,RAR,ZIP,JAR,PDF,DOC,DOCX,PPT,PPS,XLS,XLSX,XLSM,JPG,GIF,PNG,HTML,MP3,WAV,MID,AVI,MPG,MKV,OGG,MP4,WMV,MOV,PSD,CDR,XML,CSS,PHP,ASP,ASPX,FLV,TAR,JSP,CFM,JS,SVG,TIF,FLA,SWF,DWG,SQL,CBL,CPY,JCL,B1,BAT,VB,AI,DBF,MDB"
+						fileSizeMax="10485760" required="false">
+					</awb-br:fileUpload>
+					<awb-h:commandButton id="btnUpload"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_upload_xls}" title="#{msgs.label_upload_xls}"
+						style="margin-right:5px"
+						action="#{questionarioAgronegocioBean.upload}">
+					</awb-h:commandButton>
+					<awb-h:messages></awb-h:messages>
+				</awb-h:panelGrid>
+			</div>
+		</awb-h:form>
+
+		<awb-h:form id="questionarioAgronegocioForm">
+		
+			<script type="text/javascript">
+				window.onload = function() {
+					bloquearUpload();
+					carregarDados1();
+					carregarDados2();
+				}
+			</script>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid columns="3" style="float: right">
+				<awb-h:inputText id="txtUpload" disabled="true" size="50" />
+				<awb-h:commandButton id="btnSelecionar"
+					styleClass="HtmlCommandButtonBradesco2"
+					onclick="acionarFileUpload();" value="#{msgs.label_selecionar_xls}"
+					title="#{msgs.label_selecionar_xls}">
+					<f:ajax render="btnUploadVisible" />
+				</awb-h:commandButton>
+				<awb-h:commandButton id="btnUploadVisible"
+					value="#{msgs.label_upload_xls}" title="#{msgs.label_upload_xls}"
+					styleClass="HtmlCommandButtonBradesco2" onclick="acionarUpload();">
+					<f:ajax render="questionarioAgronegocioForm" onevent="aguarde" />
+				</awb-h:commandButton>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+				<awb-h:outputLabel value="#{msgs.label_grupo}:"
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{questionarioAgronegocioBean.viewHelper.model.codGrupo} - #{questionarioAgronegocioBean.viewHelper.model.descGrupo}"
+					styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGrid>
+			<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+				<awb-h:outputLabel value="#{msgs.label_numero_relatorio}:"
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{questionarioAgronegocioBean.viewHelper.model.codRelatorio}"
+					styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid width="100%">
+				<presCore:forceSkin segmento="IB" guia="" skin="">
+					<awb-br:tabs id="tabs">
+
+						<awb-br:tab id="tab1" selected="true">
+							<!--binding="#{questionarioAgronegocioBean.tabGraosFibras}"-->
+							<awb-f:facet name="header">
+								<awb-h:outputFormat value="#{msgs.label_produtor_graos_fibras}"
+									styleClass="HtmlOutputFormatBoldBradesco" />
+							</awb-f:facet>
+
+							<!--ABA PRODUTOR GRAOS FIBRAS-->
+							<ui:include src="questionarioAgronegocioGraosFibras.xhtml" />
+						</awb-br:tab>
+
+						<awb-br:tab id="tab2">
+							<!--binding="#{questionarioAgronegocioBean.tabUsinas}"-->
+							<awb-f:facet name="header">
+								<awb-h:outputFormat value="#{msgs.label_usinas_aa}"
+									styleClass="HtmlOutputFormatBoldBradesco" />
+							</awb-f:facet>
+
+							<!--ABA USINAS-->
+							<ui:include src="questionarioAgronegocioUsinas.xhtml" />
+						</awb-br:tab>
+
+					</awb-br:tabs>
+				</presCore:forceSkin>
+			</awb-h:panelGrid>
+
+			<awb-h:inputHidden id="abaSelecionada"
+				value="#{questionarioAgronegocioBean.abaSelecionada}" />
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+			<awb-h:panelGrid columns="2" width="100%">
+
+				<awb-h:commandButton id="btnVoltar" value="#{msgs.label_voltar}"
+					style="margin-right:5px" styleClass="HtmlCommandButtonBradesco2"
+					action="#{questionarioAgronegocioBean.voltar}">
+					<awb-br:submitCheckClient />
+				</awb-h:commandButton>
+				<awb-h:commandButton id="btnSalvar" value="#{msgs.label_salvar}"
+					action="#{questionarioAgronegocioBean.salvar}" style="float:right;"
+					styleClass="HtmlCommandButtonBradesco2">
+					<f:ajax execute="@form" render="formModalMessages"
+						onevent="aguarde" />
+				</awb-h:commandButton>
+
+			</awb-h:panelGrid>
+			
+			<h:outputScript>
+				var tab1 = document.getElementById('questionarioAgronegocioForm:tab1-tab-title');
+				var tab2 = document.getElementById('questionarioAgronegocioForm:tab2-tab-title');
+				
+				tab1.addEventListener("click", selecionaGraosFibras);
+				tab2.addEventListener("click", selecionaUsinas);
+
+				function selecionaGraosFibras() {
+				  document.getElementById('questionarioAgronegocioForm:abaSelecionada').value = 'graosFibras';
+				}
+				
+				function selecionaUsinas() {
+					document.getElementById('questionarioAgronegocioForm:abaSelecionada').value = 'usinas';
+				}
+				
+				function acionarFileUpload(){
+					document.getElementById('uploadForm:cpFileUpload_file').click();
+					
+					var conteudo = document.getElementById('uploadForm:cpFileUpload_text');
+					
+					if(conteudo.value == ""){
+						bloquearUpload();
+						document.getElementById('questionarioAgronegocioForm').reload();				
+					}else{
+						document.getElementById('questionarioAgronegocioForm:btnUploadVisible').disabled=false;
+						document.getElementById('questionarioAgronegocioForm:txtUpload').value = conteudo.value;
+					}
+				}
+				
+				function acionarUpload(){
+					document.getElementById('uploadForm:btnUpload').click();
+					bloquearUpload();
+				}
+				
+				function bloquearUpload(){
+					document.getElementById('questionarioAgronegocioForm:btnUploadVisible').disabled=true;
+				}
+			</h:outputScript>
+			
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

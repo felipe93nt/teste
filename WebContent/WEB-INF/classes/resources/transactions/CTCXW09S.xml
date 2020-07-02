@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="CTCXW09S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="11369">
+    <register name="CTCXW09S-HEADER">
+      <field name="CTCXW09S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="CTCXW09S" />
+      <field name="CTCXW09S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="11369" />
+    </register>
+    <register name="CTCXW09S-BLOCO-SAIDA">
+      <field name="CTCXW09S-QTDE-DADOS" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="CTCXW09S-PESQUISA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <register name="FILLER" minOccurs="0" maxOccurs="50" depends="CTCXW09S-QTDE-DADOS" dependsType="number">
+        <field name="CTCXW09S-CPSSOA-JURID" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-CEMPR-INC-UORG" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-CID-COMERCIAL" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-IID-COMERCIAL" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-CINDCD-STTUS-AG" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-CACUM" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-SINAL-CREDT-AG" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-VACUM-CREDT" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="CTCXW09S-QTRANS-CREDT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-SINAL-DEB-AG" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-VACUM-DEB" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="CTCXW09S-QTRANS-DEB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-SINAL-SALDO-AG" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-SALDO-AG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="CTCXW09S-VPNOIT-AG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="CTCXW09S-ITPO-UND-ORGNZ" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-DCTBIL" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-DULT-FCHTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="CTCXW09S-CUND-ORGNZ-AG" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+        <field name="CTCXW09S-CUND-ORGNZ" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

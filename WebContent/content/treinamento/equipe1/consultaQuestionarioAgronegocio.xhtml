@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_questionario_agronegocio')}" />
+	<ui:param name="passNumber" value="4" />
+	<ui:param name="paginaAnterior"
+		value="#{equipe1ConsultaQuestionarioAgronegocioBean.paginaAnterior}" />
+	<ui:param name="pathList"
+        value="#{faceletsBreadCrumb.pathQuestionarioCorporateAgronegocioEquipe1}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<ui:include src="/template/contadorSessao.xhtml" />
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentralAbas.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+		<awb-br:javascript src="/javascript/setor/agronegocio/agronegocio.js" />
+
+		<awb-h:form id="consultaQuestionarioAgronegocioForm">
+		
+		<script type="text/javascript">
+				window.onload = function(){
+					carregarDados1();
+					carregarDados2();
+				}
+			</script>
+			<awb-h:panelGrid border="0" cellpadding="0" cellspacing="0"
+				width="100%" styleClass="gridPrincipal">
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+					<awb-h:outputLabel value="#{msgs.label_grupo}:"
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{equipe1ConsultaQuestionarioAgronegocioBean.viewHelper.model.codGrupo} - #{equipe1ConsultaQuestionarioAgronegocioBean.viewHelper.model.descGrupo}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0">
+					<awb-h:outputLabel value="#{msgs.label_numero_relatorio}:"
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{equipe1ConsultaQuestionarioAgronegocioBean.viewHelper.model.codRelatorio}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid width="100%">
+				<presCore:forceSkin segmento="IB" guia="" skin="">
+					<awb-br:tabs id="tabs">
+						<awb-br:tab id="tab1" selected="true">
+							<awb-f:facet name="header">
+								<awb-h:outputFormat value="#{msgs.label_produtor_graos_fibras}"
+									styleClass="HtmlOutputFormatBoldBradesco" />
+							</awb-f:facet>
+
+							<!--ABA PRODUTOR GRAOS FIBRAS-->
+							<ui:include src="consultaQuestionarioAgronegocioGraosFibras.xhtml" />
+						</awb-br:tab>
+
+
+						<awb-br:tab id="tab2">
+							<awb-f:facet name="header">
+								<awb-h:outputFormat value="#{msgs.label_usinas_aa}"
+									styleClass="HtmlOutputFormatBoldBradesco" />
+							</awb-f:facet>
+
+							<!--ABA USINAS-->
+							<ui:include src="consultaQuestionarioAgronegocioUsinas.xhtml" />
+						</awb-br:tab>
+
+					</awb-br:tabs>
+				</presCore:forceSkin>
+			</awb-h:panelGrid>
+					
+			
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+			<awb-h:panelGrid columns="2" width="100%">
+
+				<awb-h:commandButton id="btnVoltar" value="#{msgs.label_voltar}"
+					style="margin-right:5px" styleClass="HtmlCommandButtonBradesco2"
+					action="#{equipe1ConsultaQuestionarioAgronegocioBean.voltar}">
+					<awb-br:submitCheckClient />
+				</awb-h:commandButton>
+			</awb-h:panelGrid>
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

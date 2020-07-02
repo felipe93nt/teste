@@ -1,0 +1,1177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+<ui:param name="tela" value="1" />
+<ui:param name="selection" value="#{faceletsBreadCrumb.getValue('label_questionario_empresas')}" />
+<ui:param name="passNumber" value="3" />
+<ui:param name="pathList" value="#{faceletsBreadCrumb.pathQuestionarioEmpresas}"/>
+<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css"/>
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentral.css" />
+		<awb-br:javascript src="/javascript/util.js"/>
+		<awb-br:javascript src="/javascript/empresas/empresas.js"/>
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0" width="100%" columns="0" styleClass="gridPrincipal">
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+			<awb-h:form id="formEmpresas">
+
+				<awb-h:panelGrid columns="2">
+
+					<awb-h:outputLabel value="#{msgs.label_grupo}: " styleClass="HtmlOutputLabelBradesco"
+						style="margin-right: 10px"/>
+
+					<awb-h:panelGroup>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{equipe2Bean.viewHelper.model.codGrupo} - "/>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{equipe2Bean.viewHelper.model.nomeGrupo}"/>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+				<awb-h:panelGrid columns="2">
+					<awb-h:outputLabel value="Código de Controle: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel id="codRelatorio"
+						value="#{equipe2Bean.viewHelper.model.codRelatorio}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+				
+				<div class="scrollCentral">
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="margin-bottom:10px;">
+					<awb-h:outputLabel value="#{msgs.label_nome_relatorio}:"
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-right: 10px;"/>
+					<awb-h:inputText id="txtNomeRelatorio" size="140" maxlength="70" readonly="true" styleClass="HtmlInputTextBradesco"
+						value="#{equipe2Bean.viewHelper.model.nomeRelatorio}"/>
+				</awb-h:panelGrid>
+
+				<!-- **** 1. DESCREVER ATIVIDADE EMPRESA ****	-->
+
+				<awb-h:panelGrid cellpadding="3" cellspacing="0" width="100%">
+					<awb-h:outputLabel value="#{msgs.label_quest_corporate_descrever}" styleClass="HtmlOutputLabelBoldBradesco"/>
+					
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+					
+					<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="IdTextAreaDescrever" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descAtividadeEmpresa}"/>
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 2. DESCREVER ORGANOGRAMA ****	-->
+
+				<awb-h:panelGrid cellpadding="3" cellspacing="0" style="margin-top: 20px;" width="100%">
+					<awb-h:outputLabel value="#{msgs.label_quest_corporate_Organograma}" styleClass="HtmlOutputLabelBoldBradesco"/>
+					
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+					
+					<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="IdTextAreaOrnanograma" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.organogramaControleAcionario}"/>
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 3. QUADRO ADMINISTRATIVO ****	-->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+					<awb-h:outputLabel value="3. #{msgs.label_quadro_administrativo}" styleClass="HtmlOutputLabelBoldBradesco"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0">
+
+					<awb-h:outputLabel value="#{msgs.label_administracao}:"
+						styleClass="HtmlOutputLabelBoldBradesco"/>
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco" disabled="true"
+						style="margin-bottom: 10px"
+						value="#{equipe2Bean.viewHelper.model.administracao}">
+						<awb-f:selectItem itemValue="1" itemLabel="#{msgs.label_familiar}"/>
+						<awb-f:selectItem itemValue="2" itemLabel="#{msgs.label_profissionalizada}"/>
+					</awb-h:selectOneRadio>
+
+					<awb-h:outputLabel value="#{msgs.label_plano_sucessao}:"
+						styleClass="HtmlOutputLabelBoldBradesco"/>
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco" disabled="true"
+						value="#{equipe2Bean.viewHelper.model.planoSucessao}">
+						<awb-f:selectItem itemValue="1" itemLabel="#{msgs.label_bem_definido}"/>
+						<awb-f:selectItem itemValue="2" itemLabel="#{msgs.label_em_processo_definicao}"/>
+						<awb-f:selectItem itemValue="3" itemLabel="#{msgs.label_nao_definido}"/>
+					</awb-h:selectOneRadio>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0" style="margin-top:10px" width="831px;">
+						<awb-br:scrollableDataTable id="TableQuadroAdm" var="item" width="100%" height="200px"
+      						value="#{equipe2Bean.viewHelper.model.listaQuadroAdministrativo}">
+
+			      			<awb-br:scrollableColumn>
+			      			 	<awb-f:facet name="header">
+			        				<awb-h:outputLabel value="#{msgs.label_administradores}" styleClass="tableFontStyle" />
+			     				</awb-f:facet>
+			      				<awb-h:outputLabel value="#{item.administrador}" />
+			      			</awb-br:scrollableColumn>
+
+		      				<awb-br:scrollableColumn>
+		     					<awb-f:facet name="header">
+		       						<awb-h:outputLabel value="#{msgs.label_cargo}" styleClass="tableFontStyle" />
+		       					</awb-f:facet>
+		      					<awb-h:outputLabel value="#{item.cargo}" />
+							</awb-br:scrollableColumn>
+	      			 	</awb-br:scrollableDataTable>
+
+					</awb-h:panelGrid>
+					<BR></BR>
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1">
+						<awb-h:outputLabel value="#{msgs.label_detalhar_plano_sucessao}:"
+							styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:inputTextarea readonly="true" id="IdTextAreaDetalharSucessao" styleClass="HtmlInputTextareaBradesco" rows="10" cols="159"
+							value="#{equipe2Bean.viewHelper.model.descQuadroAdministrativo}"/>
+		     	    </awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 4.DETALHAMENTO PATRIMONIO ****	-->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+					<awb-h:outputLabel value="4. #{msgs.label_detalhamento_patrimonio}"
+						styleClass="HtmlOutputLabelBoldBradesco"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+					<awb-br:scrollableDataTable id="TableDetalhamentoPatrimonio" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaDetalhamentoPatrimonio}">
+
+						<awb-br:scrollableColumn width="400px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_patrimonio_etc}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.patrimonio}" />
+						</awb-br:scrollableColumn>
+
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_patrimonio_r$}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.valorPatrimonioFormatado}"
+								style="float:right;padding-bottom:4px; padding-right:12px;"/>
+						</awb-br:scrollableColumn>
+
+					</awb-br:scrollableDataTable>
+					<awb-h:panelGrid columns="2" width="100%" style="margin-bottom: 5px">
+						<awb-h:outputLabel value="#{msgs.label_total}"
+							styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:outputLabel value="R$ mil #{equipe2Bean.viewHelper.model.valorTotalPatrimonioFormatado}"
+							styleClass="HtmlOutputLabelBoldBradesco" style="float:right;padding-bottom:4px; padding-right: 15px;"/>
+					</awb-h:panelGrid>
+
+					<awb-h:outputLabel value="#{msgs.label_comentarios}" styleClass="HtmlOutputLabelBoldBradesco"/>
+
+					<awb-h:inputTextarea readonly="true"
+						value="#{equipe2Bean.viewHelper.model.descDetalhamentoPatrimonio}"
+						rows="10" cols="159" styleClass="HtmlInputTextareaBradesco" />
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 5.CAPACIDADE PRODUTIVA ****	-->
+
+				<awb-h:panelGrid style="margin-top: 20px;">
+					<awb-h:outputLabel value="5. #{msgs.label_capacidade_produtiva}"
+						styleClass="HtmlOutputLabelBoldBradesco"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0" style="margin-top: 5px;">
+
+					<awb-h:panelGrid style="margin-top: 5px;">
+
+						<awb-br:scrollableDataTable id="TableCapacidadeProdutiva" var="item" height="200px"
+							value="#{equipe2Bean.viewHelper.model.listaCapacidadeProdutiva}">
+
+							<awb-br:scrollableColumn width="300px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_plantas}"
+					 					styleClass="tableFontStyle" />
+					 			</awb-f:facet>
+								<awb-h:outputLabel value="#{item.plantas}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="Capacidade de #{msgs.label_producao_ton_ano}"
+									 	styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.producaoFormatado}" style="float:right;padding-bottom:4px;"/>
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="120px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_utilizada_ton_ano}"
+									 	styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.utilizadaFormatado}" style="float:right;padding-bottom:4px;">
+								</awb-h:outputLabel>
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="90px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_utilizacao_percentual}"
+									 	styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.utilizacaoPercentualFormatado}"
+									style="float:right;padding-bottom:4px; padding-right: 12px" />
+							</awb-br:scrollableColumn>
+						</awb-br:scrollableDataTable>
+						
+						<awb-h:panelGrid id="totalizadorCapacidadeProdutiva" border="0" columns="3" cellspacing="0" cellpadding="0">
+							<awb-h:panelGrid width="380px">
+								<awb-h:outputLabel value="#{msgs.label_total}:" styleClass="HtmlOutputLabelBoldBradesco" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="1" width="190px" style="float:right;">
+								<awb-h:outputLabel id="txtTotalCapacidade" value="#{equipe2Bean.viewHelper.model.totalCapacidadeFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;"/>
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="1" width="150px" style="float:right;">
+								<awb-h:outputLabel id="txtTotalProducao" value="#{equipe2Bean.viewHelper.model.totalProducaoFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;"/>
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+
+					 	<awb-h:outputLabel value="#{msgs.label_comentarios}"
+							styleClass="HtmlOutputLabelBoldBradesco"/>
+						<awb-h:inputTextarea readonly="true" id="txtDescCapacProd" rows="10" cols="159"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{equipe2Bean.viewHelper.model.descCapacidadeProdutiva}"/>
+
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 6.PRINCIPAIS FORNECEDORES **** -->
+
+				<awb-h:panelGrid style="margin-top: 20px;">
+					<awb-h:outputLabel value="6. #{msgs.label_principais_fornecedores}"
+						styleClass="HtmlOutputLabelBoldBradesco"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" width="831px;" style="margin-top: 10px;">
+					<awb-br:scrollableDataTable id="TableFornecedores" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaFornecedores}">
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_fornecedores}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.fornecedor}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn>
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}" style="float:right;padding-bottom:4px; padding-right:12px;"/>
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid style="margin-top:5px">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea cols="159" rows="10" id="txtComentariosFornecedores" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descFornecedores}"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" width="831px;" style="margin-top:10px;">
+					<awb-br:scrollableDataTable id="TableRecebimento" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaClientes}">
+						<awb-br:scrollableColumn width="350px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_clientes}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.cliente}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="120px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}" style="float:right;padding-bottom:4px; padding-right:12px;"/>
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_informar_atraso}" />
+					<awb-h:inputTextarea cols="159" size="35" rows="2" id="txtInformarAtraso"
+						styleClass="HtmlInputTextareaBradesco" style="overflow-y:hidden"
+						value="#{equipe2Bean.viewHelper.model.informarAtraso}" readonly="true"/>
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" width="831px;" style="margin-top:10px;">
+					<awb-br:scrollableDataTable id="TableParticipacaoFormaRecebimento" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaRecebimento}">
+						<awb-br:scrollableColumn width="350px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel  value="#{msgs.label_forma_recebimento}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.formaRecebimento}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="120px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}" style="float:right;padding-bottom:4px; padding-right:12px;"/>
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea readonly="true" cols="159" rows="10" id="txtdescRecebimento" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descRecebimento}"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid style="margin-top:10px;">
+					<awb-br:scrollableDataTable id="TableConcorrente" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaConcorrente}">
+						<awb-br:scrollableColumn width="829px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_principais_concorrentes}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.concorrente}" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%" style="margin-top:10px;">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea readonly="true" cols="159" rows="10" id="TxtComentariosConcorrentes" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descConcorrente}" />
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid style="margin-top:10px;">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_detalhar_carterira_contratos}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-br:scrollableDataTable id="TableCarteiraContratos" var="item" height="200px"
+						value="#{equipe2Bean.viewHelper.model.listaCarteira}">
+						<awb-br:scrollableColumn width="283px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_projeto_obra_servicos}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.projetoObraServico}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="220px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_cliente}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.cliente}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="120px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_valor_contrato}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.valorContratoFormatado}" style="float:right;padding-bottom:4px;"/>
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="120px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_saldo_performar}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.saldoPerformarFormatado}" style="float:right;padding-bottom:4px;"/>
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="120px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_data_termino}" styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.dataTermino}" style="float:right;padding-bottom:4px; padding-right:12px;">
+								<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+							</awb-h:outputLabel>
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+					
+					<awb-h:panelGrid id="totalizadorCarteiraContratos" border="0" columns="3" cellspacing="0" cellpadding="0">
+							<awb-h:panelGrid width="775px">
+								<awb-h:outputLabel value="#{msgs.label_total}:" styleClass="HtmlOutputLabelBoldBradesco" />
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2" width="180px" style="float:right;">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="R$ mil" style="float:right;"/>
+								<awb-h:outputLabel id="txtTotalContrato" value="#{equipe2Bean.viewHelper.model.totalContratoFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;"/>
+							</awb-h:panelGrid>
+							<awb-h:panelGrid columns="2" width="180px" style="float:right;">
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="R$ mil" style="float:right;"/>
+								<awb-h:outputLabel id="txtTotalSaldoContrato" value="#{equipe2Bean.viewHelper.model.totalSaldoContratoFormatado}"
+									styleClass="HtmlOutputLabelBoldBradesco" style="float:right;"/>
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+					
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea readonly="true" cols="159" rows="10"
+						id="txtComentariosCarteiraContratos" styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descCarteira}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 7.SITUAÇÃO ECONOMICO-FINANCEIRA **** -->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="7. #{msgs.label_situacao_economico_financeira}"/>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="4" cellpadding="0" cellspacing="0">
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_faturamento_consolidado}" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" style="margin-left:30px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText readonly="true" id="txtAnoUm" size="5" styleClass="HtmlInputTextBradesco"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.ano}"/>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" style="margin-left:30px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText readonly="true" id="txtAnoDois" size="5" styleClass="HtmlInputTextBradesco"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.ano}"/>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" style="margin-left:30px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						style="margin-right:10px;" value="#{msgs.label_ano}" />
+						<awb-h:inputText readonly="true" id="txtAnoTres" size="5" styleClass="HtmlInputTextBradesco"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.ano}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:inputText value="#{msgs.label_mes_1}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtJan1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.janeiro}"/>
+					<awb-h:inputText readonly="true" id="txtJan2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.janeiro}"/>
+					<awb-h:inputText readonly="true" id="txtJan3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.janeiro}"/>
+
+					<awb-h:inputText value="#{msgs.label_mes_2}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtFev1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.fevereiro}" />
+					<awb-h:inputText readonly="true" id="txtFev2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.fevereiro}" />
+					<awb-h:inputText readonly="true" id="txtFev3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.fevereiro}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_3}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtMar1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.marco}" />
+					<awb-h:inputText readonly="true" id="txtmar2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.marco}" />
+					<awb-h:inputText readonly="true" id="txtMar3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.marco}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_4}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtAbr1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.abril}" />
+					<awb-h:inputText readonly="true" id="txtAbr2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.abril}" />
+					<awb-h:inputText readonly="true" id="txtAbr3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.abril}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_5}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtMai1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.maio}" />
+					<awb-h:inputText readonly="true" id="txtMai2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.maio}" />
+					<awb-h:inputText readonly="true" id="txtMai3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.maio}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_6}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtJun1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.junho}" />
+					<awb-h:inputText readonly="true" id="txtJun2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.junho}" />
+					<awb-h:inputText readonly="true" id="txtJun3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.junho}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_7}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtJul1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.julho}" />
+					<awb-h:inputText readonly="true" id="txtJul2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.julho}" />
+					<awb-h:inputText readonly="true" id="txtJul3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.julho}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_8}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtAgo1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.agosto}" />
+					<awb-h:inputText readonly="true" id="txtAgo2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.agosto}" />
+					<awb-h:inputText readonly="true" id="txtAgo3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.agosto}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_9}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtSet1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.setembro}" />
+					<awb-h:inputText readonly="true" id="txtSet2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.setembro}" />
+					<awb-h:inputText readonly="true" id="txtSet3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.setembro}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_10}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtOut1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.outubro}" />
+					<awb-h:inputText readonly="true" id="txtOut2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.outubro}" />
+					<awb-h:inputText readonly="true" id="txtOut3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.outubro}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_11}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtNov1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.novembro}" />
+					<awb-h:inputText readonly="true" id="txtNov2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.novembro}" />
+					<awb-h:inputText readonly="true" id="txtNov3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.novembro}" />
+
+					<awb-h:inputText value="#{msgs.label_mes_12}" readonly="true"
+				 		styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtDez1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.dezembro}" />
+					<awb-h:inputText readonly="true" id="txtDez2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.dezembro}" />
+					<awb-h:inputText readonly="true" id="txtDez3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.dezembro}" />
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid id="txTotaisFaturamento" cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_total}" readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						
+						<awb-h:inputText id="txtTotalUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.totalFaturamentoFormatado}"/>
+						
+						<awb-h:inputText id="txtTotalDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.totalFaturamentoFormatado}"/>
+	
+						<awb-h:inputText id="txtTotalTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.totalFaturamentoFormatado}"/>
+					
+						<awb-h:inputText value="#{msgs.label_media}" readonly="true" tabindex="-1"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+							
+						<awb-h:inputText id="txtMediaUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoA.mediaFaturamentoFormatado}"/>
+						
+						<awb-h:inputText id="txtMediaDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoB.mediaFaturamentoFormatado}"/>
+	
+						<awb-h:inputText id="txtMediaTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoConsolidadoC.mediaFaturamentoFormatado}"/>
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid columns="4" border="" cellspacing="0" cellpadding="0" style="margin-bottom:10px;margin-top:10px">
+					<awb-h:panelGrid>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_abertura_faturamento}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoAberturaUm" onfocus="loadMasksJQuery()" alt="numerico4" readonly="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.ano1}" size="5"
+							styleClass="HtmlInputTextBradesco"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right"/>
+						<awb-h:inputText id="txtAnoAberturaDois" onfocus="loadMasksJQuery()" alt="numerico4" readonly="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.ano2}" size="5"
+							styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0" >
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText id="txtAnoAberturaTres" onfocus="loadMasksJQuery()" alt="numerico4" readonly="true"
+							value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.ano3}" size="5"
+							styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:inputText id="txtFat1Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50" 
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha1.descricao}"  />
+					<awb-h:inputText id="txtFat1P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha1.porcentagem1}" />
+					<awb-h:inputText id="txtFat1P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha1.porcentagem2}" />
+					<awb-h:inputText id="txtFat1P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha1.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat2Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha2.descricao}"  />
+					<awb-h:inputText id="txtFat2P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha2.porcentagem1}" />
+					<awb-h:inputText id="txtFat2P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha2.porcentagem2}" />
+					<awb-h:inputText id="txtFat2P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha2.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat3Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha3.descricao}"  />
+					<awb-h:inputText id="txtFat3P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha3.porcentagem1}" />
+					<awb-h:inputText id="txtFat3P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha3.porcentagem2}" />
+					<awb-h:inputText id="txtFat3P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha3.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat4Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha4.descricao}"  />
+					<awb-h:inputText id="txtFat4P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha4.porcentagem1}" />
+					<awb-h:inputText id="txtFat4P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha4.porcentagem2}" />
+					<awb-h:inputText id="txtFat4P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha4.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat5Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha5.descricao}"  />
+					<awb-h:inputText id="txtFat5P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha5.porcentagem1}" />
+					<awb-h:inputText id="txtFat5P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha5.porcentagem2}" />
+					<awb-h:inputText id="txtFat5P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha5.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat6Desc" styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:2px"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha6.descricao}"  />
+					<awb-h:inputText id="txtFat6P1" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha6.porcentagem1}" />
+					<awb-h:inputText id="txtFat6P2" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha6.porcentagem2}" />
+					<awb-h:inputText id="txtFat6P3" size="25" alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{equipe2Bean.viewHelper.model.faturamentoSegmento.linha6.porcentagem3}" />
+
+				</awb-h:panelGrid>
+				
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4" border="0" style="margin-bottom:10px;">
+
+					<awb-h:panelGrid >
+						<awb-h:outputLabel style="margin-left:-3px;" styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_highlights_empresa}" />
+						<awb-h:inputText id="inputTxtHighlights" style="margin-left:-3px;" size="33" styleClass="HtmlInputTextBradesco"
+							value="#{equipe2Bean.viewHelper.model.nomeHighlightsEmpresa}" readonly="true"/>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" cellspacing="0" style="margin-left: 30px; margin-top:14px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_balanco}: " />
+						<awb-h:outputLabel id="lblBalanco1" styleClass="HtmlOutputLabelBradesco" size="10"
+							value="#{equipe2Bean.viewHelper.model.highlightsA.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy"/>
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" cellspacing="0" style="margin-left: 30px; margin-top:14px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_balanco}: "/>
+						<awb-h:outputLabel id="lblBalanco2" styleClass="HtmlOutputLabelBradesco" size="10"
+							value="#{equipe2Bean.viewHelper.model.highlightsB.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy"/>
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" cellspacing="0" style="margin-left: 30px; margin-top:14px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_balanco}: " />
+						<awb-h:outputLabel id="lblBalanco3" styleClass="HtmlOutputLabelBradesco" size="10"
+							value="#{equipe2Bean.viewHelper.model.highlightsC.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy"/>
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+
+					<awb-h:inputText value="#{msgs.label_receita_liquida}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43"/>
+					<awb-h:inputText readonly="true" id="txtReceita1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.receitaLiquida}"/>
+					<awb-h:inputText readonly="true" id="txtReceita2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.receitaLiquida}"/>
+					<awb-h:inputText readonly="true" id="txtReceita3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.receitaLiquida}"/>
+
+					<awb-h:inputText value="#{msgs.label_contas_a_receber}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtContas1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.contasAReceber}"/>
+					<awb-h:inputText readonly="true" id="txtContas2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.contasAReceber}"/>
+					<awb-h:inputText readonly="true" id="txtContas3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.contasAReceber}"/>
+
+					<awb-h:inputText value="#{msgs.label_estoques}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtEstoques1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.estoques}"/>
+					<awb-h:inputText readonly="true" id="txtEstoques2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.estoques}"/>
+					<awb-h:inputText readonly="true" id="txtEstoques3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.estoques}"/>
+
+					<awb-h:inputText value="#{msgs.label_ger_bruta}:" readonly="true"
+						styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtGerBruta1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.gerBrutaCaixa}"/>
+					<awb-h:inputText readonly="true" id="txtGerBruta2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.gerBrutaCaixa}"/>
+					<awb-h:inputText readonly="true" id="txtGerBruta3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.gerBrutaCaixa}"/>
+
+					<awb-h:inputText value="#{msgs.label_margem_operacional}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText readonly="true" id="txtMargem1" size="33"
+							styleClass="HtmlInputTextBradesco"
+							alt="percentualDuasCasasDecimaisNegativo"
+							value="#{equipe2Bean.viewHelper.model.highlightsA.margemOperacional}" />
+						<awb-h:inputText readonly="true" id="txtMargem2" size="33" styleClass="HtmlInputTextBradesco" alt="percentualDuasCasasDecimaisNegativo"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.margemOperacional}"/>
+					<awb-h:inputText readonly="true" id="txtMargem3" size="33" styleClass="HtmlInputTextBradesco" alt="percentualDuasCasasDecimaisNegativo"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.margemOperacional}"/>
+
+					<awb-h:inputText value="#{msgs.label_lucro_prejuizo_liquido}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtPrejuizo1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.lucroPrejuizoLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtPrejuizo2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.lucroPrejuizoLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtPrejuizo3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.lucroPrejuizoLiquido}"/>
+
+					<awb-h:inputText value="#{msgs.label_patrimonio_liquido}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtPatrimonio1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.patrimonioLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtPatrimonio2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.patrimonioLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtPatrimonio3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.patrimonioLiquido}"/>
+
+					<awb-h:inputText value="#{msgs.label_endiv_financ_total}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43"/>
+					<awb-h:inputText readonly="true" id="txtdivida1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.endividamentoFinanceiroTotal}"/>
+					<awb-h:inputText readonly="true" id="txtdivida2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.endividamentoFinanceiroTotal}"/>
+					<awb-h:inputText readonly="true" id="txtdivida3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.endividamentoFinanceiroTotal}"/>
+
+					<awb-h:inputText value="#{msgs.label_disponibilidades}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43"/>
+					<awb-h:inputText readonly="true" id="txtDisponibilidades1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.disponibilidades}"/>
+					<awb-h:inputText readonly="true" id="txtDisponibilidades2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.disponibilidades}"/>
+					<awb-h:inputText readonly="true" id="txtDisponibilidades3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.disponibilidades}"/>
+
+					<awb-h:inputText value="#{msgs.label_endiv_financ_liquido}:" readonly="true"
+					 	styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText readonly="true" id="txtEndividamento1" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsA.endividamentoFinanceiroLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtEndividamento2" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsB.endividamentoFinanceiroLiquido}"/>
+					<awb-h:inputText readonly="true" id="txtEndividamento3" size="33" styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{equipe2Bean.viewHelper.model.highlightsC.endividamentoFinanceiroLiquido}"/>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios_situacao_atual}" />
+				</awb-h:panelGrid>
+				<awb-h:panelGrid>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+							value="#{msgs.label_comentar_sobre_variacoes}" />
+					</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:inputTextarea readonly="true" cols="159" rows="10" id="txtDescFaturamento"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{equipe2Bean.viewHelper.model.descFaturamento}"/>
+				</awb-h:panelGrid>
+				<br></br>
+				<!-- **** 8.ENDIVIDAMENTO BANCÁRIO **** -->
+				<awb-h:panelGrid styleClass="gridSecundaria" width="100%">
+					<awb-h:panelGrid cellpadding="0" cellspacing="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="8. #{msgs.label_endividamento_bancario}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid styleClass="gridInterna" width="100%">
+						<awb-br:scrollableDataTable width="1300px" id="TableEndividamentoBancario" var="item" height="200px"
+							value="#{equipe2Bean.viewHelper.model.listaEndividamentoBancario}">
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_instituicao_financeira}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.instituicaoFinanceira}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_modalidade}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.modalidade}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="130px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel  value="#{msgs.label_saldo_reais}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.saldoFormatado}" style="float:right;padding-bottom:4px;"/>
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="130px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_venc_final}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.vencimentoFinal}" style="float:right;padding-bottom:4px;">
+									<awb-f:convertDateTime pattern="dd/MM/yyyy"/>
+								</awb-h:outputLabel>
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_amortizacao}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.amortizacao}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_garantia}" styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.descGarantia}" />
+							</awb-br:scrollableColumn>
+						</awb-br:scrollableDataTable>
+
+						<awb-h:panelGrid border="0" columns="3">
+							<awb-h:panelGrid width="465">
+								<awb-h:outputLabel value="#{msgs.label_total}:" styleClass="HtmlOutputLabelBoldBradesco"/>
+							</awb-h:panelGrid>
+							<awb-h:panelGrid/>
+							<awb-h:panelGrid columns="2" width="173">
+								<awb-h:outputLabel value="R$ mil " styleClass="HtmlOutputLabelBoldBradesco"/>
+								<awb-h:outputLabel id="txtTotalSaldo" styleClass="HtmlOutputLabelBoldBradesco" style="float:right;"
+									value="#{equipe2Bean.viewHelper.model.totalSaldoEndividamentoBancarioFormatado}" />
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+						
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_divida_longo_prazo}:"/>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_comentarios_justificativas_divergencia}:"/>
+						<awb-h:inputTextarea readonly="true" cols="159" rows="10" id="txtJustificativasBacen"
+							styleClass="HtmlInputTextareaBradesco"
+							value="#{equipe2Bean.viewHelper.model.descEndividamentoBancario}" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<br></br>
+
+				<!-- **** 9.EXPOSIÇÃO CAMBIAL E POLÍTICA DE HEDGE **** -->
+
+				<awb-h:panelGrid styleClass="gridSecundaria" width="100%">
+					<awb-h:panelGrid cellpadding="0" cellspacing="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="9. #{msgs.label_exp_cambial}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid columns="4" cellspacing="0" cellpadding="0" border="0">
+						<awb-h:panelGrid columns="2">
+							<awb-h:outputLabel value="#{msgs.label_volume_exportacao}" styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:inputText id="txtMoedaExportacao" size="5" styleClass="HtmlInputTextBradesco" readonly="true"
+								value="#{equipe2Bean.viewHelper.model.moedaExportacao}"/>
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:40px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_ano}" />
+							<awb-h:outputLabel id="txtAnoRetrasado" styleClass="HtmlOutputLabelBradesco"
+								value="#{equipe2Bean.viewHelper.model.volumeA.ano}">
+								<awb-f:convertDateTime pattern="yyyy"/>
+							</awb-h:outputLabel>
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" style="margin-left:40px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}" />
+							<awb-h:outputLabel id="lblAnoPassado" styleClass="HtmlOutputLabelBradesco"
+								value="#{equipe2Bean.viewHelper.model.volumeB.ano}">
+								<awb-f:convertDateTime pattern="yyyy"/>
+							</awb-h:outputLabel>
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="3" style="margin-left:20px;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_mes_ano}" />
+							<awb-h:outputLabel readonly="true" id="txtMes" size="1" styleClass="HtmlInputTextBradesco"
+								value="#{equipe2Bean.viewHelper.model.volumeC.mes} /">
+								<awb-f:convertDateTime pattern="MM"/>
+							</awb-h:outputLabel>
+							<awb-h:outputLabel id="lblAno" styleClass="HtmlOutputLabelBradesco"
+								value="#{equipe2Bean.viewHelper.model.volumeC.ano}">
+								<awb-f:convertDateTime pattern="yyyy"/>
+							</awb-h:outputLabel>
+						</awb-h:panelGrid>
+
+						<awb-h:inputText value="#{msgs.label_importacoes}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="58" tabindex="-1" style="padding-right:5px;"/>
+						<awb-h:inputText readonly="true"  id="txtImportacoes1" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeA.importacao}"/>
+						<awb-h:inputText readonly="true"  id="txtImportacoes2" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeB.importacao}"/>
+						<awb-h:inputText readonly="true"  id="txtImportacoes3" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeC.importacao}"/>
+
+						<awb-h:inputText value="#{msgs.label_exportacoes}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="58" tabindex="-1" style="padding-right:5px;"/>
+						<awb-h:inputText readonly="true"  id="txtExportacoes1" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeA.exportacao}"/>
+						<awb-h:inputText readonly="true"  id="txtExportacoes2" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeB.exportacao}"/>
+						<awb-h:inputText readonly="true"  id="txtExportacoes3" size="27" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas" value="#{equipe2Bean.viewHelper.model.volumeC.exportacao}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid width="100%"  cellpadding="0" columns="1" >
+
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_principais_paises}:" />
+						<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="txtAreaPaises"
+							styleClass="HtmlInputTextareaBradesco" style="margin: 5px 0px;"
+							value="#{equipe2Bean.viewHelper.model.paisesExportaImporta}" />
+
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_detalhe_protecao_cambial_empresa}:" />
+						<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="txtAreaDetalheProtecao"
+							styleClass="HtmlInputTextareaBradesco" style="margin: 5px 0px;"
+							value="#{equipe2Bean.viewHelper.model.detalheProtecaoCambialEmpresa}" />
+
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+				
+				<br></br>
+				<!-- **** 10.PERSPECTIVAS **** -->
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="10. #{msgs.label_perspectivas}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+
+				<awb-h:panelGrid cellpadding="0">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_projecao_enc_ano_fiscal}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="4" columns="1" width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" style="margin-left:225px"
+						value="#{msgs.label_valor_R$}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1" border="0" width="100%"
+					style="margin-bottom:20px;">
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_faturamento_m}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="36"/>
+						<awb-h:inputText readonly="true"  id="inputTxtFaturamento" size="33" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas"
+							value="#{equipe2Bean.viewHelper.model.perspectiva.faturamento}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_ebitda_m}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText readonly="true"  id="inputTxtEbitda" size="33" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas"
+							value="#{equipe2Bean.viewHelper.model.perspectiva.ebitda}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_lucro_liquido_m}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText readonly="true"  id="inputTxtLucro" size="33" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas"
+							value="#{equipe2Bean.viewHelper.model.perspectiva.lucroLiquido}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_divida_bancaria_m}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText readonly="true"  id="inputTxtDivida" size="33" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas"
+							value="#{equipe2Bean.viewHelper.model.perspectiva.dividaBancaria}"/>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2">
+						<awb-h:inputText value="#{msgs.label_posicao_caixa_m}" readonly="true"
+						 	styleClass="HtmlOutputLabelBoldBradesco" size="36" />
+						<awb-h:inputText readonly="true"  id="inputTxtPosicao" size="33" styleClass="HtmlInputTextBradesco"
+							alt="valorSemCasas"
+							value="#{equipe2Bean.viewHelper.model.perspectiva.posicaoCaixa}"/>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="60%"  cellpadding="0" columns="1" style="margin-bottom: 5px;">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_detalhar_estrategia}:"
+						style="margin-bottom: 5px"/>
+					<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="IdTextEstrategia"
+						styleClass="HtmlInputTextareaBradesco" style="margin: 5px 0px;"
+						value="#{equipe2Bean.viewHelper.model.detalheEstrategiaProjecao}"/>
+
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_principais_investimentos_concluidos}:"/>
+					<awb-h:inputTextarea readonly="true" rows="10" cols="159" id="IdTextInvestimentos"
+						styleClass="HtmlInputTextareaBradesco" style="margin: 5px 0px;"
+						value="#{equipe2Bean.viewHelper.model.detalheInvestimentosConcluidosPlanejados}"/>
+
+				</awb-h:panelGrid>
+				<br></br>
+
+				<awb-h:panelGrid width="100%"
+					rendered="#{not empty equipe2Bean.viewHelper.model.listaSetor}">
+
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						style="margin-bottom:3px;" value="#{msgs.label_relatorios_setoriais}" />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid styleClass="gridInterna" columns="1" style="width:250px; margin-left:-7px;">
+						<awb-h:panelGrid width="100%">
+							<f:ajax event="click" render="btnEditarSetor" />
+							<awb-br:scrollableDataTable id="TableSetor" var="item" width="100%" rows="4" selectionMode="selectOne"
+								selection="#{equipe2Bean.viewHelper.model.setorSelecionado}"
+								value="#{equipe2Bean.viewHelper.model.listaSetor}">
+
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel value="#{msgs.label_setor}" styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel value="#{item.descricao}" />
+								</awb-br:scrollableColumn>
+
+							</awb-br:scrollableDataTable>
+							<awb-h:panelGroup style="float:right;">
+			     			<awb-h:commandButton id="btnEditarSetor" value="#{msgs.label_consultar}"
+			     				disabled="#{empty equipe2Bean.viewHelper.model.setorSelecionado}"
+			     				styleClass="HtmlCommandButtonBradesco2" 
+			     				action="#{equipe2Bean.consultarSetor}">
+								<awb-br:submitCheckClient/>
+							</awb-h:commandButton>
+			     		</awb-h:panelGroup>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+				
+				</div>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1" width="100%" border="0">
+
+					<!--  COLUNA 1 -->
+					<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2" style="margin-left:3px;"
+						value="#{msgs.label_voltar}" immediate="true"
+						action="#{equipe2Bean.voltar}">
+					</awb-h:commandButton>
+
+				</awb-h:panelGrid>
+
+				<f:verbatim><BR/><BR/></f:verbatim>
+			</awb-h:form>
+		</awb-h:panelGrid>
+
+		<awb-f:verbatim>
+			<script type="text/javascript">
+				window.onload = loadMasksJQuery();
+			</script>
+		</awb-f:verbatim>
+
+	</ui:define>
+</ui:composition>
+</html>

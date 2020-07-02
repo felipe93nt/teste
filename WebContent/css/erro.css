@@ -1,0 +1,57 @@
+.tela_erro_header_panelGrid {
+	background-color: #ECECEC;
+    /*width: 100%;*/
+    width: 98%;
+    text-align: left;
+}
+
+.tela_erro_header_panelGroup {
+	color: #5B5B5C;
+    FONT: 20px Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    padding-left: 10px;
+}
+
+.tela_erro_header {
+    /* Redefinimos estilo de brOutputTextBold */
+}
+
+.tela_erro_default_panelGrid {
+    width: 100%;
+    text-align: center;
+}
+
+.tela_erro_detalhado_panelGroup {
+    FONT: bold Verdana, Geneva, Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.tela_erro_detalhado {
+	 /* Redefinimos estilo de brOutputTextBold */
+	 FONT: bold 12px Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+.tela_erro_link_detalhes_panelGrid {
+	text-align: center;
+	/*width: 85%;	
+	background-image: url(../imagens/pontilhado.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;*/
+}
+
+.tela_erro_detalhes_bt {
+	vertical-align: middle;
+	width: 117px;
+	height: 16px;
+	font-family: verdana; 
+	font-size: 9px;
+	font-weight:bold;
+	color: #E90B0B;
+	/*text-transform: uppercase;*/
+	background-image: url(../imagens/bt_px.gif);
+}
+
+.tela_erro_detalhes {
+	font-family: verdana; 
+	font-size: 10px;
+}

@@ -1,0 +1,36 @@
+.UIScrollableDataTable {overflow: hidden !important;}
+.UIScrollableDataTable .fixedColumns .fixedHeader {width: 100% !important;}
+.scrollableSelection {width: 22px;text-align: center;}
+.espacamentoTopo20 {margin-top: 20px;}
+.espacamentoTopo9 {	margin-top: 9px;}
+
+.labelOutrosQuadroExcel{
+	border-right-style: none; 
+	border-left-width: 1px; 
+	border-bottom-style: window-inset; 
+	border-top-style: window-inset; 
+	font-weight: bold;
+	font-family: verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;}
+	
+.inputOutrosQuadroExcel{
+	margin-left: 5px; 
+	padding: 0px;
+	font-family: verdana; 
+	font-size: 10px
+}
+
+.colunaTabelaValor {
+	font-family: verdana;
+	font-size: 10px;
+	text-align: right;
+	display: block;
+}
+
+.ultimaColunaTabelaValor {
+	font-family: verdana;
+	font-size: 10px;
+	text-align: right;
+	display: block;
+	padding-right: 12px;
+}

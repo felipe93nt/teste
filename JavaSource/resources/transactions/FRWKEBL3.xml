@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="FRWEBL3" type="CWS">
+  <header>
+    <property name="FWO">HEADER</property>
+  </header>
+  <inputdependencies />
+  <input maxBytes="5225">
+    <register name="FRWKEBL3-HEADER">
+      <field name="FRWKEBL3-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKEBL3" />
+      <field name="FRWKEBL3-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="5225" />
+    </register>
+    <register name="FRWKEBL3-REGISTRO">
+      <field name="FRWKEBL3-QTIDADE-MENS" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <register name="FRWKEBL3-ESTR-MSG">
+        <register name="FRWKEBL3-MSG" minOccurs="0" maxOccurs="10" depends="FRWKEBL3-QTIDADE-MENS" dependsType="number">
+          <field name="FRWKEBL3-COD-MENS" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+          <field name="FRWKEBL3-TIP-MENS" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-NIV-MENS" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-TAM-MENS" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-TEX-MENS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+      </register>
+    </register>
+  </input>
+  <outputdependencies/>
+  <output maxBytes="5225">
+    <register name="FRWKEBL3-HEADER">
+      <field name="FRWKEBL3-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKEBL3" />
+      <field name="FRWKEBL3-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="5225" />
+    </register>
+    <register name="FRWKEBL3-REGISTRO">
+      <field name="FRWKEBL3-QTIDADE-MENS" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <register name="FRWKEBL3-ESTR-MSG">
+        <register name="FRWKEBL3-MSG" minOccurs="0" maxOccurs="10" depends="FRWKEBL3-QTIDADE-MENS" dependsType="number">
+          <field name="FRWKEBL3-COD-MENS" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+          <field name="FRWKEBL3-TIP-MENS" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-NIV-MENS" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-TAM-MENS" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+          <field name="FRWKEBL3-TEX-MENS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+      </register>
+    </register>
+  </output>
+</copybook>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_consultar_permissoes')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathConsultarPermissoes}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+		<awb-br:javascript src="/javascript/manutencao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:form id="consultaPermissoesFormID">
+
+			<awb-h:panelGrid id="gridFormConsultaPermissoes" columns="3">
+
+				<awb-h:panelGrid id="matriculaFuncionario" columns="2">
+					<awb-h:outputLabel value="#{msgs.label_matricula_funcionario}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{consultarPermissoesBean.viewHelper.matriculaFunc}"
+						styleClass="HtmlInputTextBradesco" size="10" maxlength="9" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid id="codigoBic" columns="2">
+					<awb-h:outputLabel value="#{msgs.label_codigo_bic_instituicao}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{consultarPermissoesBean.viewHelper.codigoBic}"
+						styleClass="HtmlInputTextBradesco" size="12" maxlength="11" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid id="botaoPesquisar">
+					<awb-h:commandButton id="btnPesquisar"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_pesquisar}" type="button"
+						onclick="showTable(divTabelaPermissoes)">
+					</awb-h:commandButton>
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<div id="divTabelaPermissoes" style="display: none">
+				<awb-h:panelGrid id="gridTabelaPermissoes" columns="1">
+					<f:ajax event="click" render="painelBotoes" immediate="true"
+						execute="@this"
+						listener="#{consultarPermissoesBean.habilitarBotoes}" />
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="RICCIAAA" resource="cws">
+						<awb-br:scrollableDataTable displayWidth="1000px" width="1000px"
+							id="tabelaPermissoes" var="item" rows="5"
+							selectionMode="selectOne"
+							selection="#{consultarPermissoesBean.viewHelper.itemSelecionado}"
+							value="#{consultarPermissoesBean.viewHelper.listaPermissoesVO}">
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_funcionario}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.matriculaFunc}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_nome}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.nomeFunc}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_alcada}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.nivelAlcada}"
+									style="float:right" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_instituicao}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel
+									value="#{item.codigoBic} - #{item.instituicao}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_ultima_alteracao}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.ultimaAlteracao}" />
+							</awb-br:scrollableColumn>
+
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+
+					<awb-h:panelGrid id="gridPaginacao" style="padding-left: 28%;">
+						<awb-br:awbDataScroller id="dataScroller" resource="cws"
+							for="tabelaPermissoes"
+							actionListener="#{cadastramentoRicBean.paginar}"
+							stateID="RICCIAAA" renderFacetsIfSinglePage="true">
+							<awb-f:facet name="first">
+								<awb-br:pdcCommandButton id="primeira"
+									styleClass="HtmlCommandButtonBradesco2"
+									value="#{msgs.label_primeira}" title="#{msgs.label_primeira}" />
+							</awb-f:facet>
+							<awb-f:facet name="fastrewind">
+								<awb-br:pdcCommandButton id="retrocessoRapido"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_retrocesso}"
+									title="#{msgs.label_retrocesso}" />
+							</awb-f:facet>
+							<awb-f:facet name="previous">
+								<awb-br:pdcCommandButton id="anterior"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_anterior}"
+									title="#{msgs.label_anterior}" />
+							</awb-f:facet>
+							<awb-f:facet name="next">
+								<awb-br:pdcCommandButton id="proxima"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_proxima}"
+									title="#{msgs.label_proxima}" />
+							</awb-f:facet>
+							<awb-f:facet name="fastforward">
+								<awb-br:pdcCommandButton id="avancoRapido"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_avanco}"
+									title="#{msgs.label_avanco}" />
+							</awb-f:facet>
+							<awb-f:facet name="last">
+								<awb-br:pdcCommandButton id="ultima"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_ultima}"
+									title="#{msgs.label_ultima}" />
+							</awb-f:facet>
+						</awb-br:awbDataScroller>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+			</div>
+
+			<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+				columns="2" width="100%">
+
+				<awb-h:commandButton id="btnVoltar" style="margin-left:-4px;"
+					styleClass="HtmlCommandButtonBradesco2"
+					value="#{msgs.label_voltar}"
+					action="#{consultarPermissoesBean.voltar}" immediate="true">
+				</awb-h:commandButton>
+
+				<awb-h:panelGroup style="float: right">
+					<awb-h:commandButton id="btnAlterar" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_alterar}"
+						disabled="#{not consultarPermissoesBean.viewHelper.btnAlterar}"
+						action="#{alterarPermissoesBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					<awb-h:commandButton id="btnDetalhar" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_detalhar}"
+						disabled="#{not consultarPermissoesBean.viewHelper.btnDetalhar}"
+						action="#{detalharPermissoesBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					<awb-h:commandButton id="btnExcluir" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_excluir}"
+						disabled="#{not consultarPermissoesBean.viewHelper.btnExcluir}"
+						action="#">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+				</awb-h:panelGroup>
+
+			</awb-h:panelGrid>
+
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

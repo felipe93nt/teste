@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="GSEGGLAA" type="CWS">
+  <header>
+    <property name="FWO">HEADER</property>
+  </header>
+  <inputdependencies />
+  <input maxBytes="230">
+    <register name="GSEGAA-BLOCO-HEADER">
+      <field name="GSEGAA-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="GSEGGLAA" />
+      <field name="GSEGAA-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="230" />
+    </register>
+    <register name="GSEGAA-REGISTRO">
+      <field name="GSEGAA-TICKET-SGRCA" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="GSEGAA-FRMT-USUARIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="GSEGAA-ID-USUARIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+      <field name="GSEGAA-INDCD-ASS" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="GSEGAA-INDCD-ALCAD" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <register name="GSEGAA-BLOCO-ASS">
+        <field name="GSEGAA-ID-TP-ASS" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-FRMT-USUARIO-ASS" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-ID-USUARIO-ASS" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-INDCD-CRIPT-ASS" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-CHV-VALID" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-PARAM-01" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-PARAM-02" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-PARAM-03" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-PARAM-04" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="GSEGAA-BLOCO-ALCAD">
+        <field name="GSEGAA-ID-USUARIO-ALCAD" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAA-SENHA-ALCAD" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>

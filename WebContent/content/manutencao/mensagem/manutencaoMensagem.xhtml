@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_consultar_mensagem')}" />
+	<ui:param name="passNumber" value="2" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathManutencaoMensagem}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:form id="manutencaoMensagemFormID">
+			<awb-h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+				style="margin-top: 10px;">
+
+				<awb-h:panelGrid columns="4" style="margin-left: 0px">
+					<awb-h:panelGrid columns="2" style="margin-left: 2px">
+						<awb-h:outputLabel value="#{msgs.label_tipo_transmissao}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+								style="font-size:10px;width:83px;margin-top:0px;height:19px; !important"
+								value="#">
+								<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
+								<awb-f:selectItems
+									value="#{manutencaoMensagemBean.viewHelper.comboTipoTransmissao}"
+									var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
+							</awb-h:selectOneMenu>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="2" width="250px" style="margin-left:35px">
+						<awb-h:outputLabel value="#{msgs.label_codigo_mt_mensagem}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+							style="font-size:10px;width:130px;margin-top:0px;height:18px;margin-left:-23px;!important">
+							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
+							<f:selectItems
+								value="#{manutencaoMensagemBean.viewHelper.comboCodigo}"
+								itemValue="#{item.label}" itemLabel="#{item.value}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid>
+						<awb-h:outputLabel value="#{msgs.label_status}: "
+							styleClass="HtmlOutputLabelBoldBradesco"
+							style="margin-left: 13px" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid>
+						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+							style="font-size:10px;width:150px;margin-top:0px;height:18px;margin-left: -4px; !important"
+							value="#">
+							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
+							<awb-f:selectItems
+								value="#{manutencaoMensagemBean.viewHelper.comboStatos}"
+								var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4">
+
+					<awb-h:panelGrid columns="2" style="margin-left: 55px">
+						<awb-h:outputLabel value="#{msgs.label_data_inicio}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 0px; !important">
+							<awb-br:calendar id="calendarioInicio" value="#"
+								titulo="Calendário Início" alt="Calendario"
+								altDia="Campo Dia Início" altMes="Campo Mês Início"
+								altAno="Campo Ano Início" onFieldFilled="errorStyleChanger"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_hora_inicio}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="3" style="marging-top: 2px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="1" maxlength="10" onfocus="loadMasksJQuery()" alt="hora" />:
+					<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="1" maxlength="10" onfocus="loadMasksJQuery()" alt="minuto" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_data_fim}:  "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 0px; !important">
+							<awb-br:calendar id="calendarioFim" value="#" titulo="Calendario"
+								alt="Calendário Fim" altDia="Campo Dia Fim"
+								altMes="Campo Mês Fim" altAno="Campo Ano Fim"
+								onFieldFilled="errorStyleChanger"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_hora_fim}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="3" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="1" maxlength="10" onfocus="loadMasksJQuery()" alt="hora" />:
+					<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="1" maxlength="10" onfocus="loadMasksJQuery()" alt="minuto" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2" style="margin-left: 65px">
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_isn_osn}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="6" maxlength="10" onfocus="loadMasksJQuery()"
+								alt="isn_osn" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 80px">
+						<awb-h:outputLabel value="#{msgs.label_referencia}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="19" maxlength="10" onfocus="loadMasksJQuery()"
+								alt="referencia" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2" style="margin-left: 43px">
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_valor_minimo}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="19" maxlength="10" onfocus="loadMasksJQuery()"
+								alt="valorDuasCasasDefault" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: -3px">
+						<awb-h:outputLabel value="#{msgs.label_valor_maximo}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="19" maxlength="10" onfocus="loadMasksJQuery()"
+								alt="valorDuasCasasDefault" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2">
+
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_correspondente}: "
+							styleClass="HtmlOutputLabelBoldBradesco"
+							style="margin-left: 27px" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="15" maxlength="10" onfocus="loadMasksJQuery()"
+								alt="correspondente" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="3" style="margin-left: 14px">
+						<awb-h:outputLabel value="#{msgs.label_departamento}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+							<awb-h:inputText value="" styleClass="HtmlInputTextBradesco"
+								size="4" maxlength="6" onfocus="loadMasksJQuery()"
+								alt="departamento" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2">
+							<awb-h:outputLabel value="#{msgs.label_moeda}: "
+								styleClass="HtmlOutputLabelBoldBradesco"
+								style="margin-left: 41px" />
+							<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
+								<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+									style="font-size:10px;width:75px;margin-top:0px;height:19px; !important"
+									value="#">
+									<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
+									<awb-f:selectItems
+										value="#{manutencaoMensagemBean.viewHelper.comboMoeda}"
+										var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
+								</awb-h:selectOneMenu>
+							</awb-h:panelGrid>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid columns="2" style="margin-left: 88px">
+					<awb-h:outputLabel value="#{msgs.label_texto}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:panelGrid columns="1">
+						<awb-h:inputText
+							value="#{manutencaoMensagemBean.viewHelper.texto}"
+							styleClass="HtmlInputTextBradesco" size="62" maxlength="47" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+				columns="2" width="100%">
+
+				<awb-h:commandButton id="btnVoltar" style="margin-left:-4px;"
+					styleClass="HtmlCommandButtonBradesco2"
+					value="#{msgs.label_voltar}"
+					action="#{manutencaoMensagemBean.voltar}" immediate="true">
+				</awb-h:commandButton>
+
+				<awb-h:panelGroup style="float: right">
+					<awb-h:commandButton id="btnContinuar" style="margin-right: 10px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_pesquisar}"
+						action="#{listaMensagemBean.iniciarPagina}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+				</awb-h:panelGroup>
+
+			</awb-h:panelGrid>
+
+		</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+
+<!-- #HTML declara??o de bibliotecas de componentes e tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:c="http://java.sun.com/jsf/core"
+		xmlns:awb-br="http://bradesco.com.br/components-br"
+		xmlns:awb-h="http://bradesco.com.br/components-html"
+		xmlns:app="http://bradesco.com.br/app_components"
+		xmlns:presCore="http://bradesco.com.br/presentation_core" lang="pt"
+ 		xmlns:awb-f="http://bradesco.com.br/components-core"
+ 		xmlns:f="http://java.sun.com/jsf/core"
+ 		xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition>
+	<script type="text/javascript"
+			src="#{request.contextPath}/faces/javax.faces.resource/template/root/js/subHeader.js" />
+	<awb-f:view>
+		<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+			columns="4"
+			columnClasses="tsubHeaderColumn1,tsubHeaderColumn2,tsubHeaderColumn3,tsubHeaderColumn4"
+			styleClass="theaderPanelGrid">
+			<awb-h:panelGroup>
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+					columns="1">
+					<awb-h:panelGroup>
+						<img src="#{request.contextPath}/faces/javax.faces.resource/template/root/images/logo_marca.png" class="img_logo" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGroup>
+			<awb-h:panelGroup>
+
+			</awb-h:panelGroup>
+			<awb-h:panelGroup>
+				<awb-h:panelGrid cellpadding="2" cellspacing="0" border="0"
+					columns="3" id="panelClock">	
+					<awb-h:outputLabel styleClass="msg_header3"
+						value="#{sessionBean.dataAtual}" title="#{sessionBean.dataAtual}" />
+					<awb-h:graphicImage styleClass="img_iconeTempo"
+						url="#{request.contextPath}/faces/javax.faces.resource/template/root/images/icone_tempo.gif" />
+					<awb-h:outputLabel styleClass="msg_header3"
+						id="clockOutputText" value="" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="2" cellspacing="0" border="0"
+					columns="4">
+					<img class="bullet" src="#{request.contextPath}/faces/javax.faces.resource/template/root/images/bullet.jpg"
+						style="vertical-align:middle;" />
+					<awb-h:outputLabel styleClass="msg_header3"
+						value="#{sessionBean.saudacao}" title="#{sessionBean.saudacao}" />
+					<awb-h:outputLabel styleClass="msg_header4"
+						value="#{sessionBean.username}" title="#{sessionBean.username}" />
+				</awb-h:panelGrid>
+			</awb-h:panelGroup>
+			
+			<awb-h:form>
+				<awb-h:panelGroup>
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+						columns="1" align="right">
+
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0" columns="2"
+							align="right">
+							<awb-br:commandLinkAjax action="logout" id="btn_sair" title="sair" value="sair"
+								onclick='if (!confirm("Será realizado o logout da aplicação")) return false;'>
+								<f:actionListener type="br.com.bradesco.web.aq.view.actionlisteners.LogoutController" />
+							</awb-br:commandLinkAjax>
+						</awb-h:panelGrid>
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+							columns="1" align="right" styleClass="heigh_link_ajuda">
+
+							<awb-h:outputLink styleClass="link_ajuda" value="#{helpBean.helpAction}" target="#{helpBean.helpAction}" id="ajudaLink" >
+								Ajuda
+							</awb-h:outputLink>
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGroup>
+			</awb-h:form>
+
+			<awb-h:panelGroup >
+			</awb-h:panelGroup>
+
+			<awb-h:panelGroup>
+			</awb-h:panelGroup>
+
+			<awb-h:panelGroup>
+			</awb-h:panelGroup>
+
+			<awb-h:panelGroup>
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+	</awb-f:view>
+</ui:composition>
+</html>

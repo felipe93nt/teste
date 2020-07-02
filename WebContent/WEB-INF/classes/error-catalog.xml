@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errorCatalog xmlns="http://www.w3.org/2001/XMLSchema-instance">
+
+	<!-- EXCEPCIONES GENERALES -->
+	
+	<error type="java.lang.Exception"
+	       handler="defaultExceptionHandler">  
+			<log-behaviour severity="fatal"/>
+			<redirect-behaviour path="/exception.xhtml"
+					    		messageKey="error.message.key"/>
+	</error>
+
+	<error type="java.lang.RuntimeException"
+	       handler="defaultExceptionHandler">  
+			<log-behaviour severity="error"/>
+			<redirect-behaviour path="/exception.xhtml"
+					    		messageKey="error.message.key"/>
+	</error>
+	
+	<!-- EXCEPCIONES DE ARQUITECTURA -->
+	
+	<error type="br.com.bradesco.web.aq.application.error.BradescoBaseException"
+	       handler="defaultExceptionHandler">  
+			<log-behaviour severity="error"/>
+			<redirect-behaviour path="/arqException.xhtml"
+					    		messageKey="error.message.key"/>  		
+	</error>
+	
+	<error type="br.com.bradesco.web.aq.application.error.BradescoArchitectureException"
+	       handler="architectureExceptionHandler">  
+			<log-behaviour severity="error"/>
+			<alert-behaviour alertId="ERROR_MANAGER.0001"/>
+			<redirect-behaviour path="/arqException.xhtml"
+					    		messageKey="error.message.key"/>
+	</error>
+	<error type="br.com.bradesco.web.aq.application.pdc.adapter.exception.PdcAdapterException"
+	       handler="architectureExceptionHandler">  
+			<log-behaviour severity="fatal"/>
+			<alert-behaviour alertId="ERROR_MANAGER.0002"/>
+			<redirect-behaviour path="/arqException.xhtml"
+					    		messageKey="error.message.key"
+					    		showInModal="false"/>
+			<logoff-behaviour required="true"/>
+	</error>
+	<error type="br.com.bradesco.web.aq.application.pdc.adapter.exception.PdcAdapterFunctionalException"
+	       handler="architectureExceptionHandler">
+	       <action-behaviour action="#{supportBean.modalMessagesDefaultAction}" />  
+	</error>
+	
+	<error type="br.com.bradesco.web.aq.application.error.BradescoApplicationException"
+	       handler="applicationExceptionHandler">  
+			<log-behaviour severity="error"/>
+			<redirect-behaviour path="/appException.xhtml"
+					    		messageKey="error.message.key"/>
+	</error>
+	
+	<error type="br.com.bradesco.web.aq.application.error.BradescoViewException"
+	       handler="viewExceptionHandler">
+	       <action-behaviour actionListener="#{supportBean.modalMessagesActionListener}"></action-behaviour>
+	</error>	
+	
+	<!-- EXCEPCIONES DE APLICATIVO -->
+
+	<error type="br.com.bradesco.web.ricc.exception.RiccException"
+	       handler="riccExceptionHandler">  
+			<log-behaviour severity="warn"/>
+			<redirect-behaviour path="/appException.jsf" 
+								messageKey="error.message.key"/>
+	</error>
+	
+	<error type="br.com.bradesco.web.ricc.exception.RiccMensagemException"
+	       handler="riccExceptionHandler">  
+			<log-behaviour severity="warn"/>
+			<redirect-behaviour path="/appException.jsf" 
+								messageKey="error.message.key"/>
+	</error>
+	
+</errorCatalog>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="GSEGGLAF" type="CWS">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <outputdependencies />
+  <output maxBytes="270">
+    <register name="GSEGAF-BLOCO-HEADER">
+      <field name="GSEGAF-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="GSEGGLAF" />
+      <field name="GSEGAF-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="270" />
+    </register>
+    <register name="GSEGAF-REGISTRO">
+      <register name="GSEGAF-BLOCO-SAIDA">
+        <field name="GSEGAF-RET-CODE" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAF-ID-USUARIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAF-NOME-USUAR" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAF-TIPO-USUARIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAF-COD-EMPRESA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="GSEGAF-COD-DEPEND" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="GSEGAF-COD-SECAO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="GSEGAF-INDCD-TP-ALCAD" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="GSEGAF-IND-MAIS-PERFIL" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <register name="GSEGAF-GRP-PERFIL">
+          <field name="GSEGAF-QTDE-PERFIL" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+          <field name="GSEGAF-COD-PERFIL" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" minOccurs="1" maxOccurs="20" depends="GSEGAF-QTDE-PERFIL" dependsType="number" />
+        </register>
+      </register>
+    </register>
+  </output>
+</copybook>
+

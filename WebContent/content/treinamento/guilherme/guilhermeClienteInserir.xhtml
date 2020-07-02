@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+
+	<ui:param name="tela" value="3" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_treinamento_guilherme_cadastro_de_cliente')}" />
+
+	<ui:param name="passNumber" value="2" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathTreinamentoGuilhermeCliente}" />
+
+
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+
+
+		<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+			style="margin-top: 10px;">
+			<awb-h:outputLabel
+				value="#{msgs.label_treinamento_guilherme_atencao}: "
+				styleClass="HtmlOutputLabelBoldBradesco" />
+			<awb-h:outputLabel value="#{guilhermeClienteBean.viewHelper.atencao}"
+				styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+		</awb-h:panelGrid>
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:panelGrid columns="4" cellpadding="3" cellspacing="10"
+			width="100%" styleClass="gridPrincipal">
+			<awb-h:form id="formCadastroClienteTreinamentoGuilherme">
+
+
+
+				<awb-h:panelGrid columns="4" cellpadding="1" cellspacing="6">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_nome_completo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{guilhermeClienteBean.viewHelper.nome}"
+						styleClass="HtmlInputTextBradesco"
+						style="width:291px; margin-left:22px;" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" cellpadding="1" cellspacing="6">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_cpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="cpf"
+						value="#{guilhermeClienteBean.viewHelper.cpf}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="cpf" mask="###.###.###-##"></awb-br:mascara>
+					</awb-h:inputText>
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_guilherme_rg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="rg"
+						value="#{guilhermeClienteBean.viewHelper.rg}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="rg" mask="##.###.###"></awb-br:mascara>
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_data_nascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="dataNascimento"
+						value="#{guilhermeClienteBean.viewHelper.dataNascimento}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="dataNascimento" mask="##/##/####"></awb-br:mascara>
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_sexo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneRadio
+						value="#{guilhermeClienteBean.viewHelper.sexo}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-f:selectItem itemValue="F" itemLabel="Feminino" />
+						<awb-f:selectItem itemValue="M" itemLabel="Masculino" />
+					</awb-h:selectOneRadio>
+
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="4" cellpadding="1" cellspacing="10"
+					styleClass="gridPrincipal">
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_logradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{guilhermeClienteBean.viewHelper.logradouro}"
+						styleClass="HtmlInputTextBradesco" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_numero}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{guilhermeClienteBean.viewHelper.numeroLogradouro}"
+						styleClass="HtmlInputTextBradesco" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_complemento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{guilhermeClienteBean.viewHelper.complemento}"
+						styleClass="HtmlInputTextBradesco" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_bairro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{guilhermeClienteBean.viewHelper.bairro}"
+						styleClass="HtmlInputTextBradesco" />
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_cidade}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="width:124px;font-size:10px; !important"
+						value="#{guilhermeClienteBean.viewHelper.cidade}">
+						<awb-f:selectItem itemLabel="-Selecione uma Cidade-" itemValue="0" />
+						<awb-f:selectItems
+							value="#{guilhermeClienteBean.viewHelper.comboCidade}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_estado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="width:124px;font-size:10px; !important"
+						value="#{guilhermeClienteBean.viewHelper.estado}">
+						<awb-f:selectItem itemLabel="-Selecione um Estado-" itemValue="0" />
+						<awb-f:selectItems
+							value="#{guilhermeClienteBean.viewHelper.comboEstado}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_cep}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="cep"
+						value="#{guilhermeClienteBean.viewHelper.cep}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="cep" mask="##.###-###"></awb-br:mascara>
+					</awb-h:inputText>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="4" cellpadding="1" cellspacing="10">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_telefone}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="telefone"
+						value="#{guilhermeClienteBean.viewHelper.telefone}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="telefone" mask="(##)####-####"></awb-br:mascara>
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_celular}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText id="celular"
+						value="#{guilhermeClienteBean.viewHelper.celular}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara for="celular" mask="(##)#####-####"></awb-br:mascara>
+					</awb-h:inputText>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" cellpadding="1" cellspacing="10">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_guilherme_email}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{guilhermeClienteBean.viewHelper.email}"
+						styleClass="HtmlInputTextBradesco"
+						style="width:310px; margin-left:18px;" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid id="painelBotoes" columns="2" cellpadding="2"
+					cellspacing="5" style="margin-left:175px;">
+
+					<awb-h:commandButton id="btnSalvar"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_salvar}"
+						action="#{guilhermeClienteBean.salvar}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+
+					<awb-h:commandButton style="margin-left:-4px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}"
+						action="#{guilhermeClienteBean.voltar}" immediate="true">
+					</awb-h:commandButton>
+
+				</awb-h:panelGrid>
+
+			</awb-h:form>
+		</awb-h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>

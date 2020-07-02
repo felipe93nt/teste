@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_questionario_altovarejo')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList" value="#{faceletsBreadCrumb.pathAltoVarejo}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:stylesheet href="/css/scrollCentral.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+		<awb-br:javascript
+			src="/javascript/varejo/cadastramento_alto_varejo.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+		<awb-h:form id="formVarejo">
+
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="#{msgs.label_grupo}: "
+					styleClass="HtmlOutputLabelBradesco" />
+
+				<awb-h:panelGroup>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.codGrupo} - " />
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.nomeGrupo}" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="2">
+				<awb-h:outputLabel value="Código de Controle: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel id="codRelatorio"
+					value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.codRelatorio}"
+					styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<div class="scrollCentral">
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					width="100%">
+					<awb-h:panelGroup>
+						<awb-h:outputLabel value="#{msgs.label_nome_relatorio}:  "
+							styleClass="HtmlOutputLabelBoldBradesco"
+							style="margin-right: 10px;" />
+						<awb-h:inputText id="txtNomeRelatorio" size="139" maxlength="50"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.nomeRelatorio}"
+							styleClass="HtmlInputTextareaBradesco" />
+					</awb-h:panelGroup>
+					<br></br>
+				</awb-h:panelGrid>
+
+				<!--
+				**
+				**
+					1. DESCREVER A ATIVIDADE DA EMPRESA
+				**
+				**
+				 -->
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_quest_corporate_descrever}" />
+					<awb-h:inputTextarea rows="10" cols="159" id="TextAreaAtividade"
+						readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descAtividade}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!--
+				**
+				**
+					2. DESCREVER ORGANOGRAMA
+				**
+				**
+				-->
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_quest_corporate_Organograma}" />
+					<awb-h:inputTextarea rows="10" cols="159" id="TextAreaOrganograma"
+						readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descOrganograma}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel
+						value="#{msgs.label_quest_corporate_quadro_administrativo}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+				<!--
+				**
+				**
+					3. QUADRO ADMINISTRATIVO
+				**
+				**
+				-->
+
+
+
+
+				<awb-h:panelGrid>
+
+					<awb-h:outputLabel value="#{msgs.label_administracao}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco"
+						disabled="true" style="margin-bottom: 10px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.administracao}">
+						<awb-f:selectItem itemValue="1" itemLabel="#{msgs.label_familiar}" />
+						<awb-f:selectItem itemValue="2"
+							itemLabel="#{msgs.label_profissionalizada}" />
+					</awb-h:selectOneRadio>
+
+					<awb-h:outputLabel value="#{msgs.label_plano_sucessao}:"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+					<awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco"
+						disabled="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.planoSucessao}">
+						<awb-f:selectItem itemValue="1"
+							itemLabel="#{msgs.label_bem_definido}" />
+						<awb-f:selectItem itemValue="2"
+							itemLabel="#{msgs.label_em_processo_definicao}" />
+						<awb-f:selectItem itemValue="3"
+							itemLabel="#{msgs.label_nao_definido}" />
+					</awb-h:selectOneRadio>
+
+					<awb-br:scrollableDataTable id="dataTableAdministrador" var="item"
+						width="830px" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaAdms}">
+						<awb-br:scrollableColumn width="515px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_administradores}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.administrador}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="315px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_cargo}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.cargo}" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_detalhar_plano_sucessao}" />
+					<awb-h:inputTextarea rows="10" cols="159" readonly="true"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descPlanoSucessao}"
+						id="TxtAdministradores" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!--
+				**
+				**
+					4.DETALHAMENTO PATRIMONIO
+				**
+				**
+				-->
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="4. #{msgs.label_detalhamento_patrimonio}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TablePatrimonio"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaPatrimonio}"
+						var="patrimonio" width="830px" height="200px">
+						<awb-br:scrollableColumn width="630px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_patrimonio_etc}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{patrimonio.patrimonio}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="200px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_patrimonio_r$}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{patrimonio.valorPatrimonioFormatado}"
+								style="float:right; padding-right:12px; padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+					<awb-h:panelGrid width="100%" style="margin-bottom: 5px"
+						columns="2">
+						<awb-h:outputLabel value="#{msgs.label_total}:"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:outputLabel id="lblTotalPatrimonio"
+							value="R$ mil #{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalPatrimonioFormatado}"
+							styleClass="HtmlOutputLabelBoldBradesco"
+							style="float:right; padding-right: 15px;" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea rows="10" cols="159" readonly="true"
+						id="TextAreaComentariosPatrimonio"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.comentPatrimonio}" />
+				</awb-h:panelGrid>
+				<br></br>
+
+				<!--
+				**
+				**
+					5.CAPACIDADE PRODUTIVA
+				**
+				**
+				-->
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="5. #{msgs.label_capacidade_produtiva}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableCapProducao"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaCapacidade}"
+						var="item" width="100%" height="200px">
+						<awb-br:scrollableColumn width="350px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_plantas}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.plantas}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_producao_ton_ano}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.producaoFormatado}"
+								style="float:right;padding-bottom:4px;">
+							</awb-h:outputLabel>
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_utilizada_ton_ano}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.utilizadaFormatado}"
+								style="float:right;padding-bottom:4px;">
+							</awb-h:outputLabel>
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="150px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_utilizacao_percentual}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.utilizacaoPercentualFormatado}"
+								style="float:right; padding-right:12px;" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+					<awb-h:panelGrid id="totalizadorCapacidadeProdutiva" border="0"
+						columns="3" cellspacing="0" cellpadding="0">
+						<awb-h:panelGrid width="355px">
+							<awb-h:outputLabel value="#{msgs.label_total}:"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="1" width="250px" style="float:right;">
+							<awb-h:outputLabel id="txtTotalCapacidade"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalCapacidadeFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="1" width="250px" style="float:right;">
+							<awb-h:outputLabel id="txtTotalProducao"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalProducaoFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea id="TxtComentariosCapcProdutiva" rows="10"
+						cols="159" readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descCapacidadeProd}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!--
+				**
+				**
+					6.PRINCIPAIS FORNECEDORES
+				**
+				**
+				-->
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="6. #{msgs.label_principais_fornecedores}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableFornecedores" var="item"
+						width="830px" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaFornecedor}">
+						<awb-br:scrollableColumn width="680px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_fornecedores}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.fornecedor}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="150px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}"
+								style="float:right; padding-right:12px; padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea id="txtComentariosFornecedores" rows="10"
+						cols="159" readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descFornecedores}" />
+				</awb-h:panelGrid>
+
+
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableClientes" var="item"
+						width="830px" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaCliente}">
+						<awb-br:scrollableColumn width="680px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_clientes}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.cliente}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="150px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}"
+								style="float:right; padding-right:12px; padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+					<br></br>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_informar_atraso}" />
+					<awb-h:inputTextarea rows="2" cols="159" size="159"
+						id="txtInformarAtraso" styleClass="HtmlInputTextareaBradesco"
+						style="overflow-y:hidden"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.informarAtraso}"
+						readonly="true" />
+				</awb-h:panelGrid>
+
+				<br></br>
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableParticipacaoFormaRecebimento"
+						var="item" width="830px" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaRecebimento}">
+						<awb-br:scrollableColumn width="680px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_forma_recebimento}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.formaRecebimento}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="150px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_porcent_participacao}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.porcentagemFormatado}"
+								style="float:right; padding-right:12px; padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea id="TxtComentariosRecebimento" rows="10"
+						cols="159" readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descRecebimento}" />
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableConcorrente" var="item"
+						width="830px" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaConcorrentes}">
+						<awb-br:scrollableColumn width="830px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_principais_concorrentes}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.concorrente}" />
+						</awb-br:scrollableColumn>
+
+					</awb-br:scrollableDataTable>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea rows="10" cols="159" readonly="true"
+						id="TxtComentariosConcorrentes"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descConcorrentes}" />
+				</awb-h:panelGrid>
+
+				<f:verbatim>
+					<br />
+				</f:verbatim>
+
+				<f:verbatim>
+					<br />
+				</f:verbatim>
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_detalhar_carterira_contratos}" />
+				</awb-h:panelGrid>
+				<f:verbatim>
+					<br />
+				</f:verbatim>
+
+
+				<awb-h:panelGrid>
+					<awb-br:scrollableDataTable id="TableCarteiraContratos" var="item"
+						width="100%" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaContrato}">
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_projeto_obra_servicos}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.projetoObraServico}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_cliente}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.cliente}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_valor_contrato}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.valorContratoFormatado}"
+								style="float:right;padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_saldo_performar}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.saldoPerformarFormatado}"
+								style="float:right;padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_data_termino}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.dataTermino}"
+								style="float:right; padding-right:12px;padding-bottom:4px;">
+								<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+							</awb-h:outputLabel>
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+					<awb-h:panelGrid id="totalizadorCarteiraContratos" border="0"
+						columns="3" cellspacing="0" cellpadding="0">
+						<awb-h:panelGrid width="500px">
+							<awb-h:outputLabel value="#{msgs.label_total}:"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" width="255px" style="float:right;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="R$ mil" style="float:right;" />
+							<awb-h:outputLabel id="txtTotalContrato"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalContratoFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid columns="2" width="250px" style="float:right;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="R$ mil" style="float:right;" />
+							<awb-h:outputLabel id="txtTotalSaldoContrato"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalSaldoContratoFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios}" />
+					<awb-h:inputTextarea id="txtComentariosCarteiraContratos" rows="10"
+						cols="159" readonly="true" styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descContrato}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!--
+				**
+				**
+					7.SITUAÇÃO ECONOMICO-FINANCEIRA
+				**
+				**
+				-->
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="7. #{msgs.label_situacao_economico_financeira}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid columns="4" border="">
+					<awb-h:panelGrid style="margin-right:60px" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_faturamento_consolidado}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-right:110px" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoUm" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.ano}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-right:105px" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoDois" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.ano}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText id="txtAnoTres" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.ano}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					border="" width="100%">
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43"
+							value="#{msgs.label_mes_1}" />
+						<awb-h:inputText id="txtJanUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.janeiro}" />
+						<awb-h:inputText id="txtJanDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.janeiro}" />
+						<awb-h:inputText id="txtJanTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.janeiro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_2}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtFevUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.fevereiro}" />
+						<awb-h:inputText id="txtFevDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.fevereiro}" />
+						<awb-h:inputText id="txtFevTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.fevereiro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_3}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtMarUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.marco}" />
+						<awb-h:inputText id="txtmarDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.marco}" />
+						<awb-h:inputText id="txtMarTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.marco}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_4}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtAbrUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.abril}" />
+						<awb-h:inputText id="txtAbrDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.abril}" />
+						<awb-h:inputText id="txtAbrTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.abril}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_5}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtMaiUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.maio}" />
+						<awb-h:inputText id="txtMaiDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.maio}" />
+						<awb-h:inputText id="txtMaiTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.maio}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_6}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtJunUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.junho}" />
+						<awb-h:inputText id="txtJunDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.junho}" />
+						<awb-h:inputText id="txtJunTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.junho}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_7}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtJulUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.julho}" />
+						<awb-h:inputText id="txtJulDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.julho}" />
+						<awb-h:inputText id="txtJulTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.julho}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_8}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtAgoUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.agosto}" />
+						<awb-h:inputText id="txtAgoDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.agosto}" />
+						<awb-h:inputText id="txtAgoTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.agosto}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_9}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtSetUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.setembro}" />
+						<awb-h:inputText id="txtSetDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.setembro}" />
+						<awb-h:inputText id="txtSetTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.setembro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_10}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtOutUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.outubro}" />
+						<awb-h:inputText id="txtOutDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.outubro}" />
+						<awb-h:inputText id="txtOutTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.outubro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_11}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtNovUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.novembro}" />
+						<awb-h:inputText id="txtNovDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.novembro}" />
+						<awb-h:inputText id="txtNovTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.novembro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_mes_12}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+						<awb-h:inputText id="txtDezUm" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.dezembro}" />
+						<awb-h:inputText id="txtDezDois" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.dezembro}" />
+						<awb-h:inputText id="txtDezTres" readonly="true" size="33"
+							styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.dezembro}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid id="txTotaisFaturamento" cellpadding="0"
+						cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_total}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+
+						<awb-h:inputText id="txtTotalUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtTotalDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtTotalTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.totalFaturamentoFormatado}" />
+
+						<awb-h:inputText value="#{msgs.label_media}" readonly="true"
+							tabindex="-1" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+
+						<awb-h:inputText id="txtMediaUm" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoA.mediaFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtMediaDois" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoB.mediaFaturamentoFormatado}" />
+
+						<awb-h:inputText id="txtMediaTres" style="text-align: right"
+							styleClass="HtmlInputTextBradesco" size="33" disabled="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamentoC.mediaFaturamentoFormatado}" />
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentar_sobre_variacoes}" />
+					<awb-h:inputTextarea id="TxtComentariosvariacaoFaturamento"
+						rows="10" cols="159" readonly="true"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descFaturamento}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" border="" cellspacing="0"
+					cellpadding="0" style="margin-bottom:10px;">
+					<awb-h:panelGrid>
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_abertura_faturamento}" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoAberturaUm" onfocus="loadMasksJQuery()"
+							alt="numerico4" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.ano1}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" style="float:right" />
+						<awb-h:inputText id="txtAnoAberturaDois"
+							onfocus="loadMasksJQuery()" alt="numerico4" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.ano2}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid columns="2" style="margin-left: 30px;" border="0">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_ano}" />
+						<awb-h:inputText id="txtAnoAberturaTres"
+							onfocus="loadMasksJQuery()" alt="numerico4" readonly="true"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.ano3}"
+							size="5" styleClass="HtmlInputTextBradesco" />
+					</awb-h:panelGrid>
+
+					<awb-h:inputText id="txtFat1Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha1.descricao}" />
+					<awb-h:inputText id="txtFat1P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha1.porcentagem1}" />
+					<awb-h:inputText id="txtFat1P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha1.porcentagem2}" />
+					<awb-h:inputText id="txtFat1P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha1.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat2Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha2.descricao}" />
+					<awb-h:inputText id="txtFat2P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha2.porcentagem1}" />
+					<awb-h:inputText id="txtFat2P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha2.porcentagem2}" />
+					<awb-h:inputText id="txtFat2P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha2.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat3Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha3.descricao}" />
+					<awb-h:inputText id="txtFat3P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha3.porcentagem1}" />
+					<awb-h:inputText id="txtFat3P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha3.porcentagem2}" />
+					<awb-h:inputText id="txtFat3P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha3.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat4Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha4.descricao}" />
+					<awb-h:inputText id="txtFat4P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha4.porcentagem1}" />
+					<awb-h:inputText id="txtFat4P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha4.porcentagem2}" />
+					<awb-h:inputText id="txtFat4P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha4.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat5Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha5.descricao}" />
+					<awb-h:inputText id="txtFat5P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha5.porcentagem1}" />
+					<awb-h:inputText id="txtFat5P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha5.porcentagem2}" />
+					<awb-h:inputText id="txtFat5P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha5.porcentagem3}" />
+
+					<awb-h:inputText id="txtFat6Desc"
+						styleClass="HtmlOutputLabelBradesco" size="72" maxlength="50"
+						readonly="true" style="padding-right:3px;"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha6.descricao}" />
+					<awb-h:inputText id="txtFat6P1" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha6.porcentagem1}" />
+					<awb-h:inputText id="txtFat6P2" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha6.porcentagem2}" />
+					<awb-h:inputText id="txtFat6P3" size="25"
+						alt="percentualDuasCasasDecimais"
+						styleClass="HtmlInputTextBradesco" readonly="true"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.faturamento.linha6.porcentagem3}" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" cellpadding="0" cellspacing="0">
+					<awb-h:panelGrid style="padding-right: 45px">
+						<awb-h:outputLabel style="margin-left: -4px;"
+							styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_highlights_empresa}" />
+						<awb-h:inputText style="margin-left: -3px;"
+							id="inputTxtHighlights" size="33"
+							styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.nomeHighlightsEmpresa}"
+							readonly="true" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid cellpadding="4" cellspacing="0" columns="2"
+						style="padding-left: 30px; padding-top: 16px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_balanco}:" />
+						<awb-h:outputLabel id="dataBalancoUm" size="9"
+							styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid cellpadding="5" cellspacing="0" columns="2"
+						style="padding-left: 30px; padding-top: 16px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_balanco}:" />
+						<awb-h:outputLabel id="dataBalancoDois" size="9"
+							styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid cellpadding="5" cellspacing="0" columns="2"
+						style="padding-left: 30px; padding-top: 16px;">
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_balanco}:" />
+						<awb-h:outputLabel id="dataBalancoTres" size="9"
+							styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.balanco}">
+							<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+						</awb-h:outputLabel>
+					</awb-h:panelGrid>
+
+					<awb-h:inputText value="#{msgs.label_receita_liquida}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtReceita1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.receitaLiquida}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtReceita2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.receitaLiquida}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtReceita3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.receitaLiquida}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_contas_a_receber}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtCReceber1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.contasAReceber}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtCReceber2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.contasAReceber}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtCReceber3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.contasAReceber}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_estoques}:" readonly="true"
+						styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtEstoques1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.estoques}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEstoques2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.estoques}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEstoques3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.estoques}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_ger_bruta}:" readonly="true"
+						styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtGerBruta1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.gerBrutaCaixa}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtGerBruta2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.gerBrutaCaixa}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtGerBruta3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.gerBrutaCaixa}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_margem_operacional}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtMOperacional1" size="33"
+						styleClass="HtmlInputTextBradesco"
+						alt="percentualDuasCasasDecimaisNegativo"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.margemOperacional}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtMOperacional2" size="33"
+						styleClass="HtmlInputTextBradesco"
+						alt="percentualDuasCasasDecimaisNegativo"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.margemOperacional}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtMOperacional3" size="33"
+						styleClass="HtmlInputTextBradesco"
+						alt="percentualDuasCasasDecimaisNegativo"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.margemOperacional}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_lucro_prejuizo_liquido}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtPrejuizo1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.lucroPrejuizoLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtPrejuizo2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.lucroPrejuizoLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtPrejuizo3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.lucroPrejuizoLiquido}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_patrimonio_liquido}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtPatrimonio1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.patrimonioLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtPatrimonio2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.patrimonioLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtPatrimonio3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.patrimonioLiquido}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_endiv_financ_total}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtEndividamentoTotal1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.endividamentoFinanceiroTotal}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEndividamentoTotal2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.endividamentoFinanceiroTotal}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEndividamentoTotal3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.endividamentoFinanceiroTotal}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_disponibilidades}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtDisponibilidades1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.disponibilidades}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtDisponibilidades2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.disponibilidades}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtDisponibilidades3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.disponibilidades}"
+						readonly="true" />
+
+					<awb-h:inputText value="#{msgs.label_endiv_financ_liquido}:"
+						readonly="true" styleClass="HtmlOutputLabelBoldBradesco" size="43" />
+					<awb-h:inputText id="inputTxtEndividamento1" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoA.endividamentoFinanceiroLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEndividamento2" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoB.endividamentoFinanceiroLiquido}"
+						readonly="true" />
+					<awb-h:inputText id="inputTxtEndividamento3" size="33"
+						styleClass="HtmlInputTextBradesco" alt="valorSemCasas"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.balancoC.endividamentoFinanceiroLiquido}"
+						readonly="true" />
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid>
+					<awb-h:outputLabel style="margin-left:-2px;"
+						styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios_situacao_atual}" />
+				</awb-h:panelGrid>
+				<awb-h:panelGrid>
+					<awb-h:outputLabel style="margin-left:-2px;"
+						styleClass="HtmlOutputLabelBradesco"
+						value="#{msgs.label_caso_empresa_balanco}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:inputTextarea rows="10" cols="159" id="txtBalanco"
+						readonly="true" style="margin-left:-2px;"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descBalanco}" />
+				</awb-h:panelGrid>
+				<f:verbatim>
+					<br />
+				</f:verbatim>
+
+				<!--
+				**
+				**
+					8.ENDIVIDAMENTO BANCÁRIO
+				**
+				**
+				-->
+				<awb-h:panelGrid>
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="8. #{msgs.label_endividamento_bancario}" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" />
+
+				<awb-h:panelGrid width="100%">
+					<awb-br:scrollableDataTable width="1300px" id="TableEndividamento"
+						var="item" height="200px"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaDividas}">
+						<awb-br:scrollableColumn width="350px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_instituicao_financeira}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.instituicaoFinanceira}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="250px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_modalidade}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.modalidade}" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="190px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_saldo_reais}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.saldoFormatado}"
+								style="float:right; padding-bottom:4px;" />
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="150px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_venc_final}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.vencimentoFinal}"
+								style="float:right; padding-bottom:4px;">
+								<awb-f:convertDateTime pattern="dd/MM/yyyy" />
+							</awb-h:outputLabel>
+						</awb-br:scrollableColumn>
+						<awb-br:scrollableColumn width="210px">
+							<awb-f:facet name="header">
+								<awb-h:outputLabel value="#{msgs.label_garantia}"
+									styleClass="tableFontStyle" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{item.descGarantia}" />
+						</awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+
+					<awb-h:panelGrid id="totalizadorEndividamento" border="0"
+						columns="3" cellspacing="0" cellpadding="0">
+						<awb-h:panelGrid width="637px">
+							<awb-h:outputLabel value="#{msgs.label_total}:"
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGrid>
+						<awb-h:panelGrid />
+						<awb-h:panelGrid columns="2" width="195px" style="float:right;">
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="R$ mil" />
+							<awb-h:outputLabel id="txtTotalSaldo"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.totalSaldoFormatado}"
+								styleClass="HtmlOutputLabelBoldBradesco" style="float:right;" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="#{msgs.label_comentarios_justificativas_divergencia}:" />
+					<awb-h:inputTextarea rows="10" cols="159"
+						id="TxtjustificativasBacen" readonly="true"
+						styleClass="HtmlInputTextareaBradesco"
+						value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.descDivida}" />
+				</awb-h:panelGrid>
+				<br></br>
+				<!--
+				**
+				**
+					9. MERCADO EXTERNO (SE APLICAVEL)
+				**
+				**
+				-->
+
+				<awb-h:panelGrid width="100%">
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						value="9. #{msgs.label_mercado_externo}" />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid border="0" columns="4">
+					<awb-h:panelGrid columns="2">
+						<awb-h:outputLabel value="#{msgs.label_volume_exportacao}"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText id="txtMoedaExportacao" size="5"
+							styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.moedaExportacao}"
+							readonly="true" />
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1" cellspacing="0" cellpadding="0"
+						width="155px" style="text-align:center">
+						<awb-h:panelGroup>
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}: " />
+							<awb-h:outputLabel id="txtAnoRetrasado" size="5"
+								styleClass="HtmlInputTextBradesco" readonly="true"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoA.ano}">
+								<awb-f:convertDateTime pattern="yyyy" />
+							</awb-h:outputLabel>
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1" cellspacing="0" width="160px"
+						style="text-align:center">
+						<awb-h:panelGroup>
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_ano}: " />
+							<awb-h:outputLabel id="txtAnoPassado" size="5"
+								styleClass="HtmlInputTextBradesco" readonly="true"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoB.ano}">
+								<awb-f:convertDateTime pattern="yyyy" />
+							</awb-h:outputLabel>
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+					<awb-h:panelGrid columns="1" cellspacing="0" cellpadding="0"
+						width="160px" style="text-align:center">
+						<awb-h:panelGroup>
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_mes_ano}: " />
+							<awb-h:outputLabel id="txtMes" size="1" style="margin-left:5px;"
+								styleClass="HtmlInputTextBradesco" readonly="true"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoC.mes} / ">
+								<awb-f:convertDateTime pattern="MM" />
+							</awb-h:outputLabel>
+							<awb-h:outputLabel id="txtAno" size="1"
+								styleClass="HtmlInputTextBradesco" readonly="true"
+								value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoC.ano}">
+								<awb-f:convertDateTime pattern="yyyy" />
+							</awb-h:outputLabel>
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+					border="">
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_importacoes}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							style="padding-right:3px;" />
+						<awb-h:inputText id="txtImportacao1" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoA.importacao}"
+							size="28" />
+						<awb-h:inputText id="txtImportacao2" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoB.importacao}"
+							size="28" />
+						<awb-h:inputText id="txtImportacao3" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoC.importacao}"
+							size="28" />
+					</awb-h:panelGrid>
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="4">
+						<awb-h:inputText value="#{msgs.label_exportacoes}" readonly="true"
+							styleClass="HtmlOutputLabelBoldBradesco" size="56"
+							style="padding-right:3px;" />
+						<awb-h:inputText id="txtExportacao1" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoA.exportacao}"
+							size="28" />
+						<awb-h:inputText id="txtExportacao2" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoB.exportacao}"
+							size="28" />
+						<awb-h:inputText id="txtExportacao3" readonly="true"
+							alt="valorSemCasas" styleClass="HtmlInputTextBradesco"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.importacaoExportacaoC.exportacao}"
+							size="28" />
+
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<br />
+
+				<awb-h:panelGrid width="100%"
+					rendered="#{not empty consultaQuestionarioAltoVarejoBean.viewHelper.model.listaSetor}">
+
+					<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+						style="margin-bottom:3px;"
+						value="#{msgs.label_relatorios_setoriais}" />
+					<awb-h:panelGrid cellpadding="0" cellspacing="0"
+						styleClass="linhaPrincipal" />
+
+					<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="1"
+						style="width:250px; margin-top: 9px;">
+						<f:ajax event="click" render="btnEditarSetor" />
+						<awb-br:scrollableDataTable id="TableSetor" var="item"
+							width="100%" selectionMode="selectOne"
+							selection="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.setorSelecionado}"
+							value="#{consultaQuestionarioAltoVarejoBean.viewHelper.model.listaSetor}">
+
+							<awb-br:scrollableColumn>
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_setor}"
+										styleClass="tableFontStyle" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{item.descricao}" />
+							</awb-br:scrollableColumn>
+
+						</awb-br:scrollableDataTable>
+						<br></br>
+						<awb-h:panelGroup style="float:right;">
+							<awb-h:commandButton id="btnEditarSetor"
+								value="#{msgs.label_consultar}"
+								disabled="#{empty consultaQuestionarioAltoVarejoBean.viewHelper.model.setorSelecionado}"
+								styleClass="HtmlCommandButtonBradesco2"
+								action="#{consultaQuestionarioAltoVarejoBean.consultarSetor}">
+								<awb-br:submitCheckClient />
+							</awb-h:commandButton>
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+			</div>
+			<awb-h:panelGrid cellpadding="0" cellspacing="0"
+				styleClass="linhaPrincipal" />
+
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+				width="100%" border="0" style="margin-bottom:10px;"
+				styleClass="gridBotao">
+
+				<!--  COLUNA 1 -->
+				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco2"
+					value="#{msgs.label_voltar}"
+					action="#{consultaQuestionarioAltoVarejoBean.voltar}">
+					<awb-br:submitCheckClient />
+				</awb-h:commandButton>
+
+			</awb-h:panelGrid>
+
+		</awb-h:form>
+
+		<awb-f:verbatim>
+			<script type="text/javascript">
+				window.onload = loadMasksJQuery();
+			</script>
+		</awb-f:verbatim>
+
+	</ui:define>
+</ui:composition>
+</html>

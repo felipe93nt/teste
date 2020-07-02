@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_treinamento_enzo_enzoCliente')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathCadastroEnzo}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+
+		<awb-br:stylesheet href="/template/css/components.css" />
+		<awb-br:stylesheet href="/template/css/grids.css" />
+		<awb-br:stylesheet href="/template/css/modalMessages.css" />
+		<awb-br:stylesheet href="/template/css/estilos_calendar.css" />
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/validacao.js" />
+
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="10" width="100%"
+			styleClass="gridPrincipal">
+			<awb-h:form id="formEnzoCliente">
+
+
+
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_outputDado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enzoClienteBean.viewHelper.enzoOutputText}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+
+				<awb-h:panelGrid columns="6" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputNome}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.nome}"
+						styleClass="HtmlInputTextBradesco" style="width:180px"
+						maxlength="25" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputCpf}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.cpf}"
+						styleClass="HtmlInputTextBradesco" style="width:100px">
+						<awb-br:mascara mask="###.###.###-##" />
+					</awb-h:inputText>
+
+					<awb-h:outputLabel value="#{msgs.label_treinamento_enzo_inputRg}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.rg}"
+						styleClass="HtmlInputTextBradesco" style="width:88px">
+						<awb-br:mascara mask="##.###.###-#" />
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputDataNascimento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText
+						value="#{enzoClienteBean.viewHelper.dataNascimento}"
+						styleClass="HtmlInputTextBradesco" style="width:78px">
+						<awb-br:mascara mask="##/##/####" />
+					</awb-h:inputText>
+
+
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_checkSexo}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneRadio id="sexo"
+						value="#{enzoClienteBean.viewHelper.sexo}"
+						styleClass="HtmlSelectOneRadioBradesco">
+						<awb-f:selectItem itemValue="1" itemLabel="Feminino" />
+						<awb-f:selectItem itemValue="2" itemLabel="Masculino" />
+					</awb-h:selectOneRadio>
+				</awb-h:panelGrid>
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_outputEndereco}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enzoClienteBean.viewHelper.enzoOutputText}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="8" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputLogradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.logradouro}"
+						styleClass="HtmlInputTextBradesco" style="width:180px"
+						maxlength="25" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputNumeroLogradouro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.numero}"
+						styleClass="HtmlInputTextBradesco" style="width:133px"
+						maxlength="17" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputComplemento}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.complemento}"
+						styleClass="HtmlInputTextBradesco" maxlength="17" />
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputBairro}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.bairro}"
+						styleClass="HtmlInputTextBradesco" style="width:180px"
+						maxlength="25" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="6" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_comboCidade}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; width:135px !important"
+						value="#{enzoClienteBean.viewHelper.cidadeComboBox}">
+						<awb-f:selectItems
+							value="#{enzoClienteBean.viewHelper.comboCidade}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+					<awb-h:commandButton id="btnAddCid"
+						styleClass="HtmlCommandButtonBradesco2" value="Adicionar"
+						action="#">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_comboEstado}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
+						style="font-size:10px; width:135px !important"
+						value="#{enzoClienteBean.viewHelper.estadoComboBox}">
+						<awb-f:selectItems
+							value="#{enzoClienteBean.viewHelper.comboEstado}" var="item"
+							itemLabel="#{item.label}" itemValue="#{item.value}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputCep}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.cep}"
+						styleClass="HtmlInputTextBradesco">
+						<awb-br:mascara mask="##.###-###" />
+					</awb-h:inputText>
+				</awb-h:panelGrid>
+
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="2" cellpadding="0" cellspacing="0"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_outputContato}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:outputLabel
+						value="#{enzoClienteBean.viewHelper.enzoOutputText}"
+						styleClass="HtmlOutputLabelBradesco" style="margin-left: 5px;" />
+				</awb-h:panelGrid>
+
+
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid columns="6" cellpadding="5" cellspacing="5"
+					style="margin-top: 10px;">
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputTelefone}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.telefone}"
+						styleClass="HtmlInputTextBradesco" style="width:105px">
+						<awb-br:mascara mask="(##) ####-####" />
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputCelular}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.celular}"
+						styleClass="HtmlInputTextBradesco" style="width:105px">
+						<awb-br:mascara mask="(##) #####-####" />
+					</awb-h:inputText>
+
+					<awb-h:outputLabel
+						value="#{msgs.label_treinamento_enzo_inputEmail}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+					<awb-h:inputText value="#{enzoClienteBean.viewHelper.email}"
+						styleClass="HtmlInputTextBradesco" style="width:180px"
+						maxlength="25" />
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid cellpadding="0" cellspacing="0"
+					styleClass="linhaPrincipal" style="margin-top: 20px;" />
+
+				<awb-h:panelGrid width="100%">
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="RICCIAAA" resource="cws">
+						<awb-br:scrollableDataTable id="tblCadastro" var="o" rows="10"
+							selectionMode="selectOne" width="100%"
+							selection="#{cadastramentoRicBean.viewHelper.itemSelecionado}"
+							value="#{cadastramentoRicBean.viewHelper.listaCadastramento}">
+
+							<!--  COLUNA 1 -->
+							<awb-br:scrollableColumn width="24%">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_nome}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.nome}"
+									style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+							<!--  COLUNA 2 -->
+							<awb-br:scrollableColumn width="10%">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_dtNasc}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.dtNasc}"
+									style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+
+							<!--  COLUNA 3 -->
+							<awb-br:scrollableColumn width="29%">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_cpf}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.cpf}" style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+							<!--  COLUNA 4 -->
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_rg}"
+										style="float: left;margin-left: 5px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.rg}"
+									style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+							<!--  COLUNA 5 -->
+							<awb-br:scrollableColumn width="80px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_sexo}"
+										style="float: left;margin-left: 5px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.sexo}" style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+							<!--  COLUNA 6 -->
+							<awb-br:scrollableColumn width="80px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{value="#{msgs.label_treinamento_vinicius_cliente_logradouro}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.logradouro}" style="margin-left: 10px;" />
+							</awb-br:scrollableColumn>
+
+							<!--  COLUNA 7 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_numero}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.numero}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 8 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_complemento}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.complemento}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 9 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_bairro}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.bairro}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 10 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_cidade}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.cidade}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 11 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_estado}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.estado}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 12 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_cep}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.cep}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 13 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_telefone}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.telefone}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 14 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_celular}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.celular}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+							<!--  COLUNA 15 -->
+							<awb-br:scrollableColumn width="70px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_treinamento_vinicius_cliente_email}"
+										style="float: left;margin-left: 10px" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{o.email}"
+									style="float: left;margin-left: 10px" />
+							</awb-br:scrollableColumn>
+							
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					width="100%">
+
+					<awb-h:commandButton style="margin-left:-4px; margin-top:5px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}"
+						action="#{viniciusClienteBean.voltar}" immediate="true">
+					</awb-h:commandButton>
+
+					<awb-h:panelGroup style="float: right">
+
+						<awb-h:commandButton id="btnSalvar"
+							styleClass="HtmlCommandButtonBradesco2"
+							value="#{msgs.label_salvar}"
+							action="#{viniciusClienteBean.salvar}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:form>
+		</awb-h:panelGrid>
+
+	</ui:define>
+</ui:composition>
+</html>

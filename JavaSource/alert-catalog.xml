@@ -1,0 +1,69 @@
+<alertMapping>
+
+<default-channel-emitter>snmpEmitter</default-channel-emitter>
+<default-wrapper-class>br.com.bradesco.web.aq.application.alert.impl.NotificationWrapperSupport</default-wrapper-class>
+
+<global-alert-list>
+  <alert id="GLOBAL.0001" 
+         message="Notificando informações sobre data user context: user = {userId}, endereço ip remoto = {ipAddress} e Id Sessão PDC = {pdcSessionId}" 
+         type="info">
+	<channelEmitter>emailEmitter</channelEmitter>
+	<channelEmitter>snmpEmitter</channelEmitter>
+  </alert>
+  
+</global-alert-list>
+
+<component-list>
+
+  <component name="br.com.bradesco.web.aq.application.error.ERROR_MANAGER">
+    <alert-list>
+      <alert ref="GLOBAL.0001"/>
+      <alert id="ERROR_MANAGER.0002" 
+             message="{componentId} reportou um erro do tipo {exceptionType}. A mensagem é{exceptionMessage}" 
+             type="error"/>
+      <alert id="ERROR_MANAGER.0001" 
+         message="Erro ao tentar conectar-se com o PDC. O tipo da exceção é {exceptionType} e a mensagem é {exceptionMessage}" 
+         type="error">
+			<channelEmitter>emailEmitter</channelEmitter>
+			<channelEmitter>snmpEmitter</channelEmitter>
+  	  </alert>       
+	  <alert id="ERROR_MANAGER.0003" 
+		    message="Notificando informações sobre conta bloqueada: endereço ip remoto {ipAddress}."
+		    type="info">
+			<channelEmitter>snmpEmitter</channelEmitter>
+	  </alert> 
+    </alert-list>
+  </component>
+  <component name="br.com.bradesco.web.aq.application.error.SESSION_MANAGER">
+    <alert-list>
+      <alert id="SESSION_MANAGER.0004" 
+      		 message="Nova sessão com ID [sessionId] foi criada no canal web" 
+      		 type="info"/>
+    </alert-list>
+  </component>
+  
+  <!-- Alertas funcionales o de aplicativo se vinculan al componente Gestor de Alertas. -->
+  
+  <component name="br.com.bradesco.web.aq.application.alert.ALERT_MANAGER">
+    <alert-list>
+  		<alert ref="GLOBAL.0001"/>
+  		<alert id="ALERT_MANAGER.0002" 
+	         message="Notificando informações sobre data user context: user = {userId}, endereço ip remoto = {ipAddress} e Id Sessão PDC = {pdcSessionId}" 
+	         type="info">
+			<channelEmitter>emailEmitter</channelEmitter>
+		</alert>
+		<alert id="ALERT_MANAGER.0003" 
+		    message="Notificando informações sobre data user context: user = {userId}, endereço ip remoto = {ipAddress} e Id Sessão PDC = {pdcSessionId}" 
+		    type="info">
+			<channelEmitter>snmpEmitter</channelEmitter>
+		</alert> 
+		<alert id="ALERT_MANAGER.0005" 
+		    message="Notificando informações sobre conta bloqueada: endereço ip remoto {ipAddress}."
+		    type="info">
+			<channelEmitter>snmpEmitter</channelEmitter>
+		</alert> 
+    </alert-list>
+  </component>
+</component-list>	
+
+</alertMapping>

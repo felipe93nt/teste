@@ -1,0 +1,6 @@
+@CHARSET "ISO-8859-1";
+
+.scrollCentralAbas {
+	overflow-y: scroll;
+	height: 200px;
+}
