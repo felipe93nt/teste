@@ -3231,4 +3231,28 @@ public class FaceletsBreadCrumb {
 		pathDetalharPermissoesList.add(getValue("label_detalhar_permissoes"));
 		return pathDetalharPermissoesList;
 	}
+	
+    public List<String> getPathIncluirParametrizacaoAlcada() {
+		List<String> pathIncluirParametrizacaoAlcadaList = new ArrayList<String>();
+		pathIncluirParametrizacaoAlcadaList.add(getValue("label_parametrizacao"));
+		pathIncluirParametrizacaoAlcadaList.add(getValue("label_parametrizacao_alcada"));
+		pathIncluirParametrizacaoAlcadaList.add(getValue("label_incluir_parametrizacao_alcada"));
+		return pathIncluirParametrizacaoAlcadaList;
+	}
+    
+    public List<String> getPathConsultarParametrizacaoAlcada() {
+		List<String> pathConsultarParametrizacaoAlcadaList = new ArrayList<String>();
+		pathConsultarParametrizacaoAlcadaList.add(getValue("label_parametrizacao"));
+		pathConsultarParametrizacaoAlcadaList.add(getValue("label_parametrizacao_alcada"));
+		pathConsultarParametrizacaoAlcadaList.add(getValue("label_consultar_parametrizacao_alcada"));
+		return pathConsultarParametrizacaoAlcadaList;
+	}
+    
+    public List<String> getPathAlterarParametrizacaoAlcada() {
+		List<String> pathAlterarParametrizacaoAlcadaList = new ArrayList<String>();
+		pathAlterarParametrizacaoAlcadaList.add(getValue("label_parametrizacao_alcada"));
+		pathAlterarParametrizacaoAlcadaList.add(getValue("label_consultar_parametrizacao_alcada"));
+		pathAlterarParametrizacaoAlcadaList.add(getValue("label_alterar_parametrizacao_alcada"));
+		return pathAlterarParametrizacaoAlcadaList;
+	}
 }

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_consultar_parametrizacao_alcada')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathConsultarParametrizacaoAlcada}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+		<awb-br:javascript src="/javascript/manutencao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+			<awb-h:form id="consultarParametrizacaoAlcadaID">
+		
+			<awb-h:panelGrid columns="8" style="margin-left:20px">
+						<awb-h:outputLabel style="margin-right:35px" value="#{msgs.label_tabela_lista_alcada}" styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+						style="margin-top:10px;margin-left:20px" width="1300px;" reRender="@form"
+						rendered="#{consultarParametrizacaoAlcadaBean.viewHelper.renderTabelaAlcada}">
+						<f:ajax event="click" render="consultarParametrizacaoAlcadaID:botoes"
+							immediate="true" execute="@this"
+							listener="#{consultarParametrizacaoAlcadaBean.habilitarBotoes}" />
+						<awb-br:keepState pdcDataScrollerID="dataScroller"
+							stateID="RICCIAAA" resource="cws">
+							<awb-br:scrollableDataTable rowClasses="tableBodyCenter" displayWidth="1300px" width="1300px"
+								id="tabelaAlcada"  var="item" rows="6" selectionMode="selectOne"
+								selection="#{consultarParametrizacaoAlcadaBean.viewHelper.itemSelecionado}"
+								value="#{consultarParametrizacaoAlcadaBean.viewHelper.listaAlcadaVO}">
+	
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel
+											value="#{msgs.label_tabela_alcada_ident}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel value="#{item.identidade}" />
+								</awb-br:scrollableColumn>
+	
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel
+											value="#{msgs.label_tabela_alcada_valor_maximo}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel style="text-align:center;" value="#{item.valorMaximoAlcada}" />
+								</awb-br:scrollableColumn>
+	
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel
+											value="#{msgs.label_tabela_alcada_nivel_minimo} 1"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel style="text-align:center;" value="#{item.nivelMinimoUm}" />
+								</awb-br:scrollableColumn>
+	
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel
+											value="#{msgs.label_tabela_alcada_nivel_minimo} 2"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel style="text-align:center;" value="#{item.nivelMinimoDois}" />
+								</awb-br:scrollableColumn>
+	
+								<awb-br:scrollableColumn>
+									<awb-f:facet name="header">
+										<awb-h:outputLabel style="text-align:center"
+											value="#{msgs.label_tabela_alcada_ultima_alteracao}"
+											styleClass="tableFontStyle" />
+									</awb-f:facet>
+									<awb-h:outputLabel value="#{item.ultimaAlteracao}" />
+								</awb-br:scrollableColumn>
+							</awb-br:scrollableDataTable>
+						</awb-br:keepState>
+					</awb-h:panelGrid>
+	
+			<awb-f:verbatim>
+						<br />
+					</awb-f:verbatim>
+	
+			<awb-h:panelGrid id="gridPaginacao" style="padding-left: 35%;">
+						<awb-br:awbDataScroller id="dataScroller" resource="cws"
+							for="tabelaAlcada"
+							actionListener="#{cadastramentoRicBean.paginar}"
+							stateID="RICCIAAA" renderFacetsIfSinglePage="true">
+							<awb-f:facet name="first">
+								<awb-br:pdcCommandButton id="primeira"
+									styleClass="HtmlCommandButtonBradesco2"
+									value="#{msgs.label_primeira}" title="#{msgs.label_primeira}" />
+							</awb-f:facet>
+							<awb-f:facet name="fastrewind">
+								<awb-br:pdcCommandButton id="retrocessoRapido"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_retrocesso}"
+									title="#{msgs.label_retrocesso}" />
+							</awb-f:facet>
+							<awb-f:facet name="previous">
+								<awb-br:pdcCommandButton id="anterior"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_anterior}"
+									title="#{msgs.label_anterior}" />
+							</awb-f:facet>
+							<awb-f:facet name="next">
+								<awb-br:pdcCommandButton id="proxima"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_proxima}"
+									title="#{msgs.label_proxima}" />
+							</awb-f:facet>
+							<awb-f:facet name="fastforward">
+								<awb-br:pdcCommandButton id="avancoRapido"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_avanco}"
+									title="#{msgs.label_avanco}" />
+							</awb-f:facet>
+							<awb-f:facet name="last">
+								<awb-br:pdcCommandButton id="ultima"
+									styleClass="HtmlCommandButtonBradesco2"
+									style="margin-left: 3px;" value="#{msgs.label_ultima}"
+									title="#{msgs.label_ultima}" />
+							</awb-f:facet>
+						</awb-br:awbDataScroller>
+					</awb-h:panelGrid>
+			
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal" />
+			
+			<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					columns="2" width="100%">
+
+					<awb-h:commandButton style="margin-left:-4px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}" action="#{consultarParametrizacaoAlcadaBean.voltar}"
+						immediate="true">
+					</awb-h:commandButton>
+
+					<awb-h:panelGroup id="botoes"
+						style="float: right; margin-right:10px">
+
+						<awb-h:commandButton id="btnAlterar"
+							styleClass="HtmlCommandButtonBradesco2" style="margin-left:10px"
+							value="#{msgs.botao_alterar}" action="#{alterarParametrizacaoAlcadaBean.iniciarPagina}"
+							disabled="#{not consultarParametrizacaoAlcadaBean.viewHelper.btnAlterar}">
+						</awb-h:commandButton>
+
+						<awb-h:commandButton id="btnExcluir"
+							styleClass="HtmlCommandButtonBradesco2" style="margin-left:10px"
+							value="#{msgs.botao_excluir}" action="#"
+							disabled="#{not consultarParametrizacaoAlcadaBean.viewHelper.btnExcluir}">
+						</awb-h:commandButton>
+
+					</awb-h:panelGroup>
+
+				</awb-h:panelGrid>
+			</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

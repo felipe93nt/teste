@@ -35,28 +35,30 @@
 				style="margin-top: 10px;">
 				<awb-h:panelGrid columns="2">
 					<awb-h:outputLabel value="#{msgs.label_tipo_componente}:"
-						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 38px" />
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 6px"/>
 					<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
 						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
 							style="font-size:10px;width:200px;margin-top:0px;height:19px; !important"
 							value="#">
 							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
-							<f:selectItem itemValue="1" itemLabel="#{msgs.label_campo}" />
-							<f:selectItem itemValue="2" itemLabel="#{msgs.label_subcampo}" />
+							<awb-f:selectItems
+								value="#{componenteMensagemBean.viewHelper.comboTipoComponente}"
+								var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
 						</awb-h:selectOneMenu>
 					</awb-h:panelGrid>
 				</awb-h:panelGrid>
 
 				<awb-h:panelGrid columns="2">
 					<awb-h:outputLabel value="#{msgs.label_grupo_componente}:"
-						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 57px" />
+						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 24px"/>
 					<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
 						<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco2"
 							style="font-size:10px;width:200px;margin-top:0px;height:19px; !important"
 							value="#">
-							<f:selectItem itemValue="" itemLabel="#{msgs.label_selecione}" />
-							<f:selectItem itemValue="" itemLabel="#{msgs.label_campo_20}" />
-							<f:selectItem itemValue="" itemLabel="#{msgs.label_campo_32a}" />
+							<f:selectItem itemValue="" itemLabel="" />
+							<awb-f:selectItems
+								value="#{componenteMensagemBean.viewHelper.comboGrupoComponente}"
+								var="item" itemLabel="#{item.label}" itemValue="#{item.value}" />
 						</awb-h:selectOneMenu>
 					</awb-h:panelGrid>
 				</awb-h:panelGrid>
@@ -65,8 +67,8 @@
 					<awb-h:outputLabel value="#{msgs.label_descricao_componente}:"
 						styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 67px" />
 					<awb-h:panelGrid columns="1" style="marging-top: 1px; !important">
-						<awb-h:inputText value="Value-Date, Curr., Amount"
-							styleClass="HtmlInputTextBradesco" size="35" maxlength="30" />
+						<awb-h:inputText value="Value-Date, Curr., Amount" styleClass="HtmlInputTextBradesco"
+							size="35" maxlength="30" />
 					</awb-h:panelGrid>
 				</awb-h:panelGrid>
 

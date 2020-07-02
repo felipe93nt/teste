@@ -786,4 +786,15 @@ public final class RiccConstants {
 
 	// Tela de Parametrizacao - Alterar Permissoes
 	public static final String TELA_PARAMETRIZACAO_ALTERAR_PERMISSOES = "parametrizacao.alterar.permissoes";
+
+	// Tela de Parametrizacao - Incluir Parametrizacao Alcada
+	public static final String TELA_PARAMETRIZACAO_INCLUIR_ALCADA = "alcada.incluir.parametrizacao.alcada";
+
+	// Tela de Parametrizacao - Consultar Parametrizacao Alcada
+	public static final String TELA_PARAMETRIZACAO_CONSULTAR_ALCADA = "alcada.consultar.parametrizacao.alcada";
+	
+	// Tela de Parametrizacao - Alterar Parametrizacao Alcada
+	public static final String TELA_PARAMETRIZACAO_ALTERAR_ALCADA = "alcada.alterar.parametrizacao.alcada";
+		
+	
 }

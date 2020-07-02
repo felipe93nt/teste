@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="tela" value="1" />
+	<ui:param name="selection"
+		value="#{faceletsBreadCrumb.getValue('label_alterar_parametrizacao_alcada')}" />
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{faceletsBreadCrumb.pathAlterarParametrizacaoAlcada}" />
+	<ui:param name="cur_page" value="#{msgs.header_arq}" />
+	<ui:define name="body">
+		<awb-br:stylesheet href="/css/tabelas.css" />
+		<awb-br:stylesheet href="/css/pages.css" />
+		<awb-br:stylesheet href="/css/componentes.css" />
+		<awb-br:stylesheet href="/css/grids.css" />
+		<awb-br:stylesheet href="/css/projetotemplate.css" />
+		<awb-br:javascript src="/javascript/util.js" />
+		<awb-br:javascript src="/javascript/cadastramento_ric.js" />
+		<awb-br:javascript src="/javascript/manutencao.js" />
+
+		<awb-h:panelGrid cellpadding="0" cellspacing="0"
+			styleClass="linhaPrincipal" />
+
+			<awb-h:form id="alterarParametrizacaoAlcadaID">
+	
+			<awb-h:panelGrid columns="8" style="margin-left:46px">
+						<awb-h:outputLabel value="#{msgs.label_valor_alcada}: " styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" size="20" value="10.000,00" />
+						<awb-h:outputLabel value="#{msgs.label_checkbox_valor_alcada}:" styleClass="HtmlOutputLabelBoldBradesco" style="margin-left: 10px" />
+						<awb-h:selectBooleanCheckbox value="#" />
+			</awb-h:panelGrid>
+			<awb-h:panelGrid columns="8" style="margin-left:46px">
+						<awb-h:outputLabel style="margin-right:35px" value="#{msgs.label_nivel_alcada_minima} 1: " styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" size="3" value="0" />
+			</awb-h:panelGrid>
+			<awb-h:panelGrid columns="8" style="margin-left:46px">
+						<awb-h:outputLabel style="margin-right:35px" value="#{msgs.label_nivel_alcada_minima} 2: " styleClass="HtmlOutputLabelBoldBradesco" />
+						<awb-h:inputText styleClass="HtmlInputTextBradesco" size="3" value="1" />
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid cellpadding="0" cellspacing="0" styleClass="linhaPrincipal"/>
+			
+						
+			<awb-h:panelGrid id="painelBotoes" cellpadding="0" cellspacing="0"
+					columns="2" width="100%">
+
+					<awb-h:commandButton style="margin-left:-4px;"
+						styleClass="HtmlCommandButtonBradesco2"
+						value="#{msgs.label_voltar}" action="#{alterarParametrizacaoAlcadaBean.voltar}"
+						immediate="true">
+					</awb-h:commandButton>
+
+					<awb-h:panelGroup id="botoes"
+						style="float: right; margin-right:10px">
+
+						<awb-h:commandButton id="btnExcluir"
+							styleClass="HtmlCommandButtonBradesco2" style="margin-left:10px"
+							value="#{msgs.botao_confirmar}" action="#"
+							disabled="#{not alterarParametrizacaoAlcadaBean.viewHelper.btnConfirmar}">
+						</awb-h:commandButton>
+
+					</awb-h:panelGroup>
+
+				</awb-h:panelGrid>
+			</awb-h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -33,10 +33,9 @@
 			<menuItem id="4" action="#{consultarPermissoesBean.iniciarPagina}"
 				labelKey="label_consultar" />
 			<menuItem id="3" labelKey="label_alcadas" title="label_vazia" />
-			<menuItem id="4" action="#" labelKey="label_incluir" />
-			<menuItem id="4" action="#" labelKey="label_consultar" />
+			<menuItem id="4" action="#{incluirParametrizacaoAlcadaBean.iniciarPagina}" labelKey="label_incluir" />
+			<menuItem id="4" action="#{consultarParametrizacaoAlcadaBean.iniciarPagina}" labelKey="label_consultar" />
 		</menuItem>
-
 
 		<!-- <menuItem id="2" action="" actionListener="" labelKey="label_parametrizacao"> 
 			<menuItem id="3" labelKey="label_parametrizacao" title="label_parametrizacao" 

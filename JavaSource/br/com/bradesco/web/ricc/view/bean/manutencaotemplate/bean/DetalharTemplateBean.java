@@ -49,6 +49,11 @@ public class DetalharTemplateBean extends
 		sc1.setCurrency("EUR");
 		sc1.setAmount("8,00");
 		viewHelper.getListaSendersChargesVO().add(sc1);
+		SendersChargesVO sc2 = new SendersChargesVO();
+		sc2.setOccur("2");
+		sc2.setCurrency("");
+		sc2.setAmount("");
+		viewHelper.getListaSendersChargesVO().add(sc2);
 	}
 
 	private void carregarListaInstructionCodeVO() {
@@ -57,6 +62,11 @@ public class DetalharTemplateBean extends
 		ic1.setCode("TEJI");
 		ic1.setInstruction("3226553478");
 		viewHelper.getListaInstructionCodeVO().add(ic1);
+		InstructionCodeVO ic2 = new InstructionCodeVO();
+		ic2.setOccur("2");
+		ic2.setCode("");
+		ic2.setInstruction("");
+		viewHelper.getListaInstructionCodeVO().add(ic2);
 	}
 
 	private void carregarListaTimeIndicationVO() {
@@ -74,6 +84,13 @@ public class DetalharTemplateBean extends
 		ti2.setSign("");
 		ti2.setOffset("");
 		viewHelper.getListaTimeIndicationVO().add(ti2);
+		TimeIndicationVO ti3 = new TimeIndicationVO();
+		ti3.setOccur("3");
+		ti3.setCode("");
+		ti3.setTime("");
+		ti3.setSign("");
+		ti3.setOffset("");
+		viewHelper.getListaTimeIndicationVO().add(ti3);
 	}
 
 	public String voltar() {

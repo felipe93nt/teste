@@ -13,7 +13,6 @@ public class FormatosMensagemViewHelper extends AbstractViewHelper {
 	private static final long serialVersionUID = 6728360388728831027L;
 
 	private String nivelAutorizacao = "";
-	private String interfaceSaaAtiva = "";
 	private List<CampoIntegranteVO> listaCamposIntegrantesVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> listaCamposVO = new ArrayList<CampoIntegranteVO>();
 	private List<CampoIntegranteVO> campoIntegranteSelecionado = new ArrayList<CampoIntegranteVO>();
@@ -83,13 +82,5 @@ public class FormatosMensagemViewHelper extends AbstractViewHelper {
 
 	public void setCampoSelecionado(List<CampoIntegranteVO> campoSelecionado) {
 		this.campoSelecionado = campoSelecionado;
-	}
-
-	public String getInterfaceSaaAtiva() {
-		return interfaceSaaAtiva;
-	}
-
-	public void setInterfaceSaaAtiva(String interfaceSaaAtiva) {
-		this.interfaceSaaAtiva = interfaceSaaAtiva;
 	}
 }
