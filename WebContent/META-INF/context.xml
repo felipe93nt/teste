@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context>
-	<Realm className="org.apache.catalina.realm.JAASRealm" appName="BradescoMockLogin"
-		userClassNames="br.com.bradesco.web.aq.application.security.authentication.userdetails.impl.BradescoUserDetailsJAASImpl"
-		roleClassNames="br.com.bradesco.web.aq.application.security.authorization.impl.BradescoAuthorityImpl" />
-
-	<Resource name="BeanManager" auth="Container"
-		type="javax.enterprise.inject.spi.BeanManager" factory="org.apache.webbeans.container.ManagerObjectFactory" />
-</Context>

@@ -1,3 +1,0 @@
-function examples() {
-	alert("Clicado");
-}
