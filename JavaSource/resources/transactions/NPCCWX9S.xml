@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX9S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="23">
+    <register name="NPCCWX9S-HEADER">
+      <field name="NPCCWX9S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX9S" />
+      <field name="NPCCWX9S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00023" />
+    </register>
+    <register name="NPCCWX9S-REGISTRO">
+      <register name="NPCCWX9S-SAIDA">
+        <field name="NPCCWX9S-DPREVT-PRORROG" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

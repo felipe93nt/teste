@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 300 a 399  -->
+
+    <awb-h:panelGrid id="pnlDadosAprovacao" columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        
+	   <awb-h:panelGroup>
+	        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	        <h:outputText styleClass="HtmlOutputLabelBradesco" value="No. Aprov. Crédito: " />
+	        <awb-h:inputText id="txtNroAprCred" title="No. Aprov. Crédito"
+	            maxlength="17" size="20" disabled="true" tabindex="300"
+	            value="#{(bean.tradeFinNegocVO.nppstapontucmbio ne 0 and bean.tradeFinNegocVO.nppstapontucmbio ne null) ? bean.tradeFinNegocVO.nppstapontucmbio : bean.tradeFinNegocVO.nseqcontrlim}"
+	            styleClass="HtmlInputTextBradesco">
+	        </awb-h:inputText>
+	        
+	        <awb-br:brCommandSearch id="lupaAprCred" tabindex="301" rendered="#{bean.viewHelper.renderLupaAprovCredito and bean.viewHelper.operaComLimite}">
+                <f:ajax event="click" render="pnlDadosAprovacao div_modalLimites formModalMessages"
+                    listener="#{bean.pesquisarLimite}" execute="@form" />
+            </awb-br:brCommandSearch>
+            
+            <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco" rendered="#{not bean.viewHelper.operaComLimite}"
+            	value=" #{msgs.label_operacao_sem_limite}" style="font-style: italic;"/>
+            
+	        
+       </awb-h:panelGroup>
+       
+      
+	   <awb-h:panelGroup>     
+	        <h:outputText value=" " escape="false" />
+	        <awb-h:commandButton id="btnDetalharGarantias" styleClass="HtmlCommandButtonBradesco"
+	            value="#{msgs.bto_garantias}" tabindex="302">
+	            <f:ajax immediate="false" execute="@form" event="click"
+	                render="div_modalGarantias formModalMessages"
+	                listener="#{bean.listenerDetalharGarantias}" />
+	        </awb-h:commandButton>
+	   </awb-h:panelGroup>
+        
+   </awb-h:panelGrid>
+	
+</ui:composition>
+
+</html>

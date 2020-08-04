@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZPE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="9650">
+    <register name="NPCCWZPE-HEADER">
+      <field name="NPCCWZPE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZPE" />
+      <field name="NPCCWZPE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="09650" />
+    </register>
+    <register name="NPCCWZPE-REGISTRO">
+      <field name="NPCCWZPE-QTDE-OCORR-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZPE-QTDE-OCORR-PRZOM" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZPE-VPREVT-DSEMB-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZPE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <register name="NPCCWZPE-LISTA-PC" minOccurs="0" maxOccurs="250" depends="NPCCWZPE-QTDE-OCORR-PCELA" dependsType="number">
+        <field name="NPCCWZPE-NPCELA-DSEMB-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZPE-TDIA-NEGOC-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZPE-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZPE-VPCELA-MESA-TRADE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZPE-TP-PARCELA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWZPE-LISTA-PR" minOccurs="0" maxOccurs="20" depends="NPCCWZPE-QTDE-OCORR-PRZOM" dependsType="number">
+        <field name="NPCCWZPE-PRZO-MEDIO-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+    <!-- CAMINHO DE PAO -->
+      <ui:param name="selection" value="#{msgs.title_modelo_boleto_incl_tipo_clausula}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_modelo_boleto_incl_tipo_clausula',1)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <awb-h:form id="formModeloBoleto">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid width="100%" id="pnlFields">
+                <ui:include src="/content/parametrosPrecificacao/modeloBoleto/cadastrarTipoClausula.xhtml">
+                    <ui:param name="forTableId" value="cadastroTipoClausula" />
+                </ui:include>
+            </awb-h:panelGrid>
+
+        </awb-h:form>
+    </ui:define>
+</ui:composition>
+</html>

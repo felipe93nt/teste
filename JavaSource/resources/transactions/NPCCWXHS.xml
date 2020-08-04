@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXHS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3296">
+    <register name="NPCCWXHS-HEADER">
+      <field name="NPCCWXHS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXHS" />
+      <field name="NPCCWXHS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03296" />
+    </register>
+    <register name="NPCCWXHS-REGISTRO">
+      <field name="NPCCWXHS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWXHS-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWXHS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWXHS-NBLETO-NEGOC-VNCLO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXHS-NBLETO-CMBIO-ANO" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXHS-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXHS-IPRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXHS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXHS-IINDCD-ECONM-MOEDA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXHS-VNEGOC-MOEDA-ESTRG" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWXHS-CINDCD-VNCLO-IMPOR" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

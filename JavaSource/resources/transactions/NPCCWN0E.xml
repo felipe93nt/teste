@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWN0E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="73">
+    <register name="NPCCWN0E-HEADER">
+      <field name="NPCCWN0E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWN0E" />
+      <field name="NPCCWN0E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00073" />
+    </register>
+    <register name="NPCCWN0E-REGISTRO">
+      <field name="NPCCWN0E-E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWN0E-E-STATUS-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWN0E-E-STATUS-BLETO-ANTER" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWN0E-E-VULT-ESTRN-BAIXA" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWN0E-E-SALD-BLETO-CMBIO" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWN0E-E-CINDCD-MOEDA-UTLZD" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWN0E-E-TMAX-CONTR-PRODT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

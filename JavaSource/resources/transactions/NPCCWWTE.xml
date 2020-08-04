@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWTE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="30">
+    <register name="NPCCWWTE-HEADER">
+      <field name="NPCCWWTE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWTE" />
+      <field name="NPCCWWTE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00030" />
+    </register>
+    <register name="NPCCWWTE-REGISTRO">
+      <field name="NPCCWWTE-NCONTR-LIM-GERC" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

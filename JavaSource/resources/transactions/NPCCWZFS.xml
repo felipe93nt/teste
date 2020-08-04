@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZFS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="1036">
+    <register name="NPCCWZFS-HEADER">
+      <field name="NPCCWZFS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZFS" />
+      <field name="NPCCWZFS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01036" />
+    </register>
+    <register name="NPCCWZFS-SAIDA">
+      <field name="NPCCWZFS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZFS-LISTA-PARCE" minOccurs="0" maxOccurs="20" depends="NPCCWZFS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZFS-NPCELA-DSEMB-CARTA" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZFS-VPCELA-CREDIT-PREVT" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZFS-VPCELA-CARTA-PREVT" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWZFS-CPRZ-PCELA-CARTA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZFS-NPRZ-PCELA-CARTA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZFS-TDIA-PGTO-CARTA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,65 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+
+    <!-- GRID DE GARANTIAS APROVADAS NO LIMITE DE CREDITO-->
+    <awb-h:panelGrid style="width: 100%;" rendered="#{garantiasModalBean.listaGarantiasAprov.size() > 0}">
+        
+        <awb-h:outputLabel
+                style="font-family: verdana; font-weight: bold; font-size: 10px"
+                value="#{msgs.label_garantias_apr_lmt_cred}" />
+            
+        <awb-h:panelGrid style="width: 99%;" >
+            <awb-h:dataTable id="scrollable_garantias" var="garanAprLista"
+                rows="10" cellspacing="0" cellpadding="10" border="1"
+                style="width: 100%; text-align: center" rowIndexVar="indexLista"
+                value="#{garantiasModalBean.listaGarantiasAprov}">
+            
+            <awb-h:column width="35%" >
+                <f:facet name="header">
+                    <h:outputText value="#{msgs.label_tipo}"
+                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                </f:facet>
+                <h:outputText value="#{garanAprLista.icaractpogarnt}"
+                    style="font-family: verdana; font-size: 10px;" />
+            </awb-h:column>
+            
+            <awb-h:column width="20%" >
+                <f:facet name="header">
+                    <h:outputText value="#{msgs.label_percentual}"
+                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                </f:facet>
+                <h:outputText value="#{garanAprLista.vtxgarntcmbio}"
+                    style="font-family: verdana; font-size: 10px;" />
+            </awb-h:column>
+            
+            <awb-h:column width="15%" >
+                <f:facet name="header">
+                    <h:outputText value="#{msgs.label_principal}"
+                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                </f:facet>
+                <h:outputText value="#{garanAprLista.descPrincipal}"
+                    style="font-family: verdana; font-size: 10px;" />
+            </awb-h:column>
+            
+            <awb-h:column width="25%" >
+                <f:facet name="header">
+                    <h:outputText value="#{msgs.label_obs}"
+                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                </f:facet>
+                <h:outputText value="#{garanAprLista.rcomplgarntcmbio}"
+                    style="font-family: verdana; font-size: 10px;" />
+            </awb-h:column>
+            
+        </awb-br:scrollableDataTable>
+    </awb-h:panelGrid>
+	
+</awb-f:view>
+</html>

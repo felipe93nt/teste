@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX9E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="31">
+    <register name="NPCCWX9E-HEADER">
+      <field name="NPCCWX9E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX9E" />
+      <field name="NPCCWX9E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00031" />
+    </register>
+    <register name="NPCCWX9E-REGISTRO">
+      <field name="NPCCWX9E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX9E-CADITV-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX9E-NDSEMB-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

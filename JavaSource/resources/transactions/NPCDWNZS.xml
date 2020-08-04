@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWNZS" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="2616">
+    <register name="NPCDWNZS-HEADER">
+      <field name="NPCDWNZS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWNZS" />
+      <field name="NPCDWNZS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="2616" />
+    </register>
+    <register name="NPCDWNZS-REGISTRO">
+      <field name="NPCDWNZS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWNZS-LISTA" minOccurs="0" maxOccurs="40" depends="NPCDWNZS-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWNZS-COPER" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWNZS-ROPER" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

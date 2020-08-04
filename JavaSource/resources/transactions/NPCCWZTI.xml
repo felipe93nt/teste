@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZTI" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="18052">
+    <register name="NPCCWZTI-HEADER">
+      <field name="NPCCWZTI-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZTI" />
+      <field name="NPCCWZTI-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="18052" />
+    </register>
+    <register name="NPCCWZTI-BLOCO-RETORNO">
+      <field name="NPCCWZTI-COD-RETORNO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZTI-COD-ERRO" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZTI-COD-MENSAGEM" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+    <register name="NPCCWZTI-DADOS-SESSAO">
+      <field name="NPCCWZTI-CUSUAR-SESSAO" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZTI-CDEPEN-SESSAO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZTI-CTERMINAL" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+    <register name="NPCCWZTI-ENTRADA">
+      <field name="NPCCWZTI-E-PERIODO-COTACAO-I" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZTI-E-PERIODO-COTACAO-F" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZTI-E-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZTI-E-NBLETO-CMBIO-ANO" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZTI-E-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZTI-E-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+    <register name="NPCCWZTI-REGISTRO">
+      <field name="NPCCWZTI-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZTI-GRIDE" minOccurs="0" maxOccurs="30" depends="NPCCWZTI-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZTI-S-DT-COTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-HORARIO" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-NBLETO-CMBIO-ANO" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-DSIT-BLETO-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-NOME-UND-ORGNZ" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CAG-BCRIA" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CCTA-BCRIA-CMBIO" pic="9(012)" length="12" bytes="12" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-DIGT-CCTA-BCRIA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-DPRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CMODLD-PRODT-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CMODLD-PRODT-DESC" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-NCUNIC-CLI-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-TP-PESSOA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CPF-CNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CFLIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CCTRL" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CRTING" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CTPO-SGMTO-CLI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-DTPO-SGMTO-CLI" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-SIMBL-ECONM-MOEDA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-VNEGOC-MOEDA-ESTRG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZTI-S-VTX-SPREAD-NEGOC" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+        <field name="NPCCWZTI-S-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZTI-S-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-NUSUAR-INCLT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZTI-S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

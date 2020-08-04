@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXJS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3056">
+    <register name="NPCCWXJS-HEADER">
+      <field name="NPCCWXJS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXJS" />
+      <field name="NPCCWXJS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03056" />
+    </register>
+    <register name="NPCCWXJS-REGISTRO">
+      <field name="NPCCWXJS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWXJS-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWXJS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWXJS-NCOMIS-EXTER-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-CCONDC-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-ICOND-ECONC" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXJS-VPCELA-COMIS-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWXJS-PCOMIS-NEGOC-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+        <field name="NPCCWXJS-CPERDC-JURO-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-IPERDC-JURO-CMBIO" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXJS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXJS-CFLUXO-PERDC-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-IFLUXO-PERDC-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXJS-CMOMEN-COBR-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-QPCELA-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXJS-CRESP-COMIS-EXTER" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

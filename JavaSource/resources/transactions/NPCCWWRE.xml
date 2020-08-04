@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWRE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="181">
+    <register name="NPCCWWRE-HEADER">
+      <field name="NPCCWWRE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWRE" />
+      <field name="NPCCWWRE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00181" />
+    </register>
+    <register name="NPCCWWRE-REGISTRO">
+      <field name="NPCCWWRE-DE-PERIODO-COTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-ATE-PERIODO-COTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-DE-PERIODO-FECHMTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-ATE-PERIODO-FECHMTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CTPO-SGMTO-CLI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CBCO-EXT-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-CINDCD-NEGOC-SWAP" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWRE-CTPO-NEGOC-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-TDIA-DE-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-TDIA-ATE-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-QPRZ-MED-DE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-QPRZ-MED-ATE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWRE-VALOR-ME-DE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWRE-VALOR-ME-ATE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWRE-CPAIS-REST" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

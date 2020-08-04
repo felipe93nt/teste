@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZNS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="14538">
+    <register name="NPCCWZNS-HEADER">
+      <field name="NPCCWZNS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZNS" />
+      <field name="NPCCWZNS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="14538" />
+    </register>
+    <register name="NPCCWZNS-REGISTRO">
+      <field name="NPCCWZNS-QTDE-OCORR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZNS-LISTA" minOccurs="0" maxOccurs="30" depends="NPCCWZNS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZNS-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-TDIA-FINAN-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZNS-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-VPREVT-DSEMB-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZNS-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-NOME-PRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-IMP-EXP-DEVEDOR" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-NOME-UND-ORGNZ" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-VTX-LIBOR-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZNS-IORG-EXTER-CMBIO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZNS-CUSTO-EXTERN-AA" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+        <field name="NPCCWZNS-SPREAD-NEGOC-AA" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+        <field name="NPCCWZNS-NUMERO-OP" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZNS-DESC-SITUACAO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

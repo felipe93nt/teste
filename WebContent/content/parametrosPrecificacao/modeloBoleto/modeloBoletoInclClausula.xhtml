@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <!-- CAMINHO DE PAO -->
+    <ui:param name="selection" value="#{msgs.title_modelo_boleto_incl_clausula}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_modelo_boleto_incl_clausula',1)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- Componente SEI -->
+        <sei:seiRegion id="allContent">
+            <awb-h:form id="formModeloBoleto">
+
+                <awb-h:panelGrid width="100%" id="pnlFields">
+                    <ui:include src="/content/parametrosPrecificacao/modeloBoleto/cadastrarClausula.xhtml">
+                        <ui:param name="forTableId" value="cadastroClausula" />
+                    </ui:include>
+                </awb-h:panelGrid>
+
+
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <br></br>
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                    <!-- VOLTAR -->
+                    <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+                        immediate="true" action="#{modeloBoletoBean.actionVoltarInclClausula}">
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+
+                    <awb-h:panelGrid style="float:right" columns="2">
+                        <!-- VISUALIZAR -->
+                        <awb-h:outputLink id="btnVisualizar" title="#{msgs.bto_visualizar}"
+                            styleClass="seiBtnImprimirGrupo tab sei-button" value="javascript:;">
+                            <sei:seiAction id="seiAction" type="print" render="divSeiModals"
+                                action="#{modeloBoletoBean.preVisualizar}" jsActionArgs="getExportPdfOnly">
+                                <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                                    pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                            </sei:seiAction>
+                            <awb-h:outputLabel value="#{msgs.bto_visualizar}"></awb-h:outputLabel>
+                        </awb-h:outputLink>
+
+                        <!-- CONFIRMAR -->
+                        <awb-h:commandButton id="btnConfirmarAlt" styleClass="HtmlCommandButtonBradesco right"
+                            actionListener="#{modeloBoletoBean.validarForm}" value="#{msgs.bto_confirmar}" />
+                    </awb-h:panelGrid>
+                </awb-h:panelGrid>
+
+                <!-- MODAL CONFIRMAÇÃO -->
+                <ui:include src="/template/modal.xhtml">
+                    <ui:param name="message" value="#{msgs.info_confirmar_inclusao}" />
+                    <ui:param name="bean" value="#{modeloBoletoBean}" />
+                    <ui:param name="actionConfirmar" value="actionConfirmar" />
+                    <ui:param name="actionFechar" value="actionFecharModal" />
+                    <ui:param name="renderModal" value="#{modeloBoletoBean.viewHelper.renderModal}" />
+                </ui:include>
+            </awb-h:form>
+        </sei:seiRegion>
+
+        <!-- SEI API -->
+        <sei:seiApi id="seiApp" usePrintModal="true" />
+
+        <!-- Script para exportação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/export.js" />
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+    </ui:define>
+</ui:composition>
+</html>

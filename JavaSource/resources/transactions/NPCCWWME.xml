@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWME" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="116">
+    <register name="NPCCWWME-HEADER">
+      <field name="NPCCWWME-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWME" />
+      <field name="NPCCWWME-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00116" />
+    </register>
+    <register name="NPCCWWME-REGISTRO">
+      <field name="NPCCWWME-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWME-TDIA-FINAN-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWME-VALOR-OPERACAO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWME-PJURO-NEGOC-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWWME-CPERDC-JURO-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWME-VPREVT-DSEMB-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWME-VPREVT-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWME-VMIN-COBR-COMIS" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWME-CINDCD-PCOBR-COMIS" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWME-CINDCD-FCOBR-COMIS" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWME-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWME-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

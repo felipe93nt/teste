@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVKE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="18">
+    <register name="NPCCWVKE-HEADER">
+      <field name="NPCCWVKE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVKE" />
+      <field name="NPCCWVKE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00018" />
+    </register>
+    <register name="NPCCWVKE-REGISTRO">
+      <field name="NPCCWVKE-CCLAUS-CONTR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

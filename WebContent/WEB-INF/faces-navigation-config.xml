@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+	<!-- NAVEGACION -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+
+		<navigation-case>
+			<from-outcome>nav_index</from-outcome>
+			<to-view-id>/content/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>authenticate</from-outcome>
+			<to-view-id>/jsecuritycheck.jsp</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>exception</from-outcome>
+			<to-view-id>/exception.tiles</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/unsecure/logout.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		
+		<navigation-case>
+			<from-outcome>nav_pagiapi</from-outcome>
+			<to-view-id>/presArchitecture_paginationAPI.tiles</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nav_multipag</from-outcome>
+			<to-view-id>/presArchitecture_multiPagination.tiles</to-view-id>
+		</navigation-case>
+
+
+	</navigation-rule>
+</faces-config>

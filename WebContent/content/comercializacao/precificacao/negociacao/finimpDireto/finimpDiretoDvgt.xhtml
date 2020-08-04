@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_alt_ctc_dvg_fd}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList"
+        value="#{breadCrumbBean.loadCaminho('title_tradeFinance_negociacao',99,'title_alt_ctc_dvg_fd')}" />
+        
+    <!-- Carrega os dados da tela para realizar a alteração -->
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinanceNegociacaoAltBean.iniciarDivergenciaPorProduto}" />
+    </f:metadata>
+
+    <ui:define name="body">
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <script type="text/javascript" src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+        <awb-br:bundleWriter functionName="getBundle" id="calendarioFiltro" rendered="true"
+            messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+        </awb-br:bundleWriter>
+
+        <!-- FORM -->
+        <awb-h:form id="formTrdFinNegIncl">
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados de Divergencia -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosDivergenciaInfo.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Cliente -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosCliente.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Produto -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosProduto.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- NRO APROVACAO CREDITO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosAprovCredito.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- VALOR e MOEDA -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosValorMoeda.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- SWAP PTAX SPREAD -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosSwapPtaxSpread.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- STAND BY -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosStandby.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- FLUXO PAGAMENTO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosFluxoPagamento.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- PRECIFICACAO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosPrecificacao.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- COMISSAO DE BANQUEIRO - tabindex 850 a 899 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissaoBanqueiro.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- COMISSAO INTERNA (Spread) -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissaoInterna.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- MERCADORIA -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosMercadoria.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- OPERACAO VINCULADA -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosOperacaoVinculada.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- RESPONSAVEL EMPRESA -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosResponsavelEmpresa.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- TARIFAS -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosTarifas.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- COMISSAO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissao.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- MODELO BOLETO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosModeloBoleto.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- OBSERVACOES OUTRAS ESPECIFICACOES -->
+            <ui:include
+                src="/content/comercializacao/precificacao/negociacao/content/dadosObsOutrasEspecificacoes.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}"/>
+            </ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <ui:include 
+                src="/content/comercializacao/precificacao/negociacao/content/botoesDvgt.xhtml">
+            </ui:include>
+            
+            <!-- MODAIS - Utiliza os mesmo modais nas telas 'Alterar', 'Divergente', 'Prorrogar' e 'Alongar' -->
+            <ui:include 
+                src="/content/comercializacao/precificacao/negociacao/content/dadosModalAlt.xhtml">
+            </ui:include>
+            
+        </awb-h:form>
+
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+
+        <!-- script -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+        <!-- SCRIPT -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+    </ui:define>
+
+</ui:composition>
+</html>

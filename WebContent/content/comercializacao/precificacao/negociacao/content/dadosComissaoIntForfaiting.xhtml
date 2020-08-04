@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 700 a 799  -->
+    
+    <!-- botao Collaps Comissão Interna -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosComissaoInterna}" tabindex="700"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(3)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Comissão Interna (Spread)" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    
+    <awb-h:panelGrid id="pnlComissInt" styleClass="panelGridTable" rendered="#{bean.viewHelper.renderComissaoInterna}">
+
+        <awb-h:panelGrid id="pnlCobraComiss" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            
+            <!-- SPREAD APROVADO -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_spread_apvr}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.ptxcustototal}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" % A.A" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- SPREAD NEGOCIADO -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_det_spread_negoc}: " />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtSpreadNeg" styleClass="HtmlInputTextBradesco" tabindex="701"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                        value="#{bean.itemListaComissaoInterna.vtxspreadnegoc}">
+                        <f:ajax immediate="false" execute="@form" event="change" 
+                            render="formModalMessages formTrdFinNegIncl" listener="#{bean.listenerTrocaSpreadNegForfaiting}" />
+                    </awb-h:inputText>
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" % A.A" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- SPREAD TOTAL -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_spread_total}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.vtxspreadtot}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" % A.A" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        	<!-- CUSTO TOTAL -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Custo Total: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.custoTotalForfaiting}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"/>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>       
+                        
+        <!-- LINHA DIVISÓRIA -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-f:verbatim>
+                <hr class="linhaPontilhada" />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <!-- RDO TIPO DE JUROS -->
+        <awb-h:panelGroup>
+            <awb-f:facet name="header">
+                <awb-h:selectOneRadio id="rdoOpcaoJuros" layout="pageDirection" tabindex="702"
+                    value="#{bean.tradeFinNegocVO.ctpojurotrade}"  immediate="false">
+                    <f:ajax execute="pnlComissInt" event="click" 
+                        render="formModalMessages pnlComissInt pnlBotoes" 
+                        listener="#{bean.listenerTratarOpcaoJuros}"/>
+                    <awb-f:selectItem itemValue="1" itemLabel="JUROS EMBUTIDOS" />
+                    <awb-f:selectItem itemValue="2" itemLabel="JUROS DEDUZIDOS" />
+                </awb-h:selectOneRadio>
+            </awb-f:facet>
+        </awb-h:panelGroup>
+        
+        <!-- TIPO DE JUROS -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-h:panelGrid columns="4" styleClass="panelGridTable" 
+                columnClasses="panelGridColum25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+                <awb-h:panelGrid />
+                
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup styleClass="HtmlSelectOneRadioBradesco c">
+                        <awb-th:extRadio index="0" for=":formTrdFinNegIncl:rdoOpcaoJuros" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup styleClass="HtmlSelectOneRadioBradesco c">
+                        <awb-th:extRadio index="1"
+                            for=":formTrdFinNegIncl:rdoOpcaoJuros" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <awb-h:panelGrid />
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid id="pnlDesembolso" styleClass="panelGridTable" 
+            rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido() or bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+
+            <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+                
+                <!-- DATA EMBARQUE -->
+                <awb-h:panelGrid styleClass="panelGridTable" id="divDataEmbarque">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="Data de Embarque: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-br:calendar id="calendarEmbarque" disableInputFields="false" tabindex="703"
+                            onFieldFilled="errorStyleChanger" clientValidationLevel="date"
+	                        onInputChange="limpaData('formTrdFinNegIncl:calendarEmbarque','validarEmbarque')"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{bean.desembolsoForfaitingVO.dprevtembrq}" />
+                        <awb-h:outputLabel value=" " escape="false" />
+                        <awb-h:commandButton style="display:none;" styleClass="ajax-call validarEmbarque">
+    						<f:ajax execute="@form" event="click"
+    							render="formTrdFinNegIncl formModalMessages divSeiModals"
+    							listener="#{bean.listenerValidarDataEmbarque}" />
+						</awb-h:commandButton>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+    
+                <!-- DATA DESEMBOLSO -->
+                <awb-h:panelGrid styleClass="panelGridTable" id="divDataDesembolso">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_data_desembolso}: " />
+                    </awb-h:panelGroup>
+	                <awb-h:panelGroup>
+	                    <awb-br:calendar id="calendarDesemb" titulo="Calendário" disableInputFields="false" tabindex="704"
+	                        onFieldFilled="errorStyleChanger" clientValidationLevel="date"
+	                        onInputChange="limpaData('formTrdFinNegIncl:calendarDesemb','validarDesembolso')"
+	                        onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                        value="#{bean.viewHelper.datePrevDesembolso}" />
+	                    <awb-h:outputLabel value=" " escape="false" />
+	                    <awb-h:commandButton style="display:none;" styleClass="ajax-call validarDesembolso">
+    						<f:ajax execute="divDataDesembolso" event="click"
+    							render="formTrdFinNegIncl divDataDesembolso formModalMessages divSeiModals pnlPrazoFinanciamento"
+    							listener="#{bean.listenerValidarDataDesembolso}" />
+				            <f:param name="campoData" value="2" />
+						</awb-h:commandButton>
+	                </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <!-- DATA VENCIMENTO SAQUE -->
+                <awb-h:panelGrid styleClass="panelGridTable" id="divVencSaque">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_vencimento_saque}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+	                    <awb-br:calendar id="calendarVencSaque" titulo="Calendário" disableInputFields="false" tabindex="705"
+	                        onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                        onFieldFilled="errorStyleChanger" 
+	                        clientValidationLevel="date" onInputChange="limpaData('formTrdFinNegIncl:calendarVencSaque','validarDiaUtil')"
+	                        value="#{bean.viewHelper.vencimentoSaque}" />
+	                    <awb-h:outputLabel value=" " escape="false" />
+	                    <awb-h:commandButton style="display:none;" styleClass="ajax-call validarDiaUtil">
+    						<f:ajax execute="divVencSaque" event="click"
+    							render="formTrdFinNegIncl divVencSaque formModalMessages divSeiModals pnlPrazoFinanciamento"
+    							listener="#{bean.listenerValidarDataVencimento}" />
+				            <f:param name="campoData" value="8" />
+						</awb-h:commandButton>
+	                </awb-h:panelGroup>
+                </awb-h:panelGrid>
+        
+                
+            </awb-h:panelGrid>
+    
+            <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+                
+                <!-- VALOR DESEMBOLSO -->
+                <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido()}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="Valor de Desembolso: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtVlDesemb" styleClass="HtmlInputTextBradesco" tabindex="706"
+                            alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                            value="#{bean.desembolsoForfaitingVO.vprevtdsembcmbio}">
+                            <f:ajax execute="@form" event="change" render="pnlComissInt formModalMessages"
+                                immediate="false" listener="#{bean.listenerTrocaValorDesembolso}" />
+                        </awb-h:inputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <!-- VALOR SAQUE -->
+                <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_valor_saque}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtVlSaque" styleClass="HtmlInputTextBradesco" tabindex="707"
+                            alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                            value="#{bean.desembolsoForfaitingVO.vdsembnegoccmbio}">
+                            <f:ajax execute="@form" event="change" render="pnlComissInt formModalMessages"
+                                immediate="false" listener="#{bean.listenerTrocaValorSaque}" />
+                        </awb-h:inputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+    
+                <!-- LIBOR TRAVADA -->
+                <awb-h:panelGrid id="pnlLiborTravComiss">
+                    <awb-h:panelGrid columns="2" styleClass="panelGridTable2">
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_det_libor_travada}: " />
+                        </awb-h:panelGroup>
+                        <awb-h:panelGroup />
+                        <awb-h:panelGroup>
+                            <awb-h:inputText id="txtLiborTravDesemb" styleClass="HtmlInputTextBradesco"
+                                disabled="true" value="#{bean.desembolsoForfaitingVO.vtxliborcmbio}">
+                                <f:ajax execute="@form" event="change" render="pnlComissInt formModalMessages"
+                                    immediate="false" listener="#{bean.listenerTrocaLiborTravDesembolso}" />
+                            </awb-h:inputText>
+                        </awb-h:panelGroup>
+                        <awb-h:panelGroup>
+                            <awb-h:commandButton id="btoInclLiborTravComiss" value="Incluir Libor Travada" tabindex="708"
+                                styleClass="HtmlCommandButtonBradesco">
+                                <f:ajax event="click" immediate="false" execute="@form"
+                                    listener="#{bean.listenerIncluirLiborTravadaDesembolso}"
+                                    render="pnlLiborTravComiss div_modalLiborTravada formModalMessages" />
+                            </awb-h:commandButton>
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+                </awb-h:panelGrid>
+                
+                <!-- FUNDING -->
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_funding}: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            value="#{bean.desembolsoForfaitingVO.ptxjurofndng}">
+                        </h:outputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+    
+            <awb-h:panelGrid columns="3" styleClass="panelGridTable" 
+            	rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido() or bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}"
+            	columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            
+                <!-- SPREAD -->
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="#{msgs.label_spread}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtSpreadInf" styleClass="HtmlInputTextBradesco" tabindex="709"
+                            alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                            value="#{bean.desembolsoForfaitingVO.pspreadtxcmbio}">
+                            <f:ajax immediate="false" execute="@form" event="change" render="pnlComissInt formModalMessages"
+                                listener="#{bean.listenerTrocaSpreadInformado}" />
+                        </awb-h:inputText>
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" % AA" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <!-- TAXA -->
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_taxa}: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            value="#{bean.desembolsoForfaitingVO.pjuronegoccmbio}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <!-- TAXA DESCONTADA -->
+                <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="Taxa Descontada: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            value="#{bean.desembolsoForfaitingVO.taxaDescontada}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+    
+            <awb-h:panelGrid columns="3" styleClass="panelGridTable" 
+            	rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido() or bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}"
+                columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+                
+                <!-- PRAZO -->
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_prazo}: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            value="#{bean.desembolsoForfaitingVO.tdiafinandsemb}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+    
+                <!-- VALOR JUROS -->
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_valor_juros}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtVlJuroEmbut" styleClass="HtmlInputTextBradesco" tabindex="710"
+                            alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                            value="#{bean.desembolsoForfaitingVO.vjurodsembcmbio}">
+                        </awb-h:inputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+    
+                <!-- VALOR SAQUE -->
+                <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido()}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_valor_saque}: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                            value="#{bean.desembolsoForfaitingVO.vdsembnegoccmbio}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+                <!-- VALOR DESEMBOLSO -->
+                <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="Valor de Desembolso: " />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                            value="#{bean.desembolsoForfaitingVO.vprevtdsembcmbio}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+            
+            <!-- BOTAO INCLUIR -->
+            <awb-h:panelGrid columns="1" styleClass="right">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclFluxosComiss" tabindex="711"
+                    value="#{msgs.bto_incluir}">
+                    <f:ajax immediate="false" execute="@form" event="click" render="formModalMessages formTrdFinNegIncl"
+                        listener="#{bean.listenerIncluirDesembolsoForfaiting}" />
+<!--                         <f:param name="telaDeAcesso" value="99" /> -->
+                </awb-h:commandButton>
+            </awb-h:panelGrid>
+    
+            <!-- GRID COMISSAO INTERNA -->
+            <awb-h:panelGrid styleClass="panelGridDataTable" rendered="#{not empty bean.listaDesembolso}">
+    
+                <!-- RADIO GRID LISTA -->
+                <awb-f:facet name="header">
+                    <awb-th:extSelectOneRadio id="radioListaDesembolso" layout="spread" immediate="false"
+                        forceId="true" forceIdIndex="false"
+                        value="#{bean.viewHelper.itemSelecListaDesembolso}">
+                        <awb-f:selectItems value="#{bean.itensRadioListaDesembolso}" />
+                    </awb-th:extSelectOneRadio>
+                </awb-f:facet>
+    
+                <!-- GRID -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridDsmb">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableDsmb">
+	                    <awb-br:scrollableDataTable id="dataTableDesembolso" var="itemDesembolso" rows="20"
+	                        rowIndexVar="indexListaDesembolso" styleClass="panelGridTable"
+	                        value="#{bean.listaDesembolso}">
+	
+	                        <awb-br:scrollableColumn width="2%">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-th:extRadio index="#{indexListaDesembolso}"
+	                                for=":formTrdFinNegIncl:radioListaDesembolso" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_numero}" styleClass="tableFontStyle"
+	                                    escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.seqDesembolso}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_desembolso}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.dataDesembolsoFormat}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c"
+                                rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido()}">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_vlr_desembolso}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vprevtdsembcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c"
+                                rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_valor_saque}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vdsembnegoccmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_det_libor_travada}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vtxliborcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_funding}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.ptxjurofndng}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_spread}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.pspreadtxcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_det_taxa}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.pjuronegoccmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c"
+                                rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_taxa_descontada}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.taxaDescontada}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.tdiafinandsemb}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_valor_juros}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vjurodsembcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c"
+                                rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroDeduzido()}">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_vlr_desembolso}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vprevtdsembcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                        <awb-br:scrollableColumn styleClass="c"
+                                rendered="#{bean.tradeFinNegocVO.isForfaitingTipoJuroEmbutido()}">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_valor_saque}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemDesembolso.vdsembnegoccmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+	                    </awb-br:scrollableDataTable>
+                    </awb-th:extDiv>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+    
+            <!-- Excluir Comissao Interna -->
+            <awb-h:panelGrid columns="1" styleClass="right">
+                <awb-h:panelGroup>
+                    <awb-h:commandButton id="btoExcComissaoInt" value="#{msgs.bto_excluir}" tabindex="712"
+                        disabled="#{empty bean.listaDesembolso}"
+                        styleClass="HtmlCommandButtonBradesco">
+                        <f:ajax immediate="false" execute="@form" event="click"
+                            render="pnlComissInt formModalMessages"
+                            listener="#{bean.listenerExcluirDesembolsoForfaiting}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+        </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- GRID DADOS DE JUROS -->
+            <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridforForfainting"
+                rendered="#{not empty bean.tradeFinanceBean.quadroOperacaoForfaiting}">
+                <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableForfainting">
+    
+                    <awb-br:scrollableDataTable id="tabelaOperacao" var="itemOper" rows="10" width="100%"
+                        rowIndexVar="indexListaOper" styleClass="panelGridTable"
+                        value="#{bean.tradeFinanceBean.quadroOperacaoForfaiting}">
+    
+                        <awb-br:scrollableColumn>
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Descrição" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOper.infoCol1}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn>
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOper.infoCol2}" />
+                        </awb-br:scrollableColumn>
+    
+                    </awb-br:scrollableDataTable>
+                </awb-th:extDiv>
+            </awb-h:panelGrid>
+        
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

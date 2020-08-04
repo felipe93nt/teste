@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVMS" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="2824">
+    <register name="NPCCWVMS-HEADER">
+      <field name="NPCCWVMS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVMS" />
+      <field name="NPCCWVMS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="02824" />
+    </register>
+    <register name="NPCCWVMS-REGISTRO">
+      <field name="NPCCWVMS-CPRODT-SERV" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWVMS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWVMS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWVMS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWVMS-CMOD-CONTR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVMS-IMOD-CONTR-CMBIO" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVMS-CINDCD-MOD-PDRAO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

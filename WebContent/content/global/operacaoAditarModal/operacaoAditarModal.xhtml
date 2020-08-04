@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body"> 
+
+    <body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- CALENDARIO -->
+        <awb-br:bundleWriter functionName="getBundle" id="calendarioTaxas" rendered="true"
+            messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,
+              field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,
+              c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,
+              c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,
+              c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,
+              c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+        </awb-br:bundleWriter>
+
+        <!-- FORM -->
+        <awb-h:form id="formModalOperacaoAditar" >
+            <awb-h:panelGrid width="100%">
+                <awb-h:column>
+
+                    <awb-th:extSelectManyCheckbox id="radioListaModalOperacao"
+                        layout="spread" forceId="true" forceIdIndex="false"
+                        value="#{operacaoAditarModalBean.viewHelper.itemSelecListaModalOperacao}">
+                        <awb-f:selectItems
+                            value="#{operacaoAditarModalBean.selectItemRadioListaModalOperacao}" />
+                    </awb-th:extSelectManyCheckbox>
+        
+                    <!-- GRID -->
+                    <awb-h:panelGrid styleClass="panelGridDataTable"
+                        rendered="#{not empty operacaoAditarModalBean.listaModalOperacao}">
+                
+		                <awb-br:keepState resource="cws"
+		                    pdcDataScrollerID="dataScroller"
+		                    stateID="#{operacaoAditarModalBean.viewHelper.stateIdListaModalOperacao}">
+		                    <awb-br:scrollableDataTable id="dataListaModalOperacao"
+		                        value="#{operacaoAditarModalBean.listaModalOperacao}"
+		                        var="itemOperacoes" rows="4" width="100%"
+		                        rowIndexVar="indexListaModalOperacao">
+		
+		                        <!-- CHECK DA LISTA -->
+		                        <awb-br:scrollableColumn width="3%">
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value=" " styleClass="tableFontStyle"
+		                                    escape="false" />
+		                            </f:facet>
+		                            <awb-th:extCheckbox index="#{indexListaModalOperacao}"
+		                                for=":formModalOperacaoAditar:radioListaModalOperacao" />
+		                        </awb-br:scrollableColumn>
+		
+		                        <!-- OPERACAO -->
+		                        <awb-br:scrollableColumn>
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value="Operação"
+		                                    styleClass="tableFontStyle" escape="false" />
+		                            </f:facet>
+		                            <awb-h:outputLabel value="#{itemOperacoes.ccontrfinanexpor}" />
+		                        </awb-br:scrollableColumn>
+		                        
+		                        <!-- DATA VENC -->
+		                        <awb-br:scrollableColumn>
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value="Data Venc."
+		                                    styleClass="tableFontStyle" escape="false" />
+		                            </f:facet>
+		                            <awb-h:outputLabel value="#{itemOperacoes.dfimfinanexpor}" />
+		                        </awb-br:scrollableColumn>
+		
+		                        <!-- MOEDA -->
+		                        <awb-br:scrollableColumn>
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value="#{msgs.label_moeda}"
+		                                    styleClass="tableFontStyle" escape="false" />
+		                            </f:facet>
+		                            <awb-h:outputLabel value="#{itemOperacoes.cmoedacmbiofinan}" />
+		                        </awb-br:scrollableColumn>
+		                        
+		                        <!-- VALOR -->
+		                        <awb-br:scrollableColumn>
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value="#{msgs.label_valor}"
+		                                    styleClass="tableFontStyle" escape="false" />
+		                            </f:facet>
+		                            <awb-h:outputLabel value="#{itemOperacoes.vfinanexporcmbio}" />
+		                        </awb-br:scrollableColumn>
+		
+		                        <!-- PRODUTO -->
+		                        <awb-br:scrollableColumn>
+		                            <f:facet name="header">
+		                                <awb-h:outputLabel value="#{msgs.label_saldo_devedor}"
+		                                    styleClass="tableFontStyle" escape="false" />
+		                            </f:facet>
+		                            <awb-h:outputLabel value="#{itemOperacoes.vfinandevedcmbio}" />
+		                        </awb-br:scrollableColumn>
+		                        
+		                    </awb-br:scrollableDataTable>
+                        </awb-br:keepState>
+                    
+                        <!-- PAGINACAO -->
+                        <awb-br:awbDataScroller resource="cws" for="dataListaModalOperacao" styleClass="pagination" 
+                            id="dataScroller" renderFacetsIfSinglePage="true" 
+                            actionListener="#{operacaoAditarModalBean.paginarOperacoesVinculadas}"
+                            stateID="#{operacaoAditarModalBean.viewHelper.stateIdListaModalOperacao}">
+                            <f:facet name="first">
+                                <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                    title="#{msgs.label_txt_primeira}" />
+                            </f:facet>
+                            <f:facet name="fastrewind">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                            </f:facet>
+                            <f:facet name="previous">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                            </f:facet>
+                            <f:facet name="next">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                            </f:facet>
+                            <f:facet name="fastforward">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                                    title="#{msgs.label_txt_avanco}" />
+                            </f:facet>
+                            <f:facet name="last">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                                    title="#{msgs.label_txt_ultima}" />
+                            </f:facet>
+                        </awb-br:awbDataScroller>
+                    </awb-h:panelGrid>
+
+                </awb-h:column>
+            </awb-h:panelGrid>
+            <br />
+
+            <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" />
+            <awb-h:commandButton action="#{operacaoAditarModalBean.selecionarModalOperacoesAditar}" value="Selecionar"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+        </awb-h:form>
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+    </body>
+</ui:define>
+</ui:composition>
+
+</html>

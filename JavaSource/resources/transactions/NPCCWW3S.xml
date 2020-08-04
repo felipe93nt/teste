@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWW3S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="14">
+    <register name="NPCCWW3S-HEADER">
+      <field name="NPCCWW3S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWW3S" />
+      <field name="NPCCWW3S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00014" />
+    </register>
+    <register name="NPCCWW3S-REGISTRO">
+      <field name="NPCCWW3S-CSIT-FECHA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>
+

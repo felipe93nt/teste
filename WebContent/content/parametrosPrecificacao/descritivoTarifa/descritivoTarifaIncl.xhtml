@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-f="http://bradesco.com.br/components-core"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+    <!-- CAMINHO DE PAO -->
+    <ui:param name="selection" value="#{msgs.title_parametrizar_descritivo_tarifa_list}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_descritivo_tarifa_incl',1)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <awb-h:form id="formDescritivoTarifa">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_descricao}: " />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="#{msgs.label_descricao}" size="80" maxlength="85"
+                        value="#{descritivoTarifaBean.descritivoTarifaVO.dalter}"
+                        styleClass="HtmlInputTextObrigatorioBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" action="#{descritivoTarifaBean.actionVoltar}"
+                    immediate="true" styleClass="HtmlCommandButtonBradesco" />
+                <!-- CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarIncl" styleClass="HtmlCommandButtonBradesco right"
+                    actionListener="#{descritivoTarifaBean.validarForm}" value="#{msgs.bto_confirmar}" />
+            </awb-h:panelGrid>
+
+            <!-- MODAL CONFIRMAÇÃO -->
+            <ui:include src="/template/modal.xhtml">
+                <ui:param name="message" value="#{msgs.info_confirmar_inclusao}" />
+                <ui:param name="bean" value="#{descritivoTarifaBean}" />
+                <ui:param name="actionConfirmar" value="actionConfirmar" />
+                <ui:param name="actionFechar" value="actionFecharModal" />
+                <ui:param name="renderModal" value="#{descritivoTarifaBean.viewHelper.renderModal}" />
+            </ui:include>
+
+        </awb-h:form>
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/meiomask.js" />
+
+    </ui:define>
+</ui:composition>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Campos Comissão Interna (Spread)-->
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:panelGroup>
+            <!-- COMISSÃO INTERNA -->
+            <awb-h:outputLabel value=" #{msgs.label_comissao_int}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+        
+        <awb-h:panelGrid width="100%" columns="4" id="div_comissaoInt" columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+       
+        	<awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo eq 2018 or tradeFinMonitFormalizacaoBean.tradeFinanceListaVO.produto.codigo eq 2018}">
+                <!-- COBRANÇA COMISSÃO C/ ABOUT -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_cobranca_comissao_about}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.comissaoInterna}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+            
+        	<awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo eq 2018 or tradeFinMonitFormalizacaoBean.tradeFinanceListaVO.produto.codigo eq 2018}">
+                <!-- COMISSÃO COBRADO NO BRASIL -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_comissao_cobrado_no_brasil}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.ccomiscartanacio}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <!-- COBRANÇA COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_cobranca_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.descrComissao}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.valorComissaoBoleto}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- MOEDA COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_moeda_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.isglindcdeconmmoeda}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- COMISSÃO SOBRE -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_comissao_sobre}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.identificaCobranca}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <!-- PERIODICIDADE -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="Periodicidade: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.ifluxoperdccmbio}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>   
+            
+            <awb-h:panelGroup>
+                <!-- MOMENTO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="Momento: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.descrmomen}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>            
+                     
+
+            <awb-h:panelGroup>
+                <!-- MINIMO A COBRAR -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_minimo_cobrar}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vmincobrcomis}"
+                    styleClass="HtmlOutputTextBoldBradesco">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- SPREAD APROVADO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_apvr}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadaprov}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- SPREAD NEGOCIADO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_negoc}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadnegoc}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- FLAT -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_flat}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.ptxflatpnalt}%"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- VALOR -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_valor}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vprevtcomiscmbio}"
+                    styleClass="HtmlOutputTextBoldBradesco">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-h:panelGroup>
+            
+             <!-- JUROS MORA -->
+            <awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo eq 2018 or tradeFinMonitFormalizacaoBean.tradeFinanceListaVO.produto.codigo eq 2018}">
+		         <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		         <awb-h:outputLabel value="#{msgs.label_det_juros_mora}: " styleClass="HtmlOutputLabelBradesco"/>
+		         <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxmoracmbio}% #{tradeFinanceBean.tradeFinanceVO.formataJuroMora}" styleClass="HtmlOutputTextBoldBradesco"/>
+	    	</awb-h:panelGroup>
+			
+			 <!-- MULTA -->
+	    	<awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo eq 2018 or tradeFinMonitFormalizacaoBean.tradeFinanceListaVO.produto.codigo eq 2018}">
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_multa}: " styleClass="HtmlOutputLabelBradesco"/>
+		        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vmultanegoccmbio}%" styleClass="HtmlOutputTextBoldBradesco"/>
+	    	</awb-h:panelGroup>
+            
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+</ui:composition>
+</html>

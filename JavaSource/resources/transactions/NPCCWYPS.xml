@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYPS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="976">
+    <register name="NPCCWYPS-HEADER">
+      <field name="NPCCWYPS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYPS" />
+      <field name="NPCCWYPS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00976" />
+    </register>
+    <register name="NPCCWYPS-REGISTRO">
+      <field name="NPCCWYPS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYPS-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWYPS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWYPS-CD-GARNT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYPS-DS-GARNT" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYPS-CINDCD-ECONM-MOE-GAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYPS-DVCTO-GARANT-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWMNS" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="1972">
+    <register name="NPCCWMNS-HEADER">
+      <field name="NPCCWMNS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWMNS" />
+      <field name="NPCCWMNS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01972" />
+    </register>
+    <register name="NPCCWMNS-REGISTRO">
+      <field name="NPCCWMNS-IND-DQMTO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNS-COD-MOEDA-OPER" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNS-SIGLA-MOEDA-OPER" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNS-DESC-MOEDA-OPER" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNS-COD-MOEDA-LIM" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNS-SIGLA-MOEDA-LIM" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNS-DESC-MOEDA-LIM" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      <register name="NPCCWMNS-DADOS-LISTA">
+        <field name="NPCCWMNS-CNT-CREDITO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <register name="NPCCWMNS-CREDITO" minOccurs="25" maxOccurs="25">
+          <field name="NPCCWMNS-DESC-CRED" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-VMOTVO-SOLIC" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-VMOTVO-DISP" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+        <field name="NPCCWMNS-S-CNT-PA" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <register name="NPCCWMNS-PA" minOccurs="2" maxOccurs="2">
+          <field name="NPCCWMNS-DESC-PGTO" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-DPREVT-DSEMB" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-DPREVT-EMBRQ" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+        <field name="NPCCWMNS-CNT-AB" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <register name="NPCCWMNS-AB" minOccurs="2" maxOccurs="2">
+          <field name="NPCCWMNS-DESC-ANY" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-CONDICAO" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+        <field name="NPCCWMNS-CNT-ST" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <register name="NPCCWMNS-ST" minOccurs="2" maxOccurs="2">
+          <field name="NPCCWMNS-DESC-STAND" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWMNS-TDIA-MAX" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+          <field name="NPCCWMNS-TDIA-VALDD" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        </register>
+      </register>
+    </register>
+  </output>
+</copybook>
+

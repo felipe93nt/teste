@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_aditar_cotacao_nce}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList"
+        value="#{breadCrumbBean.loadCaminho('title_tradeFinance_negociacao',99,'title_aditar_cotacao_nce')}" />
+        
+    <!-- Carrega os dados da tela para realizar a duplicação -->
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinAditarBean.iniciar}" />
+    </f:metadata>
+
+    <ui:define name="body">
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <script type="text/javascript" src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+        <awb-br:bundleWriter functionName="getBundle" id="calendarioFiltro" rendered="true"
+            messageKeys="error_message,day_field_name,month_field_nameyear_field_name,field_message_singular,field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+        </awb-br:bundleWriter>
+        
+        <!-- Componente SEI -->
+        <sei:seiRegion id="allContent">
+
+        <!-- FORM -->
+        <awb-h:form id="formTrdFinNegIncl">
+        
+        	<!-- Atributo hidden utilizado no javascript da página para acionar o botão gerar boleto -->
+            <awb-h:inputHidden value="#{tradeFinAditarBean.gerarBoletoAlt}" id="gerarBoletoAlt" />
+			
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Cliente -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosCliente.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Produto -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosProduto.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- NRO APROVACAO CREDITO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosAprovCredito.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- VALOR e MOEDA -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosValorMoedaAditarNce.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+            
+            <!-- SWAP PTAX SPREAD -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosSwapPtaxSpread.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- FLUXO PAGAMENTO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosFluxoPagamento.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- PRECIFICACAO, SPREAD, DADOS DO DEPOSITÁRIO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosNCE.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- TARIFAS -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosTarifas.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- COMISSAO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissao.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- MODELO BOLETO -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosModeloBoleto.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- OBSERVACOES OUTRAS ESPECIFICACOES -->
+            <ui:include
+                src="/content/comercializacao/precificacao/negociacao/content/dadosObsOutrasEspecificacoes.xhtml">
+				<ui:param name="bean" value="#{tradeFinAditarBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+
+			<!-- BOTOES -->
+		    <awb-h:panelGrid columns="2" styleClass="panelGridTable" rendered="true">
+		
+		        <!-- VOLTAR -->
+		        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+		            action="tradeFinMonitList">
+		            <awb-br:submitCheckClient />
+		        </awb-h:commandButton>
+		
+		        <awb-h:panelGrid id="pnlBotoes" columns="2" styleClass="right">
+		             <!-- Gerar Boleto -->
+		            <awb-h:panelGroup>
+		                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+		                    value="Gerar Boleto" disabled="#{tradeFinAditarBean.tradeFinNegocVO.cmodcontrcmbio eq '0'}">
+		                    <f:ajax immediate="false" execute="@form" event="click"
+		                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes"
+		                        listener="#{tradeFinAditarBean.listenerConfirmar}" />
+		                    <awb-f:attribute name="paramConfirmarAdt" value="2" />
+		                </awb-h:commandButton>
+		            
+		                <awb-h:outputLink id="btnGerarBoleto" title="Gerar Boleto"
+		                    styleClass="seiBtnImprimirGrupo tab hidden">
+		                    <sei:seiAction id="seiAction" type="print" render="gerarBoletoAlt divSeiModals formModalMessages"
+		                        action="#{tradeFinAditarBean.gerarBoleto}" jsActionArgs="getExportPdfOnly">
+		                        <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+		                            pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+		                    </sei:seiAction>
+		                    <awb-h:outputLabel value="#{msgs.bto_imprimir}"></awb-h:outputLabel>
+		                </awb-h:outputLink>
+		            </awb-h:panelGroup>
+            
+		            <!-- CONFIRMAR -->
+		            <awb-h:panelGroup>
+		                <awb-h:commandButton id="btoConfirmar" styleClass="HtmlCommandButtonBradesco"
+		                    value="#{msgs.bto_confirmar}">
+		                    <f:ajax immediate="false" execute="@form" event="click"
+		                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes"
+		                        listener="#{tradeFinAditarBean.listenerConfirmar}" />
+<!-- 		                        listener="#{tradeFinAditarBean.actionModalConfirmar}" /> -->
+		                    <awb-f:attribute name="paramConfirmarAdt" value="5" />
+		                </awb-h:commandButton>
+		            </awb-h:panelGroup>
+		        </awb-h:panelGrid>
+		    </awb-h:panelGrid>
+
+
+			<!-- MODAIS - Utiliza os mesmo modais nas telas 'Alterar', 'Divergente', 'Prorrogar' e 'Alongar' 
+			<ui:include
+				src="/content/comercializacao/precificacao/negociacao/content/dadosModalAlt.xhtml">
+			</ui:include>
+			-->
+
+				<!-- MODAL DESENQUADRADAS -->
+				<awb-th:extDiv id="div_modalDesenquadradas">
+					<awb-br:modalContent id="modalDesenquadradas" iconUrl="info"
+						autoOpen="true" reRender="@form formModalMessages"
+						resizable="true" draggable="true" width="850" height="500"
+						closable="false" closeOnEscape="false" header="Desenquadramentos"
+						closeId="frameForm:botaoFechar"
+						onHideServerCallback="#{tradeFinAditarBean.closeModalDesenquadradas}"
+						rendered="#{desenquadradasModalBean.viewHelper.renderModalDesenquadradas}"
+						contentPath="#{request.contextPath}/content/global/desenquadradaModal/modalDesenquadradas.xhtml" />
+				</awb-th:extDiv>
+
+				<!-- MODAL CONSULTA OPERACOES -->
+				<awb-th:extDiv id="div_modalOperVinculada">
+					<awb-br:modalContent id="modalOperacoesAditar" iconUrl="info"
+						autoOpen="true" reRender="@form" resizable="true" draggable="true"
+						width="1000" height="450" closable="false" closeOnEscape="false"
+						header="Vincular Operações"
+						closeId="formModalOperacaoAditar:botaoFechar"
+						onHideServerCallback="#{tradeFinAditarBean.closeModalOperacaoAditar}"
+						rendered="#{operacaoAditarModalBean.viewHelper.renderModalOperacoesAditar}"
+						contentPath="#{request.contextPath}/content/global/operacaoAditarModal/operacaoAditarModal.xhtml" />
+				</awb-th:extDiv>
+
+				<!-- MODAL LIMITES/PROPOSTAS -->
+				<awb-th:extDiv id="div_modalLimites">
+					<awb-br:modalContent id="modalLimites" iconUrl="info"
+						autoOpen="true" reRender="@form formModalMessages" width="1000"
+						height="650" closable="false" closeOnEscape="false"
+						header="Limites Disponíveis" closeId="frameForm:botaoFechar"
+						onHideServerCallback="#{tradeFinAditarBean.closeModalLimites}"
+						rendered="#{limitesModalBean.viewHelper.renderModal}"
+						contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+				</awb-th:extDiv>
+
+				<!-- MODAL SELECT CLIENTE -->
+				<awb-th:extDiv id="div_modalCliente">
+					<awb-br:modalContent id="modalCliente" iconUrl="info"
+						autoOpen="true" reRender="formModalMessages @form"
+						resizable="true" draggable="true" width="750" height="520"
+						closable="false" closeOnEscape="false" header="Selecionar Cliente"
+						closeId="frameForm:botaoFechar"
+						onHideServerCallback="#{tradeFinAditarBean.closeModalCliente}"
+						rendered="#{tradeFinAditarBean.viewHelper.renderModalCliente}"
+						contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+				</awb-th:extDiv>
+
+				<!-- MODAL GARANTIAS -->
+				<awb-th:extDiv id="div_modalGarantias">
+					<awb-br:modalContent id="content_modalGarantias"
+						closeId="frameForm:btnCancelar" autoOpen="true"
+						openId="btnDetalharGarantias, btnDetalharGarantiasTeste"
+						resizable="true" draggable="true"
+						contentPath="#{request.contextPath}/content/global/garantiasModal/tradeFinanceGarantiasModal.xhtml"
+						header="#{msgs.label_garantias}" width="900" height="700"
+						onHideServerCallback="#{garantiasModalBean.closeModal}"
+						rendered="#{garantiasModalBean.viewHelper.renderModal}"
+						reRender="@form formModalMessages" />
+				</awb-th:extDiv>
+
+				<!-- MODAL FLUXO PAGAMENTO -->
+				<awb-th:extDiv id="div_modalFluxoPgto">
+					<awb-br:modalContent id="modalFluxoPgto" iconUrl="info"
+						autoOpen="true" reRender="@form" resizable="true" draggable="true"
+						width="1000" height="580" closable="false" closeOnEscape="false"
+						header="Fluxo de Pagamento" closeId="formModalFlxPgt:botaoFechar"
+						onHideServerCallback="#{tradeFinAditarBean.closeModalFlxPgt}"
+						rendered="#{fluxoPgtoManutModalBean.viewHelper.renderModal}"
+						contentPath="#{request.contextPath}/content/global/fluxoPgtoManutModal/modalFluxoPgtoManut.xhtml" />
+				</awb-th:extDiv>
+
+			    <!-- MODAL MODELO BOLETO -->
+			    <awb-th:extDiv id="div_modalModelBol">
+			        <awb-br:modalContent id="content_modalModelBol" 
+			                             closeId="formTdFnNgModModBol:botaoFechar" 
+			                             autoOpen="true" 
+			                             resizable="true" 
+			                             draggable="true"
+			                             contentPath="#{request.contextPath}/content/global/modeloBoletoModal/modalModelBolList.xhtml" 
+			                             header="#{modeloBoletoModalBean.viewHelper.titulo}" 
+			                             width="500"  
+			                             height="350" 
+										 onHideServerCallback="#{tradeFinanceNegociacaoInclBean.listenerTrocaModeloBoleto}"
+			                             rendered="#{modeloBoletoModalBean.viewHelper.renderModal}"
+			                             reRender="@form formModalMessages"/>
+			     </awb-th:extDiv>
+
+				<!--  MODAL CONFIRMAÇÃO -->
+				<ui:include src="/template/modal.xhtml">
+                    <ui:param name="alertMessageConfirmation" value="#{tradeFinAditarBean.viewHelper.alertMessageConfirmation}" />
+					<ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+					<ui:param name="bean" value="#{tradeFinAditarBean}" />
+					<ui:param name="actionConfirmar" value="actionModalConfirmar" />
+					<ui:param name="actionFechar" value="actionFecharModalConfirma" />
+					<ui:param name="renderModal"
+						value="#{tradeFinAditarBean.viewHelper.renderModal}" />
+				</ui:include>
+
+			</awb-h:form>
+		
+</sei:seiRegion>
+	
+        <!-- SEI API -->
+        <sei:seiApi id="seiApp" usePrintModal="true" />
+
+        <!-- Script para exportação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/export.js" />
+
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+
+        <!-- script -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+        <!-- SCRIPT -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+            
+        <!-- Script da pagina -->
+<!--         <script type="text/javascript" src="#{request.contextPath}/javascript/comercializacao/precificacao/negociacao/tradeFinanceAlt.js" /> -->
+
+    </ui:define>
+
+</ui:composition>
+</html>

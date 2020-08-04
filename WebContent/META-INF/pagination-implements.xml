@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XMLConfiguredPagination>
+	<XMLPaginationTypes>
+		<XMLPaginationType>
+			<id>pdc</id>
+			<fullQualifyName>br.com.bradesco.web.aq.application.pagination.pdc.PDCPaginationAPIImpl</fullQualifyName>			
+		</XMLPaginationType>
+		<XMLPaginationType>
+			<id>ctg</id>
+			<fullQualifyName>br.com.bradesco.web.aq.application.pagination.ctg.CTGPaginationAPIImpl</fullQualifyName>			
+		</XMLPaginationType>		
+	</XMLPaginationTypes>
+</XMLConfiguredPagination>

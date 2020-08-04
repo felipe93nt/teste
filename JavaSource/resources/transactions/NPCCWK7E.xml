@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWK7E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="63">
+    <register name="NPCCWK7E-HEADER">
+      <field name="NPCCWK7E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWK7E" />
+      <field name="NPCCWK7E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00063" />
+    </register>
+    <register name="NPCCWK7E-REGISTRO">
+      <field name="NPCCWK7E-NCONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWK7E-CPRODT-SERVC-OPER" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWK7E-CCPF-CNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWK7E-CFLIAL-CPF-CNPJ" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWK7E-CCTRL-CPF-CNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWK7E-NPPSTA-PONTU-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

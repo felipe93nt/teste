@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZOE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="76">
+    <register name="NPCCWZOE-HEADER">
+      <field name="NPCCWZOE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZOE" />
+      <field name="NPCCWZOE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00076" />
+    </register>
+    <register name="NPCCWZOE-REGISTRO">
+      <field name="NPCCWZOE-DPREVT-DSEMB-I" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZOE-DPREVT-DSEMB-F" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZOE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZOE-VPREVT-DSEMB-I" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZOE-VPREVT-DSEMB-F" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZOE-FLAG-LISTA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

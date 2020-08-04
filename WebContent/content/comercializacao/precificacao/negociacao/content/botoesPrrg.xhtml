@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- BOTOES -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable" rendered="true">
+
+        <!-- VOLTAR -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+            action="tradeFinMonitList">
+            <awb-br:submitCheckClient />
+        </awb-h:commandButton>
+
+        <awb-h:panelGrid id="pnlBotoes" columns="4" styleClass="right">
+
+            <!-- Detalhar -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoDetalhar"
+                    action="#{tradeFinPrgAlongBean.actionDetalhar}"
+                    value="Detalhar" disabled="true">
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- Gerar Boleto -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+                    value="Gerar Boleto" disabled="#{tradeFinPrgAlongBean.tradeFinNegocVO.cmodcontrcmbio eq '0'}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes divSeiModals"
+                        listener="#{tradeFinPrgAlongBean.listenerConfirmar}" />
+                    <awb-f:attribute name="paramConfirmar" value="2" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+            
+            <!-- Cotar Custo Externo -->
+            <awb-h:panelGroup rendered="#{tradeFinPrgAlongBean.renderBotaoCotarCustoExterno}">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoCotarCustoExterno"
+                    value="Cotar Custo Externo">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages div_modalCutoExtAutDsn"
+                        listener="#{tradeFinPrgAlongBean.listenerCotarCustoExterno}" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- CONFIRMAR -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton id="btoConfirmar" styleClass="HtmlCommandButtonBradesco"
+                    value="#{msgs.bto_confirmar}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes"
+                        listener="#{tradeFinPrgAlongBean.listenerConfirmar}" />
+                    <awb-f:attribute name="paramConfirmar" value="1" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+        
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

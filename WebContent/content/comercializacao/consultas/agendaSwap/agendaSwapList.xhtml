@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection" value="#{msgs.title_agenda_swap}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_agenda_swap',0)}" />
+        
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{agendaSwapBean.iniciar}" />
+    </f:metadata>
+
+	<ui:define name="body">
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- CALENDARIO -->
+		<awb-br:bundleWriter functionName="getBundle" id="calendarioTaxas"
+			rendered="true"
+			messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,
+		  field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,
+		  c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,
+		  c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,
+		  c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,
+		  c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+		</awb-br:bundleWriter>
+		
+		<!-- FORM -->
+		<awb-h:form id="formTradeFinMonitDet">
+		
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable" id="gridConsultas"
+				columnClasses="panelGridColumn25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+                   
+				<!-- PERÍODO VENCIMENTO SWAP -->
+				<awb-h:panelGrid columns="1" id="divPeriodoSwap">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_periodo_vencimento_swap}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+                       
+                       <awb-h:panelGrid columns="3" width="310px">
+                           <awb-h:column>
+                               <awb-br:calendar id="periodoSwapInicio" titulo="Calendario" alt="Data Início"
+                                   disableInputFields="false" clientValidationLevel="date"
+                                   onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                                   value="#{agendaSwapBean.filtroVO.periodoSwap.inicio}" />
+                           </awb-h:column>
+                           <awb-h:column>
+                               <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco"
+                                   style="text-align: center;" />
+                           </awb-h:column>
+                           <awb-h:column>
+                               <awb-br:calendar id="periodoSwapFim" titulo="Calendario" alt="Data Fim"
+                                   disableInputFields="false" clientValidationLevel="date"
+                                   onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                                   value="#{agendaSwapBean.filtroVO.periodoSwap.fim}" />
+                           </awb-h:column>
+                       </awb-h:panelGrid>                       
+				</awb-h:panelGrid>
+
+				<!-- PERIODO FECHAMENTO -->
+				<awb-h:panelGrid columns="1" id="divPeriodoFechamento">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_periodo_fechamento}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+                       
+                       <awb-h:panelGrid columns="3" width="310px">
+                           <awb-h:column>
+                               <awb-br:calendar id="periodoFechInicio" titulo="Calendario" alt="Data Início"
+                                   disableInputFields="false" clientValidationLevel="date"
+                                   onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                                   value="#{agendaSwapBean.filtroVO.periodoFech.inicio}" />
+                           </awb-h:column>
+                           <awb-h:column>
+                               <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco"
+                                   style="text-align: center;" />
+                           </awb-h:column>
+                           <awb-h:column>
+                               <awb-br:calendar id="periodoFechFim" titulo="Calendario" alt="Data Fim"
+                                   disableInputFields="false" clientValidationLevel="date"
+                                   onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                                   value="#{agendaSwapBean.filtroVO.periodoFech.fim}" />
+                           </awb-h:column>
+                       </awb-h:panelGrid>
+                       
+				</awb-h:panelGrid>
+                   
+                <!-- CLIENTE -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_cliente}: "
+							styleClass="HtmlOutputLabelBoldBradesco" for="txtCliente" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup
+						style="position: relative; vertical-align: bottom;">
+						<awb-h:inputText
+							value="#{agendaSwapBean.clienteSelecaoVO.nomeCliente}"
+							id="inputCliente" size="50" maxlength="50"
+							styleClass="HtmlInputTextBradesco action-on-enter" />
+							
+						<awb-br:brCommandSearch id="inputCliente-action">
+							<f:ajax execute="inputCliente radioCpfCnpj" event="click"
+								render="div_modalCliente gridConsultas formModalMessages"
+								listener="#{agendaSwapBean.listenerPesquisarClienteNome}" />
+						</awb-br:brCommandSearch>
+                           
+                        <awb-h:message for="txtCliente" id="messageError" errorClass="TextValidatorMessage" />
+                           
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- CPF CNPJ -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<!-- Tipo de pesquisa CPF CNPJ -->
+					<awb-h:panelGroup>
+						<awb-h:selectOneRadio id="radioCpfCnpj" immediate="false"
+							styleClass="HtmlSelectOneRadioBradesco"
+							value="#{agendaSwapBean.viewHelper.codCpfCnpjSelecionado}">
+
+							<awb-f:selectItems
+								value="#{agendaSwapBean.viewHelper.tipoPesquisaCpfCnpj}" />
+
+							<f:ajax execute="@this radioCpfCnpj" event="click"
+								render="gridConsultas formModalMessages"
+								listener="#{agendaSwapBean.limparCpfCnpjCliente}" />
+						</awb-h:selectOneRadio>
+					</awb-h:panelGroup>
+
+					<!-- CAMPOS CPF/CNPJ -->
+					<awb-h:panelGrid columns="2" width="50%" id="gridCpfCnpj">
+						<awb-h:panelGroup id="camposCpfCnpj">
+							<!-- CAMPO CNPJ -->
+							<awb-br:cnpj id="cnpjCliente"
+								value="#{agendaSwapBean.clienteSelecaoVO.cnpj}"
+								binding="#{agendaSwapBean.viewHelper.cnpjBinding}"
+								titleLabelCnpj="CNPJ" titleInputsCnpj="CNPJ"
+								styleClassInputs="HtmlInputTextBradesco action-on-enter"
+								rendered="#{agendaSwapBean.viewHelper.codCpfCnpjSelecionado == 2}">
+							</awb-br:cnpj>
+
+							<!-- CAMPO CPF -->
+							<awb-br:cpf id="cpfCliente"
+								value="#{agendaSwapBean.clienteSelecaoVO.cpf}"
+								binding="#{agendaSwapBean.viewHelper.cpfBinding}"
+								titleLabelCpf="CPF" titleInputsCpf="CPF"
+								styleClassInputs="HtmlInputTextBradesco action-on-enter"
+								rendered="#{agendaSwapBean.viewHelper.codCpfCnpjSelecionado == 3}">
+							</awb-br:cpf>
+						</awb-h:panelGroup>
+
+						<!-- LUPA CPF CNPJ -->
+						<awb-br:brCommandSearch styleClass="cnpjCliente-action cpfCliente-action">
+							<f:ajax execute="gridCpfCnpj" event="click"
+								render="formModalMessages div_modalCliente gridConsultas"
+								listener="#{agendaSwapBean.listenerPesquisarClienteCpfCnpj}" />
+						</awb-br:brCommandSearch>
+
+						<awb-h:message for="cnpjCliente" showSummary="false" showDetail="true" styleClass="error"
+							rendered="#{agendaSwapBean.viewHelper.codCpfCnpjSelecionado == 2}" />
+						<awb-h:message for="cpfCliente" showSummary="false" showDetail="true" styleClass="error"
+							rendered="#{agendaSwapBean.viewHelper.codCpfCnpjSelecionado == 3}" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>                   
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable" 
+				columnClasses="panelGridColum25,panelGridColum25,panelGridColum25,panelGridColum25">
+
+				<!-- SEGMENTO -->
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_segmento}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:selectOneMenu id="segmentos"
+						styleClass="HtmlSelectOneMenuBradesco"
+						value="#{agendaSwapBean.filtroVO.ctposgmtocli}">
+						<f:selectItems value="#{agendaSwapBean.viewHelper.comboSegmento}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+
+				<!-- STATUS -->
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_status}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco"
+						value="#{agendaSwapBean.filtroVO.cindcdliqdcswap}">
+						<f:selectItems value="#{agendaSwapBean.viewHelper.comboStatusSwap}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+				
+				<!-- PRODUTO -->
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_produto}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco"
+						value="#{agendaSwapBean.filtroVO.cprodtservc}">
+						<f:selectItems value="#{agendaSwapBean.produto}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+                   
+				<!-- UNIDADE NEGOCIO -->
+				<awb-h:panelGrid columns="1">
+				    <awb-h:panelGroup>
+				        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				        <awb-h:outputLabel value="#{msgs.label_unidade_negocio}: "
+				            styleClass="HtmlOutputLabelBoldBradesco" />
+				    </awb-h:panelGroup>
+				    <awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco"
+				        value="#{agendaSwapBean.filtroVO.nsequndorgnz}">
+				        <f:selectItems value="#{agendaSwapBean.viewHelper.comboUnidadeNegocio}" />
+				    </awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable" 
+				columnClasses="panelGridColum25,panelGridColum25,panelGridColum25,panelGridColum25">
+				
+                <!-- UNIDADE EXTERNA -->
+                <awb-h:panelGrid columns="1" id="pnlUnidExt">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{msgs.label_unidade_externa}: "
+                            styleClass="HtmlOutputLabelBoldBradesco" />
+                    </awb-h:panelGroup>
+
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtUnidExt"
+                            title="#{msgs.label_unidade_externa}" size="50" maxlength="70"
+                            immediate="false" styleClass="HtmlInputTextBradesco action-on-enter"
+                            value="#{agendaSwapBean.filtroVO.unidadeExternaVO.bancocorr}"
+                            validatorMessage="Mínimo 3 e Máximo 70 caracteres">
+
+                            <awb-f:validator validatorId="customLengthValidator" />
+                            <awb-f:attribute name="minimum" value="3" />
+                            <awb-f:attribute name="maximum" value="70" />
+
+                        </awb-h:inputText>
+
+                        <awb-br:brCommandSearch id="txtUnidExt-action">
+                            <f:ajax execute="@form" event="click"
+                                render="pnlUnidExt div_modalUnidExt formModalMessages"
+                                listener="#{agendaSwapBean.openModalUnidadeExterna}" />
+                            <awb-f:attribute name="paramTelaOrigem" value="1" />
+                        </awb-br:brCommandSearch>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>                							
+			</awb-h:panelGrid>								
+
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable">                    
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+                    <awb-h:panelGroup style="float:right">
+                        <!-- LIMPAR -->
+                        <awb-h:commandButton value="#{msgs.bto_limpar}"
+                            styleClass="HtmlCommandButtonBradesco">
+                            <f:ajax execute="@form" event="click"
+                                render="formTradeFinMonitDet formModalMessages"
+                                listener="#{agendaSwapBean.listenerLimparPesquisa}" />
+                        </awb-h:commandButton>
+
+                        <!-- PESQUISAR -->
+                        <awb-h:commandButton value="#{msgs.bto_pesquisar}" styleClass="HtmlCommandButtonBradesco">
+                            <f:ajax execute="@form" event="click"
+                                render="formTradeFinMonitDet formModalMessages"
+                                listener="#{agendaSwapBean.pesquisar}" />
+                        </awb-h:commandButton>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>                
+            </awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable" rendered="#{agendaSwapBean.lista.size() > 0}">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- GRID FLUXOS -->
+			<awb-h:panelGrid styleClass="panelGridDataTable" id="pnlRadioLista">
+				<!-- RADIO GRID LISTA -->
+				<awb-f:facet name="header">
+					<awb-th:extSelectOneRadio id="radioListaTradeFinance"
+						layout="spread" immediate="false" forceId="true"
+						forceIdIndex="false" value="#{agendaSwapBean.viewHelper.ctcSelecionado}">
+						<awb-f:selectItems value="#{agendaSwapBean.selectItemRadioCtc}" />
+                           
+						<f:ajax event="click" execute="pnlRadioLista btnDetalhar btnBaixar"
+							listener="#{agendaSwapBean.habilitaBotoes}"
+							render="pnlRadioLista btnDetalhar btnBaixar divSeiModals"/>
+
+					</awb-th:extSelectOneRadio>
+				</awb-f:facet>
+			</awb-h:panelGrid>
+				
+			<!--  GRID  -->
+			<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid">
+				<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable">
+					<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIARI" resource="cws">
+						<awb-br:scrollableDataTable id="dataTableTradeFinance"
+						displayWidth="100%" width="1895px"
+							value="#{agendaSwapBean.lista}" var="ctc" rows="10"
+							rowIndexVar="indexCtc" styleClass="panelGridTable"
+							rendered="#{agendaSwapBean.lista.size() > 0}">
+
+							<awb-br:scrollableColumn width="30px" styleClass="c">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-th:extRadio index="#{indexCtc}" for=":formTradeFinMonitDet:radioListaTradeFinance" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_cliente}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.ncunicclicmbio}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_unidade_negocio}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.nomeundorgnz}" />
+							</awb-br:scrollableColumn>
+							
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_vencimento_swap}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dvctopcelatrade}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_ptax}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.descricaoPtax}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_valor_principal_usd}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.vpcelaprnctrade}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_valor_juros_usd}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.vpcelajurotrade}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_produto}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dprodtservc}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_modalidade}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cmodldprodtdesc}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_prazo}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.tdiaopercmbio}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_responsavel_empr}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.nomerof}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_n_ref}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.nbletocmbioano}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_aditivo}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.caditvbletocmbio}" />
+							</awb-br:scrollableColumn>
+
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_status}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.descricaoStatusSwap}" />
+							</awb-br:scrollableColumn>
+														
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+				</awb-th:extDiv>
+
+				<!-- PAGINACAO -->
+				<awb-br:awbDataScroller resource="cws" for="dataTableTradeFinance" styleClass="pagination" id="dataScrollerCadastro" stateID="NPCCIARI"
+					renderFacetsIfSinglePage="true" rendered="#{agendaSwapBean.lista.size() > 0}" actionListener="#{agendaSwapBean.paginar}">
+					
+					<f:facet name="first">
+						<awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+							title="#{msgs.label_txt_primeira}" />
+					</f:facet>
+					<f:facet name="fastrewind">
+						<awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}"
+							title="#{msgs.label_txt_retrocesso}" />
+					</f:facet>
+					<f:facet name="previous">
+						<awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}"
+							title="#{msgs.label_txt_anterior}" />
+					</f:facet>
+					<f:facet name="next">
+						<awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}" 
+							title="#{msgs.label_txt_proxima}" />
+					</f:facet>
+					<f:facet name="fastforward">
+						<awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}" 
+							title="#{msgs.label_txt_avanco}" />
+					</f:facet>
+					<f:facet name="last">
+						<awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+							title="#{msgs.label_txt_ultima}" />
+					</f:facet>
+				</awb-br:awbDataScroller>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable">                    
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+					<awb-h:panelGroup>
+						<!-- VOLTAR -->
+                        <awb-h:commandButton value="#{msgs.bto_voltar}" 
+                        	styleClass="HtmlCommandButtonBradesco" action="nav_index" />
+					</awb-h:panelGroup>                
+                
+                    <awb-h:panelGroup style="float:right" rendered="#{agendaSwapBean.lista.size() > 0}">
+                        <!-- DETALHAR -->
+                        <awb-h:commandButton id="btnDetalhar" value="#{msgs.bto_detalhar}" 
+                        	styleClass="HtmlCommandButtonBradesco" action="#{agendaSwapBean.detalhar}"
+                        	disabled="#{agendaSwapBean.viewHelper.disabledDetalhar}">
+                        </awb-h:commandButton>
+
+                        <!-- BAIXAR -->
+                        <awb-h:commandButton id="btnBaixar" value="#{msgs.bto_baixar}" 
+                        	styleClass="HtmlCommandButtonBradesco" 
+                        	disabled="#{agendaSwapBean.viewHelper.disabledBaixar}" 
+                        	actionListener="#{agendaSwapBean.validarForm}">
+                        </awb-h:commandButton>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>                
+            </awb-h:panelGrid>
+
+			<!-- MODAL SELECT CLIENTE -->
+			<awb-th:extDiv id="div_modalCliente">
+				<awb-br:modalContent id="modalCliente" iconUrl="info"
+					autoOpen="true" reRender="@form divSeiModals" resizable="true"
+					draggable="true" width="1000" height="520" closable="false"
+					closeOnEscape="false" header="Selecionar Cliente"
+					closeId="frameForm:botaoFechar"
+					onHideServerCallback="#{agendaSwapBean.closeModal}"
+					rendered="#{agendaSwapBean.viewHelper.renderModalCliente}"
+					contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+			</awb-th:extDiv>
+
+			<!-- MODAL UNIDADE EXTERNA -->
+			<awb-th:extDiv id="div_modalUnidExt">
+				<awb-br:modalContent id="content_modalUnidExt"
+					closeId="formTdFnNgModUniExt:botaoFechar" autoOpen="true"
+					openId="lupaUnidExt" resizable="true" draggable="true"
+					contentPath="#{request.contextPath}/content/global/unidadeExternaModal/modalUnidExtList.xhtml"
+					header="Selecionar Unidade Externa" width="500" height="350"
+					onHideServerCallback="#{unidadeExternaModalBean.closeModal}"
+					rendered="#{unidadeExternaModalBean.viewHelper.renderModal}"
+					reRender="@form divSeiModals" />
+			</awb-th:extDiv>
+	 
+			<!--  MODAL CONFIRMAÇÃO -->
+			<ui:include src="/template/modal.xhtml">
+				<ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+				<ui:param name="bean" value="#{agendaSwapBean}" />
+				<ui:param name="actionConfirmar" value="actionConfirmar" />
+				<ui:param name="actionFechar" value="actionFechar" />
+				<ui:param name="renderModal" value="#{agendaSwapBean.viewHelper.renderModal}" />
+			</ui:include>
+		
+		</awb-h:form>
+
+		<!-- Script geral da aplicação -->
+		<script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+            
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+		
+	</ui:define>
+</ui:composition>
+</html>

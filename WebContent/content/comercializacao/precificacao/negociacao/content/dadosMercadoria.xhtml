@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1000 a 1099  -->
+
+    <!-- botao Collaps Mercadoria -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosMercadoria}" tabindex="1000"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(4)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Mercadoria" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid id="pnlMercadoria" styleClass="panelGridTable"
+        rendered="#{bean.viewHelper.renderMercadoria}">
+
+        <awb-h:panelGrid id="pnlSelMercadoria" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColumn40,panelGridColum15">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Mercadoria: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="País de Origem: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Previsão de Embarque: " />
+            </awb-h:panelGroup>
+
+            <!-- LINHA DADOS -->
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtMercadoria" title="#{msgs.label_mercadoria}" size="90" maxlength="300"
+                    immediate="false" styleClass="HtmlInputTextBradesco action-on-enter" tabindex="1001"
+                    value="#{bean.trdFinNegMercadoriaVO.rmcadoopercmbio}"
+                    validatorMessage="Mínimo 3 caracteres">
+                    <awb-f:validator validatorId="customLengthValidator" />
+                    <awb-f:attribute name="minimum" value="3" />
+                    <awb-f:attribute name="maximum" value="300" />
+                </awb-h:inputText>
+
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+
+                <awb-br:brCommandSearch id="txtMercadoria-action" tabindex="1002">
+                    <f:ajax execute="@form" event="click" render="pnlSelMercadoria div_modalMercadoria formModalMessages"
+                        listener="#{bean.listenerPesquisarMercadoriaPorNome}" />
+                </awb-br:brCommandSearch>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup id="pnlPaisOrigem">
+                <awb-h:selectOneMenu id="comboPaisOrigem" layout="pageDirection" title="País de Origem" tabindex="1003"
+                    style="width: 150px;font-family: verdana; font-size: 10px" immediate="false"
+                    value="#{bean.trdFinNegMercadoriaVO.cpais}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboPaisOrigem}" />
+                    
+                    <f:ajax immediate="false" execute="pnlPaisOrigem" event="change"
+                        render="formModalMessages pnlPaisOrigem"
+                        listener="#{bean.validarRestricaoPais}" />
+                    <awb-f:attribute name="paramPais" value="1" />
+                    
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-br:calendar id="calendarPrevEmb" titulo="Previsão de Embarque" disableInputFields="false" tabindex="1004"
+                    onFieldFilled="errorStyleChanger"
+                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                    value="#{bean.trdFinNegMercadoriaVO.dprevtembrq}" />
+                <awb-h:outputLabel value=" " escape="false" />
+            </awb-h:panelGroup>
+
+            <awb-h:message for="txtMercadoria" id="msgErrorMerc" errorClass="TextValidatorMessage" />
+
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid id="pnlBeneficiario" columns="3" styleClass="panelGridTable" columnClasses="panelGridColumn40,panelGridColum15">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Beneficiário: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="País Beneficiário: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Número do Desembolso: " />
+            </awb-h:panelGroup>
+            
+            <!-- LINHA DADOS -->
+		    <awb-h:panelGroup>
+		        <awb-h:inputText id="txtBeneficiario" title="#{msgs.label_beneficiario}" size="90" maxlength="80"
+		            immediate="false" styleClass="HtmlInputTextBradesco action-on-enter" tabindex="1005"
+		            value="#{bean.trdFinNegMercadoriaVO.ipssoacmbio}"
+		            validatorMessage="Mínimo 3 caracteres">
+		            <awb-f:validator validatorId="customLengthValidator" />
+		            <awb-f:attribute name="minimum" value="3" />
+		            <awb-f:attribute name="maximum" value="80" />
+		            
+		        </awb-h:inputText>
+		
+		        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+		
+		        <awb-br:brCommandSearch id="txtBeneficiario-action" tabindex="1006">
+		            <f:ajax execute="txtBeneficiario calendarPrevEmb" event="click" render="pnlBeneficiario div_modalBeneficiario formModalMessages"
+		                listener="#{bean.listenerPesquisarBeneficiarioPorNome}" />
+		        </awb-br:brCommandSearch>
+		    </awb-h:panelGroup>
+		    
+            <awb-h:panelGroup id="pnlPaisBeneficiario">
+                <awb-h:selectOneMenu id="comboPaisBeneficiario" layout="pageDirection" title="País Beneficiário" tabindex="1007"
+                    style="width: 150px;font-family: verdana; font-size: 10px" immediate="false"
+                    value="#{bean.trdFinNegMercadoriaVO.cpaisbnefc}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboPaisBeneficiario}" />
+                    
+                    <f:ajax immediate="false" execute="pnlPaisBeneficiario" event="change"
+                        render="formModalMessages pnlPaisBeneficiario"
+                        listener="#{bean.validarRestricaoPais}" />
+                    <awb-f:attribute name="paramPais" value="2" />
+                    
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtNumDesembolso" title="Número do Desembolso" maxlength="5" size="7"
+                    alt="{'type':'integer'}" styleClass="HtmlInputTextBradesco" tabindex="1008"
+                    value="#{bean.trdFinNegMercadoriaVO.ndsembcmbiotrade}">
+                </awb-h:inputText>
+            </awb-h:panelGroup>
+
+            <awb-h:message for="txtBeneficiario" id="msgErrorBenef" errorClass="TextValidatorMessage" />
+
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1" styleClass="right">
+            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclMercadoria" tabindex="1009"
+                value="#{msgs.bto_incluir}">
+                <f:ajax execute="@form" event="click" render="pnlMercadoria formModalMessages"
+                    listener="#{bean.listenerIncluirMercadoria}" />
+            </awb-h:commandButton>
+        </awb-h:panelGrid>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaMercadoria" layout="spread" immediate="false" forceId="true" tabindex="1010"
+                forceIdIndex="false" value="#{bean.viewHelper.itemSelecListaMercadoria}">
+                <awb-f:selectItems value="#{bean.itensRadioListaMercadoria}" />
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+
+        <!-- GRID MERCADORIA -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridMercad"
+            rendered="#{not empty bean.tradeFinNegocVO.listaMercadoria}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableMercad">
+                <awb-br:keepState pdcDataScrollerID="dataScrollerListaMercadoria"
+                    stateID="#{bean.viewHelper.stateIdListaMercadoria}" resource="cws">
+                    <awb-br:scrollableDataTable id="dataTableMercadoria" var="itemMercadoria" rows="20" width="100%"
+                        rowIndexVar="indexListaMercadoria"
+                        value="#{bean.tradeFinNegocVO.listaMercadoria}">
+    
+                        <awb-br:scrollableColumn width="3%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-th:extRadio index="#{indexListaMercadoria}"
+                                for=":formTrdFinNegIncl:radioListaMercadoria" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="35%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Mercadoria" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.rmcadoopercmbio}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="10%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="País Origem" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.nomeCpais}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="19%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Beneficiário" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.ipssoacmbio}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="14%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="País Beneficiário" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.nomeCpaisbnefc}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="9%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Previsão de Embarque" styleClass="tableFontStyle"
+                                    escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.dataPrevEmbFormat}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="10%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Número do Desembolso" styleClass="tableFontStyle"
+                                    escape="false" style="" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemMercadoria.ndsembcmbiotrade}" />
+                        </awb-br:scrollableColumn>
+    
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1" styleClass="right">
+            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoExclMercadoria" tabindex="1011"
+                    disabled="#{empty bean.tradeFinNegocVO.listaMercadoria}"
+                value="#{msgs.bto_excluir}">
+                <f:ajax execute="@form" event="click" render="pnlMercadoria formModalMessages"
+                    listener="#{bean.listenerExcluirMercadoria}" />
+            </awb-h:commandButton>
+        </awb-h:panelGrid>          
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable40"
+            rendered="#{bean.viewHelper.renderSeguroBenef}">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_seg_transporte}: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{msgs.label_det_clausula_benf_br}: " />
+            </awb-h:panelGroup>
+
+            <!-- LINHA DADOS -->
+            <awb-h:panelGroup>
+                <awb-h:selectOneRadio id="radioSegTransporte" layout="lineDirection" immediate="false" tabindex="1012"
+                    title="Seguro de Transporte" styleClass="HtmlSelectOneRadioBradesco"
+                    value="#{bean.tradeFinNegocVO.csegurtrnspmcado}">
+                    <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+                </awb-h:selectOneRadio>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:selectOneRadio id="radioBenefBrad" layout="lineDirection" immediate="false" tabindex="1013"
+                    title="Cláusula Beneficiária Bradesco" styleClass="HtmlSelectOneRadioBradesco"
+                    value="#{bean.tradeFinNegocVO.csegurmcadoorgnz}">
+                    <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+                </awb-h:selectOneRadio>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+
+	<!-- MODAL SELECT Mercadoria -->
+	<awb-th:extDiv id="div_modalMercadoria">
+		<awb-br:modalContent id="modalMercadoria"
+		                     iconUrl="info"
+							 autoOpen="true"
+							 reRender="@form"
+                             resizable="true" draggable="true"
+							 width="1000" height="400" closable="false" closeOnEscape="false"
+							 header="Selecionar Mercadoria"
+							 closeId="formTdFnNgModMercad:botaoFechar"
+							 onHideServerCallback="#{mercadoriaModalBean.closeModalMercadoria}"
+						 	 rendered="#{mercadoriaModalBean.viewHelper.renderModalMercadoria}"
+							 contentPath="#{request.contextPath}/content/global/mercadoriaModal/mercadoriaModal.xhtml" />
+	</awb-th:extDiv>
+	
+	<!-- MODAL SELECT BENEFICIARIO -->
+    <awb-th:extDiv id="div_modalBeneficiario">
+		<awb-br:modalContent id="modalBeneficiario" iconUrl="info"
+			autoOpen="true" reRender="@form" resizable="true" draggable="true"
+			width="1000" height="400" closable="false" closeOnEscape="false"
+			header="Selecionar Beneficiario"
+			closeId="formTdFnNgModBenef:botaoFechar"
+			onHideServerCallback="#{benefModalBean.closeModalBeneficiario}"
+			rendered="#{benefModalBean.viewHelper.renderModalBeneficiario}"
+			contentPath="#{request.contextPath}/content/global/beneficiarioModal/beneficiarioModal.xhtml" />
+	</awb-th:extDiv>
+
+</ui:composition>
+
+</html>

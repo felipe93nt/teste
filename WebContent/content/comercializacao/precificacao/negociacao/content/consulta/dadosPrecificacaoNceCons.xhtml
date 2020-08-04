@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    
+    <!-- Campos Precificação-->
+         <awb-h:panelGrid>
+           <awb-h:panelGroup>
+              <awb-h:outputLabel value=" #{msgs.label_precificacao}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+           </awb-h:panelGroup>
+         </awb-h:panelGrid>
+         
+         <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderPrecificacao}">
+             <awb-h:panelGrid>
+             	<!--  INDICADOR ECONOMICO -->   
+                <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_indc_econ}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.concatenaTxaIndicador}%" styleClass="HtmlOutputTextBoldBradesco"/>
+                </awb-h:panelGroup>
+             </awb-h:panelGrid>
+                 
+             <!--LINHA DIVISORIA  -->
+             <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+             </awb-h:panelGrid>
+             
+             <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum33, panelGridColum33, panelGridColum33">
+             <!-- SPREAD -->
+             <awb-h:panelGroup>
+	           <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	           <awb-h:outputLabel value="#{msgs.label_spread}: " styleClass="HtmlOutputLabelBradesco"/>
+	           <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadnegoc}% AA" styleClass="HtmlOutputTextBoldBradesco"/>
+	    	</awb-h:panelGroup>
+	    	
+	    	<!-- IR -->
+	    	<awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_IR}: " styleClass="HtmlOutputLabelBradesco"/>
+		        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vimpstnegoccmbio}%" styleClass="HtmlOutputTextBoldBradesco"/>
+	    	</awb-h:panelGroup>
+	    	
+	    	<!-- IOF -->
+		    <awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_IOF}: " styleClass="HtmlOutputLabelBradesco"/>
+		        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.viofnegoccmbio}%" styleClass="HtmlOutputTextBoldBradesco"/>
+		    </awb-h:panelGroup>
+		    
+		    <!-- JUROS DE MORA -->
+		    <awb-h:panelGroup>
+		         <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		         <awb-h:outputLabel value="#{msgs.label_det_juros_mora}: " styleClass="HtmlOutputLabelBradesco"/>
+		         <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxmoracmbio}% #{tradeFinanceBean.tradeFinanceVO.codJurosMora}" styleClass="HtmlOutputTextBoldBradesco"/>
+	    	</awb-h:panelGroup>
+	    	
+	    	<!-- MULTA -->
+		    <awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_multa}: " styleClass="HtmlOutputLabelBradesco"/>
+		        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vmultanegoccmbio}%" styleClass="HtmlOutputTextBoldBradesco"/>
+		    </awb-h:panelGroup> 
+	    	
+	    	<!-- LASTRO LCA -->
+		    <awb-h:panelGroup>
+	            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	            <awb-h:outputLabel value="#{msgs.label_det_lastro_lca}: " styleClass="HtmlOutputLabelBradesco"/>
+	            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.lastroLca}" styleClass="HtmlOutputTextBoldBradesco"/>
+	        </awb-h:panelGroup>
+	        
+	        </awb-h:panelGrid>   
+	         
+             <!--LINHA DIVISORIA  -->
+             <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+             </awb-h:panelGrid>
+             
+             <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+                 <awb-h:outputLabel value="#{msgs.label_dados_depositario}" styleClass="HtmlOutputTextBoldBradesco"/>
+             
+             </awb-h:panelGrid>
+             
+             <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColum50, panelGridColum50">
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_nome}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosnome}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_cpf_cnpj}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadoscpfcnpj}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_endereco}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosender}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_ctr_ident}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosident}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_org_exped}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosorgao}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_est_civil}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosestci}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+                 
+                 <awb-h:panelGroup>
+                     <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                     <awb-h:outputLabel value="#{msgs.label_det_reg_civil}: " styleClass="HtmlOutputLabelBradesco"/>
+                     <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.dadosregci}" styleClass="HtmlOutputTextBoldBradesco"/>
+                 </awb-h:panelGroup>
+             </awb-h:panelGrid>
+       </awb-h:panelGrid>
+</ui:composition>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZLE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="79">
+    <register name="NPCCWZLE-HEADER">
+      <field name="NPCCWZLE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZLE" />
+      <field name="NPCCWZLE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00079" />
+    </register>
+    <register name="NPCCWZLE-REGISTRO">
+      <field name="NPCCWZLE-DTPER-INI" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZLE-DTPER-FIM" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZLE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZLE-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZLE-VNEGOC-MOEDA-ESTRGI" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZLE-VNEGOC-MOEDA-ESTRGF" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZLE-CTPO-NEGOC-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

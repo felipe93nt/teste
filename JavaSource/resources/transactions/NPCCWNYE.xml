@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWNYE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="755">
+    <register name="NPCCWNYE-HEADER">
+      <field name="NPCCWNYE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWNYE" />
+      <field name="NPCCWNYE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00755" />
+    </register>
+    <register name="NPCCWNYE-REGISTRO">
+      <field name="NPCCWNYE-E-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWNYE-E-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-CMODLD-PRODT-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-NSEQ-CONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-VNEGOC-MOEDA-ESTRG" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWNYE-E-VSDO-LIM-SENSI" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWNYE-E-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-COPER-CMBIO-EXTER" pic="X(012)" length="12" bytes="12" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWNYE-E-VTX-SPREAD-NEGOC" pic="9(006)V9(9)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      <field name="NPCCWNYE-E-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWNYE-E-DFIM-NEGOC-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWNYE-E-RTOM-OBS-BLETO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWNYE-E-ROBS-BLETO-CMBIO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWNYE-E-CCATLG-GARNT-PRIN" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

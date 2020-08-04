@@ -1,0 +1,49 @@
+.uiModalMainDivIntranet {
+	width:410px;
+	height:80px;
+	background-color:#ffffff;
+	color: #555555;
+	font-family: Verdana;
+	font-size: 9px;
+	font-weight: bold;
+	text-align: justify;
+	padding: 8px;
+}
+
+.uiModalHeaderDivIntranet {
+	border: 0px solid black;
+	font-weight: bold;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.uiModalBodyDivIntranet {
+	border: 1px solid white;
+	background-color: white;
+	margin: 10px 0px 5px 0px;
+}
+
+.uiModalBodyDivIntranet p {
+	padding: 8px 15px 8px 15px;
+	margin: 0px;
+	border: 0px solid black;
+}
+
+.uiModalOkButtonIntranet {
+	width: 56px;
+}
+
+.uiModalFooterDivIntranet {
+	border-top: 1px solid black;
+	text-align: center;
+	padding: 3px 0px 0px 0px;
+}
+
+.uiModalTextIntranet {
+	font-weight: bold;
+	font-size: 10px;
+}
+
+.uiModalHeader > .ui-dialog-titlebar-close {
+	visibility: hidden;
+}

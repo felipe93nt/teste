@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="INECWPAS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="76">
+    <register name="INECWPAS-HEADER">
+      <field name="INECWPAS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="INECWPAS" />
+      <field name="INECWPAS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00076" />
+    </register>
+    <register name="INECWPAS-BLOCO-SAIDA">
+      <field name="INECWPAS-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="INECWPAS-IPAIS" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

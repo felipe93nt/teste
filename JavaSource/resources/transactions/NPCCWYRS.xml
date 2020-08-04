@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYRS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="69">
+    <register name="NPCCWYRS-HEADER">
+      <field name="NPCCWYRS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYRS" />
+      <field name="NPCCWYRS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00069" />
+    </register>
+    <register name="NPCCWYRS-REGISTRO">
+      <field name="NPCCWYRS-VALIDADE-COTAC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYRS-DT-COTAC" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYRS-CUSTO-EXT" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYRS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYRS-PRZO-MEDIO-DSEMB-M" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYRS-SPREAD-CLEAN" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYRS-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

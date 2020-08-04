@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWW3E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="236">
+    <register name="NPCCWW3E-HEADER">
+      <field name="NPCCWW3E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWW3E" />
+      <field name="NPCCWW3E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00236" />
+    </register>
+    <register name="NPCCWW3E-REGISTRO">
+      <field name="NPCCWW3E-QTDD-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWW3E-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWW3E-QTDD-OCORR" dependsType="number">
+        <field name="NPCCWW3E-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWW3E-CINDCD-FNDNG-UTLZD" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

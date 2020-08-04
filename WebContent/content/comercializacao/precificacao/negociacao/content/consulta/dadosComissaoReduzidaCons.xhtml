@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Campos Comissão-->
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:panelGroup>
+            <awb-h:outputLabel value=" #{msgs.label_comissao_adicional}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderComissao}">
+        <!-- RADIO GRID LISTA -->
+        <awb-h:panelGrid>
+            <awb-f:facet name="header">
+                <awb-th:extSelectOneRadio id="radioListaComissao" layout="spread" immediate="false" forceId="true"
+                    forceIdIndex="false" value="#{tradeFinanceBean.viewHelper.comissaoExtSelecionado}">
+                    <awb-f:selectItems value="#{tradeFinanceBean.selectItemComissaoExt}" />
+                </awb-th:extSelectOneRadio>
+            </awb-f:facet>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid6">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable6">
+                <awb-br:scrollableDataTable var="comissaoLista" value="#{tradeFinanceBean.comissaoExtList}"
+                    rowIndexVar="indexComExt" id="listaComissao" width="100%"
+                    rendered="#{tradeFinanceBean.comissaoExtList.size() > 0}">
+                    
+                    <awb-br:scrollableColumn width="3%">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-th:extRadio index="#{indexComExt}" for=":formTradeFinMonitDet:radioListaComissao" />
+                    </awb-br:scrollableColumn>
+                    
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_tipo}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.icondeconc}" styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.vpcelacomiscmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco">
+                        <f:converter converterId="numericConverter"></f:converter>
+                        </awb-h:outputLabel>
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_taxa}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.pcomisnegoccmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_periodo}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.iperdcjurocmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.isglindcdfonte}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+                    
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Periodicidade" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.ifluxoperdccmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+                    
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Momento" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoLista.descrmomento}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                </awb-br:scrollableDataTable>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+    
+</ui:composition>
+</html>

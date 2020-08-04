@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZWE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="562">
+    <register name="NPCCWZWE-HEADER">
+      <field name="NPCCWZWE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZWE" />
+      <field name="NPCCWZWE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00562" />
+    </register>
+    <register name="NPCCWZWE-REGISTRO">
+      <field name="NPCCWZWE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-CMOTVO-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-ROBS-BLETO-CMBIO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZWE-CTPO-OBS-BLETO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-NSEQ-CONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-NPPSTA-PONTU-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZWE-CSIT-BLETO-APROV" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

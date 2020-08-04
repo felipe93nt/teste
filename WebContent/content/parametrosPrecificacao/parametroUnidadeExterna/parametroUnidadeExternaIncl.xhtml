@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-f="http://bradesco.com.br/components-core"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-h="http://bradesco.com.br/components-html">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+    <!-- CAMINHO DE PAO -->
+    <ui:param name="selection" value="#{msgs.title_parametrizar_parametro_unidade_externa_list}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_parametro_unidade_externa_incl',1)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <awb-h:form id="formParametroUnidadeExterna">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+            
+		    <awb-h:panelGrid id="pnlFaixasOperacao" columns="1" styleClass="panelGridTable">
+
+	         	<!-- MOEDA -->
+				<awb-h:panelGroup styleClass="table-line-spacing-10">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_moeda}:" />
+					</awb-h:panelGroup>
+					<br />
+                 	<awb-h:selectOneMenu id="comboMoeda" layout="pageDirection" 
+			                 	title="Moeda"
+            			        styleClass="HtmlSelectOneMenuBradesco"
+                     			value="#{parametroUnidadeExternaBean.parametroUnidadeExternaVO.cindcdeconmmoeda}"
+								disabled="true"
+                     			immediate="false">
+                     			<awb-f:selectItems 
+                     				value="#{parametroUnidadeExternaBean.viewHelper.comboMoedas}" />
+               		</awb-h:selectOneMenu>
+				</awb-h:panelGroup>
+		
+	         	<!-- PRODUTO -->
+				<awb-h:panelGroup styleClass="table-line-spacing-10">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+											value="#{msgs.label_produto}:" />
+					</awb-h:panelGroup>
+					<br />
+					<awb-h:selectOneMenu id="comboProduto" layout="pageDirection"
+								title="#{msgs.label_produto}"
+								styleClass="HtmlSelectOneMenuBradesco"
+								value="#{parametroUnidadeExternaBean.parametroUnidadeExternaVO.cprodtservc}"
+								disabled="true"
+								immediate="true">
+								<awb-f:selectItems
+									value="#{parametroUnidadeExternaBean.viewHelper.comboProdutos}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGroup>
+            	
+	         	<!-- VALOR AUTORIZADO POR PRODUTO -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_valor_autorizado_por_produto}: " />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="#{msgs.label_valor_autorizado_por_produto}" alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                        value="#{parametroUnidadeExternaBean.parametroUnidadeExternaVO.valorAutorizadoPorProduto}"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+                
+	            <!-- LINHA -->
+	            <awb-h:panelGrid width="100%">
+	                <awb-f:verbatim>
+	                    <hr />
+	                </awb-f:verbatim>
+	            </awb-h:panelGrid>
+
+				<!--  FAIXA  -->	            
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="Faixa" />
+            
+	         	<!-- VALOR DE -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_valor_de}: " />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="#{msgs.label_valor_de}" alt="{'type':'money-dot'}" maxlength="18" size="22"
+                        value="#{parametroUnidadeExternaBean.faixaOperacaoVO.valorDe}"
+                        styleClass="HtmlInputTextObrigatorioBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+                
+	         	<!-- VALOR ATE -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_valor_ate}: " />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="#{msgs.label_valor_ate}" alt="{'type':'money-dot'}" maxlength="18" size="22"
+                        value="#{parametroUnidadeExternaBean.faixaOperacaoVO.valorAte}"
+                        styleClass="HtmlInputTextObrigatorioBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+                
+                <!-- SWIFT CODE / NOME BANCO PRINCIPAL -->
+	            <awb-h:panelGrid id="pgDadosBancoPrincipal" columns="4" styleClass="panelGridTable50" columnClasses="panelGridColum15,panelGridColum50,panelGridColum15,panelGridColumn20">
+	        		<awb-h:panelGroup>
+	       			    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            	<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_swift_code}:" />
+	                </awb-h:panelGroup>
+	                
+		            <awb-h:panelGroup>
+	                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            	<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_nome_banco_principal}: " />
+	                </awb-h:panelGroup>
+	                
+	               	<awb-h:panelGroup />
+	               	<awb-h:panelGroup />
+	                
+	                <awb-h:panelGroup>
+		                 <awb-h:inputText id="txtSwiftCodeBancoPrincipal" title="#{msgs.label_swift_code}" size="12" immediate="false"
+	                        value="#{parametroUnidadeExternaBean.faixaOperacaoVO.banco.cidbanqrswift}" maxlength="8" readonly="true"
+	                        styleClass="HtmlInputTextObrigatorioBradesco">
+	                    </awb-h:inputText>
+                       	<awb-h:outputLabel value="    " />
+		            </awb-h:panelGroup>
+	
+	                <awb-h:panelGrid columns="2">
+	                    <awb-h:panelGroup>
+	                        <awb-h:inputText id="txtNomeBancoPrincipal" title="#{msgs.label_nome_banco}" size="85"
+	                            immediate="false" value="#{parametroUnidadeExternaBean.faixaOperacaoVO.banco.ibanqrcmbio}"
+	                            maxlength="70" readonly="true" styleClass="HtmlInputTextObrigatorioBradesco">
+	                        </awb-h:inputText>
+	                    </awb-h:panelGroup>
+	
+	                    <awb-br:brCommandSearch id="lupaBancoPrincipal">
+	                        <f:ajax execute="@form" event="click" render="formParametroUnidadeExterna formModalMessages"
+	                            listener="#{parametroUnidadeExternaBean.listenerPesquisarBanqueiro}" />
+	                    </awb-br:brCommandSearch>
+	                </awb-h:panelGrid>
+	                <awb-h:panelGroup />
+	        	</awb-h:panelGrid>
+            
+                <awb-h:panelGrid style="float:right" columns="2">
+	               	<!-- INCLUIR FAIXA -->
+	                <awb-h:commandButton id="btnIncluirFaixa" rendered="#{not parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}" styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_incluir_faixa}">
+	               			<f:ajax event="click" immediate="false" execute="@form"
+	                   			listener="#{parametroUnidadeExternaBean.listenerIncluirFaixa}"
+	                   		render="formParametroUnidadeExterna formModalMessages" />
+	                </awb-h:commandButton>
+	
+	               	<!-- CANCELAR ALTERACAO FAIXA -->
+	                <awb-h:commandButton id="btnCancelarFaixa" rendered="#{parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}" styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_cancelar}">
+	               			<f:ajax event="click" immediate="false" execute="@form"
+	                   			listener="#{parametroUnidadeExternaBean.listenerCancelarAlteracaoFaixa}"
+	                   		render="formParametroUnidadeExterna formModalMessages" />
+	                </awb-h:commandButton>
+	
+	               	<!-- ALTERAR FAIXA -->
+	                <awb-h:commandButton id="btnAlterarFaixa" rendered="#{parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}" styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_alterar_faixa}">
+	               			<f:ajax event="click" immediate="false" execute="@form"
+	                   			listener="#{parametroUnidadeExternaBean.listenerAlterarFaixa}"
+	                   		render="formParametroUnidadeExterna formModalMessages" />
+	                </awb-h:commandButton>
+      			</awb-h:panelGrid>
+      		</awb-h:panelGrid>
+      		
+	        <!-- RADIO GRID LISTA -->
+	        <awb-f:facet name="header">
+	            <awb-th:extSelectOneRadio id="radioListaFaixas" layout="spread" immediate="false" forceId="true"
+	                forceIdIndex="false" value="#{parametroUnidadeExternaBean.viewHelper.codItemSelecionadoLista}"
+	                disabled="#{parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}">
+	                <awb-f:selectItems value="#{parametroUnidadeExternaBean.itensRadioListaFaixas}" />
+	            </awb-th:extSelectOneRadio>
+	        </awb-f:facet>
+
+	        <!-- GRID FAIXAS -->
+	        <awb-h:panelGrid id="pnlGridFaixas" styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+	            rendered="#{not empty parametroUnidadeExternaBean.parametroUnidadeExternaVO.listaFaixaOperacao}">
+            	<!-- LINHA -->
+	            <awb-h:panelGrid width="100%">
+	                <awb-f:verbatim>
+	                    <hr />
+	                </awb-f:verbatim>
+	            </awb-h:panelGrid>
+				<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableFaixas">
+	                <awb-br:keepState pdcDataScrollerID="dataScrollerListaFaixas"
+	                    stateID="#{parametroUnidadeExternaBean.viewHelper.stateIdListaFaixas}" resource="cws">
+	                    <awb-br:scrollableDataTable id="dataTableFluxo" var="itemFaixa" rows="20" width="100%"
+	                        rowIndexVar="indexListaFaixas" value="#{parametroUnidadeExternaBean.parametroUnidadeExternaVO.listaFaixaOperacao}">
+	
+							<!--  RADIO  -->
+	                        <awb-br:scrollableColumn width="3%"  styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-th:extRadio index="#{indexListaFaixas}" for=":formParametroUnidadeExterna:radioListaFaixas" />
+	                        </awb-br:scrollableColumn>
+	
+							<!--  Valor De  -->
+	                        <awb-br:scrollableColumn width="10%" styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_valor_de}" styleClass="tableFontStyle"
+	                                    escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemFaixa.valorDe}" />
+	                        </awb-br:scrollableColumn>
+	
+							<!--  Valor Ate  -->
+	                        <awb-br:scrollableColumn width="20%" styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_valor_ate}" styleClass="tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemFaixa.valorAte}" />
+	                        </awb-br:scrollableColumn>
+	
+							<!--  Nome Banco  -->
+	                        <awb-br:scrollableColumn width="20%" styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_unidade_externa_bco_corres}" styleClass="tableFontStyle"
+	                                    escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemFaixa.banco.ibanqrcmbio}" />
+	                        </awb-br:scrollableColumn>
+	
+							<!--  Praça  -->
+	                        <awb-br:scrollableColumn width="20%" styleClass="c">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="#{msgs.label_praca}" styleClass="tableFontStyle"
+	                                    escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{itemFaixa.banco.imunintlcmbio}" />
+	                        </awb-br:scrollableColumn>
+
+	                    </awb-br:scrollableDataTable>
+	                </awb-br:keepState>
+	            </awb-th:extDiv>
+
+	            <!-- BOTOES DAS FAIXAS -->
+                <awb-h:panelGrid style="float:right" columns="2">
+	               	<!-- REMOVER FAIXA -->
+	                <awb-h:commandButton id="btnRemover" rendered="#{not parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}" styleClass="HtmlCommandButtonBradesco right" value="#{msgs.bto_remover}">
+	               			<f:ajax event="click" immediate="false" execute="@form"
+	                   			listener="#{parametroUnidadeExternaBean.listenerRemoverFaixa}"
+	                   		render="formParametroUnidadeExterna formModalMessages" />
+	                </awb-h:commandButton>
+	                
+	               	<!-- ALTERAR FAIXA -->
+	                <awb-h:commandButton id="btnAlterar" rendered="#{not parametroUnidadeExternaBean.viewHelper.modoAlteracaoFaixa}" styleClass="HtmlCommandButtonBradesco right" value="#{msgs.bto_alterar}">
+	               			<f:ajax event="click" immediate="false" execute="@form"
+	                   			listener="#{parametroUnidadeExternaBean.listenerCarregarFaixaAlteracao}"
+	                   		render="formParametroUnidadeExterna formModalMessages" />
+	                </awb-h:commandButton>
+	        	</awb-h:panelGrid>
+	        </awb-h:panelGrid>
+        		
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" action="#{parametroUnidadeExternaBean.actionVoltar}"
+                    immediate="true" styleClass="HtmlCommandButtonBradesco" />
+                <!-- CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarIncl" styleClass="HtmlCommandButtonBradesco right"
+                    actionListener="#{parametroUnidadeExternaBean.confirmarForm}" value="#{msgs.bto_confirmar}" />
+            </awb-h:panelGrid>
+
+            <!-- MODAL CONFIRMAÇÃO -->
+            <ui:include src="/template/modal.xhtml">
+                <ui:param name="message" value="#{msgs.info_confirmar_inclusao}" />
+                <ui:param name="bean" value="#{parametroUnidadeExternaBean}" />
+                <ui:param name="actionConfirmar" value="actionConfirmar" />
+                <ui:param name="actionFechar" value="actionFecharModal" />
+                <ui:param name="renderModal" value="#{parametroUnidadeExternaBean.viewHelper.renderModal}" />
+            </ui:include>
+            
+            <!-- MODAL BANQUEIRO -->
+            <awb-br:modalContent id="modalBanqueiro" iconUrl="info" autoOpen="true" reRender="@form" resizable="true"
+                draggable="true" width="800" height="600" closable="false" closeOnEscape="false"
+                header="Pesquisar Banco" closeId="frameForm:botaoFechar"
+                onHideServerCallback="#{banqueiroModalBean.closeModal}"
+                rendered="#{banqueiroModalBean.viewHelper.renderModal}"
+                contentPath="#{request.contextPath}/content/global/banqueiroModal/banqueiroModal.xhtml" />
+            
+        </awb-h:form>
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        <!-- script -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+        
+
+    </ui:define>
+</ui:composition>
+</html>

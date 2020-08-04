@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWJPS" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="3266">
+    <register name="NPCCWJPS-HEADER">
+      <field name="NPCCWJPS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWJPS" />
+      <field name="NPCCWJPS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03266" />
+    </register>
+    <register name="NPCCWJPS-REGISTRO">
+      <field name="NPCCWJPS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWJPS-LISTA" minOccurs="0" maxOccurs="10" depends="NPCCWJPS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWJPS-CCATLG-GARNT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWJPS-ICARAC-TPO-GARNT" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWJPS-VTX-GARNT-CMBIO" pic="9(06)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWJPS-CINDCD-GARNT-PRINC" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWJPS-CIDTFD-GARNT-ADCIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWJPS-RCOMPL-GARNT-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWJPS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWJPS-CINDDS-ECONM-MOEDA" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

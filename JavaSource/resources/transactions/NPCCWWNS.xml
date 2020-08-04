@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWNS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="17796">
+    <register name="NPCCWWNS-HEADER">
+      <field name="NPCCWWNS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWNS" />
+      <field name="NPCCWWNS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="17796" />
+    </register>
+    <register name="NPCCWWNS-REGISTRO">
+      <field name="NPCCWWNS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWWNS-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWWNS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWWNS-CMCADO-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWNS-RMCADO-OPER-CMBIO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-CMCADO-CMBIO-MCSUL" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWNS-RINGLS-MCADO-CMBIO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-CINDCD-LICEN-MCADO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-CMCADO-REST-CMBIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-NTPO-SIT-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWNS-RJUSTF-SIT-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-CUSUAR-INCL" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-CUSUAR-MANUT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWNS-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

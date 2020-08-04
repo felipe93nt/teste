@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+	<!--      Totais -->
+	<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid" rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable">
+			<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAQ6" resource="cws">
+				
+				<awb-h:panelGroup>
+					<awb-h:outputLabel value="Estatística de Fechamento em Quantidade: " styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+				<br/> <br/>
+				
+				<awb-br:scrollableDataTable id="dataTableTradeFinance" value="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes}" 
+				width="100%"
+				var="ctc" styleClass="panelGridTable" rows="15"	rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+
+					<awb-br:scrollableColumn width="30%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{estatisticasCotacoesBean.estatisticaCotacoesVO.nomedocampo}" styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel styleClass="tableFontStyle" value="#{ctc.idtppesquisa}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctfechadaqt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdida"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctperdidaqt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Fime"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctnegofirqt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Indicativa"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctnegoindqt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Baixada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctbaixadaqt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Total"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdcotac}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="12%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechado vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.percentualct}" />
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+				 
+			</awb-br:keepState>
+		</awb-th:extDiv>
+		
+	</awb-h:panelGrid>
+	
+	<awb-h:panelGrid id="panelgrig2" styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable2">
+					
+					<awb-br:scrollableDataTable value="#{estatisticasCotacoesBean.estatisticaCotacoesVO}" var="ctc" styleClass="panelGridTable" 
+					width="100%"
+					rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+
+
+					<awb-br:scrollableColumn width="30%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="" styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel styleClass="tableFontStyle" value="Total:"/>
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdstfec}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdida"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdstper}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Fime"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdstnfi}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Indicativa"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdstnin}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Baixada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdstbai}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Total"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdtotal}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="12%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechado vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totqtdperfv}" />
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+				 
+		</awb-th:extDiv>
+
+	</awb-h:panelGrid>
+	
+
+	<!--  LINHA DIVISÓRIA -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<br />
+	</awb-h:panelGrid>
+	
+	<!-- 	valores -->
+	<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid2" rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable3">
+			<awb-br:keepState pdcDataScrollerID="dataScroller" resource="cws">
+				
+					<awb-h:panelGroup>
+						<awb-h:outputLabel value="Estatística de Fechamento em USD: " styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<br/> <br/>
+					
+				<awb-br:scrollableDataTable id="dataTableTradeFinance2" value="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes}" 
+				width="100%"
+				var="ctc" styleClass="panelGridTable" rows="15" rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+
+					<awb-br:scrollableColumn width="30%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{estatisticasCotacoesBean.estatisticaCotacoesVO.nomedocampo}" styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel styleClass="tableFontStyle" value="#{ctc.idtppesquisa}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechada"
+							
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctfechadavl}">
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdida"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctperdidavl}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Fime"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctnegofirvl}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Indicativa"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctnegoindvl}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Baixada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ctbaixadavl}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Total"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalprodt}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="12%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechado vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.percentualvl}" />
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+				 
+			</awb-br:keepState>
+		</awb-th:extDiv>
+
+	</awb-h:panelGrid>
+	
+	<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size">
+				
+				<awb-br:scrollableDataTable value="#{estatisticasCotacoesBean.estatisticaCotacoesVO}" var="ctc" styleClass="panelGridTable" 
+					width="100%"
+					rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+
+
+					<awb-br:scrollableColumn width="30%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="" styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel styleClass="tableFontStyle" value="Total:" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalstfec}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdida"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalstper}" />						
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Fime"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalstnfi}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="15%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Em Negociação-Indicativa"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalstnin}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Baixada"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalstbai}" />						
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="7%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Total"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvaltotal}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="12%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechado vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.totvalperfv}" />
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+				 
+		</awb-th:extDiv>
+		
+		
+<!--  		PAGINACAO -->
+		<awb-br:awbDataScroller resource="cws" for="dataTableTradeFinance"
+			styleClass="pagination" id="dataScrollerCadastro"
+			renderFacetsIfSinglePage="true"
+			rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}"
+			actionListener="#{cotacoesaVencerBean.pesquisarCotacoesVencer}"
+			stateID="NPCCIAQ6">
+			<f:facet name="first">
+				<awb-br:awbCommandButton styleClass="button"
+					value="#{msgs.label_primeira}"
+					title="#{msgs.label_txt_primeira}" />
+			</f:facet>
+			<f:facet name="fastrewind">
+				<awb-br:awbCommandButton styleClass="button pagination-btn"
+					value="#{msgs.label_retrocesso}"
+					title="#{msgs.label_txt_retrocesso}" />
+			</f:facet>
+			<f:facet name="previous">
+				<awb-br:awbCommandButton styleClass="button pagination-btn"
+					value="#{msgs.label_anterior}"
+					title="#{msgs.label_txt_anterior}" />
+			</f:facet>
+			<f:facet name="next">
+				<awb-br:awbCommandButton styleClass="button pagination-btn"
+					value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+			</f:facet>
+			<f:facet name="fastforward">
+				<awb-br:awbCommandButton styleClass="button pagination-btn"
+					value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+			</f:facet>
+			<f:facet name="last">
+				<awb-br:awbCommandButton styleClass="button pagination-btn"
+					value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+			</f:facet>
+		</awb-br:awbDataScroller>
+
+	</awb-h:panelGrid>
+				
+</ui:composition>
+
+</html>

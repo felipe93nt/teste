@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX6E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="41">
+    <register name="NPCCWX6E-HEADER">
+      <field name="NPCCWX6E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX6E" />
+      <field name="NPCCWX6E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00041" />
+    </register>
+    <register name="NPCCWX6E-REGISTRO">
+      <field name="NPCCWX6E-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX6E-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWX6E-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWX6E-TDIA-PRZO-OPER" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

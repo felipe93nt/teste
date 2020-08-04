@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXTS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="0" />
+</copybook>
+

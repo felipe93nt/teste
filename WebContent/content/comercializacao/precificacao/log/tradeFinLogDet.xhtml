@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection" value="#{msgs.title_logs_cotacao}" />
+	<ui:param name="passNumber" value="2" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_trade_finance_log',99, 'title_logs_cotacao')}" />
+	<ui:define name="body">
+
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+		
+		<!-- Componente SEI -->
+		<sei:seiRegion id="allContent">
+
+		<!-- FORM -->
+		<awb-h:form id="formTradeFinLog">
+			<!-- CARREGA DADOS SELECIONADOS -->
+			<awb-h:panelGrid styleClass="panelGridTable"
+				columnClasses="panelGridColum10,panelGridTable10,panelGridTable50"
+				columns="3">
+
+				<!-- NUMERO COTACAO -->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_ctc}:"
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{tradeFinanceLogBean.tradeFinanceListaVO.nbletocmbioano}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+
+				<!-- DATA COTACAO -->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_dt_ctc}:"
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{tradeFinanceLogBean.tradeFinanceListaVO.dtcotacao}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+
+				<!-- CLIENTE -->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_cliente}:"
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{tradeFinanceLogBean.tradeFinanceListaVO.ncunicclicmbio}"
+						styleClass="HtmlOutputLabelBoldBradesco" />
+
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- GRID FLUXOS -->
+			<awb-h:panelGrid styleClass="panelGridDataTable">
+
+				<!-- RADIO GRID LISTA -->
+				<awb-f:facet name="header">
+					<awb-th:extSelectOneRadio id="radioListaCtcPend" layout="spread"
+						immediate="false" forceId="true" forceIdIndex="false"
+						value="#{tradeFinanceLogBean.itemSelecionadoLogAcoes}">
+						<awb-f:selectItems
+							value="#{tradeFinanceLogBean.selectItemRadioPend}" />
+					</awb-th:extSelectOneRadio>
+				</awb-f:facet>
+			</awb-h:panelGrid>
+
+			<!-- GRID -->
+			<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid">
+				<awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable">
+					<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIARO" resource="cws">
+						<awb-br:scrollableDataTable id="dataTable"
+							displayWidth="100%" width="1630px"
+							value="#{tradeFinanceLogBean.listaLogAcoes}" var="ctc" rows="10"
+							rowIndexVar="indexCtc" styleClass="panelGridTable">
+							
+							<awb-br:scrollableColumn width="30px" styleClass="c">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+										escape="false" />
+								</awb-f:facet>
+								<awb-th:extRadio index="#{indexCtc}"
+									for=":formTradeFinLog:radioListaCtcPend" />
+							</awb-br:scrollableColumn>
+
+							<!-- STATUS COTACAO -->
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_status_cotacao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dsitbletocmbio}" />
+							</awb-br:scrollableColumn>
+
+							<!-- DATA LOG -->
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_log}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dtcotacao}" />
+							</awb-br:scrollableColumn>
+
+							<!-- CLIENTE -->
+							<awb-br:scrollableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_cliente}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.ncunicclicmbio}" />
+							</awb-br:scrollableColumn>
+
+							<!-- PRODUTO -->
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_produto}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dprodtservc}" />
+							</awb-br:scrollableColumn>
+
+							<!-- MODALIDADE -->
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_modalidade}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel
+									value="#{ctc.cmodldprodtcmbio} - #{ctc.cmodldprodtdesc}" />
+							</awb-br:scrollableColumn>
+
+							<!-- VALOR ME -->
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_valor_ME}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.vnegocmoedaestrg}">
+									<f:converter converterId="numericConverter"></f:converter>
+								</awb-h:outputLabel>
+							</awb-br:scrollableColumn>
+
+							<!-- DATA/HORA -->
+							<awb-br:scrollableColumn styleClass="min-width-150">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_barra_hora}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dtcotacao} - #{ctc.horario}" />
+							</awb-br:scrollableColumn>
+
+							<!-- OPERADOR -->
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_operador}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cusuarinclt}" />
+							</awb-br:scrollableColumn>
+
+							<!-- FUNCAO -->
+							<awb-br:scrollableColumn  width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_funcao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.funcao}" />
+							</awb-br:scrollableColumn>
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+
+					<!-- PAGINAÇÃO  -->
+					<awb-br:awbDataScroller resource="cws" for="dataTable"
+						styleClass="pagination" id="dataScroller"
+						renderFacetsIfSinglePage="true"
+						actionListener="#{tradeFinanceLogBean.paginarLog}"
+						stateID="NPCCIARO">
+						<awb-f:facet name="first">
+							<awb-br:awbCommandButton styleClass="button"
+								value="#{msgs.label_primeira}"
+								title="#{msgs.label_txt_primeira}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastrewind">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_retrocesso}"
+								title="#{msgs.label_txt_retrocesso}" />
+						</awb-f:facet>
+						<awb-f:facet name="previous">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_anterior}"
+								title="#{msgs.label_txt_anterior}" />
+						</awb-f:facet>
+						<awb-f:facet name="next">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastforward">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+						</awb-f:facet>
+						<awb-f:facet name="last">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+						</awb-f:facet>
+					</awb-br:awbDataScroller>
+				</awb-th:extDiv>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- BOTOES -->
+			<awb-h:panelGrid columns="2" styleClass="panelGridTable">
+				<!-- VOLTAR -->
+				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+					value="#{msgs.bto_voltar}" immediate="true"
+					action="#{tradeFinanceLogBean.actionVoltar}" />
+
+				<awb-h:panelGrid style="float:right" columns="2"
+					rendered="#{tradeFinanceLogBean.listaLogAcoes.size() > 0}">
+
+					<!--  EXPORTAÇÃO -->
+					<awb-h:outputLink id="exportButton"
+						title="#{msgs.bto_exportar_excel}"
+						rev="#{empty tradeFinanceLogBean.listaLogAcoes}"
+						styleClass="seiBtnSalvarArquivoGrupo tab sei-button"
+						value="javascript:;">
+
+						<sei:seiAction type="save"
+							action="#{tradeFinanceLogBean.exportarlogDetalhe}"
+							jsActionArgs="App.exportFormats.excel" render="divSeiModals">
+
+						<sei:seiSettings pageOrientation="landscape"
+							pageNumberLabel="#{msgs.label_pagina}"
+							pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+						</sei:seiAction>
+					</awb-h:outputLink>
+
+					<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+					value="#{msgs.bto_confirmar}" id="btnConfirmar"
+					action="#{tradeFinanceLogBean.actionConfirmarLog}"
+					disabled="#{tradeFinanceLogBean.listaLogAcoes.size() == 0}" />
+					
+			</awb-h:panelGrid>
+			
+			</awb-h:panelGrid>
+		</awb-h:form>
+		</sei:seiRegion>
+		
+		<!-- SEI API -->
+		<sei:seiApi useSaveModal="true"></sei:seiApi>
+		<sei:seiApi id="seiApp" usePrintModal="true" />
+
+		<!-- Script para exportação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/export.js" />
+		
+		<!-- Script geral da aplicação -->
+		<script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+		
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+		
+	</ui:define>
+</ui:composition>
+</html>

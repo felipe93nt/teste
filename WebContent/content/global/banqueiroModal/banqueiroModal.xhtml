@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+
+        <body>
+
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+
+            <awb-h:form id="frameForm">
+
+                <!-- RADIO DE OPÇÕES -->
+                <awb-h:panelGrid id="pgComboSwiftCodeNomeModal">
+                    <awb-h:panelGroup>
+                        <awb-h:selectOneRadio id="radioSwiftCodeNome" layout="lineDirection"
+                            styleClass="HtmlSelectOneRadioBradesco" value="#{banqueiroModalBean.filtroVO.tipopesquisa}"
+                            immediate="false">
+                            <awb-f:selectItems value="#{banqueiroModalBean.viewHelper.comboSwiftCodeNomeModal}" />
+                            <f:ajax immediate="false" execute="@form" event="click" render="divFields formModalMessages"
+                                listener="#{banqueiroModalBean.alterarAltCampoModal}" />
+                        </awb-h:selectOneRadio>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <awb-th:extDiv id="divFields">
+
+                    <awb-h:panelGrid id="pgTxtDescricaoModal" columns="2">
+
+                        <!-- FILTRO CODIGO / SWIFT / NOME -->
+                        <awb-h:panelGroup rendered="#{banqueiroModalBean.filtroVO.tipopesquisa lt '4'}">
+                            <awb-h:inputText id="txtDescricaoModal" title="#{msgs.label_descricao}: " size="70"
+                                immediate="false" binding="#{banqueiroModalBean.viewHelper.campoCodigoDescricaoModal}"
+                                value="#{banqueiroModalBean.viewHelper.txtCodigoDescricao}"
+                                styleClass="HtmlInputTextObrigatorioBradesco">
+                            </awb-h:inputText>
+                        </awb-h:panelGroup>
+
+                        <!-- FILTROS DE PAIS E CIDADE -->
+                        <awb-h:panelGrid columns="3"
+                            rendered="#{banqueiroModalBean.filtroVO.tipopesquisa eq '4' or banqueiroModalBean.filtroVO.tipopesquisa eq '5'}">
+
+                            <awb-h:panelGroup
+                                rendered="#{banqueiroModalBean.filtroVO.tipopesquisa eq '4' or banqueiroModalBean.filtroVO.tipopesquisa eq '5'}">
+                                <awb-h:selectOneMenu id="cboPais" immediate="false" title="#{msgs.label_pais}"
+                                    styleClass="#{(banqueiroModalBean.filtroVO.tipopesquisa eq '4' or banqueiroModalBean.filtroVO.tipopesquisa eq '5') ? 'HtmlSelectOneMenuObrigatorioBradesco' : 'HtmlSelectOneMenuBradesco'}"
+                                    value="#{banqueiroModalBean.filtroVO.cpais}" style="width:150px">
+                                    <f:selectItems value="#{banqueiroModalBean.viewHelper.comboPaisFiltro}" />
+                                    <f:ajax immediate="false" execute="@form" event="change"
+                                        render="divFields formModalMessages"
+                                        listener="#{banqueiroModalBean.carregarComboUfFiltro}" />
+                                </awb-h:selectOneMenu>
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup
+                                rendered="#{(banqueiroModalBean.filtroVO.cpais == null or banqueiroModalBean.filtroVO.cpais == '0' or banqueiroModalBean.filtroVO.cpais == '9')
+                                and banqueiroModalBean.filtroVO.tipopesquisa eq '5'}">
+                                <awb-h:selectOneMenu id="cboUf" immediate="false" title="#{msgs.label_uf}"
+                                    binding="#{banqueiroModalBean.viewHelper.selectComboUfFiltro}"
+                                    value="#{banqueiroModalBean.filtroVO.coduf}">
+                                    <f:selectItems value="#{banqueiroModalBean.viewHelper.comboUfFiltro}" />
+                                    <f:ajax immediate="false" execute="@form" event="change"
+                                        render="divFields formModalMessages"
+                                        listener="#{banqueiroModalBean.carregarComboCidadeFiltro}" />
+                                </awb-h:selectOneMenu>
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup rendered="#{banqueiroModalBean.filtroVO.tipopesquisa eq '5'}">
+                                <awb-h:selectOneMenu id="cboCidade" immediate="false" title="#{msgs.label_cidade}"
+                                    value="#{banqueiroModalBean.filtroVO.cmunintlcmbio}"
+                                    binding="#{banqueiroModalBean.viewHelper.selectComboCidadeFiltro}">
+                                    <f:selectItems value="#{banqueiroModalBean.viewHelper.comboCidadeFiltro}" />
+                                </awb-h:selectOneMenu>
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+
+                        <awb-h:panelGroup>
+                            <awb-h:outputLabel value="  " escape="false" />
+                            <!-- PESQUISA -->
+                            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoPesquisarModal"
+                                immediate="false" value="#{msgs.bto_pesquisar}">
+                                <f:ajax event="click" execute="@form" immediate="false"
+                                    listener="#{banqueiroModalBean.pesquisar}" render="divFields formModalMessages" />
+                            </awb-h:commandButton>
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+
+                    <!-- LINHA DIVISÓRIA -->
+                    <awb-h:panelGrid width="100%" rendered="#{not empty banqueiroModalBean.lista}">
+                        <awb-f:verbatim>
+                            <hr class="linhaPontilhada" style="margin: 5px 0px 8px 0px;" />
+                        </awb-f:verbatim>
+                    </awb-h:panelGrid>
+
+                    <awb-h:panelGrid id="pgListaSwiftCodeNomeModal" width="100%">
+                        <awb-h:panelGrid rendered="#{not empty banqueiroModalBean.lista}" width="100%">
+
+                            <!-- RADIO GRID LISTA -->
+                            <awb-f:facet name="header">
+                                <awb-th:extSelectOneRadio id="radioModal" layout="spread" forceId="true"
+                                    forceIdIndex="false"
+                                    value="#{banqueiroModalBean.viewHelper.codItemSelecionadoLista}">
+                                    <awb-f:selectItems value="#{banqueiroModalBean.selectItemRadioLista}" />
+                                </awb-th:extSelectOneRadio>
+                            </awb-f:facet>
+
+                            <!-- GRID -->
+                            <awb-h:panelGrid styleClass="panelGridDataTable">
+                                <awb-br:scrollableDataTable id="dataTableModal" var="item" rows="10" width="100%"
+                                    rowIndexVar="indexLista" value="#{banqueiroModalBean.lista}">
+
+                                    <awb-br:scrollableColumn width="3%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" "
+                                                escape="false" />
+                                        </awb-f:facet>
+                                        <awb-th:extRadio index="#{indexLista}" for=":frameForm:radioModal" />
+                                    </awb-br:scrollableColumn>
+                                    
+                                    <awb-br:scrollableColumn>
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                                value="#{msgs.label_cod_banqueiro}" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                            value="#{item.cbanqrcmbio}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn>
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                                value="#{msgs.label_nome}" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                            value="#{item.ibanqrcmbio}" />
+
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn>
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                                value="#{msgs.label_swift_code}" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel styleClass="HtmlOutputTextBradesco"
+                                            value="#{item.cidbanqrswift}" />
+                                    </awb-br:scrollableColumn>
+
+                                </awb-br:scrollableDataTable>
+                                <!-- PAGINACAO -->
+                                <awb-br:awbDataScroller resource="cws" for="dataTableModal" styleClass="pagination"
+                                    id="dataScrollerModal" renderFacetsIfSinglePage="true"
+                                    actionListener="#{banqueiroModalBean.paginar}" stateID="NPCDIADP">
+                                    <f:facet name="first">
+                                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                            title="#{msgs.label_txt_primeira}" />
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+                                    </f:facet>
+                                </awb-br:awbDataScroller>
+                            </awb-h:panelGrid>
+                        </awb-h:panelGrid>
+                    </awb-h:panelGrid>
+                </awb-th:extDiv>
+                
+                <br />
+
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%" style="left: 0; bottom: 20px; position: absolute;">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+                <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                    styleClass="HtmlCommandButtonBradesco left" />
+                <awb-h:commandButton action="#{banqueiroModalBean.selecionar}" value="Selecionar"
+                    style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+            </awb-h:form>
+
+        </body>
+        <!-- script -->
+        <script type="text/javascript"
+            src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+    </ui:define>
+</ui:composition>
+
+</html>

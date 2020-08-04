@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+	<awb-h:panelGrid styleClass="panelGridTable" columns="3" columnClasses="panelGridColum33, panelGridColum33, panelGridColum33" id="pnlGarantia">
+	
+		<awb-h:column/>
+			<awb-h:outputLabel value="#{msgs.label_pzr_contra_garan}" styleClass="HtmlOutputTextBoldBradesco"/>
+		<awb-h:column/>
+	
+		<awb-h:panelGrid columns="1">
+		    <awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_contra_garan}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+		            for="radioContrGarant" />
+		    </awb-h:panelGroup>
+		    
+		    <awb-h:panelGroup>
+		        <awb-h:selectOneRadio id="radioContrGarant" layout="lineDirection" title="Garantia"
+		            styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+		            value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.cindcdcntragarnt}">
+		            <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+		    		<f:ajax event="click" listener="#{garantiaExpedidaComplementoBean.listenerTratarRadioGarantia}" render="pnlGarantia"
+                    	execute="@form" />
+		        </awb-h:selectOneRadio>
+		    </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+	    
+		<awb-h:panelGrid columns="2" width="400px">
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+	            <awb-h:inputText id="txtDias" title="#{msgs.label_det_dias}:" maxlength="5" size="9" alt="{'type':'integer'}"
+	            	disabled="#{garantiaExpedidaComplementoBean.viewHelper.disabledDiasContraGarantia}"
+		            value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.tdiacntragarnt}" 
+		            styleClass="HtmlInputTextBradesco">
+	           </awb-h:inputText>
+			</awb-h:panelGroup>
+			
+			<awb-h:panelGrid columns="3" width="310px">
+		
+				<awb-h:column>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_data}: " styleClass="HtmlOutputLabelBradesco"/>
+		           	<awb-br:calendar id="calendarData" titulo="Data" disableInputFields="false"
+		           		disabled="#{garantiaExpedidaComplementoBean.viewHelper.disabledDataContraGarantia}"
+		           		onFieldFilled="errorStyleChanger"
+		           		onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		           		value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.dvctocntragarnt}" />
+		             <awb-h:outputLabel value=" " escape="false" />
+				</awb-h:column>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+		
+		<awb-h:panelGrid columns="3" width="310px">
+			<awb-h:column>		
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_abr_ofertas}: " styleClass="HtmlOutputLabelBradesco"/>
+				<awb-br:calendar id="calendarAbertOfrta" titulo="Abertura das Ofertas" disableInputFields="false"
+					 onFieldFilled="errorStyleChanger"
+					 onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+					 value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.dabertcntragarnt}" />
+				<awb-h:outputLabel value=" " escape="false" />
+			</awb-h:column>
+		</awb-h:panelGrid>
+		
+		<awb-h:column/>
+			<awb-h:outputLabel value="#{msgs.label_dt_alerta}" styleClass="HtmlOutputTextBoldBradesco"/>
+		<awb-h:column/>
+	
+		<awb-h:panelGrid columns="1">
+			<awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_renv_auto}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+		            for="radioRenoAut" />
+		    </awb-h:panelGroup>
+		    <awb-h:panelGroup>
+		        <awb-h:selectOneRadio id="radioRenoAut" layout="lineDirection" title="Garantia"
+		            styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+		            value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.cindcdrenovcntra}">
+		            <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+		        </awb-h:selectOneRadio>
+		    </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+	
+		<awb-h:panelGrid columns="2" width="400px">
+		
+			<awb-h:panelGrid columns="1">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+		           	<awb-h:inputText id="txtDiasAlerta" title="#{msgs.label_det_dias}:" maxlength="5" size="9" alt="{'type':'integer'}" 
+			             value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.qdiaalertcntra}" disabled="false"
+			             styleClass="HtmlInputTextBradesco">
+		           </awb-h:inputText>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid columns="3" width="310px">
+				<awb-h:column>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_data}: " styleClass="HtmlOutputLabelBradesco"/>
+		        	<awb-br:calendar id="calendarDataRenov" titulo="Data" disableInputFields="false"
+		                    onFieldFilled="errorStyleChanger"
+		                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		                    value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.dalertvctocntra}" />
+		            <awb-h:outputLabel value=" " escape="false" />
+				</awb-h:column>
+			</awb-h:panelGrid>	
+		</awb-h:panelGrid>
+		
+		<awb-h:panelGrid columns="1">
+			<awb-h:panelGroup>
+		        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        <awb-h:outputLabel value="#{msgs.label_det_cotar_custo_ext}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+		            for="radioCustoExterno" />
+		    </awb-h:panelGroup>
+		    <awb-h:panelGroup>
+		        <awb-h:selectOneRadio id="radioCustoExterno" layout="lineDirection" title="Garantia"
+		            disabled="#{garantiaExpedidaComplementoBean.viewHelper.disabledRadioCustoExterno}"
+		            styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+		            value="#{garantiaExpedidaComplementoBean.tradeFinNegocVO.cindcdcustoexter}">
+		            <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+		        </awb-h:selectOneRadio>
+		    </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+	</awb-h:panelGrid>
+	
+	<!-- LINHA DIVISÓRIA -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-f:verbatim>
+		<hr />
+		</awb-f:verbatim>
+	</awb-h:panelGrid>  
+	
+	<awb-h:panelGrid styleClass="panelGridTable" columns="2" columnClasses="panelGridColum50, panelGridColum50">
+		
+		<awb-h:panelGroup>
+			<awb-h:outputLabel value="#{msgs.label_pzr_ordenante}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:column/>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_ordenante}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.ncunicclicmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_endereco}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.endereco}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_cidade}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.cidade}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_pais}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.pais}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<!-- LINHA DIVISÓRIA -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-f:verbatim>
+		<hr />
+		</awb-f:verbatim>
+	</awb-h:panelGrid> 
+	
+	<awb-h:panelGrid id="pnlBeneficiario" styleClass="panelGridTable" columns="2" columnClasses="panelGridColum50, panelGridColum50">
+		
+		<awb-h:panelGroup>
+			<awb-h:outputLabel value="#{msgs.label_beneficiario}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:column/>
+	
+		 <!-- LINHA DADOS -->
+	    <awb-h:panelGroup>
+	    	<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_beneficiario}: " styleClass="HtmlOutputLabelBradesco"/>
+			
+	        <awb-h:inputText id="txtBeneficiario" title="#{msgs.label_beneficiario}" size="90" maxlength="80"
+	            immediate="false" styleClass="HtmlInputTextBradesco action-on-enter"
+	            value="#{garantiaExpedidaComplementoBean.beneficiarioModal.ipssoacmbio}"
+	            validatorMessage="Mínimo 3 caracteres">
+	            <awb-f:validator validatorId="customLengthValidator" />
+	            <awb-f:attribute name="minimum" value="3" />
+	            <awb-f:attribute name="maximum" value="80" />
+	            
+	        </awb-h:inputText>
+	
+	        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+	
+	        <awb-br:brCommandSearch id="txtBeneficiario-action">
+	            <f:ajax execute="@form" event="click" render="pnlBeneficiario div_modalBeneficiario formModalMessages"
+	                listener="#{garantiaExpedidaComplementoBean.listenerPesquisarBeneficiarioPorNomeCons}" />
+	        </awb-br:brCommandSearch>
+	    </awb-h:panelGroup>
+	    
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_endereco}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.beneficiario.logrdcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_cidade}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.beneficiario.iciddcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_pais}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.beneficiario.ipaiscmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+		
+		 <awb-h:message for="txtBeneficiario" id="msgErrorBenef" errorClass="TextValidatorMessage" />
+	</awb-h:panelGrid>
+	
+	<!-- LINHA DIVISÓRIA -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-f:verbatim>
+		<hr />
+		</awb-f:verbatim>
+	</awb-h:panelGrid> 
+	
+	<awb-h:panelGrid styleClass="panelGridTable" columns="2" columnClasses="panelGridColum50, panelGridColum50" id="pnlAfiancado">
+		
+		<awb-h:panelGroup>
+			<awb-h:outputLabel value="#{msgs.label_afiancada}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:column/>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_afiancado}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:inputText id="txtAfiancado" title="#{msgs.label_det_afiancado}:" size="90" maxlength="80"
+				immediate="false" styleClass="HtmlInputTextBradesco action-on-enter"
+				value="#{garantiaExpedidaComplementoBean.afiancadoModal.ncunicpssoacmbiot}"
+				validatorMessage="Mínimo 3 caracteres">
+				<awb-f:validator validatorId="customLengthValidator" />
+				<awb-f:attribute name="minimum" value="3" />
+				<awb-f:attribute name="maximum" value="80" />
+				
+			</awb-h:inputText>
+	
+			<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+	
+			<awb-br:brCommandSearch id="txtAfiancado-action">
+				<f:ajax execute="@form" event="click" render="pnlAfiancado div_modalAfiancado formModalMessages"
+					listener="#{garantiaExpedidaComplementoBean.listenerPesquisarAfiancadoPorNome}" />
+			</awb-br:brCommandSearch>
+		
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_endereco}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.afiancado.logrdcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_cidade}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.afiancado.iciddcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+	
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_det_pais}: " styleClass="HtmlOutputLabelBradesco"/>
+			<awb-h:outputLabel value="#{garantiaExpedidaComplementoBean.afiancado.ipaiscmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		</awb-h:panelGroup>
+		
+		<awb-h:message for="txtAfiancado" id="msgErrorAfiancado" errorClass="TextValidatorMessage" />
+	</awb-h:panelGrid>
+
+	<!-- MODAL SELECT BENEFICIARIO -->
+    <awb-th:extDiv id="div_modalBeneficiario">
+		<awb-br:modalContent id="modalBeneficiario" iconUrl="info"
+			autoOpen="true" reRender="@form" resizable="true" draggable="true"
+			width="1000" height="400" closable="false" closeOnEscape="false"
+			header="Selecione Beneficiario"
+			closeId="formTdFnNgModBenef:botaoFechar"
+			onHideServerCallback="#{garantiaExpedidaComplementoBean.closeModalBenef}"
+			rendered="#{benefModalBean.viewHelper.renderModalBeneficiario}"
+			contentPath="#{request.contextPath}/content/global/beneficiarioModal/beneficiarioModal.xhtml" />
+	</awb-th:extDiv>
+	
+	<!-- MODAL SELECT AFIANCADO -->
+    <awb-th:extDiv id="div_modalAfiancado">
+		<awb-br:modalContent id="modalAfiancado" iconUrl="info"
+			autoOpen="true" reRender="@form formModalMessages" resizable="true" draggable="true"
+			width="750" height="520" closable="false" closeOnEscape="false"
+			header="Selecione Afiançado" 
+			closeId="formModalTomador:botaoFechar"
+			onHideServerCallback="#{garantiaExpedidaComplementoBean.closeModalAfiancado}"
+			rendered="#{tomadorModalBean.viewHelper.renderModal}"
+			contentPath="#{request.contextPath}/content/global/tomadorModal/modalTomadorList.xhtml" />
+	</awb-th:extDiv>    
+</ui:composition>
+</html>

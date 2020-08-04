@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- GRID -->
+    <awb-h:panelGrid styleClass="panelGridDataTable">
+
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <!-- botao Collaps Fluxo Pagamento -->
+                    <awb-h:commandButton value="#{tradeFinanceNegociacaoInclBean.viewHelper.valueMaisMenosFluxoPagto}" 
+                        styleClass="HtmlCommandButtonBradesco">
+                        <f:ajax immediate="false" execute="@form" event="click" onevent="loadMasks"
+                            render="formFinDiretoAlt formModalMessages"
+                            listener="#{tradeFinanceNegociacaoInclBean.actionCollapsAreaNegocio(1)}" />
+                    </awb-h:commandButton>
+                    <awb-h:outputLabel value=" Fluxo Pagamento" styleClass="HtmlOutputTextBulletBoldBradesco" />
+                    <!-- botao Collaps Fluxo Pagamento-->
+                </awb-h:panelGroup>
+                
+            </awb-h:panelGrid>
+            <awb-h:panelGrid width="100%" rendered="#{tradeFinanceNegociacaoInclBean.viewHelper.renderFluxoPagto}">
+                <awb-h:panelGrid columns="2" width="35%">
+                    <!-- LINHA CABEC -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Data:" />
+                    </awb-h:panelGroup>
+                    
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="Valor: "
+                            styleClass="HtmlOutputTextBulletBoldBradesco" for="txtFlxPagValor" />
+                    </awb-h:panelGroup>
+
+                    <!-- LINHA DADOS -->
+                    <awb-h:panelGroup>
+                        <awb-br:calendar id="calendarFlxPagData" titulo="Calendário" disableInputFields="false"
+                            onFieldFilled="errorStyleChanger"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{tradeFinanceNegociacaoInclBean.viewHelper.dataLimiteCotacao}" />
+                        <awb-h:outputLabel value=" " escape="false" />
+                    </awb-h:panelGroup>
+    
+                    <awb-h:panelGroup>
+                        <awb-br:brInputText id="txtFlxPagValor" title="Valor" maxlength="15"
+                            size="17" value="" styleClass="HtmlInputTextBradesco">
+                        </awb-br:brInputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <awb-h:panelGrid columns="3" width="32%">
+                    <!-- LINHA CABEC -->
+                    <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Princ. Carência(Dias): "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="txtPrinCarencia" />
+                    </awb-h:panelGroup>
+                    
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="Periodicidade: "
+                            styleClass="HtmlOutputTextBulletBoldBradesco" for="comboPeriod" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Qtd. Parcelas: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="txtQtdParcelas" />
+                    </awb-h:panelGroup>
+
+                    <!-- LINHA DADOS -->
+                    <awb-h:panelGroup>
+                        <awb-br:brInputText id="txtPrinCarencia" title="Princ. Carência" maxlength="15"
+                            size="17" value="" styleClass="HtmlInputTextBradesco">
+                        </awb-br:brInputText>
+                    </awb-h:panelGroup>
+    
+                    <awb-h:panelGroup>
+                        <awb-h:selectOneMenu id="comboPeriod" layout="pageDirection" title="Periodicidade"
+                                   style="width: 110px;font-family: verdana; font-size: 10px"
+                                    value="" immediate="false">
+                            <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.viewHelper.comboTeste}" />
+                        </awb-h:selectOneMenu>
+                    </awb-h:panelGroup>
+    
+                    <awb-h:panelGroup>
+                        <awb-br:brInputText id="txtQtdParcelas" title="Qtd. Parcelas" maxlength="15"
+                            size="17" value="" styleClass="HtmlInputTextBradesco">
+                        </awb-br:brInputText>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <awb-h:panelGrid columns="2" width="100%">
+                    <awb-h:panelGrid columns="4" width="50%">
+                        <!-- LINHA CABEC -->
+                        <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="Juros Carência(Dias): "
+                            styleClass="HtmlOutputTextBulletBoldBradesco" for="txtJurosCarencia" />
+                        </awb-h:panelGroup>
+                        
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <awb-h:outputLabel value="Periodicidade: "
+                                styleClass="HtmlOutputTextBulletBoldBradesco" for="comboPeriod2" />
+                        </awb-h:panelGroup>
+
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <awb-h:outputLabel value="Qtd. Parcelas: "
+                                styleClass="HtmlOutputTextBulletBoldBradesco" for="txtQtdParcelas2" />
+                        </awb-h:panelGroup>
+                        
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <awb-h:outputLabel value="Momento: "
+                                styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMomento" />
+                        </awb-h:panelGroup>
+    
+                        <!-- LINHA DADOS -->
+                        <awb-h:panelGroup>
+                            <awb-br:brInputText id="txtJurosCarencia" title="Juros Carência" maxlength="15"
+                                size="17" value="" styleClass="HtmlInputTextBradesco">
+                            </awb-br:brInputText>
+                        </awb-h:panelGroup>
+        
+                        <awb-h:panelGroup>
+                            <awb-h:selectOneMenu id="comboPeriod2" layout="pageDirection" title="Periodicidade"
+                                   style="width: 110px;font-family: verdana; font-size: 10px"
+                                    value="" immediate="false">
+                                <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.viewHelper.comboTeste}" />
+                            </awb-h:selectOneMenu>
+                        </awb-h:panelGroup>
+        
+                        <awb-h:panelGroup>
+                            <awb-br:brInputText id="txtQtdParcelas2" title="Qtd. Parcelas" maxlength="15"
+                                size="17" value="" styleClass="HtmlInputTextBradesco">
+                            </awb-br:brInputText>
+                        </awb-h:panelGroup>
+        
+                        <awb-h:panelGroup>
+                            <awb-h:selectOneMenu id="comboMomento" layout="pageDirection" title="Momento"
+                                   style="width: 110px;font-family: verdana; font-size: 10px"
+                                    value="" immediate="false">
+                                <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.viewHelper.comboTeste}" />
+                            </awb-h:selectOneMenu>
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+
+                    <awb-h:panelGrid columns="1" width="40%" styleClass="right">
+                        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclFluxos"
+                            action="#{tradeFinanceNegociacaoInclBean.actionIncluirFluxos}" value="Incluir Fluxos">
+                        </awb-h:commandButton>
+                    </awb-h:panelGrid>
+
+                </awb-h:panelGrid>
+            
+                <!-- GRID FLUXOS -->
+                <awb-h:panelGrid styleClass="panelGridDataTable"
+                    rendered="#{not empty tradeFinanceNegociacaoInclBean.tradeFinNegocVO.listaFluxos}">
+                
+                    <!-- RADIO GRID LISTA -->
+                    <awb-f:facet name="header">
+                        <awb-th:extSelectOneRadio id="radioListaFluxos" layout="spread" immediate="false"
+                             forceId="true" forceIdIndex="false"
+                            value="#{tradeFinanceNegociacaoInclBean.viewHelper.itemSelecListaFluxos}">
+                            <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.itensRadioListaFluxos}" />
+                        </awb-th:extSelectOneRadio>
+                    </awb-f:facet>
+                
+                    <!-- GRID -->
+                    <awb-h:panelGrid styleClass="panelGridDataTable">
+                        <awb-br:keepState pdcDataScrollerID="dataScrollerListaFluxos"
+                           stateID="#{tradeFinanceNegociacaoInclBean.viewHelper.stateIdListaFluxos}" resource="cws">
+                            <awb-br:scrollableDataTable id="dataTableFluxo" var="itemFluxo" rows="12"
+                                 width="100%"  rowIndexVar="indexListaFluxos" 
+                                 value="#{tradeFinanceNegociacaoInclBean.tradeFinNegocVO.listaFluxos}">
+                                 <!-- height="83px" -->
+                
+                                <awb-br:scrollableColumn width="3%">
+                                    <awb-f:facet name="header">
+                                        <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                                    </awb-f:facet>
+                                    <awb-th:extRadio index="#{indexListaFluxos}" for=":formFinDiretoAlt:radioListaFluxos" />
+                                </awb-br:scrollableColumn>
+                
+                                <awb-br:scrollableColumn>
+                                    <awb-f:facet name="header">
+<!--                                         <awb-h:outputLabel value="#{msgs.label_data}" styleClass="tableFontStyle" escape="false" /> -->
+                                        <awb-h:outputLabel value="#{msgs.label_data_previsao_desembolso}" styleClass="tableFontStyle" escape="false" />
+                                    </awb-f:facet>
+                                    <awb-h:outputLabel value="#{itemFluxo.dataFuxo}" />
+                                </awb-br:scrollableColumn>
+                
+                                <awb-br:scrollableColumn>
+                                    <awb-f:facet name="header">
+                                        <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle"
+                                            escape="false" />
+                                    </awb-f:facet>
+                                    <awb-h:outputLabel value="#{itemFluxo.prazoFuxo}" />
+                                </awb-br:scrollableColumn>
+                
+                                <awb-br:scrollableColumn>
+                                    <awb-f:facet name="header">
+                                        <awb-h:outputLabel value="Valor" styleClass="tableFontStyle"
+                                            escape="false" />
+                                    </awb-f:facet>
+                                    <awb-h:outputLabel value="#{itemFluxo.valorFuxo}" />
+                                </awb-br:scrollableColumn>
+                
+                            </awb-br:scrollableDataTable>
+                        </awb-br:keepState>
+                    </awb-h:panelGrid>
+                
+                </awb-h:panelGrid>
+
+                <awb-h:panelGrid columns="2" width="100%">
+                    <awb-h:panelGrid columns="1" width="50%">
+                        <!-- LINHA CABEC -->
+                        <awb-h:panelGroup />
+    
+                        <!-- LINHA DADOS -->
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <h:outputText styleClass="HtmlOutputLabelBradesco" value="Prazo Médio(Dias/Anos): " />
+                            <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="34/0,09" />
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+
+                    <awb-h:panelGrid columns="3" width="30%" styleClass="right">
+                        <awb-h:panelGroup >
+                            <!-- Alterar Fluxos -->
+                            <awb-h:commandButton id="btoAltFluxos" value="Alterar Fluxos"
+                                styleClass="HtmlCommandButtonBradesco" 
+                                action="#{tradeFinanceNegociacaoInclBean.actionAlterarFluxos}">
+                                <awb-br:submitCheckClient />
+                            </awb-h:commandButton>
+                        </awb-h:panelGroup>
+
+                        <awb-h:panelGroup >
+                            <!-- Excluir Fluxos -->
+                            <awb-h:commandButton id="btoExcFluxos" value="Excluir Fluxos"
+                                styleClass="HtmlCommandButtonBradesco" 
+                                action="#{tradeFinanceNegociacaoInclBean.actionExcluirFluxos}">
+                                <awb-br:submitCheckClient />
+                            </awb-h:commandButton>
+                        </awb-h:panelGroup>
+
+                        <awb-h:panelGroup style="float:right">
+                            <!-- Detalhar -->
+                            <awb-h:commandButton id="btnDetalharFluxos" styleClass="HtmlCommandButtonBradesco"
+                                action="#{tradeFinanceNegociacaoInclBean.actionDetalharFluxos}"
+                                value="Detalhar" />
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

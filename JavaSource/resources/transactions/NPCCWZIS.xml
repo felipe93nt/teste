@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZIS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="101">
+    <register name="NPCCWZIS-HEADER">
+      <field name="NPCCWZIS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZIS" />
+      <field name="NPCCWZIS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00101" />
+    </register>
+    <register name="NPCCWZIS-REGISTRO">
+      <field name="NPCCWZIS-DSC-CUSTO-TOTAL" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZIS-VTX-SPREAD-TOT" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+    </register>
+  </output>
+</copybook>
+

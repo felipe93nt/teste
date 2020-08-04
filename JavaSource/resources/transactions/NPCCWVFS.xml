@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVFS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="4266">
+    <register name="NPCCWVFS-HEADER">
+      <field name="NPCCWVFS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVFS" />
+      <field name="NPCCWVFS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="04266" />
+    </register>
+    <register name="NPCCWVFS-REGISTRO">
+      <field name="NPCCWVFS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWVFS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWVFS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWVFS-CTPO-CLAUS-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVFS-ITPO-CLAUS-CMBIO" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

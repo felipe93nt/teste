@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWIDS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="126">
+    <register name="NPCCWIDS-HEADER">
+      <field name="NPCCWIDS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWIDS" />
+      <field name="NPCCWIDS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00126" />
+    </register>
+    <register name="NPCCWIDS-REGISTRO">
+      <field name="NPCCWIDS-CINDCD-DESP-TARF" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDS-DESCR-DESP-TARIF" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWIDS-CCONDC-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDS-CTPO-DESP-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDS-ITPO-DESP-CMBIO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWIDS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWIDS-VDESP-BLETO-CMBIO" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+    </register>
+  </output>
+</copybook>
+

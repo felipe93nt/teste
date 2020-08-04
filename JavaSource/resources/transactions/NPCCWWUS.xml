@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWUS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="2736">
+    <register name="NPCCWWUS-HEADER">
+      <field name="NPCCWWUS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWUS" />
+      <field name="NPCCWWUS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="02736" />
+    </register>
+    <register name="NPCCWWUS-REGISTRO">
+      <field name="NPCCWWUS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWWUS-LISTA" minOccurs="0" maxOccurs="80" depends="NPCCWWUS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWWUS-CFLUXO-PERDC-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWUS-IFLUXO-PERDC-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWUS-PERDC-PRZO-MES" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

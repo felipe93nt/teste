@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+	<ui:define name="body">
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/app.js" />
+
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- FORM -->
+		<awb-h:form id="frameForm" enctype="multipart/form-data">
+
+			<br />
+			<awb-br:fileUpload id="fileUpload" value="#{anexarArquivoGccModalBean.viewHelper.arquivo}"
+				allowedTypes="jpg,jpeg,tiff,pdf,tif" fileSizeMax="10485760"  disk="true">
+			</awb-br:fileUpload>
+			<br />
+			<awb-h:message for="fileUpload" showSummary="false" showDetail="true" styleClass="error" />
+
+			<!-- LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="footer-bar-modal">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:commandButton id="botaoFechar" value="#{msgs.botao_voltar}"
+				style="left: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco">
+			</awb-h:commandButton>
+			<awb-h:commandButton value="#{msgs.bto_confirmar}" action="#{anexarArquivoGccModalBean.selecionar}"
+				style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco ajax-loading">
+
+			</awb-h:commandButton>
+
+		</awb-h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

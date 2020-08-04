@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXUE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="79">
+    <register name="NPCCWXUE-HEADER">
+      <field name="NPCCWXUE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXUE" />
+      <field name="NPCCWXUE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00079" />
+    </register>
+    <register name="NPCCWXUE-REGISTRO">
+      <field name="NPCCWXUE-IND-PESQUISA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXUE-NM-NOME-CLIENTE" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWXUE-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXUE-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXUE-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

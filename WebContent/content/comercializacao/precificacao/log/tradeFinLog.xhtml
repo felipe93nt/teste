@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection" value="#{msgs.title_trade_finance_log}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_trade_finance_log',0)}" />
+        
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinanceLogBean.iniciar}" />
+    </f:metadata>
+        
+	<ui:define name="body">
+
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- CALENDARIO -->
+		<awb-br:bundleWriter functionName="getBundle" id="calendarioTaxas"
+			rendered="true"
+			messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,
+              field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,
+              c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,
+              c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,
+              c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,
+              c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+		</awb-br:bundleWriter>
+
+		<!-- Componente SEI -->
+		<sei:seiRegion id="allContent">	
+		
+		<!-- FORM -->
+		<awb-h:form id="formTradeFinMonitDet">
+		
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable" id="gridConsultas"
+				columnClasses="panelGridColum25,panelGridColum25,panelGridColum25,panelGridColum25">
+
+				<!-- PERIODO COTACAO -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable"
+					id="divPeriodoCotacao">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_periodo_cotacao}:"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+
+					<awb-h:panelGrid columns="3" width="310px">
+						<awb-h:column>
+							<awb-br:calendar id="periodoCotacaoInicio" titulo="Calendario"
+								alt="Data Início" disableInputFields="false" clientValidationLevel="date"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+								value="#{tradeFinanceLogBean.filtroVO.periodoCotacao.inicio}" />
+						</awb-h:column>
+						<awb-h:column>
+							<awb-h:outputLabel value="#{msgs.label_a}"
+								styleClass="HtmlOutputLabelBradesco" style="text-align: center;" />
+						</awb-h:column>
+						<awb-h:column>
+							<awb-br:calendar id="periodoCotacaoFim" titulo="Calendario"
+								alt="Data Fim" disableInputFields="false" clientValidationLevel="date"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+								value="#{tradeFinanceLogBean.filtroVO.periodoCotacao.fim}" />
+						</awb-h:column>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!-- NOME CLIENTE -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_cliente}: "
+							styleClass="HtmlOutputLabelBoldBradesco" for="txtCliente" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup
+						style="position: relative; vertical-align: bottom;">
+						<awb-h:inputText
+							value="#{tradeFinanceLogBean.clienteSelecaoVO.nomeCliente}"
+							id="inputCliente" size="50" maxlength="50"
+							styleClass="HtmlInputTextBradesco action-on-enter" />
+						<awb-br:brCommandSearch id="inputCliente-action">
+							<f:ajax execute="inputCliente radioCpfCnpj @form" event="click"
+								render="div_modalCliente gridConsultas formModalMessages divSeiModals"
+								listener="#{tradeFinanceLogBean.listenerPesquisarClienteNome}" />
+						</awb-br:brCommandSearch>
+						<awb-h:message for="txtCliente" id="messageError"
+							errorClass="TextValidatorMessage" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- CPF CNPJ -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<!-- Tipo de pesquisa CPF CNPJ -->
+					<awb-h:panelGroup>
+						<awb-h:selectOneRadio id="radioCpfCnpj" immediate="false"
+							styleClass="HtmlSelectOneRadioBradesco"
+							value="#{tradeFinanceLogBean.viewHelper.codCpfCnpjSelecionado}">
+
+							<awb-f:selectItems
+								value="#{tradeFinanceLogBean.viewHelper.tipoPesquisaCpfCnpj}" />
+
+							<f:ajax execute="@this radioCpfCnpj @form" event="click"
+								render="gridConsultas formModalMessages divSeiModals"
+								listener="#{tradeFinanceLogBean.limparCpfCnpjCliente}" />
+						</awb-h:selectOneRadio>
+					</awb-h:panelGroup>
+
+					<!-- CAMPOS CPF/CNPJ -->
+					<awb-h:panelGrid columns="2" width="50%" id="gridCpfCnpj">
+						<awb-h:panelGroup id="camposCpfCnpj">
+							<!-- CAMPO CNPJ -->
+							<awb-br:cnpj id="cnpjCliente"
+								value="#{tradeFinanceLogBean.clienteSelecaoVO.cnpj}"
+								binding="#{tradeFinanceLogBean.viewHelper.cnpjBinding}"
+								titleLabelCnpj="CNPJ" titleInputsCnpj="CNPJ"
+								styleClassInputs="HtmlInputTextBradesco action-on-enter"
+								rendered="#{tradeFinanceLogBean.viewHelper.codCpfCnpjSelecionado == 2}">
+							</awb-br:cnpj>
+
+							<!-- CAMPO CPF -->
+							<awb-br:cpf id="cpfCliente"
+								value="#{tradeFinanceLogBean.clienteSelecaoVO.cpf}"
+								binding="#{tradeFinanceLogBean.viewHelper.cpfBinding}"
+								titleLabelCpf="CPF" titleInputsCpf="CPF"
+								styleClassInputs="HtmlInputTextBradesco action-on-enter"
+								rendered="#{tradeFinanceLogBean.viewHelper.codCpfCnpjSelecionado == 3}">
+							</awb-br:cpf>
+						</awb-h:panelGroup>
+
+						<!-- LUPA CPF CNPJ -->
+						<awb-br:brCommandSearch styleClass="cnpjCliente-action cpfCliente-action">
+							<f:ajax execute="gridCpfCnpj @form" event="click"
+								render="formModalMessages div_modalCliente gridConsultas divSeiModals"
+								listener="#{tradeFinanceLogBean.listenerPesquisarClienteCpfCnpj}" />
+						</awb-br:brCommandSearch>
+
+						<awb-h:message for="cnpjCliente" showSummary="false"
+							showDetail="true" styleClass="error"
+							rendered="#{tradeFinanceLogBean.viewHelper.codCpfCnpjSelecionado == 2}" />
+						<awb-h:message for="cpfCliente" showSummary="false"
+							showDetail="true" styleClass="error"
+							rendered="#{tradeFinanceLogBean.viewHelper.codCpfCnpjSelecionado == 3}" />
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!--  UNIDADE DE NEGOCIO -->
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_unidade_negocio}:"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco"
+						value="#{tradeFinanceLogBean.filtroVO.nsequndorgnz}">
+						<f:selectItems
+							value="#{tradeFinanceLogBean.viewHelper.comboUnidadeNegocio}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid styleClass="panelGridTable" columns="3"
+				columnClasses="panelGridColum25, panelGridColum50">
+
+				<!-- NUMERO COTACAO -->
+				<awb-h:panelGrid columns="1" id="divNumeroCotacao">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_cotacao}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGrid columns="2">
+						<awb-h:inputText value="#{tradeFinanceLogBean.filtroVO.danobase}"
+							size="4" maxlength="4" alt="{'type':'integer'}" id="filtroAno"
+							styleClass="HtmlInputTextBradesco">
+						</awb-h:inputText>
+						<awb-h:inputText
+							value="#{tradeFinanceLogBean.filtroVO.nbletocmbioano}"
+							maxlength="9" alt="{'type':'integer'}" id="filtroCotacao"
+							styleClass="HtmlInputTextBradesco">
+						</awb-h:inputText>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+
+				<!-- FUNCIONARIO -->
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+							value="#{msgs.label_det_funcionario}:" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<h:inputText maxlength="9" size="13"
+							styleClass="HtmlInputTextBradesco"
+							value="#{tradeFinanceLogBean.filtroVO.cusuarincl}"
+							disabled="#{tradeFinanceLogBean.viewHelper.buscaBoleto}">
+						</h:inputText>
+
+						<h:outputText styleClass="HtmlOutputLabelBradesco" value="    " />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- BOTÃO PESQUISAR -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<awb-h:panelGroup style="float:right">
+
+						<!-- LIMPAR -->
+						<awb-h:commandButton value="#{msgs.bto_limpar}"
+							styleClass="HtmlCommandButtonBradesco">
+							<f:ajax execute="@form" event="click"
+								render="formTradeFinMonitDet formModalMessages divSeiModals"
+								listener="#{tradeFinanceLogBean.listenerLimparPesquisa}" />
+						</awb-h:commandButton>
+
+						<awb-h:commandButton id="btnPesquisar"
+							styleClass="HtmlCommandButtonBradesco"
+							value="#{msgs.bto_pesquisar}">
+							<f:ajax execute="@form" event="click"
+								render="formTradeFinMonitDet formModalMessages divSeiModals"
+								listener="#{tradeFinanceLogBean.pesquisar}" />
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+
+			<!-- LINHA DIVISÓRIA -->
+			<awb-h:panelGrid width="100%"
+				rendered="#{not empty tradeFinanceLogBean.lista}">
+				<awb-f:verbatim>
+					<hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- GRID FLUXOS -->
+			<awb-h:panelGrid styleClass="panelGridDataTable">
+
+				<!-- RADIO GRID LISTA -->
+				<awb-f:facet name="header">
+					<awb-th:extSelectOneRadio id="radioListaCtcPend" layout="spread"
+						immediate="false" forceId="true" forceIdIndex="false"
+						value="#{tradeFinanceLogBean.viewHelper.ctcSelecionado}">
+						<awb-f:selectItems
+							value="#{tradeFinanceLogBean.selectItemRadioCtcPend}" />
+					</awb-th:extSelectOneRadio>
+				</awb-f:facet>
+			</awb-h:panelGrid>
+
+			<!-- GRID -->
+			<awb-h:panelGrid styleClass="panelGridDataTable"
+				columnClasses="scrollable-horizontal-bar" id="pnlGrid"
+				rendered="#{tradeFinanceLogBean.lista.size() > 0}">
+				<awb-th:extDiv styleClass="overflow-auto full-size"
+					id="div_dataTable">
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="#{tradeFinanceLogBean.viewHelper.nomeStateIdLista}"
+						resource="cws">
+						<awb-br:scrollableDataTable id="dataTable"
+							displayWidth="100%" width="2398px"
+							value="#{tradeFinanceLogBean.lista}" var="ctc" rows="10"
+							rowIndexVar="indexCtc" styleClass="panelGridTable"
+							rendered="#{tradeFinanceLogBean.lista.size() > 0}">
+							
+							<awb-br:scrollableColumn width="30px" styleClass="c">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+										escape="false" />
+								</awb-f:facet>
+								<awb-th:extRadio index="#{indexCtc}"
+									for=":formTradeFinMonitDet:radioListaCtcPend" />
+							</awb-br:scrollableColumn>
+
+							<!-- DATA COTACAO -->
+							<awb-br:scrollableColumn width="100px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dtcotacao}" />
+							</awb-br:scrollableColumn>
+
+							<!-- HORA COTACAO -->
+							<awb-br:scrollableColumn width="50px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_hora}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.horario}" />
+							</awb-br:scrollableColumn>
+
+							<!-- COTACAO -->
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_cotacao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.nbletocmbioano}" />
+							</awb-br:scrollableColumn>
+                            
+                            <!-- ADITIVO -->
+                            <awb-br:scrollableColumn width="50px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_aditivo}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.caditvbletocmbio}"
+                                    styleClass="tableFontStyle" />
+                            </awb-br:scrollableColumn>
+
+							<!-- STATUS COTACAO -->
+							<awb-br:scrollableColumn width="200px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_status_cotacao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dsitbletocmbio}" />
+							</awb-br:scrollableColumn>
+
+							<!-- UNIDADE DE NEGOCIO -->
+							<awb-br:scrollableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_unidade_negocio}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.nomeundorgnz}" />
+							</awb-br:scrollableColumn>
+
+							<!-- AGENCIA -->
+							<awb-br:scrollableColumn width="50px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_agencia_minusculo}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cagbcria}" />
+							</awb-br:scrollableColumn>
+
+							<!-- C/C -->
+							<awb-br:scrollableColumn width="150px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_conta_corrente}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel
+									value="#{ctc.cctabcriacmbio} - #{ctc.digtcctabcria}" />
+							</awb-br:scrollableColumn>
+
+							<!-- PRODUTO -->
+							<awb-br:scrollableColumn width="250px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_produto}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dprodtservc}" />
+							</awb-br:scrollableColumn>
+
+							<!-- MODALIDADE -->
+							<awb-br:scrollableColumn styleClass="min-width-150">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_modalidade}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cmodldprodtdesc}" />
+							</awb-br:scrollableColumn>
+
+                            <!-- CLIENTE -->
+                            <awb-br:scrollableColumn styleClass="min-width-150">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_cliente}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.ncunicclicmbio}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- CPF/CNPJ -->
+                            <awb-br:scrollableColumn width="150px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_cpf_barra_cnpj}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.cpfCnpjFormatado}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- RATING -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_rating}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.crting}" />
+                            </awb-br:scrollableColumn>
+                                                        
+                                 <!--SEGMENTO -->
+                            <awb-br:scrollableColumn width="150px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_segmento}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.dtposgmtocli}" />
+                            </awb-br:scrollableColumn>
+                            
+                                 <!--MOEDA -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_moeda}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.simbleconmmoeda}" />
+                            </awb-br:scrollableColumn>
+                            
+                                 <!--VALOR ME -->
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_valor_ME}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.vnegocmoedaestrg}" >
+									<f:converter converterId="numericConverter"></f:converter>
+								</awb-h:outputLabel>
+							</awb-br:scrollableColumn>
+							
+                                 <!--SPREAD -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_det_spread_negoc}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.vtxspreadnegoc}" />								
+							</awb-br:scrollableColumn>
+							
+                                 <!--PRAZO OP. -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_det_prazo_operacao}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.tdiaopercmbio}" />								
+							</awb-br:scrollableColumn>
+							
+                            <!--FUNCIONARIO -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_usuario}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cusuarinclt}" />								
+							</awb-br:scrollableColumn>
+							
+
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+
+					<!-- PAGINAÇÃO  -->
+					<awb-br:awbDataScroller resource="cws" for="dataTable"
+						styleClass="pagination" id="dataScroller"
+						renderFacetsIfSinglePage="true"
+						actionListener="#{tradeFinanceLogBean.paginar}"
+						stateID="#{tradeFinanceLogBean.viewHelper.nomeStateIdLista}">
+
+						<awb-f:facet name="first">
+							<awb-br:awbCommandButton styleClass="button"
+								value="#{msgs.label_primeira}"
+								title="#{msgs.label_txt_primeira}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastrewind">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_retrocesso}"
+								title="#{msgs.label_txt_retrocesso}" />
+						</awb-f:facet>
+						<awb-f:facet name="previous">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_anterior}"
+								title="#{msgs.label_txt_anterior}" />
+						</awb-f:facet>
+						<awb-f:facet name="next">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastforward">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+						</awb-f:facet>
+						<awb-f:facet name="last">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+						</awb-f:facet>
+					</awb-br:awbDataScroller>
+				</awb-th:extDiv>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- BOTOES -->
+			<awb-h:panelGrid columns="2" styleClass="panelGridTable">
+				<!-- VOLTAR -->
+				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+					value="#{msgs.bto_voltar}" immediate="true" action="nav_index" />
+
+				<awb-h:panelGrid style="float:right" columns="2"
+					rendered="#{tradeFinanceLogBean.lista.size() > 0}"> 
+				
+					<!-- EXPORTAÇÃO -->
+					<awb-h:outputLink id="exportButton"
+						title="#{msgs.bto_exportar_excel}"
+						rev="#{empty tradeFinanceLogBean.lista}"
+						styleClass="seiBtnSalvarArquivoGrupo tab sei-button"
+						value="javascript:;">
+	
+						<sei:seiAction type="save" action="#{tradeFinanceLogBean.exportar}"
+							jsActionArgs="App.exportFormats.excel" render="divSeiModals">
+	
+							<sei:seiSettings pageOrientation="landscape"
+								pageNumberLabel="#{msgs.label_pagina}"
+								pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+						</sei:seiAction>
+					</awb-h:outputLink>
+					
+					<!-- CONFIRMAR -->
+					<awb-h:commandButton id="btnConfirmar"
+						styleClass="HtmlCommandButtonBradesco"
+						action="#{tradeFinanceLogBean.actionConfirmar}"
+						value="#{msgs.bto_confirmar}"
+						disabled="#{tradeFinanceLogBean.lista.size() == 0}">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					
+				</awb-h:panelGrid>
+				
+			</awb-h:panelGrid>
+
+			<!-- MODAL SELECT CLIENTE -->
+			<awb-th:extDiv id="div_modalCliente">
+				<awb-br:modalContent id="modalCliente" iconUrl="info"
+					autoOpen="true" reRender="@form" resizable="true" draggable="true"
+					width="1000" height="520" closable="false" closeOnEscape="false"
+					header="Selecionar Cliente" closeId="frameForm:botaoFechar"
+					onHideServerCallback="#{tradeFinanceLogBean.closeModal}"
+					rendered="#{tradeFinanceLogBean.viewHelper.renderModalCliente}"
+					contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+			</awb-th:extDiv>
+		</awb-h:form>
+		</sei:seiRegion>
+		
+		<!-- SEI API -->
+		<sei:seiApi useSaveModal="true"></sei:seiApi>
+		<sei:seiApi id="seiApp" usePrintModal="true" />
+
+		<!-- Script para exportação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/export.js" />
+		
+		<!-- Script geral da aplicação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/app.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+	</ui:define>
+</ui:composition>
+</html>

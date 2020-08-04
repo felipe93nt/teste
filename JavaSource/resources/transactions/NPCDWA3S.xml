@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWA3S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3666">
+    <register name="NPCDWA3S-HEADER">
+      <field name="NPCDWA3S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWA3S" />
+      <field name="NPCDWA3S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03666" />
+    </register>
+    <register name="NPCDWA3S-REGISTRO">
+      <field name="NPCDWA3S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWA3S-LISTA" minOccurs="0" maxOccurs="50" depends="NPCDWA3S-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWA3S-CD-PAIS-AGEO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWA3S-NOME-PAIS" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWA3S-CD-PAIS-BACEN" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

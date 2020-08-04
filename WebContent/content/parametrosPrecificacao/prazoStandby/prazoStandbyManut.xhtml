@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_parametrizar_prazo_standby}" />
+     <ui:param name="passNumber" value="1" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_parametrizar_prazo_standby',0)}" />
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{prazoStandbyBean.iniciar}" />
+    </f:metadata>
+
+    <ui:define name="body">
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formPrazoStandby">
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+                <awb-h:panelGrid>
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{msgs.label_prazo}: "
+                            styleClass="HtmlOutputTextBulletBoldBradesco" for="txtPrazo" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-br:brInputText id="txtPrazo" title="#{msgs.label_prazo}" maxlength="3" align="center"
+                            size="5" value="#{prazoStandbyBean.viewHelper.tdiamaxcredt}"  alt="numTres"
+                            styleClass="HtmlInputTextObrigatorioBradesco action-on-enter">
+                        </awb-br:brInputText>
+                        <awb-h:outputLabel value="#{msgs.label_dias} "
+                            styleClass="HtmlOutputTextBradesco" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" action="nav_index">
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+
+                <!-- CONFIRMAR -->
+                <awb-h:panelGrid style="float:right" columns="2">
+                    <!-- INCLUIR -->
+                    <awb-h:commandButton id="btnIncluir" styleClass="HtmlCommandButtonBradesco btnPrazo"
+                        value="#{msgs.bto_incluir}"
+                        disabled="#{prazoStandbyBean.viewHelper.disabledBtnIncluir}" >
+						<f:ajax immediate="false" execute="@form" event="click" onevent="loadMasks"
+						    render="formPrazoStandby formModalMessages"
+						    listener="#{prazoStandbyBean.incluir}" />
+                    </awb-h:commandButton>
+                    <!-- ALTERAR -->
+                    <awb-h:commandButton  id="btnAlterar" styleClass="HtmlCommandButtonBradesco btnPrazo"
+                        value="#{msgs.bto_alterar}"
+                        disabled="#{prazoStandbyBean.viewHelper.disabledBtnAlterar}" >
+                        <f:ajax immediate="false" execute="@form" event="click" onevent="loadMasks"
+                            render="formPrazoStandby formModalMessages"
+                            listener="#{prazoStandbyBean.alterar}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGrid>
+
+            </awb-h:panelGrid>
+        </awb-h:form>
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/meiomask.js" />
+        
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/prazoStandby.js" />
+        
+
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWIES" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3316">
+    <register name="NPCCWIES-HEADER">
+      <field name="NPCCWIES-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWIES" />
+      <field name="NPCCWIES-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03316" />
+    </register>
+    <register name="NPCCWIES-REGISTRO">
+      <field name="NPCCWIES-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWIES-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWIES-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWIES-CTPO-DESP-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWIES-DTPO-DESP-CMBIO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWIES-IDENT-TRFA-DEPS" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXKS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3511">
+    <register name="NPCCWXKS-HEADER">
+      <field name="NPCCWXKS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXKS" />
+      <field name="NPCCWXKS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03511" />
+    </register>
+    <register name="NPCCWXKS-REGISTRO">
+      <field name="NPCCWXKS-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXKS-NCOMIS-EXTER-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXKS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXKS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWXKS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWXKS-LISTA" minOccurs="0" maxOccurs="99" depends="NPCCWXKS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWXKS-NPCELA-COMIS-EXTER" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXKS-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXKS-VPCELA-COMIS-CMBIO" pic="9(017)V9(002)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWXKS-PRAZO-PARCELA" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

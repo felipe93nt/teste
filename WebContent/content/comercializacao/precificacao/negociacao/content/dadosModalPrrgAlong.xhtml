@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!--  MODAL CONFIRMAÇÃO -->
+    <ui:include src="/template/modal.xhtml">
+        <ui:param name="alertMessageConfirmation" value="#{tradeFinPrgAlongBean.viewHelper.alertMessageConfirmation}" />
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinPrgAlongBean}" />
+        <ui:param name="actionConfirmar" value="actionModalConfirmar" />
+        <ui:param name="actionFechar" value="actionFecharModalConfirma" />
+        <ui:param name="renderModal" value="#{tradeFinPrgAlongBean.viewHelper.renderModal}" />
+    </ui:include>
+
+    <!-- MODAL ALERTAS -->
+    <ui:include src="/template/modalAlerta.xhtml">
+        <ui:param name="message" value="#{tradeFinPrgAlongBean.viewHelper.mensagemFluxoValidacao}" />
+        <ui:param name="bean" value="#{tradeFinPrgAlongBean}" />
+        <ui:param name="actionConfirmar" value="fecharModalAlertaAlteracao" />
+        <ui:param name="renderModal" value="#{tradeFinPrgAlongBean.viewHelper.renderModalAlerta}" />
+    </ui:include>
+    
+    <!-- MODAL SELECT CLIENTE -->
+    <awb-th:extDiv id="div_modalCliente">
+        <awb-br:modalContent id="modalCliente" iconUrl="info" autoOpen="true" reRender="@form" resizable="true"
+            draggable="true" width="750" height="520" closable="false" closeOnEscape="false"
+            header="Selecionar Cliente" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinPrgAlongBean.closeModalCliente}"
+            rendered="#{tradeFinPrgAlongBean.viewHelper.renderModalCliente}"
+            contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+    </awb-th:extDiv>
+    
+    <!-- MODAL CUSTO EXTERNO / AUTORIZACAO DSN -->
+    <awb-th:extDiv id="div_modalCutoExtAutDsn">
+        <awb-br:modalContent id="modalMotivo" autoOpen="true" closeId="formModalCtExAtDsn:botaoCancelar"
+            contentPath="#{request.contextPath}/content/global/custoExtDsnModal/modalCustoExtAutoDsn.xhtml"
+            header="#{custoExtAutoDsnModalBean.viewHelper.headerMotivo}" width="500" height="300"
+            onHideServerCallback="#{tradeFinPrgAlongBean.closeModalCutoExtAutDsn}"
+            rendered="#{custoExtAutoDsnModalBean.viewHelper.renderModal}" reRender="@form formModalMessages" />
+    </awb-th:extDiv>
+
+    <!-- MODAL GARANTIAS -->
+    <awb-th:extDiv id="div_modalGarantias">
+        <awb-br:modalContent id="content_modalGarantias" closeId="frameForm:btnCancelar" autoOpen="true"
+            openId="btnDetalharGarantias, btnDetalharGarantiasTeste" resizable="true" draggable="true"
+            contentPath="#{request.contextPath}/content/global/garantiasModal/tradeFinanceGarantiasModal.xhtml"
+            header="#{msgs.label_garantias}" width="900" height="700"
+            onHideServerCallback="#{garantiasModalBean.closeModal}"
+            rendered="#{garantiasModalBean.viewHelper.renderModal}" reRender="@form formModalMessages"/>
+    </awb-th:extDiv>
+
+    <!-- MODAL ALERTAS CLIENTES -->
+    <awb-th:extDiv id="div_modalAlertasCliente">
+         <awb-br:modalContent id="content_modalAlertasCliente" 
+                              iconUrl="info" 
+                              closeId="mainForm:fecharModalAlerta" 
+                              reRender="@form"
+                              autoOpen="true"
+                              contentPath="#{alertasClienteModalBean.viewHelper.url}"
+                              header="Relatório Auditor - Alertas" 
+                              width="1045" 
+                              height="650"
+                              onHideServerCallback="#{tradeFinPrgAlongBean.closeModalAlertasCliente}"
+                              rendered="#{alertasClienteModalBean.viewHelper.renderModal}"/>
+    </awb-th:extDiv>
+    
+    <awb-th:extDiv id="div_modalUnidExt">
+        <awb-br:modalContent id="content_modalUnidExt" 
+                             closeId="formTdFnNgModUniExt:botaoFechar" 
+                             autoOpen="true" 
+                             resizable="true" 
+                             draggable="true"
+                             contentPath="#{request.contextPath}/content/global/unidadeExternaModal/modalUnidExtList.xhtml" 
+                             header="Selecionar Unidade Externa" 
+                             width="500"  
+                             height="350" 
+							 onHideServerCallback="#{tradeFinPrgAlongBean.listenerTrocaUnidadeExternaModal}"
+                             rendered="#{unidadeExternaModalBean.viewHelper.renderModal}"
+                             reRender="@form formModalMessages"/>
+     </awb-th:extDiv>
+    
+    <!-- MODAL MODELO BOLETO -->
+    <awb-th:extDiv id="div_modalModelBol">
+        <awb-br:modalContent id="content_modalModelBol" 
+                             closeId="formTdFnNgModModBol:botaoFechar" 
+                             autoOpen="true" 
+                             resizable="true" 
+                             draggable="true"
+                             contentPath="#{request.contextPath}/content/global/modeloBoletoModal/modalModelBolList.xhtml" 
+                             header="#{modeloBoletoModalBean.viewHelper.titulo}" 
+                             width="500"  
+                             height="350" 
+							 onHideServerCallback="#{tradeFinanceNegociacaoInclBean.listenerTrocaModeloBoleto}"
+                             rendered="#{modeloBoletoModalBean.viewHelper.renderModal}"
+                             reRender="@form formModalMessages"/>
+     </awb-th:extDiv>
+    
+        
+    <!-- MODAL FLUXO PAGAMENTO -->
+    <awb-th:extDiv id="div_modalFluxoPgto">
+        <awb-br:modalContent id="modalFluxoPgto" iconUrl="info" autoOpen="true" reRender="@form" resizable="true"
+            draggable="true" width="1000" height="580" closable="false" closeOnEscape="false"
+            header="Fluxo de Pagamento" closeId="formModalFlxPgt:botaoFechar"
+            onHideServerCallback="#{tradeFinPrgAlongBean.closeModalFlxPgt}"
+            rendered="#{fluxoPgtoManutModalBean.viewHelper.renderModal}"
+            contentPath="#{request.contextPath}/content/global/fluxoPgtoManutModal/modalFluxoPgtoManut.xhtml" />
+    </awb-th:extDiv>
+    
+    <!-- MODAL LIMITES/PROPOSTAS -->
+    <awb-th:extDiv id="div_modalLimites">
+        <awb-br:modalContent id="modalLimites" iconUrl="info" autoOpen="true" reRender="@form formModalMessages"
+            width="1000" height="650" closable="false" closeOnEscape="false"
+            header="Limites Disponíveis" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinPrgAlongBean.closeModalLimites}"
+            rendered="#{limitesModalBean.viewHelper.renderModal}"
+            contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+    </awb-th:extDiv>
+    
+    <!-- MODAL DESENQUADRADAS -->
+    <awb-th:extDiv id="div_modalDesenquadradas">
+        <awb-br:modalContent id="modalDesenquadradas" iconUrl="info" autoOpen="true"
+            reRender="@form formModalMessages" resizable="true" draggable="true" width="850" height="500"
+            closable="false" closeOnEscape="false" header="Desenquadramentos" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinPrgAlongBean.closeModalDesenquadradas}"
+            rendered="#{desenquadradasModalBean.viewHelper.renderModalDesenquadradas}"
+            contentPath="#{request.contextPath}/content/global/desenquadradaModal/modalDesenquadradas.xhtml" />
+    </awb-th:extDiv>
+    
+    <!-- Modal Anexar E-mail -->
+    <awb-th:extDiv id="div_modalAnexarEmail">
+        <awb-br:modalContent id="modalAnexarEmail" iconUrl="info" closeId="frameForm:botaoFechar" autoOpen="true"
+            reRender="@form" resizable="false" draggable="false"
+            contentPath="#{request.contextPath}/content/global/anexarArquivoGccModal/modalAnexarArquivoGcc.xhtml"
+            header="#{anexarArquivoGccModalBean.viewHelper.titleModal}"
+            onHideServerCallback="#{anexarArquivoGccModalBean.closeModal}"
+            rendered="#{anexarArquivoGccModalBean.viewHelper.renderModal}">
+        </awb-br:modalContent>
+    </awb-th:extDiv>
+
+    <awb-th:extDiv id="div_modalLiborTravada">
+        <awb-br:modalContent id="modalLiborTravada" 
+                             closeId="formModalLiborTrav:botaoFechar" 
+                             autoOpen="true" 
+                             openId="txtUnidExt-action" 
+                             resizable="true" 
+                             draggable="true"
+                             contentPath="#{request.contextPath}/content/global/liborTravadaModal/liborTravadaModal.xhtml" 
+                             header="Incluir Libor Travada" 
+                             width="200"  
+                             height="200" 
+                             onHideServerCallback="#{tradeFinPrgAlongBean.closeModalLiborTravada}"
+                             rendered="#{liborTravadaModalBean.viewHelper.renderModalLiborTravada}"
+                             reRender="@form"/>
+     </awb-th:extDiv>
+
+	<!-- MODAL MANUTENCAO COMISSAO INTERNA -->
+	<awb-th:extDiv id="div_modalComissaoInterna">
+		<awb-br:modalContent id="modalComissaoInterna" iconUrl="info"
+			autoOpen="true" reRender="@form" resizable="true" draggable="true"
+			width="1000" height="530" closable="false" closeOnEscape="false"
+			header="Comissão Interna (Spread)"
+			closeId="formModalComissInt:botaoFechar"
+			onHideServerCallback="#{tradeFinPrgAlongBean.closeModalComissaoInterna}"
+			rendered="#{comissaoIntManutModalBean.viewHelper.renderModalComissaoInterna}"
+			contentPath="#{request.contextPath}/content/global/comissaoIntModal/comissaoIntManutModal.xhtml" />
+	</awb-th:extDiv>
+    
+    <!-- MODAL COMISSÃO ADICIONAL -->
+    <awb-br:modalContent id="modalComissaoExterna" 
+                         closeId="formModalComissExt:botaoCancelar" 
+                         autoOpen="true" 
+                         openId="btnModalComissaExt, btoExcComissao, btoIncluirComissao" 
+                         resizable="true" 
+                         draggable="true"
+                         contentPath="#{request.contextPath}/content/global/comissaoExtManutModal/modalComissExtManut.xhtml" 
+                         header="Comissao Adicional" 
+                         width="1000"  
+                         height="530" 
+                         onHideServerCallback="#{tradeFinPrgAlongBean.closeModalComissaoExterna}"
+                         rendered="#{comissaoExtManutModalBean.viewHelper.renderModal}"
+                         reRender="@form"/>
+
+</ui:composition>
+</html>

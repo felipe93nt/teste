@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+     
+     <awb-h:panelGrid columns="1" styleClass="panelGridTable" width="100%" >
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel value="#{msgs.label_det_obs_interno}: " styleClass="HtmlOutputLabelBradesco"/>
+        </awb-h:panelGroup>
+        
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao1}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao2}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao3}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao4}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao5}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao6}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao7}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao8}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao9}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel style="white-space: normal;" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao10}" escape="false" styleClass="HtmlOutputTextBoldBradesco"/>
+	        
+        <br/>
+        
+        <awb-h:panelGroup rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc ne 642}">
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel value="#{msgs.label_det_outras_espc}: " styleClass="HtmlOutputLabelBradesco"/>
+        </awb-h:panelGroup>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.outrasespcs}" styleClass="HtmlOutputTextBoldBradesco"/>
+        
+		<!-- IN2746215 - Apresentar o campo Orcamento na tela de consulta e relatório de impressão -->
+        <awb-h:panelGroup rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc == 622 or 
+        							  tradeFinanceBean.tradeFinanceVO.cprodtservc == 624 or
+        							  tradeFinanceBean.tradeFinanceVO.cprodtservc == 638 or 
+        							  tradeFinanceBean.tradeFinanceVO.cprodtservc == 639 or
+        							  tradeFinanceBean.tradeFinanceVO.cprodtservc == 640 or 
+        							  tradeFinanceBean.tradeFinanceVO.cprodtservc == 1713}">            
+	        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	        <awb-h:outputLabel value="#{msgs.label_orcamento}: " styleClass="HtmlOutputLabelBradesco"/>
+            <awb-h:inputTextarea disabled="true" id="txtOrcamento" title="Orçamento" immediate="false" cols="250" rows="20"
+                styleClass="HtmlInputTextBradesco" value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.orcamento}">
+            </awb-h:inputTextarea>
+	    </awb-h:panelGroup>
+	    
+     </awb-h:panelGrid>  
+            
+</ui:composition>
+</html>

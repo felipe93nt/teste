@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1450 a 1499  -->
+    
+    <!-- botao Collaps Contato para Retirada da Garantia -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosContatoRetiradaGarantia}" tabindex="1450"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(10)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Contato para Retirada da Garantia" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{bean.viewHelper.renderContatoRetiradaGarantia}">    
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable" id="panelCttRetGaran"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+    		
+            <!-- Nome do Contato -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_nome_ctt}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtNomeCttRetGaran" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtNomeCttRetGaran" title="#{msgs.label_det_nome_ctt}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="1451"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.retirnome}" size="70" maxlength="100">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- Endereco do Contato-->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_end_ctt}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtEnderecoCttRetGaran" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtEnderecoCttRetGaran" title="#{msgs.label_det_end_ctt}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="1452"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.retirender}" size="70" maxlength="100">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <awb-h:panelGrid columns="1">
+            	<awb-h:panelGroup />
+            </awb-h:panelGrid>
+    		
+            <!-- Cidade -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_cidade}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtCidadeCttRetGaran" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtCidadeCttRetGaran" title="#{msgs.label_det_cidade}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="1453"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.retircidade}" size="70" maxlength="100">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- Telefone -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_telefone}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtTelefoneCttRetGaran" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtTelefoneCttRetGaran" title="#{msgs.label_telefone}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="1454"
+						maxlength="20" size="20" alt="{'type':'ddd-phone'}"                    
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.retirtele}">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- E-mail -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_email}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtEmailCttRetGaran" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtEmailCttRetGaran" title="#{msgs.label_det_email}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="1455"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.retiremail}" size="70" maxlength="100">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+    		
+    	</awb-h:panelGrid>
+    </awb-h:panelGrid>        
+</ui:composition>
+
+</html>    

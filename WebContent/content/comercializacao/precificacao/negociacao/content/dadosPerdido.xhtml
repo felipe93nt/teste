@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- COMBO MOTIVO -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <h:outputText value="#{msgs.label_motivo}: " styleClass="HtmlOutputLabelBradesco" />
+        </awb-h:panelGroup>
+        <awb-h:panelGroup>
+            <awb-h:selectOneMenu id="cboMotivoPerda" immediate="true" styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+                title="#{msgs.label_motivo}" value="#{tradeFinanceBean.tradeFinanceVO.cmotvobletocmbio}">
+                <awb-f:selectItems value="#{selectItemBean.comboMotivoPerda}" />
+            </awb-h:selectOneMenu>
+            <h:outputText value=" " escape="false" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+        
+    <!-- LINHA DIVISÓRIA -->
+    <awb-h:panelGrid width="100%">
+        <br></br>
+        <awb-f:verbatim>
+            <hr />
+        </awb-f:verbatim>
+    </awb-h:panelGrid>
+    
+    <awb-h:panelGrid columns="2" width="100%">
+        
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+            action="#{tradeFinMonitPerdaBean.actionVoltar}"/>
+        <awb-h:panelGrid styleClass="gridBotaoDireita">
+            <awb-h:panelGroup>
+                <awb-h:commandButton id="btnConfirmarFechar" styleClass="HtmlCommandButtonBradesco right"
+                    value="#{msgs.bto_confirmar}">
+                    
+                    <f:ajax execute="@form" event="click"
+                        render="formTradeFinMonitDet formModalMessages"
+                        listener="#{tradeFinMonitPerdaBean.validarForm}" />
+                    
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+    
+    <!--  MODAL CONFIRMAÇÃO -->
+    <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinMonitPerdaBean}" />
+        <ui:param name="actionConfirmar" value="actionConfirmar" />
+        <ui:param name="actionFechar" value="actionFechar" />
+        <ui:param name="renderModal" value="#{tradeFinMonitPerdaBean.viewHelper.renderModal}" />
+    </ui:include>
+    
+</ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWKJE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="1173">
+    <register name="NPCCWKJE-HEADER">
+      <field name="NPCCWKJE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWKJE" />
+      <field name="NPCCWKJE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01173" />
+    </register>
+    <register name="NPCCWKJE-REGISTRO">
+      <field name="NPCCWKJE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CMOTVO-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CADITV-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-NSEQ-CONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-NPPSTA-PONTU-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CSIT-BLETO-APROV" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-VNEGOC-MOEDA-ESTRG" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWKJE-CINDCD-NEGOC-CARTA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-CINDCD-CARTA-IDPDT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-TDIA-VALDD-CARTA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-VTX-SPREAD-NEGOC" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWKJE-DLIM-EMBRQ-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWKJE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-RJUSTF-DQMTO" pic="X(1000)" length="1000" bytes="1000" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWKJE-VTX-SPREAD-TOT" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+    </register>
+  </input>
+</copybook>
+

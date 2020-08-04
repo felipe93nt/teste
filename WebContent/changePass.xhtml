@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+
+
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	  xmlns:awb-br="http://bradesco.com.br/components-br" lang="pt"
+ xmlns:awb-h="http://bradesco.com.br/components-html"
+ xmlns:awb-f="http://bradesco.com.br/components-core">
+
+
+<ui:composition template="/template/root/mainLayoutBasic.xhtml">
+<ui:define name="body">
+
+<table id="mainLayout" border="0" cellpadding="0" cellspacing="0" class="tmainpage">
+
+<tbody>
+	<tr><td class="ccontext">
+	<table id="content:innerLayout" border="0" cellpadding="0" cellspacing="0" class="tmainpage">
+		<thead><tr><th class="tsubHeaderPanel" scope="colgroup" colspan="1"></th></tr></thead>
+		<tfoot><tr><td class="thelpPanel" colspan="1"></td></tr></tfoot>
+		<tbody>
+			<tr><td class="ccontext">
+			<table id="content:contentLayout" border="0" cellpadding="0" cellspacing="0" class="tmainpage">
+				<thead><tr><th class="tmainMenuPanel" scope="colgroup" colspan="1"></th></tr></thead>
+				<tbody><tr><td class="ccontext">
+					   <table id="content:pageContentLayout" border="0" cellpadding="0" cellspacing="0" class="tmainpage">
+						<thead><tr><th class="pathContext" scope="colgroup" colspan="1"></th></tr></thead>
+						<tbody>
+							<tr><td class="cbodyContext">
+								<awb-f:view locale="#{localeBean.locale}">
+									<awb-h:form id="authenticationForm">
+										
+										<awb-h:panelGrid columns="3" cellspacing="5" border="0" columnClasses="colunm_center" styleClass="table">
+											<awb-h:outputLabel id="label_usuario" for="usuario" value="#{msgs.login_usuario}" />
+											<awb-h:inputText id="usuario" size="8" maxlength="7" required="true" value="#{changePasswordBean.usuario}"/>
+											<awb-h:messages for="usuario" />
+
+											<awb-h:outputLabel id="label_senha" for="senha" value="#{msgs.login_senha}" />
+											<awb-h:inputSecret id="senha" size="8" maxlength="10" required="true" value="#{changePasswordBean.senha}" />
+											<awb-h:messages for="senha" />
+
+											<awb-h:outputLabel id="label_novaSenha" for="novaSenha" value="#{msgs.login_nova_senha}" />
+											<awb-h:inputSecret id="novaSenha" size="8" maxlength="10" required="true" value="#{changePasswordBean.novaSenha}" />
+											<awb-h:messages for="novaSenha" />
+
+											<awb-h:outputLabel id="label_novaSenhaConf" for="novaSenhaConf" value="#{msgs.login_nova_senha_conf}" />
+											<awb-h:inputSecret id="novaSenhaConf" size="8" maxlength="10" required="true" value="#{changePasswordBean.novaSenhaConf}" />
+											<awb-h:messages for="novaSenhaConf" />
+
+											<awb-h:commandButton value="#{msgs.botao_confirmar}" alt="#{msgs.botao_confirmar}"
+												actionListener="#{changePasswordBean.changePass}" />
+										</awb-h:panelGrid>
+									</awb-h:form>
+									<awb-h:form>
+										<awb-h:panelGroup>
+											<awb-h:commandLink value="#{msgs.login_fail_back}" action="/index.xhtml"/>
+										</awb-h:panelGroup>
+									</awb-h:form>
+								</awb-f:view>
+							</td></tr>
+						</tbody></table></td></tr>
+				</tbody></table></td></tr>
+		</tbody></table></td></tr>
+</tbody></table>
+ </ui:define>
+</ui:composition></html>

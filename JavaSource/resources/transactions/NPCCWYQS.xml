@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYQS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="54">
+    <register name="NPCCWYQS-HEADER">
+      <field name="NPCCWYQS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYQS" />
+      <field name="NPCCWYQS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00054" />
+    </register>
+    <register name="NPCCWYQS-REGISTRO">
+      <field name="NPCCWYQS-NDSEMB-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQS-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQS-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

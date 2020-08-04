@@ -1,0 +1,233 @@
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:ui="http://java.sun.com/jsf/facelets" lang="pt"
+ 	xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+ 	xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core">
+ 	
+	<awb-f:view>
+	
+		<ui:param name="server" value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+				
+		<!-- Cabeçalho -->		
+		<awb-th:extHtmlTag value="span" style="float: left; font-weight: bold; font-size: 15px; margin-top: 35px; margin-right: 15px">
+			Trade Finance - Monitor
+		</awb-th:extHtmlTag>
+		
+		<awb-th:extHtmlTag value="hr" style="border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+		
+		<br />
+			
+		<!-- Conteudo -->		
+		<awb-h:dataTable value="#{lista}" var="item" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >
+	
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_status}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dsitbletocmbio}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_status_aprov}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.statusAprovacao}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_data_cotacao}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dtcotacao}" />
+			</awb-h:column>			
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_operador}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.nusuarinclt}" />
+			</awb-h:column>	
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_cotacao}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.nbletocmbioano}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_aditivo}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.caditvbletocmbio}" />
+			</awb-h:column>				
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_cliente}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.ncunicclicmbio}" />
+			</awb-h:column>	
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_cnpj}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.cpfCnpjFormatado}" />
+			</awb-h:column>	
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_segmento}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dtposgmtocli}" />
+			</awb-h:column>	
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_unidade_negocio}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.nomeundorgnz}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_agencia_comercial}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.agcmrcl}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_produto}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dprodtservc}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_modalidade}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.cmodldprodtdesc}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_moeda}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.simbleconmmoeda}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_valor_me}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.vlrmoedaestrang}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_eqv_usd}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.vlreqvlntedolar}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_swap}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.cindcdnegocswap}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_prazo}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.tdiaopercmbio}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_pzr_med}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.qprzmedcmbio}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_n_apr_cred}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.nseqcontrlim}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_spread_apr}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.vtxspreadaprov}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_custo}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.custo}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_spread_negoc}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.vtxspreadnegoc}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_spread_all}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.ptxswapcmpdo}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_spread_usd}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.spreaddolar}" />
+			</awb-h:column>			
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_unidade_externa}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dbcoextcmbio}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_data_fechamento}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dfchtobletocmbio}" />
+			</awb-h:column>
+						
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_prorrog}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.caditvbletocmbiostr}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_pais_origem}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dpais}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_pais_embrq}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{item.dpaisembrq}" />
+			</awb-h:column>
+
+		</awb-h:dataTable>
+	</awb-f:view>
+</html>

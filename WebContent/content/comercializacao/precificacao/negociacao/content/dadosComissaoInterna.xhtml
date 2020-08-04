@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 900 a 999  -->
+
+    <!-- botao Collaps Comissão Interna -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosComissaoInterna}" tabindex="900"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(3)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Comissão Interna (Spread)" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+
+    </awb-h:panelGrid>
+    <awb-h:panelGrid id="pnlComissInt" styleClass="panelGridTable"
+        rendered="#{bean.viewHelper.renderComissaoInterna}">
+
+        <awb-h:panelGrid id="pnlCobraComiss" columns="5" styleClass="panelGridTable2">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Cobrança da Comissão: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Comissão: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Moeda Comissão: " />
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Comissão Sobre: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Mínimo a Cobrar: " />
+            </awb-h:panelGroup>
+
+            <!-- Cobrança da Comissão -->
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboCobraComiss" layout="pageDirection" title="Cobrança da Comissão" tabindex="901"
+                    style="width: 140px;font-family: verdana; font-size: 10px" immediate="false"
+                    value="#{bean.viewHelper.tipoCobrancaComissao}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboCodCobrancaComissao}" />
+                    <f:ajax immediate="false" execute="@form" event="change" render="formModalMessages pnlComissInt pnlCobraComiss div_modalComissaoInterna txtComiss1 txtComiss2"
+                        listener="#{bean.listenerTrocaTipoComissao}" />
+                    <awb-br:nextFocus forId="txtComiss1" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+
+            <!-- Comissão Valor ou Taxa -->
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtComiss1" value="#{bean.viewHelper.valueComissaoCobranca}" title="comissao1" alt="{'type':'money-dot'}" maxlength="18" size="22"
+                	rendered="#{bean.viewHelper.tipoCobrancaComissao == 1}" styleClass="HtmlInputTextBradesco ajax-no-loading" tabindex="902">
+                    <f:ajax execute="@form" event="change" render="formModalMessages pnlGridComisInt pnlComissInt div_modalComissaoInterna" immediate="false"
+                         listener="#{bean.listenerTrocaValorComissao}"/>
+                </awb-h:inputText>
+                <awb-h:inputText id="txtComiss2" value="#{bean.viewHelper.valueComissaoCobranca}" 
+                	title="comissao1" alt="{'wholePartSize': 3, 'decimalPartSize': 5}"  maxlength="14" size="18"
+                	rendered="#{bean.viewHelper.tipoCobrancaComissao == 2 or bean.viewHelper.tipoCobrancaComissao == 3}" 
+                	styleClass="HtmlInputTextBradesco ajax-no-loading" tabindex="902">
+                    <f:ajax execute="@form" event="change" render="formModalMessages pnlGridComisInt pnlComissInt div_modalComissaoInterna" immediate="false"
+                         listener="#{bean.listenerTrocaValorComissao}"/>
+                </awb-h:inputText>
+            </awb-h:panelGroup>
+
+            <!-- Moeda Comissão -->
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboMoedaComiss" layout="pageDirection" title="Moeda Comissão" tabindex="903"
+                    style="width: 100px;font-family: verdana; font-size: 10px" immediate="false"
+                    value="#{bean.viewHelper.codMoedaComissao}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboMoedaDesembolso}" />
+                    <f:ajax immediate="false" execute="@form" event="change"
+                        render="pnlComissInt div_modalComissaoInterna formModalMessages" 
+                        listener="#{bean.listenerTrocaMoedaComissao}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+            
+            <!-- Comissão Sobre -->
+            <awb-h:panelGroup>
+                <awb-h:inputText id="comboComissSobre" value="#{bean.viewHelper.getDescComissaoSobre()}" disabled="true" styleClass="HtmlInputTextBradesco" />
+            </awb-h:panelGroup>
+
+            <!-- Mínimo a Cobrar -->
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtMinCobrar" title="Mínimo a Cobrar" tabindex="904"
+                    alt="{'type':'money-dot'}" maxlength="18" size="22"
+                    value="#{bean.viewHelper.vmincobrcomis}" styleClass="HtmlInputTextBradesco ajax-no-loading">
+                    <f:ajax execute="@form" event="change" render="formModalMessages" immediate="false"
+                         listener="#{bean.listenerTrocaValorMinimoCobrar}"/>
+                </awb-h:inputText>
+            </awb-h:panelGroup>
+            
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+            <awb-h:panelGroup columns="5" styleClass="panelGridTable2" width="90%">
+                
+                <!-- Spread Aprovado -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_spread_apvr}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.ptxcustototal}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="% AA" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="  " />
+                </awb-h:panelGroup>
+
+                <!-- Spread Negociado -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_spread_negoc}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.vtxspreadnegoc}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="% AA" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="  " />
+                </awb-h:panelGroup>
+
+                <!-- Flat -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_flat}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.ptxflatpnalt}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="%" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="  " />
+                </awb-h:panelGroup>
+
+                <!-- Valor -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_valor}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" 
+                        value="#{bean.itemListaComissaoInterna.vlxtotalcomis}">
+                        <f:converter converterId="numericConverter"></f:converter>
+                    </h:outputText>
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="  " />
+                </awb-h:panelGroup>
+                
+                <!-- Spread Total -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_spread_total}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.vtxspreadtot}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" %" />
+                </awb-h:panelGroup>
+            </awb-h:panelGroup>
+
+            <!-- Incluir Fluxos -->
+            <awb-h:panelGroup columns="2" styleClass="right" width="10%">
+<!-- 				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoCalcular" tabindex="905"
+                    value="Calcular Spread" disabled="#{not empty bean.tradeFinNegocVO.listaComissaoInterna or bean.tradeFinNegocVO.ccomiscartanacio eq 1}">
+                    <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                        listener="#{bean.listenerIncluirComissaoInterna}" />
+                </awb-h:commandButton> -->
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclFluxosComiss" tabindex="905"
+                    value="#{msgs.bto_incluir_flx}" disabled="#{not empty bean.tradeFinNegocVO.listaComissaoInterna or bean.tradeFinNegocVO.ccomiscartanacio eq 2}">
+                    <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                        listener="#{bean.listenerIncluirComissaoInterna}" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaComissaoInterna" layout="spread" immediate="false" tabindex="906"
+                forceId="true" forceIdIndex="false" value="#{bean.viewHelper.itemSelecListaComissaoInterna}">
+                
+                <f:ajax immediate="false" execute="@form" event="click"
+                            render="gridBotoesComissInterna formModalMessages"
+                            listener="#{bean.listenerSelecionarComissaoInterna}" />
+                            
+                <awb-f:selectItems value="#{bean.itensRadioListaComissaoInterna}"/>
+                
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+
+        <!-- GRID COMISSAO INTERNA -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridComisInt"
+            rendered="#{not empty bean.tradeFinNegocVO.listaComissaoInterna and bean.tradeFinNegocVO.ccomiscartanacio eq 1}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableComisInt">
+                <awb-br:keepState pdcDataScrollerID="dataScrollerListaComissaoInterna"
+                    stateID="#{bean.viewHelper.stateIdListaComissaoInterna}" resource="cws">
+                    <awb-br:scrollableDataTable id="dataTableComissaoInterna" var="itemComissaoInterna" rows="20"
+                        width="100%" rowIndexVar="indexListaComissaoInterna"
+                        value="#{bean.tradeFinNegocVO.listaComissaoInterna}">
+                        <!--  height="110px" -->
+    
+                        <awb-br:scrollableColumn width="3%"  styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-th:extRadio index="#{indexListaComissaoInterna}"
+                                for=":formTrdFinNegIncl:radioListaComissaoInterna" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="10%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="#{msgs.label_data}" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemComissaoInterna.dataComissaoFormat}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="20%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Periodicidade" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemComissaoInterna.periodicidadeComissao}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="20%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Momento" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemComissaoInterna.momentoComissao}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="47%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemComissaoInterna.vprevtcomiscmbio}">
+                                <f:converter converterId="numericConverter"></f:converter>
+                            </awb-h:outputLabel>
+                        </awb-br:scrollableColumn>
+    
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+            <awb-h:panelGrid columns="1" width="70%">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup />
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Custo Total: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.itemListaComissaoInterna.dsccustototal}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="3" width="10%" id="gridBotoesComissInterna" styleClass="right">
+                <awb-h:panelGroup>
+                    <!-- Alterar Comissao Interna -->
+                    <awb-h:commandButton id="btoAltComissaoInt" value="#{msgs.bto_alterar_flx}" tabindex="907"
+                        disabled="#{comissaoIntManutModalBean.viewHelper.disabledBtoAltDetComInt}"
+                        styleClass="HtmlCommandButtonBradesco">
+                        <f:ajax immediate="false" execute="@form" event="click"
+                            render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerAlterarComissaoInterna}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+				
+				<awb-h:panelGroup>
+                    <!-- Excluir Comissao Interna -->
+                    <awb-h:commandButton id="btoExclComissaoInt" value="#{msgs.bto_excluir_flx}" tabindex="908"
+                        disabled="#{empty bean.tradeFinNegocVO.listaComissaoInterna}"
+                        styleClass="HtmlCommandButtonBradesco">
+                        <f:ajax immediate="false" execute="@form" event="click"
+                            render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerExcluirComissaoInterna}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+				
+                <awb-h:panelGroup style="float:right">
+                    <!-- Detalhar Comissao Interna -->
+                    <awb-h:commandButton id="btnDetalharComissaoInt" styleClass="HtmlCommandButtonBradesco" tabindex="909"
+                        disabled="#{comissaoIntManutModalBean.viewHelper.disabledBtoAltDetComInt}"
+                        value="#{msgs.bto_detalhar}">
+                        <f:ajax immediate="false" execute="@form" event="click"
+                            render="formTrdFinNegIncl formModalMessages divSeiModals"
+                            listener="#{bean.listenerDetalharComissaoInterna}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+</ui:composition>
+
+</html>

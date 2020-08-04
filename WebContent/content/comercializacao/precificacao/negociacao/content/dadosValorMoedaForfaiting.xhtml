@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+        <!-- CALENDARIO -->
+        <awb-br:bundleWriter functionName="getBundle" id="calendarioTaxas" rendered="true"
+            messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,
+              field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,
+              c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,
+              c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,
+              c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,
+              c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+        </awb-br:bundleWriter>
+	
+	<!-- Utilizar nesse include range de 'TABINDEX' de 400 a 499  -->
+	
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColumn55,panelGridColum40">
+            
+            <!-- txt Moeda Operação -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_moeda_operacao}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaOper" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboMoedaOper" layout="pageDirection" title="Moeda Operação"
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda" tabindex="400"
+                        value="#{bean.tradeFinNegocVO.cindcdeconmmoeda}" immediate="false">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboMoedaOperacao}" />
+                        <f:ajax immediate="false" execute="@form" event="change"
+                            render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerTrocaMoedaOperForfaiting}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- txt Valor ME -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_valor_ME}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtValorME" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtValorME" title="#{msgs.label_valor_ME}" tabindex="401"
+                        alt="{'type':'money-dot'}" maxlength="18" size="22" 
+                        styleClass="HtmlInputTextObrigatorioBradesco"
+                        value="#{bean.tradeFinNegocVO.vnegocmoedaestrg}">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerTrocaValorMeForfaiting}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <!-- Moeda do Limite -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <awb-h:panelGroup />
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Moeda do Limite: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.moedaLimite}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <!-- txt Prazo das Letras(Dias) -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Prazo das Letras(Dias): " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtPrazoLetras" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtPrazoLetras" title="Prazo Operação" maxlength="5" size="7" tabindex="402"
+                        alt="{'type':'integer'}" styleClass="HtmlInputTextObrigatorioBradesco"
+                        value="#{bean.tradeFinNegocVO.tdiavalddletra}">
+                        <f:ajax immediate="false" execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                           listener="#{bean.listenerCalculaDataVencimentoSaque}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+    
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColumn55,panelGridColum55">
+    
+            <!-- Moeda do Desembolso -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_moeda_desembolso}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaDesembolso" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboMoedaDesembolso" layout="pageDirection" title="Moeda do Desembolso"
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda" tabindex="403"
+                        value="#{bean.tradeFinNegocVO.ceconmmoedadsemb}" immediate="false">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboMoedaDesembolso}" />
+                        <f:ajax immediate="false" execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerTrocaMoedaDesembolso}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- Data Disponibilidade da Linha -->
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable" id="divDataDisponibilidade">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_data_disponibilidade}: " 
+                    	styleClass="HtmlOutputTextBulletBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup>
+                    <awb-br:calendar id="dataDisponibLinha" titulo="Calendário" disableInputFields="false" tabindex="404"
+                        onFieldFilled="errorStyleChanger" clientValidationLevel="date"
+                        onDateSelected="limpaData('formTrdFinNegIncl:dataDisponibLinha','validarDisponibLinha')"
+                        onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                        value="#{bean.tradeFinNegocVO.dprevtgarntexpdi}" />
+                    <awb-h:outputLabel value=" " escape="false" />
+                    
+                    <awb-h:commandButton style="display:none;" styleClass="ajax-call validarDisponibLinha">
+    					<f:ajax execute="@form" event="click"
+    						render="formTrdFinNegIncl formModalMessages divSeiModals"
+    						listener="#{bean.validarDiaUtil}" />
+    					<f:param name="campoData" value="3" />
+					</awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+        </awb-h:panelGrid>
+        
+        <!-- Valor Moeda Limite  -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Valor Moeda Limite: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.vmoedalimgerc}" >
+                        <f:converter converterId="numericConverter" />
+                    </h:outputText>    
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            <!-- espaço -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup />
+                <awb-h:panelGroup />
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <!-- txt Prazo Financiamento -->
+        <awb-h:panelGrid columns="1"  id="pnlPrazoFinanciamento">
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Prazo Financiamento(Dias): " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtPrazoFinanc" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtPrazoFinanc" title="" maxlength="5" size="7" tabindex="405"
+                        alt="{'type':'integer'}" styleClass="HtmlInputTextObrigatorioBradesco"
+                        value="#{bean.tradeFinNegocVO.tdiaopercmbio}">
+                        <f:ajax immediate="false" execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerTrocaPrazoFinancForfaiting}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+    
+        <!-- Previsão do Desembolso -->
+        <awb-h:panelGrid columns="1" styleClass="panelGridTable" id="divPeriodDesembolso">
+            <awb-h:panelGrid style="width:28em;">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Previsão do Desembolso: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="periodDesembolso" />
+                </awb-h:panelGroup>
+                
+                <awb-h:panelGrid columns="3" width="310px">
+                    <awb-h:column>
+                        <awb-br:calendar id="periodDesembolsoInicio" titulo="Calendario" alt="Data Início" tabindex="406"
+                            disableInputFields="false" clientValidationLevel="date"
+                            onDateSelected="limpaData('formTrdFinNegIncl:periodDesembolsoInicio','validarDesembolsoInicio')"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{bean.tradeFinNegocVO.dataPrevDesemb.inicio}" />
+                        <awb-h:commandButton style="display:none;" styleClass="ajax-call validarDesembolsoInicio">
+                            <f:ajax execute="@form" event="click"
+                                render="formTrdFinNegIncl formModalMessages divSeiModals"
+                                listener="#{bean.validarDiaUtil}" />
+                            <f:param name="campoData" value="4" />
+                        </awb-h:commandButton>
+                    </awb-h:column>
+                    <awb-h:column>
+                        <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco"
+                            style="text-align: center;" />
+                    </awb-h:column>
+                    <awb-h:column>
+                        <awb-br:calendar id="periodDesembolsoFim" titulo="Calendario" alt="Data Fim" tabindex="407"
+                            disableInputFields="false" clientValidationLevel="date"
+                            onDateSelected="limpaData('formTrdFinNegIncl:periodDesembolsoFim','validarDesembolsoFim')"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{bean.tradeFinNegocVO.dataPrevDesemb.fim}" />
+                        <awb-h:commandButton style="display:none;" styleClass="ajax-call validarDesembolsoFim">
+                            <f:ajax execute="@form" event="click"
+                                render="formTrdFinNegIncl formModalMessages divSeiModals"
+                                listener="#{bean.validarDiaUtil}" />
+                            <f:param name="campoData" value="5" />
+                        </awb-h:commandButton>
+                    </awb-h:column>
+                </awb-h:panelGrid>
+                
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <!-- Previsão de Embarque -->
+        <awb-h:panelGrid columns="1" styleClass="panelGridTable" id="divPeriodEmbarque">
+            <awb-h:panelGrid style="width:28em;">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Previsão de Embarque: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="periodEmbarque" />
+                </awb-h:panelGroup>
+                
+                <awb-h:panelGrid columns="3" width="310px">
+                    <awb-h:column>
+                        <awb-br:calendar id="periodEmbarqueInicio" titulo="Calendario" alt="Data Início" tabindex="408"
+                            disableInputFields="false" clientValidationLevel="date"
+                            onInputChange="limpaData('formTrdFinNegIncl:periodEmbarqueInicio','validarEmbarqueInicio')"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{bean.tradeFinNegocVO.dataPrevEmbarq.inicio}" />
+                    </awb-h:column>
+                    <awb-h:column>
+                        <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco"
+                            style="text-align: center;" />
+                    </awb-h:column>
+                    <awb-h:column>
+                        <awb-br:calendar id="periodEmbarqueFim" titulo="Calendario" alt="Data Fim" tabindex="409"
+                            disableInputFields="false" clientValidationLevel="date"
+                            onInputChange="limpaData('formTrdFinNegIncl:periodEmbarqueFim','validarEmbarqueFim')"
+                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                            value="#{bean.tradeFinNegocVO.dataPrevEmbarq.fim}" />
+                    </awb-h:column>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1">
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

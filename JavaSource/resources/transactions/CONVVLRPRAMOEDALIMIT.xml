@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCIASH" type="CWS">
+  <header>
+    <property name="FWO">BUSINESS</property>
+    <property name="Length">506</property> 
+    <property name="RouterTransaction">FRWK1100</property>
+  </header>
+  <inputdependencies>
+    <dependency>FRWKGL01</dependency>
+    <dependency>GSEGGLAA</dependency>
+    <dependency>NPCCWWZE</dependency>
+  </inputdependencies>
+  <input maxBytes="60" />
+  <outputdependencies>
+	<dependency>FRWKGL01</dependency>
+    <dependency>FRWKEBL2</dependency>
+    <dependency>FRWKEBL3</dependency>
+    <dependency>GSEGGLBB</dependency>
+    <dependency>NPCCWWZS</dependency>
+  </outputdependencies>
+</copybook>
+

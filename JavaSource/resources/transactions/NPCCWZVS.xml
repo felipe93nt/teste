@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZVS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="19066">
+    <register name="NPCCWZVS-HEADER">
+      <field name="NPCCWZVS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZVS" />
+      <field name="NPCCWZVS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="19066" />
+    </register>
+    <register name="NPCCWZVS-REGISTRO">
+      <field name="NPCCWZVS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZVS-GRIDE" minOccurs="0" maxOccurs="50" depends="NPCCWZVS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZVS-S-DT-FECHAMENTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-NBLETO-CMBIO-ANO" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-DIVERGENTE" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-NCUNIC-CLI-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-SIMBL-ECONM-MOEDA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-VLR-MOEDA-ESTRANG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZVS-S-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-DPRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-CMODLD-PRODT-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZVS-S-CMODLD-PRODT-DESC" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-NUSUAR-INCLT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZVS-S-CSIT-BLETO-APROV" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+        <body onunload="closeModalContent();">
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+            <awb-h:form id="frameForm">
+
+                <awb-h:panelGrid columns="2" styleClass="panelGridDataTable"
+                    columnClasses="panelGridColum50, panelGridColum50">
+                    
+                    <!-- Cliente -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{msgs.label_det_cliente}: " styleClass="HtmlOutputLabelBradesco" />
+                        <awb-h:outputLabel value="#{garantiasModalBean.ncunicclicmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-h:panelGroup>
+                    
+                    <!-- Produto -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{msgs.label_det_produto}: " styleClass="HtmlOutputLabelBradesco" />
+                        <awb-h:outputLabel value="#{garantiasModalBean.dprodtservc}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%" rendered="#{garantiasModalBean.listaGarantiasAprov.size() > 0}">
+                    <awb-f:verbatim>
+                        <hr class="linhaPontilhada" />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+					<awb-h:panelGrid styleClass="panelGridDataTable" rendered="#{garantiasModalBean.listaGarantiasAprov.size() > 0}" >
+	            	<awb-h:outputLabel value="#{msgs.label_garantias_apr_lmt_cred}" styleClass="HtmlOutputTextBoldBradesco"/>
+	            	<awb-th:extDiv styleClass="overflow-x: auto; width: 100%; height:100px;">
+	            	<awb-br:keepState pdcDataScrollerID="dataScrollerListaGarantiasAprov" resource="cws">
+	            		<awb-br:editableDataTable id="dataTableGaranApr"
+				 									var="garanAprLista"
+				 									value="#{garantiasModalBean.listaGarantiasAprov}"
+				 									width="100%"
+				 									height="100px">
+				 									
+							 <awb-br:editableColumn styleClass="c">
+							     <awb-f:facet name="header">
+							        <awb-h:outputLabel value="#{msgs.label_tipo}" styleClass="tableFontStyle" escape="false" />
+							     </awb-f:facet>
+							     <awb-h:outputLabel value="#{garanAprLista.descrGaran}"/>
+							 </awb-br:editableColumn>
+
+						     <awb-br:editableColumn styleClass="c">
+						        <awb-f:facet name="header">
+						            <awb-h:outputLabel value="#{msgs.label_percentual_garantia}" styleClass="tableFontStyle" escape="false" />
+						        </awb-f:facet>
+							    <awb-h:inputText value="#{garanAprLista.vtxgarntcmbio}"  rendered="#{garantiasModalBean.viewHelper.editavel}" styleClass="HtmlInputTextObrigatorioBradesco" size="9" alt='{"wholePartSize": 3, "decimalPartSize": 6}'>
+								</awb-h:inputText>
+						        <awb-h:outputLabel value="#{garanAprLista.vtxgarntcmbio}" rendered="#{not garantiasModalBean.viewHelper.editavel}"
+						        	styleClass="tableFontStyles"/>
+						     </awb-br:editableColumn>
+
+						     <awb-br:editableColumn styleClass="c">
+						        <awb-f:facet name="header">
+						            <awb-h:outputLabel value="#{msgs.label_moeda_garantia}" styleClass="tableFontStyle" escape="false" />
+						        </awb-f:facet>
+						        
+			                    <awb-h:selectOneMenu id="selectMoedaAprGar" tabindex="3" rendered="#{garantiasModalBean.viewHelper.editavel}"
+			                    	value="#{garanAprLista.cindcdeconmmoegar}" 
+			                        style="font-family: verdana; font-size: 10px;width: 120px !important;" styleClass="HtmlInputTextBradesco auto-focus">
+			                        <f:selectItems value="#{garantiasModalBean.comboMoedaGarantia}" />
+	                    		</awb-h:selectOneMenu>
+
+						        <awb-h:outputLabel value="#{garanAprLista.descrMoedaGar}" rendered="#{not garantiasModalBean.viewHelper.editavel}"
+						        	styleClass="tableFontStyles"/>
+						     </awb-br:editableColumn>
+						     
+						     <awb-br:editableColumn styleClass="c">
+						        <awb-f:facet name="header">
+						            <awb-h:outputLabel value="#{msgs.label_principal}" styleClass="tableFontStyle" escape="false" />
+						        </awb-f:facet>
+						        <awb-h:outputLabel value="#{(garanAprLista.cindcdgarntprinc == '1' || garanAprLista.cindcdgarntprinc == 'S') ? 'Sim' : 'Não'}" 
+						        	styleClass="HtmlOutputTextBoldBradesco"/>
+						     </awb-br:editableColumn>
+						     
+						     <awb-br:editableColumn styleClass="c">						     
+						        <awb-f:facet name="header">
+						            <awb-h:outputLabel value="#{msgs.label_obs}" styleClass="tableFontStyle" escape="false" />
+						        </awb-f:facet>			        
+						     <awb-h:inputText value="#{garanAprLista.rcomplgarntcmbio}" rendered="#{garantiasModalBean.viewHelper.editavel}" styleClass="editable-value" maxlength="200">
+								<f:ajax immediate="false" 
+                               			execute="@form" 
+                               			render="@form formModalMessages"
+	                                	event="change" 
+	                                	listener="#{garantiasModalBean.atualizarValorGarantiasAprovadas}" />
+                                   
+							</awb-h:inputText>
+					        <awb-h:outputLabel value="#{garanAprLista.rcomplgarntcmbio}" rendered="#{not garantiasModalBean.viewHelper.editavel}"
+					        	styleClass="tableFontStyles"/>
+						        
+						     </awb-br:editableColumn>
+						</awb-br:editableDataTable>
+						</awb-br:keepState>
+	            	</awb-th:extDiv>
+				</awb-h:panelGrid>
+
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%" rendered="#{garantiasModalBean.listaGarantiasAprLmt.size() > 0}">
+                    <awb-f:verbatim>
+                        <hr class="linhaPontilhada" />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!-- GRID DE AVALISTAS APROVADOS NO LIMITE DE CREDITO -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" rendered="#{garantiasModalBean.listaGarantiasAprLmt.size() > 0}">
+                    <awb-h:outputLabel value="#{msgs.label_aval_apr_lmt_cred}" styleClass="HtmlOutputTextBoldBradesco" />
+                    <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+                        id="pnlGrid">
+		                 <awb-br:scrollableDataTable id="dataTableAvaisCred" var="aprLmtLista" rows="10" width="100%"
+		         			value="#{garantiasModalBean.listaGarantiasAprLmt}" rendered="#{garantiasModalBean.listaGarantiasAprLmt.size() > 0}">
+		             
+		                     <awb-br:scrollableColumn styleClass="c" width="10%">
+		                         <awb-f:facet name="header">
+		                             <awb-h:outputLabel value="#{msgs.label_tipo_dco}" styleClass="tableFontStyle"
+		                                 escape="false" />
+		                         </awb-f:facet>
+		                         <awb-h:outputLabel value="#{aprLmtLista.documento}" />
+		                     </awb-br:scrollableColumn>
+		                     <awb-br:scrollableColumn styleClass="c">
+		                         <awb-f:facet name="header">
+		                             <awb-h:outputLabel value="#{msgs.label_num_dco}" styleClass="tableFontStyle"
+		                                 escape="false" />
+		                         </awb-f:facet>
+		                         <awb-h:outputLabel value="#{aprLmtLista.cpfcnpjformatado}" />
+		                     </awb-br:scrollableColumn>
+		                     <awb-br:scrollableColumn styleClass="c">
+		                         <awb-f:facet name="header">
+		                             <awb-h:outputLabel value="#{msgs.label_nome_razao_social}"
+		                                 styleClass="tableFontStyle" escape="false" />
+		                         </awb-f:facet>
+		                         <awb-h:outputLabel value="#{aprLmtLista.nmnomecliente}" />
+		                     </awb-br:scrollableColumn>
+		                     <awb-br:scrollableColumn styleClass="c">
+		                         <awb-f:facet name="header">
+		                             <awb-h:outputLabel value="#{msgs.label_qualif}" styleClass="tableFontStyle"
+		                                 escape="false" />
+		                         </awb-f:facet>
+		                         <awb-h:outputLabel value="#{aprLmtLista.cdoctopssoaempr}" />
+		                     </awb-br:scrollableColumn>
+		                     <awb-br:scrollableColumn styleClass="c">
+		                         <awb-f:facet name="header">
+		                             <awb-h:outputLabel value="#{msgs.label_e_ou}" styleClass="tableFontStyle"
+		                                 escape="false" />
+		                         </awb-f:facet>
+		                         <awb-h:outputLabel value="#{aprLmtLista.dindcdobrigavals}"
+		                             styleClass="HtmlOutputTextBoldBradesco" />
+		                     </awb-br:scrollableColumn>
+		                 </awb-br:scrollableDataTable>
+                    </awb-h:panelGrid>
+                </awb-h:panelGrid>
+
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <awb-f:verbatim>
+                        <hr class="linhaPontilhada" />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+                <!-- GRID DE GARANTIAS ADICIONAIS -->
+                <awb-h:outputLabel value="#{msgs.label_garantias_add}" styleClass="HtmlOutputTextBoldBradesco" />
+                <awb-h:panelGrid id="panelGridCamposGarantiasAdc" styleClass="panelGridTable" columns="5"
+                    columnClasses="panelGridColum40,panelGridColum10,panelGridColum40,panelGridColum10"
+                    rendered="#{garantiasModalBean.viewHelper.editavel}">
+                    <!-- TIPO -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel styleClass="HtmlOutputTextRespostaBradesco" value="#{msgs.label_tipo}:" />
+                        <awb-h:selectOneMenu id="selectTipoGaranAdc" tabindex="1"
+                            value="#{garantiasModalBean.viewHelper.itemSelecionadoTipoGarantiaAdic}"
+                            style="font-family: verdana; font-size: 10px;width: 220px !important;" styleClass="HtmlInputTextObrigatorioBradesco auto-focus">
+                            <f:selectItems value="#{garantiasModalBean.comboTipoGarantia}" />
+                        </awb-h:selectOneMenu>
+                    </awb-h:panelGroup>
+                    <!-- Percentual -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_percentual}: " />
+                        <awb-h:inputText styleClass="HtmlInputTextObrigatorioBradesco" size="9" tabindex="2"
+                            value="#{garantiasModalBean.viewHelper.percentualGarantiaAdc}"
+                            alt='{"wholePartSize": 3, "decimalPartSize": 6}'  id="percGaran"/>
+                    </awb-h:panelGroup>
+		            <!-- Moeda -->
+	                <awb-h:panelGroup>
+	                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                    <awb-h:outputLabel styleClass="HtmlOutputTextBulletBoldBradesco" value="#{msgs.label_moeda}: " />
+	                    <awb-h:selectOneMenu id="selectMoedaGar" tabindex="3" 
+	                    	value="#{garantiasModalBean.viewHelper.cindcdeconmmoegar}" 
+	                        style="font-family: verdana; font-size: 10px;width: 220px !important;" styleClass="HtmlInputTextObrigatorioBradesco auto-focus">
+	                        <f:selectItems value="#{garantiasModalBean.comboMoedaGarantia}" />
+	                    </awb-h:selectOneMenu>
+	                </awb-h:panelGroup>
+                    <!-- Observacao -->
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_obs}: " />
+                        <awb-h:inputText size="50" maxlength="200" id="obsGaran" tabindex="4"
+                            value="#{garantiasModalBean.viewHelper.obsGarantiaAdc}" styleClass="HtmlInputTextObrigatorioBradesco" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:commandButton id="btnIncluirGanratiasAdc" style="float: right;" tabindex="5"
+                            styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_incluir}">
+                            <f:ajax execute="panelGridCamposGarantiasAdc"
+                                render="gridGarantiasAdd panelGridCamposGarantiasAdc gridExcluirAdd formModalMessages"
+                                listener="#{garantiasModalBean.incluirGarantiaAdicional}" />
+                        </awb-h:commandButton>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <!-- RADIO GRID LISTA -->
+                <awb-h:panelGrid styleClass="panelGridDataTable">
+                    <awb-f:facet name="header">
+                        <awb-th:extSelectOneRadio id="radioListaGaranAdd" layout="spread" immediate="false" tabindex="5"
+                            forceId="true" forceIdIndex="false"
+                            value="#{garantiasModalBean.viewHelper.itemSelecionadoTipoGarantiaAdic}">
+                            <awb-f:selectItems value="#{garantiasModalBean.selectItemRadioGarantiaAdc}" />
+                        </awb-th:extSelectOneRadio>
+                    </awb-f:facet>
+                </awb-h:panelGrid>
+
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="gridGarantiasAdd">
+                   <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable_1">
+                     <awb-br:scrollableDataTable id="dataTableGaranAdd" var="garanAprLista"
+                         rowIndexVar="rowIndex" rows="10" width="100%"
+                         value="#{garantiasModalBean.listaGarantiasAdicionais}"
+                         rendered="#{garantiasModalBean.listaGarantiasAdicionais.size() > 0}">
+
+                         <awb-br:scrollableColumn width="4%" styleClass="c"
+                             rendered="#{garantiasModalBean.viewHelper.editavel}">
+                             <awb-f:facet name="header">
+                                 <h:outputText value=" " styleClass="tableFontStyle" escape="false" />
+                             </awb-f:facet>
+                             <awb-th:extRadio index="#{rowIndex}" for=":frameForm:radioListaGaranAdd" />
+                         </awb-br:scrollableColumn>
+
+                         <awb-br:scrollableColumn width="36%" styleClass="c">
+                             <awb-f:facet name="header">
+                                 <awb-h:outputLabel value="#{msgs.label_tipo}" styleClass="tableFontStyle"
+                                     escape="false" />
+                             </awb-f:facet>
+                             <awb-h:outputLabel value="#{garanAprLista.descrGaran}" />
+                         </awb-br:scrollableColumn>
+                         <awb-br:scrollableColumn width="18%" styleClass="c">
+                             <awb-f:facet name="header">
+                                 <awb-h:outputLabel value="#{msgs.label_percentual}" styleClass="tableFontStyle"
+                                     escape="false" />
+                             </awb-f:facet>
+                             <awb-h:outputLabel value="#{garanAprLista.vtxgarntcmbio}" />
+                         </awb-br:scrollableColumn>
+                         <awb-br:scrollableColumn width="20%" styleClass="c">
+                             <awb-f:facet name="header">
+                                 <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle"
+                                     escape="false" />
+                             </awb-f:facet>
+                             <awb-h:outputLabel value="#{garanAprLista.descrMoedaGar}" />
+                         </awb-br:scrollableColumn>
+                         <awb-br:scrollableColumn width="20%" styleClass="c">
+                             <awb-f:facet name="header">
+                                 <awb-h:outputLabel value="#{msgs.label_obs}" styleClass="tableFontStyle"
+                                     escape="false" />
+                             </awb-f:facet>
+                             <awb-h:outputLabel value="#{garanAprLista.rcomplgarntcmbio}" />
+                         </awb-br:scrollableColumn>
+                     </awb-br:scrollableDataTable>
+                  </awb-th:extDiv>
+                </awb-h:panelGrid>
+                    
+                <awb-h:panelGrid id="gridExcluirAdd" styleClass="panelGridTable">
+                    <awb-h:commandButton id="btnExcluirTarifasDespesas" style="float: right;" tabindex="6"
+                        styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_excluir}"
+                        rendered="#{garantiasModalBean.listaGarantiasAdicionais.size() > 0
+                                                                        and garantiasModalBean.viewHelper.editavel}">
+                        <f:ajax execute="radioListaGaranAdd" render="gridGarantiasAdd gridExcluirAdd formModalMessages"
+                            listener="#{garantiasModalBean.excluirGarantiaAdicional}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGrid>
+
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%" rendered="#{garantiasModalBean.listaGarantiasAva.size() > 0}">
+                    <awb-f:verbatim>
+                        <hr class="linhaPontilhada" />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+                <!-- GRID DE AVALISTAS -->
+				<awb-h:panelGrid styleClass="panelGridDataTable"
+				    rendered="#{garantiasModalBean.listaGarantiasAva.size() > 0}">
+				<awb-h:outputLabel value="#{msgs.label_aval_cadastro}" styleClass="HtmlOutputTextBoldBradesco" />
+					<awb-br:scrollableDataTable id="dataTableAvais" var="avaltLista"
+						value="#{garantiasModalBean.listaGarantiasAva}" rows="10" rowClasses="columnDataTable10"
+						width="100%">
+					    <awb-br:scrollableColumn width="4%" styleClass="c"
+					    	rendered="#{garantiasModalBean.viewHelper.editavel}">
+					        <awb-f:facet name="header">
+					            <h:outputText value=" " styleClass="tableFontStyle" escape="false" />
+					        </awb-f:facet>
+					        <awb-h:selectBooleanCheckbox styleClass="HtmlSelectOneRadioBradesco" tabindex="7"
+					            value="#{avaltLista.selecionado}" />
+					    </awb-br:scrollableColumn>
+					    <awb-br:scrollableColumn width="25%" styleClass="c">
+					        <awb-f:facet name="header">
+					            <awb-h:outputLabel value="#{msgs.label_tipo_dco}" styleClass="tableFontStyle"
+					                escape="false" />
+					        </awb-f:facet>
+					        <awb-h:outputLabel value="#{avaltLista.vo.documento}" />
+					    </awb-br:scrollableColumn>
+					    <awb-br:scrollableColumn width="23%" styleClass="c">
+					        <awb-f:facet name="header">
+					            <awb-h:outputLabel value="#{msgs.label_num_dco}" styleClass="tableFontStyle"
+					                escape="false" />
+					        </awb-f:facet>
+					        <awb-h:outputLabel value="#{avaltLista.vo.dcocliente}" />
+					    </awb-br:scrollableColumn>
+					    <awb-br:scrollableColumn width="34%" styleClass="c">
+					        <awb-f:facet name="header">
+					            <awb-h:outputLabel value="#{msgs.label_nome_razao_social}" styleClass="tableFontStyle"
+					                escape="false" />
+					        </awb-f:facet>
+					        <awb-h:outputLabel value="#{avaltLista.vo.nmnomecliente}" />
+					    </awb-br:scrollableColumn>
+					    <awb-br:scrollableColumn styleClass="c">
+					        <awb-f:facet name="header">
+					            <awb-h:outputLabel value="#{msgs.label_qualif}" styleClass="tableFontStyle"
+					                escape="false" />
+					        </awb-f:facet>
+					        <awb-h:outputLabel value="#{avaltLista.vo.qualificacao}" />
+					    </awb-br:scrollableColumn>
+					    <awb-br:scrollableColumn styleClass="c" rendered="#{not garantiasModalBean.viewHelper.editavel}">
+					        <awb-f:facet name="header">
+					            <awb-h:outputLabel value="#{msgs.label_e_ou}" styleClass="tableFontStyle" escape="false" />
+					        </awb-f:facet>
+					        <awb-h:outputLabel value="#{avaltLista.vo.nmconjuge}"
+					            styleClass="HtmlOutputTextBoldBradesco" />
+					    </awb-br:scrollableColumn>
+					</awb-br:scrollableDataTable>
+				</awb-h:panelGrid>
+             
+                <awb-h:panelGrid width="100%" columns="2">
+                    <awb-h:panelGrid align="left">
+                        <awb-h:column>
+                            <awb-h:commandButton id="btnCancelar" value="#{msgs.bto_cancelar}" tabindex="8"
+                                styleClass="HtmlCommandButtonBradesco"/>
+                        </awb-h:column>
+                    </awb-h:panelGrid>
+
+                    <awb-h:panelGrid align="right">
+                        <awb-h:column>
+                            <awb-h:commandButton id="btnConfirmar" value="#{msgs.bto_confirmar}" tabindex="9"
+                                styleClass="HtmlCommandButtonBradesco auto-focus" action="#{garantiasModalBean.confirmarGarantias}"
+                                rendered="#{garantiasModalBean.viewHelper.editavel}" />
+                        </awb-h:column>
+                    </awb-h:panelGrid>
+                </awb-h:panelGrid>
+            </awb-h:form>
+        </body>
+         
+         <!-- Script geral da aplicação -->
+         <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+         <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+            
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYLE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="4794">
+    <register name="NPCCWYLE-HEADER">
+      <field name="NPCCWYLE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYLE" />
+      <field name="NPCCWYLE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="04794" />
+    </register>
+    <register name="NPCCWYLE-REGISTRO">
+      <field name="NPCCWYLE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CFLUXO-PERDC-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-VPREVT-COMIS-CMBIO" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWYLE-VMIN-COBR-COMIS" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWYLE-VTX-SPREAD-APROV" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYLE-VTX-SPREAD-NEGOC" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYLE-PTX-FLAT-PNALT" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYLE-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYLE-PCOMIS-NEGOC-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYLE-QPCELA-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CCOBR-COMIS-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CCOBR-COMIS-INTRN" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CMOMEN-COBR-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYLE-QTD-OC-LIST" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYLE-LST-LIS" minOccurs="0" maxOccurs="99" depends="NPCCWYLE-QTD-OC-LIST" dependsType="number">
+        <field name="NPCCWYLE-NPCELA-COMIS-INTRN" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYLE-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYLE-VPCELA-COMIS-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWYLE-VCUSTO-FINCR-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

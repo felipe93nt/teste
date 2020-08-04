@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWN0E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="186">
+    <register name="NPCDWN0E-HEADER">
+      <field name="NPCDWN0E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWN0E" />
+      <field name="NPCDWN0E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00186" />
+    </register>
+    <register name="NPCDWN0E-REGISTRO">
+      <field name="NPCDWN0E-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWN0E-RPRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWN0E-COPER" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWN0E-ROPER" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

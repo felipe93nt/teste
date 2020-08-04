@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWK7S" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="2696">
+    <register name="NPCCWK7S-HEADER">
+      <field name="NPCCWK7S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWK7S" />
+      <field name="NPCCWK7S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="02696" />
+    </register>
+    <register name="NPCCWK7S-REGISTRO">
+      <field name="NPCCWK7S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWK7S-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWK7S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWK7S-CCARAC-TPO-GARNT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK7S-ICARAC-TPO-GARNT" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK7S-VTX-GARNT-CMBIO" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWK7S-CINDCD-GARNT-PRINC" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK7S-CINDCD-ECONM-MOE-GAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK7S-DVCTO-GARANT-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK7S-CINDCD-DESCR-MOE-GAR" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

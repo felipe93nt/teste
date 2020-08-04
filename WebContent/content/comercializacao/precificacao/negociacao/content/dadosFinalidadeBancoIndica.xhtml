@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    
+    <!-- Utilizar nesse include range de 'TABINDEX' de 225 a 249  -->
+    
+    <!-- Finalidade -->
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable" 
+		rendered="#{bean.tradeFinNegocVO.cprodtservc == 1769 or bean.tradeFinNegocVO.cprodtservc == 3933}">            
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_finalidade}:" />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtFinalidade" title="#{msgs.label_det_finalidade}" immediate="false" cols="250" rows="2"
+                onkeydown="textCounter(this,200);" onkeyup="textCounter(this,200);" length="200;" tabindex="225"
+                styleClass="HtmlInputTextBradesco" value="#{bean.tradeFinNegocVO.obsCotacaoVO.finalidade}">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    
+	<!-- Banco Indicado -->
+	<awb-h:panelGrid columns="1" id="pnlBcoInd" rendered="#{bean.tradeFinNegocVO.cprodtservc == 1769 or bean.tradeFinNegocVO.cprodtservc == 3933}">
+		<awb-h:panelGrid>
+			<awb-h:panelGroup>
+			    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+			        value="#{msgs.label_det_bc_indicado}: " />
+			</awb-h:panelGroup>
+	  
+			<awb-h:panelGroup>
+			    <awb-h:inputText id="txtBancoIndicado" title="#{msgs.label_det_bc_indicado}" size="72" maxlength="70"
+			        immediate="false" styleClass="HtmlInputTextBradesco action-on-enter" tabindex="226"
+			        value="#{bean.trdFinNegPrecificacaoVO.bancoIndicadoVO.ibanqrcmbio}"
+			        validatorMessage="Mínimo 3 e Máximo 70 caracteres">
+			        <awb-f:validator validatorId="customLengthValidator" />
+			        <awb-f:attribute name="minimum" value="3" />
+			        <awb-f:attribute name="maximum" value="70" />
+			    </awb-h:inputText>
+			
+			    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+	
+				<awb-br:brCommandSearch id="txtBancoIndicado-action" tabindex="227">
+				    <f:ajax execute="@form" event="click" render="pnlBcoInd div_modalUnidExt formModalMessages"
+				        listener="#{bean.openModalBancoIndicado}" />
+				</awb-br:brCommandSearch>
+				
+				<awb-h:message for="txtBancoIndicado" id="msgErrorBenef" errorClass="TextValidatorMessage" />
+			</awb-h:panelGroup>  		                                          
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>     
+	</ui:composition>   
+</html>

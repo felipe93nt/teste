@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- FORM -->
+    <awb-h:form id="formTradeFinMonitDet">
+    
+    <awb-h:panelGrid id="radioListaFluxoPgt">
+    
+    </awb-h:panelGrid>
+
+        <!--  LINHA DIVISÓRIA -->
+        <awb-h:panelGrid width="100%">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="4" styleClass="panelGridTable"
+            columnClasses="panelGridColum25, panelGridColum25, panelGridColum25">
+            <awb-h:panelGrid columns="1" width="100%">
+                <!-- tipo de cotação -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_tipo_cotacao}: " styleClass="HtmlOutputLabelBradesco" />
+                    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.descrctc}"
+                        styleClass="HtmlOutputTextBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <!-- cotacao -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_cotacao}: " styleClass="HtmlOutputLabelBradesco" />
+                    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.ncotacao}"
+                        styleClass="HtmlOutputTextBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <!-- operador -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_operador}:" styleClass="HtmlOutputLabelBradesco" />
+                    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.nusuarinclt}"
+                        styleClass="HtmlOutputTextBoldBradesco" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+                <awb-h:outputLabel value="" />
+
+                <!-- status -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_status}: " styleClass="HtmlOutputLabelBradesco" />
+                    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.dsitbletocmbio}"
+                        styleClass="HtmlOutputTextBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <!-- data cadastramento -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_data_cadastramento}: " styleClass="HtmlOutputLabelBradesco" />
+                    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.dinclreg}"
+                        styleClass="HtmlOutputTextBoldBradesco" />
+                </awb-h:panelGroup>
+
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <!--  LINHA DIVISÓRIA -->
+        <awb-h:panelGrid width="100%">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid styleClass="panelGridDataTable">
+            <awb-br:scrollableDataTable id="dataTableTradeFinance" value="#{tradeFinMonitCtcPendBean.listaDePara}"
+                var="ctc" rows="23" rowIndexVar="indexCtc" styleClass="panelGridTable">
+
+                <awb-br:scrollableColumn>
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="" styleClass="tableFontStyle" escape="false" />
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{ctc.ncampo}" />
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn>
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_de}" styleClass="tableFontStyle" escape="false" />
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{ctc.dcampo}" />
+
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn>
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_para}" styleClass="tableFontStyle" escape="false" />
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{ctc.pcampo}" styleClass="#{ctc.diferente ? 'textoDivergente' : 'tableFontStyle'}" />
+                </awb-br:scrollableColumn>
+
+            </awb-br:scrollableDataTable>
+
+            <!-- PAGINACAO -->
+<!--             <awb-br:awbDataScroller resource="cws" for="dataTableTradeFinance" styleClass="pagination" -->
+<!--                 id="dataScrollerCadastro" renderFacetsIfSinglePage="true"> -->
+<!--                 <f:facet name="first"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}" -->
+<!--                         title="#{msgs.label_txt_primeira}" /> -->
+<!--                 </f:facet> -->
+<!--                 <f:facet name="fastrewind"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}" -->
+<!--                         title="#{msgs.label_txt_retrocesso}" /> -->
+<!--                 </f:facet> -->
+<!--                 <f:facet name="previous"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}" -->
+<!--                         title="#{msgs.label_txt_anterior}" /> -->
+<!--                 </f:facet> -->
+<!--                 <f:facet name="next"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}" -->
+<!--                         title="#{msgs.label_txt_proxima}" /> -->
+<!--                 </f:facet> -->
+<!--                 <f:facet name="fastforward"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}" -->
+<!--                         title="#{msgs.label_txt_avanco}" /> -->
+<!--                 </f:facet> -->
+<!--                 <f:facet name="last"> -->
+<!--                     <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}" -->
+<!--                         title="#{msgs.label_txt_ultima}" /> -->
+<!--                 </f:facet> -->
+<!--             </awb-br:awbDataScroller> -->
+
+        </awb-h:panelGrid>
+
+        <!--  LINHA DIVISÓRIA -->
+        <awb-h:panelGrid width="100%">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1" width="100%">
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_obs_interno}" styleClass="HtmlOutputLabelBradesco" />
+            </awb-h:panelGroup>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao1}" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao2}" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao3}" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao4}" styleClass="HtmlOutputTextBoldBradesco"/>
+	        <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao5}" styleClass="HtmlOutputTextBoldBradesco"/>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao6}" styleClass="HtmlOutputTextBoldBradesco"/>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao7}" styleClass="HtmlOutputTextBoldBradesco"/>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao8}" styleClass="HtmlOutputTextBoldBradesco"/>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao9}" styleClass="HtmlOutputTextBoldBradesco"/>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao10}" styleClass="HtmlOutputTextBoldBradesco"/>
+
+            <!--  LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_diverg_info}" styleClass="HtmlOutputLabelBradesco" />
+            </awb-h:panelGroup>
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.divergente}"
+                styleClass="HtmlOutputTextBoldBradesco" />
+        </awb-h:panelGrid>
+
+        <!--  LINHA DIVISÓRIA -->
+        <awb-h:panelGrid width="100%">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+  <!-- BOTOES -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+        <!-- VOLTAR -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" action="tradeFinCotacoesPendentes"
+            styleClass="HtmlCommandButtonBradesco" />
+
+        <awb-h:panelGrid columns="3" width="10%" styleClass="right">
+            <!-- DEVOLVER -->
+            <awb-h:commandButton value="#{msgs.bto_devolver}" styleClass="HtmlCommandButtonBradesco">
+                <f:ajax listener="#{tradeFinMonitCtcPendBean.devolver}" render="div_modalDevolver formModalMessages"
+                    execute="radioListaFluxoPgt" />
+            </awb-h:commandButton>
+            <!-- ATUALIZAR -->
+            <awb-h:commandButton value="#{msgs.bto_atualizar}" styleClass="HtmlCommandButtonBradesco"
+                action="#{tradeFinMonitCtcPendBean.atualizarDivergente}" />
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <awb-th:extDiv id="div_modalDevolver">
+        <awb-br:modalContent id="modalDevolver"
+        	closeId="formModalDevolver:btnCancelar" autoOpen="true"
+            contentPath="#{request.contextPath}/content/global/devolverModal/modalDevolver.xhtml"
+            header="#{msgs.info_confirmar_devolucao}" width="500" height="300"
+            reRender="@form formModalMessages"
+            onHideServerCallback="#{tradeFinMonitCtcPendBean.closeModalDevolver}"
+            rendered="#{devolverModalBean.viewHelper.renderModal}" />
+    </awb-th:extDiv>
+    </awb-h:form>
+</ui:composition>
+</html>

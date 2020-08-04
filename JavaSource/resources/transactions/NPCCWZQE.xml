@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZQE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="93">
+    <register name="NPCCWZVE-HEADER">
+      <field name="NPCCWZQE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZQE" />
+      <field name="NPCCWZQE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00093" />
+    </register>
+    <register name="NPCCWZQE-REGISTRO">
+      <field name="NPCCWZQE-DVCTO-PCELA-TRADE-I" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZQE-DVCTO-PCELA-TRADE-F" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZQE-DFCHTO-BLETO-I" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZQE-DFCHTO-BLETO-F" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZQE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZQE-CINDCD-LIQDC-SWAP" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZQE-CTPO-SGMTO-CLI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZQE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZQE-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZQE-CBANQR-CMBIO-FNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

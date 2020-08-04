@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVVS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="24066">
+    <register name="NPCCWVVS-HEADER">
+      <field name="NPCCWVVS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVVS" />
+      <field name="NPCCWVVS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="24066" />
+    </register>
+    <register name="NPCCWVVS-REGISTRO">
+      <field name="NPCCWVVS-QTDEOCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWVVS-GRIDE" minOccurs="0" maxOccurs="50" depends="NPCCWVVS-QTDEOCORR" dependsType="number">
+        <field name="NPCCWVVS-SCSITBLETOCMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVS-SDSITBLETOCMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SDTCOTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SHORARIO" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SCUNICCLICMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVS-SNCUNICCLICMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SCPRODTSERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVS-SDPRODTSERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SCMODLDPRODTCMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVS-SCMODLDPRODTDESC" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SVNEGOCMOEDAESTRG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWVVS-SCUSUARINCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SNUSUARINCLT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SCINDCDTPOMANUT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SFUNCAO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SNBLETONEGOCCMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVS-SHINCLREGHIST" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVS-SHINCLANTHIST" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>

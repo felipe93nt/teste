@@ -1,0 +1,197 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="3" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- TAXA EQUALIZAVEL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_taxa_equalizacao}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.ptxequalcmbio} %" />
+		</awb-h:panelGroup>
+
+		<!-- PRAZO MEDIO ESTIMADO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_prazo_medio}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.qprzmedcmbio}" />
+		</awb-h:panelGroup>
+
+		<!-- VALOR EQUALIZAVEL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_valor_equalizavel}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.valorEqualizavel}">
+			</awb-h:outputLabel>
+		</awb-h:panelGroup>
+
+		<!-- SPREAD MEDIO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_spread_media}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadnegoc} % AA" />
+		</awb-h:panelGroup>
+
+		<!-- RECEITA ESTIMAVEL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_receita}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.receitaEstimada}" />
+		</awb-h:panelGroup>
+
+		<awb-h:column></awb-h:column>
+
+		<!-- DESPESAS -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_despesa}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.despconf}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!--  GRID  -->
+
+	<awb-h:panelGrid style="width: 99%;">
+		<awb-h:dataTable id="dataTableRebate" var="rebate" rows="10"
+			cellspacing="0" cellpadding="10" border="1"
+			style="width: 100%; text-align: center" rowIndexVar="indexLista"
+			value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaRebate}">
+
+			<!-- REBATE -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_rebate}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{rebate.rebate}" />
+			</awb-h:column>
+		</awb-h:dataTable>
+	</awb-h:panelGrid>
+
+
+	<awb-h:panelGrid columns="1" style="width: 100%;"
+		columnClasses="width: 100%;">
+		<!-- DESPESAS (DESCONTO DAS NTN'S) -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_desconto_ntns}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.despdesc}" />
+		</awb-h:panelGroup>
+
+		<!-- FORMA AMORTIZACAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_forma_amortizacao}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.formamor}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!--  GRID  -->
+	<awb-h:panelGrid style="width: 99%;">
+		<awb-h:dataTable id="div_dataTableTaxa" var="taxaDesconto" rows="10"
+			cellspacing="0" cellpadding="10" border="1"
+			style="width: 100%; text-align: center" rowIndexVar="indexLista"
+			value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaTaxa}">
+
+			<!-- TAXDE DESCONTO PARA ANTECIPACAO DAS NTNS  -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_taxa_de_desconto}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{taxaDesconto.txades}" />
+			</awb-h:column>
+		</awb-h:dataTable>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="1" style="width: 100%;"
+		columnClasses="width: 100%;">
+
+		<!-- CREDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_credor}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.dbcocred}" />
+		</awb-h:panelGroup>
+
+		<!-- GARANTIAS -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_garantias}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garantias}" />
+		</awb-h:panelGroup>
+
+		<!-- VALIDADE DA PROPOSTA -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_validade_proposta}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="De #{tradeFinanceBean.tradeFinanceVO.dinicvalddppsta} Até #{tradeFinanceBean.tradeFinanceVO.dfimvalddppsta}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

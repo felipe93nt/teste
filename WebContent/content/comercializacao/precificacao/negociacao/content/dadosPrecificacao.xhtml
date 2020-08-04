@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 800 a 899  -->
+
+    <!-- botao Collaps Precificação -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosPrecificacao}" tabindex="800"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(2)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Precificação" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{bean.viewHelper.renderPrecificacao}">
+
+        <awb-h:panelGrid id="pnlUnidExt" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{msgs.label_unidade_externa_bco_corres}: " />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup styleClass="left" />
+
+            <awb-h:panelGroup styleClass="right" />
+
+            <!-- LINHA DADOS -->
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtUnidExt" title="#{msgs.label_unidade_externa}" size="72" maxlength="70" tabindex="801"
+                    immediate="false" styleClass="HtmlInputTextBradesco ajax-no-loading action-on-enter"
+                    value="#{bean.trdFinNegPrecificacaoVO.unidadeExternaVO.ibanqrcmbio}"
+                    validatorMessage="Mínimo 3 e Máximo 70 caracteres">
+                    <awb-f:validator validatorId="customLengthValidator" />
+                    <awb-f:attribute name="minimum" value="3" />
+                    <awb-f:attribute name="maximum" value="70" />
+                    
+                    <f:ajax immediate="false" execute="@form" event="change" render="formModalMessages"
+                            listener="#{bean.listenerTrocaUnidadeExterna}" />
+                        
+                </awb-h:inputText>
+
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+
+                <awb-br:brCommandSearch id="txtUnidExt-action" tabindex="802">
+                    <f:ajax execute="@form" event="click" render="pnlUnidExt div_modalUnidExt formModalMessages"
+                        listener="#{bean.openModalUnidadeExterna}" />
+                    <awb-f:attribute name="paramTelaOrigem" value="5" />
+                </awb-br:brCommandSearch>
+
+            </awb-h:panelGroup>
+
+            <!-- PRACA -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Praça: " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.trdFinNegPrecificacaoVO.unidadeExternaVO.imunintlcmbio}" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Data Cotação: " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.trdFinNegPrecificacaoVO.dataCotacaoFormat}" />
+            </awb-h:panelGroup>
+
+            <awb-h:message for="txtUnidExt" id="msgErrorUnExt" errorClass="TextValidatorMessage" />
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGroup>
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Custo Externo" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+            </awb-h:panelGroup>
+            <!-- LINHA DADOS -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Taxa Fixa: " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.trdFinNegPrecificacaoVO.custoExternoFormat}" />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" %" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Libor: " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.trdFinNegPrecificacaoVO.libor}" />
+            </awb-h:panelGroup>
+
+            <!-- VALIDADE COTACAO -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Validade(Dias): " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.trdFinNegPrecificacaoVO.validadecotac}" />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!-- LINHA DIVISÓRIA -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid id="pnlLiborTrav" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <awb-h:panelGrid columns="2" styleClass="panelGridTable2">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup />
+
+                <awb-h:panelGroup />
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_libor_travada}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.vtravaliborcmbio}" />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" %" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup>
+                    <awb-h:commandButton id="btoInclLiborTrav" value="Incluir Libor Travada" tabindex="803" styleClass="HtmlCommandButtonBradesco" 
+                    	disabled="#{!bean.authorized('ROLE_TRADE_LIBOR') or bean.trdFinNegPrecificacaoVO.taxaFixa}">
+                        <f:ajax event="click" immediate="false" execute="@form" listener="#{bean.listenerIncluirLiborTravada}"
+                            render="pnlLiborTrav div_modalLiborTravada formModalMessages" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1" rendered="#{bean.viewHelper.renderIrIof}">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_IR}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtIR" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtIR" title="IR" styleClass="HtmlInputTextBradesco" tabindex="804"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                        value="#{bean.tradeFinNegocVO.vimpstnegoccmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtIR" value=" %" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_IOF}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtIOF" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtIOF" title="IOF" styleClass="HtmlInputTextBradesco" tabindex="805"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                        value="#{bean.tradeFinNegocVO.viofnegoccmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtIOF" value=" %" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <awb-h:panelGrid columns="2" styleClass="panelGridColumn55">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_juros_mora}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="txtJuroMora" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup />
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtJuroMora" title="Juros de Mora" styleClass="HtmlInputTextBradesco"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}' tabindex="806"
+                        value="#{bean.tradeFinNegocVO.vtxmoracmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtJuroMora" value=" %" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboIncideJuros" layout="pageDirection" title="Juros de Mora"
+                        style="width: 90px;font-family: verdana; font-size: 10px" immediate="false" tabindex="807"
+                        value="#{bean.tradeFinNegocVO.cbasejuromora}">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboCodBaseJuros}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_multa}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtMulta" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtMulta" title="Multa" styleClass="HtmlInputTextBradesco" tabindex="808"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                        value="#{bean.tradeFinNegocVO.vmultanegoccmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtMulta" value=" %" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            <awb-h:panelGrid>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+    </awb-h:panelGrid>
+    
+</ui:composition>
+
+</html>

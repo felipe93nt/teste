@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZVE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="84">
+    <register name="NPCCWZVE-HEADER">
+      <field name="NPCCWZVE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZVE" />
+      <field name="NPCCWZVE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00084" />
+    </register>
+    <register name="NPCCWZVE-REGISTRO">
+      <field name="NPCCWZVE-DE-PERIODO-FECHMTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZVE-ATE-PERIODO-FECHMTO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZVE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZVE-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZVE-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZVE-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZVE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZVE-CTPO-SGMTO-CLI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZVE-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

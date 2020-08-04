@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1600 a 1699  -->
+
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_obs_interno}: " />
+        </awb-h:panelGroup>
+        
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao1}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao1 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao1 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao2}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao2 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao2 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao3}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao3 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao3 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao4}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao4 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao4 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao5}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao5 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao5 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao6}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao6 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao6 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao7}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao7 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao7 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao8}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao8 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao8 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao9}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao9 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao9 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+        <awb-h:outputLabel style="white-space: normal;" escape="false" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao10}" rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.observacao10 != '' and bean.tradeFinNegocVO.obsCotacaoVO.observacao10 != null}" styleClass="HtmlOutputTextBoldBradesco"/>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtObs" title="Observações" immediate="false" cols="250" rows="6" tabindex="1600"
+                onkeydown="textCounter(this,500);" onkeyup="textCounter(this,500);" style="overflow:auto;"
+                styleClass="HtmlInputTextBradesco" value="#{bean.tradeFinNegocVO.obsCotacaoVO.observacaoInclusao}">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable" rendered="#{bean.tradeFinNegocVO.cprodtservc ne '642'}">
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Outras Especificações(Uso Externo): " />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtOutrasEspec" title="Outras Especificações" immediate="false" cols="250" rows="6" tabindex="1601"
+                onkeydown="textCounter(this,500);" onkeyup="textCounter(this,500);" style="overflow:auto"
+                styleClass="HtmlInputTextBradesco" value="#{bean.tradeFinNegocVO.obsCotacaoVO.outrasespcs}">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable" 
+		rendered="#{bean.tradeFinNegocVO.cprodtservc == 622 or bean.tradeFinNegocVO.cprodtservc == 624 or
+					bean.tradeFinNegocVO.cprodtservc == 638 or bean.tradeFinNegocVO.cprodtservc == 639 or
+            		bean.tradeFinNegocVO.cprodtservc == 640 or bean.tradeFinNegocVO.cprodtservc == 1713}">            
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Orçamento: " />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtOrcamento" title="Orçamento" immediate="false" cols="250" rows="20" tabindex="1602"
+                onkeydown="textCounter(this,5000);" onkeyup="textCounter(this,5000);"
+                styleClass="HtmlInputTextBradesco" value="#{bean.tradeFinNegocVO.obsCotacaoVO.orcamento}">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    
+</ui:composition>
+
+
+
+</html>

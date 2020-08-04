@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:outputLabel value=" #{msgs.label_comissao_int}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+    </awb-h:panelGrid>
+    
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+        <awb-h:panelGrid width="100%" columns="3" columnClasses="panelGridColum33, panelGridColum25,panelGridColum25">
+              <awb-h:panelGroup>
+                  <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                  <awb-h:outputLabel value="#{msgs.label_det_spread_apvr}: " styleClass="HtmlOutputLabelBradesco"/>
+                  <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadaprov}% A.A" styleClass="HtmlOutputTextBoldBradesco"/>
+              </awb-h:panelGroup>
+               
+              <awb-h:panelGroup>
+                  <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                  <awb-h:outputLabel value="#{msgs.label_det_spread_negoc}: " styleClass="HtmlOutputLabelBradesco"/>
+                  <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadnegoc}% A.A" styleClass="HtmlOutputTextBoldBradesco"/>
+              </awb-h:panelGroup>
+              
+              <awb-h:panelGroup>
+                  <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                  <awb-h:outputLabel value="#{msgs.label_spread_total}: " styleClass="HtmlOutputLabelBradesco"/>
+                  <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadtot}% A.A" styleClass="HtmlOutputTextBoldBradesco"/>
+           	 </awb-h:panelGroup>
+           
+             <awb-h:panelGroup>
+                  <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                  <awb-h:outputLabel value="#{msgs.label_custo_total}: " styleClass="HtmlOutputLabelBradesco"/>
+                  <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.descctotal}" styleClass="HtmlOutputTextBoldBradesco"/>
+             </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>   
+    
+   <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+        id="pnlGridforForfainting" rendered="#{not empty tradeFinanceBean.tradeFinanceVO.listaDesembolso}">
+       <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableForfainting">
+       <awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAPJ" resource="cws">
+	         <awb-br:scrollableDataTable id="dataTable" value="#{tradeFinanceBean.tradeFinanceVO.listaDesembolso}" var="des" rows="10" rowIndexVar="indexdes"
+			 styleClass="panelGridTable">
+			
+			<!-- DATA DESEMBOLSO -->
+	        <awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_desembolso}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.dataDesembolsoFormat}" />
+	  		</awb-br:scrollableColumn>
+	  		
+	  		<!-- VALOR DESEMBOLSO -->
+	  		<awb-br:scrollableColumn
+                    rendered="#{tradeFinanceBean.tradeFinanceVO.isForfaitingTipoJuroEmbutido()}">
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_vlr_desembolso}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.vprevtdsembcmbio}">
+	      		<f:converter converterId="numericConverter"></f:converter>
+	      		</awb-h:outputLabel>
+	  		</awb-br:scrollableColumn>
+            
+            <!--  VALOR SAQUE -->
+            <awb-br:scrollableColumn rendered="#{tradeFinanceBean.tradeFinanceVO.isForfaitingTipoJuroDeduzido()}">
+                <awb-f:facet name="header">
+                    <awb-h:outputLabel value="#{msgs.label_valor_saque}" styleClass="tableFontStyle" escape="false" />
+                </awb-f:facet>
+                <awb-h:outputLabel value="#{des.vdsembnegoccmbio}">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-br:scrollableColumn>
+	  		
+	  		<!-- LIBOR TRAVADA -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<h:outputLabel value="#{msgs.label_det_libor_travada}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.vtxliborcmbio}" />
+	  		</awb-br:scrollableColumn>
+	  		
+	  		<!-- FUNDING -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_funding}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.ptxjurofndng}" />
+	  		</awb-br:scrollableColumn>
+	  		
+	  		<!-- SPREAD -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_spread}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.pspreadtxcmbio}" />
+	  		</awb-br:scrollableColumn>
+	  		
+	  		<!-- TAXA -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_det_taxa}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.pjuronegoccmbio}" />
+	  		</awb-br:scrollableColumn>
+    
+            <awb-br:scrollableColumn
+                rendered="#{tradeFinanceBean.tradeFinanceVO.isForfaitingTipoJuroDeduzido()}">
+                <awb-f:facet name="header">
+                    <awb-h:outputLabel value="#{msgs.label_taxa_descontada}" styleClass="tableFontStyle" escape="false" />
+                </awb-f:facet>
+                <awb-h:outputLabel value="#{des.taxaDescontada}" />
+            </awb-br:scrollableColumn>
+	  		
+	  		<!--  PRAZO -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.tdiafinandsemb}" />
+	  		</awb-br:scrollableColumn>
+	  		
+	  		<!--  VALOR JUROS -->
+	  		<awb-br:scrollableColumn>
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_valor_juros}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.vjurodsembcmbio}">
+	      		<f:converter converterId="numericConverter"></f:converter>
+	      		</awb-h:outputLabel>
+	  		</awb-br:scrollableColumn>
+            
+            <!-- VALOR DESEMBOLSO -->
+            <awb-br:scrollableColumn rendered="#{tradeFinanceBean.tradeFinanceVO.isForfaitingTipoJuroDeduzido()}">
+                <awb-f:facet name="header">
+                    <awb-h:outputLabel value="#{msgs.label_vlr_desembolso}" styleClass="tableFontStyle" escape="false" />
+                </awb-f:facet>
+                <awb-h:outputLabel value="#{des.vprevtdsembcmbio}">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-br:scrollableColumn>
+	  		
+	  		<!--  VALOR SAQUE -->
+	  		<awb-br:scrollableColumn
+                rendered="#{tradeFinanceBean.tradeFinanceVO.isForfaitingTipoJuroEmbutido()}">
+	      		<awb-f:facet name="header">
+	          		<awb-h:outputLabel value="#{msgs.label_valor_saque}" styleClass="tableFontStyle" escape="false" />
+	      		</awb-f:facet>
+	      		<awb-h:outputLabel value="#{des.vdsembnegoccmbio}">
+	      		<f:converter converterId="numericConverter"></f:converter>
+	      		</awb-h:outputLabel>
+	  		</awb-br:scrollableColumn>
+	     </awb-br:scrollableDataTable>
+        </awb-br:keepState>
+      </awb-th:extDiv>
+</awb-h:panelGrid>
+</ui:composition>
+</html>

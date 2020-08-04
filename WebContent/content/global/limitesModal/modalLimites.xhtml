@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+
+        <body>
+
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+
+            <awb-h:form id="frameForm">
+                <awb-h:panelGrid styleClass="panelGridDataTable">
+                    <awb-h:column>
+
+                        <!-- RADIO LISTA LIMITES -->
+                        <awb-f:facet name="header">
+                            <awb-h:selectOneRadio id="radioLimites" forceId="true" forceIdIndex="false" styleClass="auto-focus"
+                                immediate="false" value="#{limitesModalBean.viewHelper.codItemSelecionadoLimite}">
+                                <awb-f:selectItems value="#{limitesModalBean.selectItemRadioLimite}" />
+                                <f:ajax render="gridPropostas btoSelecionar formModalMessages" execute="@form"
+                                    listener="#{limitesModalBean.selecionaListaLimites}" event="click" immediate="false" />
+                            </awb-h:selectOneRadio>
+                        </awb-f:facet>
+
+                        <!-- RADIO LISTA PROPOSTAS -->
+                        <awb-f:facet name="header">
+                            <awb-h:selectOneRadio id="radioPropostas" forceId="true" forceIdIndex="false" styleClass="auto-focus"
+                                immediate="false" value="#{limitesModalBean.viewHelper.codItemSelecionadoProposta}">
+                                <awb-f:selectItems value="#{limitesModalBean.selectItemRadioProposta}" />
+                                <f:ajax render="gridLimites btoSelecionar formModalMessages" execute="@form"
+                                    listener="#{limitesModalBean.selecionaListaPropostas}" event="click"
+                                    immediate="false" />
+                            </awb-h:selectOneRadio>
+                        </awb-f:facet>
+
+                        <!-- LIMITE -->
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_limite}" />
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+
+                        <!-- GRID LIMITES  -->
+                        <awb-h:panelGrid width="98%" id="gridLimites">
+                            <awb-th:extDiv style="width: 100%; overflow-x: auto; overflow-y: auto; height:240px;">
+                                <awb-br:keepState pdcDataScrollerID="dataScrollerLimites" stateID="NPCCIAJC"
+                                    resource="cws">
+                                    <awb-br:scrollableDataTable id="dataTableLimites" var="item" rows="5" width="100%"
+                                        rowIndexVar="indice" value="#{limitesModalBean.listaLimites}">
+
+                                        <awb-br:scrollableColumn width="4%">
+                                            <awb-f:facet name="header">
+                                            </awb-f:facet>
+                                            <awb-th:extRadio for=":frameForm:radioLimites" index="#{indice}"></awb-th:extRadio>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- PRODUTO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="14%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_produto}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrprodtlimite}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- MOEDA -->
+                                        <awb-br:scrollableColumn styleClass="c" width="5%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_moeda}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrmoeda}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- VALOR LIMITE -->
+                                        <awb-br:scrollableColumn styleClass="c" width="15%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_valor_limite}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.vutlzdlimgerc}">
+                                            	<f:converter converterId="numericConverter"></f:converter>
+                                            </awb-h:outputLabel>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- VALOR DISPONIVEL -->
+                                        <awb-br:scrollableColumn styleClass="c" width="13%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_valor_disponivel}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.vdispnlimgerc}">
+                                            	<f:converter converterId="numericConverter"></f:converter>
+                                            </awb-h:outputLabel>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- VENCIMENTO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="10%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_vencimento}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.dvctolimgerc}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- PRAZO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="5%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_prazo}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.pvctolimgerc}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- SPREAD -->
+                                        <awb-br:scrollableColumn styleClass="c" width="14%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_spread}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.pspreadprodt}" >
+                                            <f:converter converterId="numericConverter"></f:converter>
+                                            </awb-h:outputLabel>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- GARANTIA PRINCIPAL -->
+                                        <awb-br:scrollableColumn styleClass="c" width="10%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_garantia_principal}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrgarntprinc}" />
+                                        </awb-br:scrollableColumn>
+
+										<!-- Numero do Limite -->
+                                        <awb-br:scrollableColumn styleClass="c" width="10%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_num_limite}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.ncontrlim}" />
+                                        </awb-br:scrollableColumn>
+
+                                    </awb-br:scrollableDataTable>
+                                </awb-br:keepState>
+
+                                <!-- PAGINACAO LIMITES -->
+                                <awb-br:awbDataScroller resource="cws" for="dataTableLimites" styleClass="pagination"
+                                    id="dataScrollerLimites" renderFacetsIfSinglePage="true"
+                                    actionListener="#{limitesModalBean.paginarLimites}" stateID="NPCCIAJC">
+                                    <f:facet name="first">
+                                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                            title="#{msgs.label_txt_primeira}" />
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+                                    </f:facet>
+                                </awb-br:awbDataScroller>
+                            </awb-th:extDiv>
+                        </awb-h:panelGrid>
+
+                        <!-- PROPOSTA PONTUAL -->
+                        <awb-h:panelGrid rendered="#{limitesModalBean.viewHelper.tratarSelecionarProposta}">
+                            <awb-h:panelGroup>
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{msgs.label_proposta_pontual}" />
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+
+                        <!-- GRID PROPOSTAS -->
+                        <awb-h:panelGrid width="98%" id="gridPropostas" rendered="#{limitesModalBean.viewHelper.tratarSelecionarProposta}">
+                            <awb-th:extDiv style="width: 100%; overflow-x: auto; overflow-y: auto; height:240px;">
+                                <awb-br:keepState pdcDataScrollerID="dataScrollerPropostas" stateID="NPCCIAS2"
+                                    resource="cws">
+                                    <awb-br:scrollableDataTable id="dataTablePropostas" var="item" rows="5" width="100%"
+                                        rowIndexVar="indice" value="#{limitesModalBean.listaPropostas}">
+
+                                        <awb-br:scrollableColumn width="4%">
+                                            <awb-f:facet name="header">
+                                            </awb-f:facet>
+                                            <awb-th:extRadio for=":frameForm:radioPropostas" index="#{indice}"></awb-th:extRadio>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- PRODUTO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="14%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_produto}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrprodtlimite}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- MOEDA -->
+                                        <awb-br:scrollableColumn styleClass="c" width="5%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_moeda}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrmoeda}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- VALOR LIMITE -->
+                                        <awb-br:scrollableColumn styleClass="c" width="15%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_valor_limite}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.vutlzdlimgerc}">
+                                            	<f:converter converterId="numericConverter"></f:converter>
+                                            </awb-h:outputLabel>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- PRAZO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="5%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_prazo}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.pvctolimgerc}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- SPREAD -->
+                                        <awb-br:scrollableColumn styleClass="c" width="10%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_spread}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.pspreadprodt}">
+                                            	<f:converter converterId="numericConverter"></f:converter>
+                                            </awb-h:outputLabel>
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- GARANTIA PRINCIPAL -->
+                                        <awb-br:scrollableColumn styleClass="c" width="15%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_garantia_principal}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrgarntprinc}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- DATA SOLICITACAO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="13%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_data_solicitacao}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.dvctolimgerc}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- NUMERO PROPOSTA -->
+                                        <awb-br:scrollableColumn styleClass="c" width="9%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_n_proposta}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.numproposta}" />
+                                        </awb-br:scrollableColumn>
+
+                                        <!-- SEGMENTO -->
+                                        <awb-br:scrollableColumn styleClass="c" width="10%">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value="#{msgs.label_segmento}"
+                                                    styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-h:outputLabel value="#{item.descrseg}" />
+                                        </awb-br:scrollableColumn>
+                                    </awb-br:scrollableDataTable>
+                                </awb-br:keepState>
+
+                                <!-- PAGINACAO PROPOSTAS-->
+                                <awb-br:awbDataScroller resource="cws" for="dataTablePropostas" styleClass="pagination"
+                                    id="dataScrollerPropostas" renderFacetsIfSinglePage="true"
+                                    actionListener="#{limitesModalBean.paginarPropostas}" stateID="NPCCIAS2">
+                                    <f:facet name="first">
+                                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                            title="#{msgs.label_txt_primeira}" />
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                            value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+                                    </f:facet>
+                                </awb-br:awbDataScroller>
+                            </awb-th:extDiv>
+                        </awb-h:panelGrid>
+
+                    </awb-h:column>
+                </awb-h:panelGrid>
+                <br />
+                <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                    styleClass="HtmlCommandButtonBradesco left" />
+
+                <awb-h:commandButton action="#{limitesModalBean.selecionar}" 
+                	value="#{msgs.bto_confirmar}"
+                	style="right: 0; bottom: 0; position: absolute;"
+                    styleClass="HtmlCommandButtonBradesco right"
+                    id="btoSelecionar" />
+            </awb-h:form>
+            
+        </body>
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+    </ui:define>
+</ui:composition>
+
+</html>

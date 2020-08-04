@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<awb-h:panelGrid columns="3" styleClass="panelGridTable" id="pnGarantidor"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        
+        <!-- Radio Garantidor Bradesco -->
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_garantidor_brad}" />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+
+	        <awb-h:panelGroup>
+	            <awb-h:selectOneRadio id="radioGarantidor" layout="lineDirection" title="Garantidor Bradesco"
+	                styleClass="HtmlSelectOneRadioBradesco"
+	                value="#{bean.tradeFinNegocVO.obsCotacaoVO.garangarant}" immediate="false" tabindex="500">
+	                <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+	                <f:ajax event="click" listener="#{bean.listenerTratarGarantidor}" render="pnGarantidor txtGarantiasBndes pnlDadosAprovacao comboComissaoAgenteSim comboComissaoAgenteNao"
+	                    execute="@form" />
+	            </awb-h:selectOneRadio>
+	        </awb-h:panelGroup>
+		</awb-h:panelGrid>
+		                
+        <!-- Banco Garantidor -->
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_bc_garantidor}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid> 
+
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtBancoGarantidor"
+					title="Banco Garantidor" size="72" maxlength="70" immediate="false" 
+					styleClass="HtmlInputTextBradesco ajax-no-loading action-on-enter" 
+					value="#{bean.trdFinNegPrecificacaoVO.unidadeExternaVO.bancocorr}" 
+					disabled="#{bean.viewHelper.disabledGarantidor}" validatorMessage="Mínimo 3 e Máximo 70 caracteres">
+					<awb-f:validator validatorId="customLengthValidator" tabindex="501" />
+					<awb-f:attribute name="minimum" value="3" />
+					<awb-f:attribute name="maximum" value="70" />
+
+		                    <f:ajax immediate="false" execute="@form" event="change" render="formModalMessages"
+		                            listener="#{bean.listenerTrocaUnidadeExterna}" />
+                                                
+				</awb-h:inputText>
+
+				<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+
+				<!-- Lupa -->
+				<awb-br:brCommandSearch id="lupaBancoGarantidor-action" disabled="#{bean.viewHelper.disabledGarantidor}"
+					tabindex="502">
+					<f:ajax execute="@form" event="click" render="pnGarantidor div_modalUnidExt formModalMessages"
+						listener="#{bean.openModalUnidadeExterna}" />
+                    <awb-f:attribute name="paramTelaOrigem" value="1" />
+				</awb-br:brCommandSearch>
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+		
+		<!-- Condição Banco Garantidor -->
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_condicao_bc_garantidor}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtCondicaoGarantidor" title="Condição Banco Garantidor"
+					value="#{bean.tradeFinNegocVO.obsCotacaoVO.garancondbgar}" size="80" maxlength="80"
+					disabled="#{bean.viewHelper.disabledGarantidor}" styleClass="HtmlInputTextBradesco"
+					tabindex="503">
+				</awb-h:inputText>
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>		
+	        
+		<!-- Comissão Banco Mandatário -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_comiss_bc_mandat}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtComissaoMandatario" size="20" maxlength="10"
+					immediate="false" styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+					value="#{bean.tradeFinNegocVO.pcomismtoricmbio}" tabindex="504">
+				</awb-h:inputText>
+				<awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+			</awb-h:panelGroup>					                
+		</awb-h:panelGrid>	
+						
+		<!-- Cobrança da Comissão (Mandatário) -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_cobranca_comissao}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboComissaoMandatario" layout="pageDirection" title="Cobrança da Comissão"
+                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+                    value="#{bean.tradeFinNegocVO.ccobrcomismtori}" tabindex="505">
+                    <awb-f:selectItems value="#{bean.viewHelper.listaComboCobrancaComissao}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+			
+		<!-- Condição Banco Mandatário -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_condic_bc_mandat}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtCondicaoMandatario" title="Condição Banco Mandatário"
+					value="#{bean.tradeFinNegocVO.obsCotacaoVO.garancondbman}" size="80" maxlength="80"
+					styleClass="HtmlInputTextBradesco" tabindex="506">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+	
+		<!-- Comissão Agente Financeiro/Garantidor -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_comiss_ag_fin_gar}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	                
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtComissaoAgente" size="20" maxlength="10" immediate="false" 
+					styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+					disabled="#{bean.viewHelper.disabledGarantidor == false}" value="#{bean.tradeFinNegocVO.pagtefincrcmbio}"
+					tabindex="507">
+				</awb-h:inputText>
+				<awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+			</awb-h:panelGroup>					                
+		</awb-h:panelGrid>
+			
+		<!-- Cobrança da Comissão (Financeiro/Garantidor) -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_cobranca_comissao}: " />
+	            </awb-h:panelGroup>	            
+	        </awb-h:panelGrid>
+            
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboComissaoAgenteNao" layout="pageDirection" title="Cobrança da Comissão"
+                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+                    disabled="#{bean.viewHelper.disabledGarantidor == false}"
+                    value="#{bean.tradeFinNegocVO.ccobrcomisagte}" tabindex="508"
+                    rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.garangarant eq 1? false: true}">
+                    <!-- <awb-f:selectItems value="#{bean.viewHelper.listaComboCobrancaComissao}" />  -->
+                </awb-h:selectOneMenu>
+            
+                <awb-h:selectOneMenu id="comboComissaoAgenteSim" layout="pageDirection" title="Cobrança da Comissão"
+                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+                    disabled="#{bean.viewHelper.disabledGarantidor == false}"
+                    value="#{bean.tradeFinNegocVO.ccobrcomisagte}" tabindex="508"
+                    rendered="#{bean.tradeFinNegocVO.obsCotacaoVO.garangarant eq 1? true: false}">
+                    <awb-f:selectItems value="#{bean.viewHelper.listaComboCobrancaComissao}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>	        	        
+		</awb-h:panelGrid>
+	
+		<!-- Condição Agente Financeiro/Garantidor -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_condic_ag_fin_gar}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtCondicaoAgente" title="Condição Agente Financeiro/Garantidor"
+					value="#{bean.tradeFinNegocVO.obsCotacaoVO.garancondagfi}" size="80" maxlength="80"
+					disabled="#{bean.viewHelper.disabledGarantidor == false}"
+					styleClass="HtmlInputTextBradesco" tabindex="509">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+		
+		<!-- Data Limite FRO -->
+	    <awb-h:panelGrid columns="1" styleClass="panelGridTable">  
+	        <awb-h:panelGrid width="100%">
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_dt_limite_fro}: " styleClass="HtmlOutputLabelBoldBradesco" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+	                <awb-br:calendar id="calendarLimFro" titulo="Calendário" disableInputFields="false"
+	                    onFieldFilled="errorStyleChanger"
+	                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                    value="#{bean.viewHelper.dataLimiteFRO}" tabindex="510" />
+	                <awb-h:outputLabel value=" " escape="false" />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>		
+
+		<!-- Vencimento da Proposta -->
+	    <awb-h:panelGrid columns="1" styleClass="panelGridTable">  
+	        <awb-h:panelGrid width="100%">
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_dt_venc_prop}: " styleClass="HtmlOutputLabelBoldBradesco" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+	                <awb-br:calendar id="calendarVencProp" titulo="Calendário" disableInputFields="false"
+	                    onFieldFilled="errorStyleChanger"
+	                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                    value="#{bean.viewHelper.dataVencProposta}" tabindex="511" />
+	                <awb-h:outputLabel value=" " escape="false" />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>		
+
+		<!-- Quantidade RE's -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_qtde_re}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtQuantRes" title="Quantidade RE's" maxlength="5" size="7"
+					alt="{'type':'integer'}" value="#{bean.tradeFinNegocVO.qregexporcmbio}"
+					styleClass="HtmlInputTextBradesco" tabindex="512">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+
+		<!-- Importador -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_importador}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtImportador" title="Importador" size="80" maxlength="80"
+					value="#{bean.tradeFinNegocVO.obsCotacaoVO.garanimport}"
+					styleClass="HtmlInputTextBradesco" tabindex="513">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+
+		<!-- Mercadoria -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_mercadoria}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtMercadoria" title="Mercadoria" size="55" maxlength="50"
+					value="#{bean.tradeFinNegocVO.obsCotacaoVO.mercadoria}"
+					styleClass="HtmlInputTextBradesco" tabindex="514">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+
+		<!-- Quantidade de Embarques -->	        
+    	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_qtde_embarque}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtQuantEmbarques" title="Quantidade de Embarques" maxlength="5" size="7"
+					alt="{'type':'integer'}" value="#{bean.tradeFinNegocVO.qprevtembrqcmbio}"
+					styleClass="HtmlInputTextBradesco" tabindex="515">
+				</awb-h:inputText>
+			</awb-h:panelGroup>	        
+		</awb-h:panelGrid>
+
+		
+	    <!-- Período dos Embarques -->
+	    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+		    <awb-h:panelGroup>
+		        <awb-h:panelGrid columns="1" width="270px">
+		            <awb-h:panelGroup>
+		                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                <awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+		                    value="#{msgs.label_det_periodo_embarque}: " />
+		            </awb-h:panelGroup>
+		        </awb-h:panelGrid>
+		        <awb-h:panelGrid columns="3" width="350px">
+		            <awb-h:column>
+		                <awb-br:calendar id="dataInicio" titulo="Calendario" alt="Data Início"
+		                    onFieldFilled="errorStyleChanger"
+		                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		                    value="#{bean.viewHelper.periodoEmbarqueIni}" tabindex="516" />
+		            </awb-h:column>
+		            <awb-h:column>
+		                <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco"
+		                    style="text-align: center;" />
+		            </awb-h:column>
+		            <awb-h:column>
+		                <awb-br:calendar id="dataFim" titulo="Calendario" alt="Data Fim"
+		                    onFieldFilled="errorStyleChanger"
+		                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		                    value="#{bean.viewHelper.periodoEmbarqueFim}" tabindex="517" />
+		            </awb-h:column>
+		        </awb-h:panelGrid>
+		    </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+	
+		<!-- Agente Financeiro -->	        
+	   	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_agente_financeiro}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	                
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtAgenteFinanceiro" size="22" maxlength="18" immediate="false" 
+					styleClass="HtmlInputTextBradesco" alt="{'type':'money-dot'}"
+					value="#{bean.tradeFinNegocVO.vagtefincrcmbio}">
+				</awb-h:inputText>
+			</awb-h:panelGroup>					                
+		</awb-h:panelGrid>
+				
+	    
+	   	<!-- Banco Mandatário -->	        
+	   	<awb-h:panelGrid columns="1">
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_banco_mandatario}: " />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtBancoMandatorio" size="22" maxlength="18" immediate="false" 
+					styleClass="HtmlInputTextBradesco" alt="{'type':'money-dot'}"
+					value="#{bean.tradeFinNegocVO.vbcomtoricmbio}">
+				</awb-h:inputText>
+			</awb-h:panelGroup>					                
+		</awb-h:panelGrid>	
+
+	</awb-h:panelGrid>
+    
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+        <awb-h:panelGroup>
+			<awb-h:outputLabel value=" " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<!-- Garantias ao BNDES -->
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_garantias_bndes}" />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtGarantiasBndes" title="Garantias ao BNDES" immediate="false" cols="250" rows="2"
+                styleClass="HtmlInputTextBradesco" disabled="#{bean.viewHelper.disabledGarantidor != true}"
+            	onkeydown="textCounter(this,500);" onkeyup="textCounter(this,500);"
+                value="#{bean.tradeFinNegocVO.obsCotacaoVO.garanbnds}" tabindex="518">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>	
+
+	<!-- Garantidas Bradesco -->
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_garantias_brad}" />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:inputTextarea id="txtGarantiasBradesco" title="Outras Especificações" immediate="false" cols="250" rows="2"
+            	onkeydown="textCounter(this,500);" onkeyup="textCounter(this,500);" styleClass="HtmlInputTextBradesco"
+                value="#{bean.tradeFinNegocVO.obsCotacaoVO.garanbrad}" tabindex="519">
+            </awb-h:inputTextarea>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    		
+</ui:composition>
+</html>

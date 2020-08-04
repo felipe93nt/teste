@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCW55E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="23">
+    <register name="NPCCW55E-HEADER">
+      <field name="NPCCW55E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCW55E" />
+      <field name="NPCCW55E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00023" />
+    </register>
+    <register name="NPCCW55E-REGISTRO">
+      <field name="NPCCW55E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

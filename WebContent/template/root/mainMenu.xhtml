@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<!-- #HTML declara??o de bibliotecas de componentes e tags -->
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	lang="pt">
+
+<ui:composition>
+	<awb-f:view>
+		<awb-h:form>
+			<awb-br:menu list="#{menuBean.listaMenu}" client="true"/>
+		</awb-h:form>
+	</awb-f:view>
+</ui:composition>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXXE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="819">
+    <register name="NPCCWXXE-HEADER">
+      <field name="NPCCWXXE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXXE" />
+      <field name="NPCCWXXE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00819" />
+    </register>
+    <register name="NPCCWXXE-REGISTRO">
+      <field name="NPCCWXXE-CCOBR-COMIS-INTRN" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-VLX-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWXXE-PJURO-NEGOC-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-VLX-OPERAC-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWXXE-PRZ-OPERAC-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-CCOMIS-CARTA-NACIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWXXE-CINDCD-NEGOC-SWAP" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWXXE-VTRAVA-LIBOR-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-PTX-CUSTO-EXTER" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-PTX-IMPST-RENDA" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-PRZ-OPERAC-LIBOR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-VLIM-COBER-VAR" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-PTX-FIXA-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWXXE-QTDE-PRZO-MEDIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-TDIA-FINAN-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-QTD-COMIS-ADIC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXXE-QTD-OCORR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWXXE-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWXXE-QTD-OCORR" dependsType="number">
+        <field name="NPCCWXXE-VPREVT-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+      <register name="NPCCWXXE-LST-CADIS" minOccurs="0" maxOccurs="20" depends="NPCCWXXE-QTD-COMIS-ADIC" dependsType="number">
+        <field name="NPCCWXXE-VLR-COMIS-ADIC" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,268 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<!-- FLUXO PAGAMENTO -->
+	<awb-h:panelGroup>
+		<awb-h:outputLabel
+			style="font-family: verdana; font-weight: bold; font-size: 10px"
+			value="#{msgs.label_fluxo_pgt} " />
+	</awb-h:panelGroup>
+
+    <table cellspacing="0" cellpadding="10" style="width: 99%; text-align: center">
+	<ui:repeat var="fluxoPgtLista" value="#{tradeFinanceBean.fluxoPgtList}" varStatus="status">
+		<tr style="font-family: verdana; font-size: 10px; border-bottom-style: dashed; border-bottom-color: #ccc; ">        
+			<td width="99%" colspan="3" >
+				
+				<!-- Dados do Fluxo de Pagamento vindos da página dadosFluxoPagamentoModalCons.xhtml -->
+	            <table cellspacing="0" cellpadding="0" style="width: 100%; text-align: left; font-family: verdana; font-size: 10px; ">
+
+					<tr style="font-family: verdana; font-size: 10px;">        
+			        	<!-- Data -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+<!-- 				            <h:outputText value="#{msgs.label_det_data}: " /> -->
+				            <h:outputText value="#{msgs.label_det_prev_desembolso}: " />
+				            <h:outputText style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+				            			  value="#{fluxoPgtLista.dprevtdsembcmbio}"/>
+						</td>
+			        
+				        <!-- Moeda do desembolso -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+				            <h:outputText  value="#{msgs.label_det_moeda_desembolso}: " />
+			            	<h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			            				   value="#{tradeFinanceBean.tradeFinanceVO.simbleconmdsemb}"/>
+						</td>
+			        
+				        <!-- Valor -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+				            <h:outputText  value="#{msgs.label_det_valor}: " />
+			            	<h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			            				   value="#{tradeFinanceBean.tradeFinanceVO.vnegocmoedaestrg}" >
+				              <f:converter converterId="numericConverter"></f:converter>
+				            </h:outputText>
+						</td>
+	                
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+		                    <h:outputText value="Prazo Operação(Dias): " />
+	                    	<h:outputText style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+	                    				  value="#{tradeFinanceBean.tradeFinanceVO.tdiaopercmbio}" />                          
+						</td>
+					</tr>
+			    	
+				    <!--  LINHA DIVISÓRIA -->
+					<tr style="font-family: verdana; font-size: 10px;">        
+						<td style="width: 100%; " colspan="4">
+					        <awb-f:verbatim>
+								<br />
+					        </awb-f:verbatim>
+						</td>
+					</tr>
+					
+					<tr style="font-family: verdana; font-size: 10px;">        
+				    	<!-- Carencia dias -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+					        <h:outputText  value="#{msgs.label_det_princ_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+					        <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+					        			   value="#{fluxoPgtLista.tdiacarenprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+				    
+					     <!-- Periodicidade -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+		                    <h:outputText  value="#{msgs.label_det_periodicidade}: " styleClass="HtmlOutputLabelBradesco"/>
+		                    <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+		                    			   value="#{fluxoPgtLista.dfluxoliqdcprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+				    
+					    <!-- Qtde parcelas -->
+						<td style="width: 50%; " colspan="2">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+					        <h:outputText  value="#{msgs.label_det_qtde_parcelas}: " styleClass="HtmlOutputLabelBradesco"/>
+					        <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+					        			   value="#{fluxoPgtLista.qpcelatradeprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+					</tr>
+			    	
+				    <!--  LINHA DIVISÓRIA -->
+					<tr style="font-family: verdana; font-size: 10px;">        
+						<td style="width: 100%; " colspan="4">
+					        <awb-f:verbatim>
+								<br />
+					        </awb-f:verbatim>
+						</td>
+					</tr>
+					
+					<tr style="font-family: verdana; font-size: 10px;">        
+			            <!-- Carencia juros -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+			                <h:outputText  value="#{msgs.label_det_juros_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+			                <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			                			   value="#{fluxoPgtLista.tdiacarenjuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+		            
+			            <!-- Periodicidade -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+			                <h:outputText  value="#{msgs.label_det_periodicidade}: " styleClass="HtmlOutputLabelBradesco"/>
+			                <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			                			   value="#{fluxoPgtLista.dfluxoliqdcjuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+		            
+			            <!-- qtde parcelas -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+			                <h:outputText  value="#{msgs.label_det_qtde_parcelas}: " styleClass="HtmlOutputLabelBradesco"/>
+			                <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			                			   value="#{fluxoPgtLista.qpcelatradejuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+		            
+		    	        <!-- Momento -->
+						<td style="width: 25%; ">
+							<awb-h:graphicImage
+								style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+								url="#{server}/images/bullet.jpg" />
+			                <h:outputText  value="#{msgs.label_det_momento}: " styleClass="HtmlOutputLabelBradesco"/>
+			                <h:outputText  style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-135px;"
+			                			   value="#{fluxoPgtLista.descrmomen}" styleClass="HtmlOutputTextBoldBradesco"/>
+						</td>
+					</tr>
+			    
+				    <!--  LINHA DIVISÓRIA -->
+					<tr style="font-family: verdana; font-size: 10px;">        
+						<td style="width: 100%; " colspan="4">
+					        <awb-f:verbatim>
+								<br />
+					        </awb-f:verbatim>
+						</td>
+					</tr>
+					
+					<!-- PARCELAS -->
+					<tr style="font-family: verdana; font-size: 10px; border:left; " >        
+						<!-- PARCELAS -->
+						<td width="100%" colspan="4">
+							    <awb-h:outputLabel value="#{msgs.label_parcelas_princ_jr}" style="font-family: verdana; font-size: 10px; font-weight: bold;"/>	
+						</td>
+					</tr>
+					<tr style="font-family: verdana; font-size: 10px; border:left; " >  
+                        <!-- PARCELAS -->
+                        <awb-h:dataTable id="scrollable_comissaoInterna" var="fluxoPgtDet"
+                            rows="9999" cellspacing="0" cellpadding="10" border="1"
+                            style="width: 100%; text-align: center" rowIndexVar="indexLista"
+                            value="#{fluxoPgtLista.lista}">
+                            
+                            <!-- N Parcela -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs.label_n_parcela}"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.npceladsembtrade}"
+                                    style="font-family: verdana; font-size: 10px;" />
+                            </awb-h:column>
+							
+							<!-- Principal -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Principal"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.valorPrincipalParcelaFluxoPgto}"
+                                    style="font-family: verdana; font-size: 10px;" />
+                            </awb-h:column>
+							
+							<!-- Juros -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Juros"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.valorJurosParcelaFluxoPgto}"
+                                    style="font-family: verdana; font-size: 10px;" />
+                            </awb-h:column>
+							
+                            <!-- Prazo -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs.label_prazo}"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.tdianegocpcela}"
+                                    style="font-family: verdana; font-size: 10px;" />
+                            </awb-h:column>
+                    
+                            <!-- Vencimento -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs.label_vencimento}"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.dvctopcelatrade}"
+                                    style="font-family: verdana; font-size: 10px;" />
+                            </awb-h:column>
+                            
+                            <!-- Valor -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs.label_valor}"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.vpcelamesatrade}"
+                                    style="font-family: verdana; font-size: 10px;">
+                                    <f:converter converterId="numericConverter"></f:converter>
+                                </h:outputText>
+                            </awb-h:column>
+							
+							<!-- Saldo Devedor -->
+                            <awb-h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Saldo Devedor"
+                                        style="font-family: verdana; font-size: 10px" escape="false"/>
+                                </f:facet>
+                                <h:outputText value="#{fluxoPgtDet.valorSaldoDevedorFluxoPgto}"
+                                    style="font-family: verdana; font-size: 10px;">
+                                    <f:converter converterId="numericConverter"></f:converter>
+                                </h:outputText>
+                            </awb-h:column>
+                        </awb-h:dataTable>  
+						
+					</tr>
+			    </table>
+			</td>
+		</tr>
+	</ui:repeat>
+    </table>
+	
+</awb-f:view>
+</html>

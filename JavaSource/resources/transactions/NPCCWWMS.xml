@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWMS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="12509">
+    <register name="NPCCWWMS-HEADER">
+      <field name="NPCCWWMS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWMS" />
+      <field name="NPCCWWMS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="12509" />
+    </register>
+    <register name="NPCCWWMS-REGISTRO">
+      <field name="NPCCWWMS-QTDE-OCORR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWMS-VPREVT-COMIS-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <register name="NPCCWWMS-LISTA" minOccurs="0" maxOccurs="198" depends="NPCCWWMS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWWMS-NPCELA-COMIS" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWMS-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWWMS-VCUSTO-FINCR-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWWMS-VPCELA-COMIS-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWWMS-TDIA-NEGOC-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWWMS-PJURO-NEGOC-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+        <field name="NPCCWWMS-CPERDC-JURO-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 9000 a 9099  -->
+    
+    <!-- BOTOES -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable" rendered="true">
+
+        <!-- VOLTAR -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" tabindex="9000"
+            action="tradeFinMonitList">
+            <awb-br:submitCheckClient />
+        </awb-h:commandButton>
+
+        <awb-h:panelGrid id="pnlBotoes" columns="7" width="45%" styleClass="right">
+
+            <!-- Anexar Documento -->
+            <awb-h:commandButton value="#{msgs.bto_anx_docs}" id="btoAnexarDocs" tabindex="9001"
+            	styleClass="HtmlCommandButtonBradesco">
+                <f:ajax listener="#{tradeFinanceNegociacaoAltBean.anexarDocumentos}"
+                    render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this" immediate="false" />
+            </awb-h:commandButton>
+
+            <!-- Anexar Email -->
+            <awb-h:commandButton value="#{msgs.bto_anx_email}" id="btoAnexarEmail" tabindex="9002"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax listener="#{tradeFinanceNegociacaoAltBean.anexarEmail}"
+                    render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this" immediate="false" />
+            </awb-h:commandButton>
+
+            <!-- Fechar -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoFechar" tabindex="9003"
+                	disabled="#{tradeFinanceNegociacaoAltBean.renderBotaoFechar}"
+                    action="#{tradeFinanceNegociacaoAltBean.actionFechar}" value="Fechar">
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- Perdido -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton id="btoPerdido" styleClass="HtmlCommandButtonBradesco" tabindex="9004"
+                	value="#{msgs.bto_perdido}"
+                    action="#{tradeFinanceNegociacaoAltBean.actionPerdido}">
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- Gerar Boleto -->
+            <awb-h:panelGroup>
+            
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" tabindex="9005"
+                    value="Gerar Boleto" disabled="#{tradeFinanceNegociacaoAltBean.tradeFinNegocVO.cmodcontrcmbio eq '0'}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes"
+                        listener="#{tradeFinanceNegociacaoAltBean.actionGerarBoleto}" />
+                </awb-h:commandButton>
+            
+                <awb-h:outputLink id="btnGerarBoleto" title="Gerar Boleto"
+                    styleClass="seiBtnImprimirGrupo tab hidden">
+                    <sei:seiAction id="seiAction" type="print" render="gerarBoletoAlt divSeiModals formModalMessages"
+                        action="#{tradeFinanceNegociacaoAltBean.gerarBoleto}" jsActionArgs="getExportPdfOnly">
+                        <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                            pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                    </sei:seiAction>
+                    <awb-h:outputLabel value="#{msgs.bto_imprimir}"></awb-h:outputLabel>
+                </awb-h:outputLink>
+                
+            </awb-h:panelGroup>
+            
+            <!-- Cotar Custo Externo -->
+            <awb-h:panelGroup rendered="#{tradeFinanceNegociacaoAltBean.renderBotaoCotarCustoExterno 
+            								and (!tradeFinanceNegociacaoAltBean.tradeFinNegocVO.produto.bndesPre) 
+            								and (!tradeFinanceNegociacaoAltBean.tradeFinNegocVO.produto.bndesPos)
+            								and (!tradeFinanceNegociacaoAltBean.tradeFinNegocVO.produto.nce)
+            								and (tradeFinanceNegociacaoAltBean.tradeFinNegocVO.produto.codigo != 642)
+            								}">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoCotarCustoExterno" tabindex="9006"
+                    value="Cotar Custo Externo">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages div_modalCutoExtAutDsn"
+                        listener="#{tradeFinanceNegociacaoAltBean.listenerCotarCustoExterno}" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- CONFIRMAR -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton id="btoConfirmar" styleClass="HtmlCommandButtonBradesco" tabindex="9007"
+                    value="#{msgs.bto_confirmar}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTrdFinNegIncl pnlClientes pnlBotoes"
+                        listener="#{tradeFinanceNegociacaoAltBean.listenerConfirmaAlteracao}" />
+                    <awb-f:attribute name="paramConfirmarAlt" value="6" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

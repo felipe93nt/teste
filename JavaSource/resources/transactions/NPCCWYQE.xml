@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYQE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="8137">
+    <register name="NPCCWYQE-HEADER">
+      <field name="NPCCWYQE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYQE" />
+      <field name="NPCCWYQE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08137" />
+    </register>
+    <register name="NPCCWYQE-REGISTRO">
+      <field name="NPCCWYQE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-NDSEMB-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-DPREVT-EMBRQ" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-DVCTO-DSEMB-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-VPREVT-DSEMB-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWYQE-VJURO-DSEMB-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWYQE-VDSEMB-NEGOC-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWYQE-VTX-VAR-OPER" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-VTX-CMBIO-VARVL" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-VTX-LIBOR-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-VTRAVA-LIBOR-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-PJURO-NEGOC-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-PTX-JURO-FNDNG" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-PSPREAD-TX-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYQE-CPERM-VAR-PATRM" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-CINDCD-CMBIO-VARVL" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-IORG-EXTER-FINAN" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYQE-TDIA-CAREN-PRINC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-CFLUXO-LIQDC-PRINC" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-QPCELA-TRADE-PRINC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-TDIA-CAREN-JURO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-TDIA-FINAN-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-CFLUXO-LIQDC-JURO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-QPCELA-TRADE-JURO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-CMOMEN-COBR-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-QTD-OC-LIST" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYQE-QTD-OC-MERC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYQE-LST-LIS" minOccurs="0" maxOccurs="198" depends="NPCCWYQE-QTD-OC-LIST" dependsType="number">
+        <field name="NPCCWYQE-TIPO-PCELA-TRADE" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYQE-NPCELA-DSEMB-TRADE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-TDIA-NEGOC-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYQE-VPCELA-MESA-TRADE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+      <register name="NPCCWYQE-LST-MER" minOccurs="0" maxOccurs="20" depends="NPCCWYQE-QTD-OC-MERC" dependsType="number">
+        <field name="NPCCWYQE-CMCADO-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-NMCADO-CMBIO-TRADE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-CUNIC-PSSOA-MCADO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-CPAIS-BNEFC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYQE-DPREVT-EMBRQ-M" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

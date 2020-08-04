@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWAQE" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="18">
+    <register name="NPCCWAQE-HEADER">
+      <field name="NPCCWAQE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWAQE" />
+      <field name="NPCCWAQE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00018" />
+    </register>
+    <register name="NPCCWANE-REGISTRO">
+      <field name="NPCCWAQE-E-CCOND-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

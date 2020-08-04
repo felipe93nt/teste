@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWLAE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="7656">
+    <register name="NPCCWLAE-HEADER">
+      <field name="NPCCWLAE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWLAE" />
+      <field name="NPCCWLAE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="07656" />
+    </register>
+    <register name="NPCCWLAE-REGISTRO">
+      <field name="NPCCWLAE-FUNCAO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWLAE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWLAE-TDIA-FINAN-DSEMB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-VMIN-COBR-COMIS" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWLAE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-CCOBR-COMIS-INTRN" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-VLX-OPERAC-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWLAE-VPREVT-DSEMB-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWLAE-VLX-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWLAE-PJURO-NEGOC-CMBIO" pic="9(003)V9(005)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWLAE-CINDCD-PCOBR-JUROS" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-CINDCD-FCOBR-COTAC" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-QTDE-OCORR-PRINC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-QTDE-OCORR-JUROS" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAE-QTDE-OCORR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWLAE-LISTA" minOccurs="0" maxOccurs="198" depends="NPCCWLAE-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWLAE-NPCELA-DSEMB-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWLAE-TDIA-NEGOC-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWLAE-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWLAE-VPCELA-MESA-TRADE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWLAE-TP-PARCELA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

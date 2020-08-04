@@ -1,0 +1,239 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<awb-f:view>
+	<!-- PRECIFICACAO -->
+	<awb-h:panelGroup>
+		<awb-h:outputLabel
+			style="font-family: verdana; font-weight: bold; font-size: 10px"
+			value="#{msgs.label_precificacao} " />
+	</awb-h:panelGroup>
+
+	<awb-h:panelGrid columns="5" style="width: 100%;"
+		columnClasses="width: 15%;" rendered="#{tradeFinanceBean.responsavelDespList.listaDespesa.size() > 0}">
+
+		<!-- RESPONSAVEL DESPESA -->
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_responsavel_desp} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="5" style="width: 100%;"
+		columnClasses="width: 15%;" rendered="#{tradeFinanceBean.responsavelDespList.listaDespesa.size() > 0}">
+		
+		<awb-h:panelGrid style="width: 99%;">
+			<awb-h:dataTable var="resp" rows="10" cellspacing="0"
+				cellpadding="10" border="1" style="width: 100%; text-align: center"
+				rowIndexVar="indexdes"
+				value="#{tradeFinanceBean.responsavelDespList.listaDespesa}">
+
+				<!-- BANCO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_banco}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.nbanqrcmbio}" />
+				</awb-h:column>
+
+				<!-- FUNCAO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_funcao}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.nfuncresp}" />
+				</awb-h:column>
+
+				<!-- PRACA -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_praca}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.imunindcmbio}" />
+				</awb-h:column>
+
+				<!-- PAIS -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_pais}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.ipais}" />
+				</awb-h:column>
+
+				<!-- CODIGO SWIFT -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_cod_swift}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.cidbanqrswift}" />
+				</awb-h:column>
+				
+				<!-- STATUS DA COTACAO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_status_cotacao}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{resp.nindcdfndngutlzd}" />
+				</awb-h:column>
+			</awb-h:dataTable>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="5" style="width: 100%;"
+		columnClasses="width: 15%;">
+
+		<!--  VALIDADE COTACAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_validade_ctc}: " />
+				<awb-h:outputLabel
+					style="font-family: verdana; font-size: 10px; font-weight: bold; "
+					value="#{tradeFinanceBean.responsavelDespList.dlimfndngcmbio}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<awb-h:panelGrid columns="5" style="width: 100%;"
+		columnClasses="width: 15%;">
+	
+		<!--  DESPESA POR CONTA -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_despesa_cli}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.formataDespesaPorConta}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="8" style="width: 100%;"
+		columnClasses="width: 15%;">
+
+		<!-- CUSTO DO BANCO -->
+		<awb-h:panelGroup  rendered="#{tradeFinanceBean.listaDespesas.size() > 0}">
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_cust_Banc} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<awb-h:panelGrid columns="8" style="width: 100%;"
+		columnClasses="width: 15%;" rendered="#{tradeFinanceBean.listaDespesas.size() > 0}">
+		<awb-h:panelGrid style="width: 99%;">
+			<awb-h:dataTable var="ctc" rows="10" cellspacing="0" cellpadding="10"
+				border="1" style="width: 100%; text-align: center"
+				rowIndexVar="indexdes" value="#{tradeFinanceBean.listaDespesas}">
+
+				<!-- TIPO DE DESPESAS -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_tp_despesas}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.ntpodespcmbio}" />
+				</awb-h:column>
+
+				<!-- DESPESA -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_desp_cent}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.pdespnegoccmbio}" />
+				</awb-h:column>
+
+				<!-- PERIODO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_periodo}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.nbasebletonegoc}" />
+				</awb-h:column>
+
+				<!-- PERIODICIDADE-->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_periodicidade}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.nfluxoperdccmbio}" />
+				</awb-h:column>
+
+				<!-- MOEDA -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_moeda}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.nindcdeconmmoeda}" />
+				</awb-h:column>
+
+				<!-- VALOR -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_valor}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.vdespbletocmbio}">
+						<f:converter converterId="numericConverter"></f:converter>
+					</h:outputText>
+				</awb-h:column>
+
+				<!-- FORMA DE PAGAMENTO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_forma_pgt}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.nformacobrdesp}"/>
+				</awb-h:column>
+
+				<!-- VALOR MINIMO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_valor_minimo}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{ctc.vmindespcmbio}">
+						<f:converter converterId="numericConverter"></f:converter>
+					</h:outputText>
+				</awb-h:column>
+			</awb-h:dataTable>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

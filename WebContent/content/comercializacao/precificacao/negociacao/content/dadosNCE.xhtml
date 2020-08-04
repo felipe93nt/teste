@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 800 a 899  -->
+    
+    <!-- botao Collaps Precificação -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosPrecificacao}" tabindex="800"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(2)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Precificação" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{bean.viewHelper.renderPrecificacao}">
+    
+        <awb-h:panelGrid id="pnlIndEcon" columns="3" styleClass="panelGridTable50" 
+        	columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        	
+	        <!-- Indicador Econômico -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{msgs.label_indicador_economico}" />
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup />
+            <awb-h:panelGroup />
+
+			<!-- CheckBox % CDI -->	        
+	        <awb-h:panelGroup>
+	            <awb-h:selectBooleanCheckbox id="checkPercCDI" value="#{bean.viewHelper.checkPercCDI}" tabindex="801"	            
+	            	disabled="#{bean.viewHelper.disabledCheckPercCDI}">
+	                <f:ajax event="click" listener="#{bean.listenerTratarIndicadorEconomico}" render="pnlIndEcon" execute="@form"/>
+	            </awb-h:selectBooleanCheckbox>
+	            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkPercCDI" value="% CDI" />
+	        </awb-h:panelGroup>        	
+        	
+			<!-- CheckBox CDI + -->	        
+	        <awb-h:panelGroup>
+	            <awb-h:selectBooleanCheckbox id="checkMaisCDI" value="#{bean.viewHelper.checkMaisCDI}" tabindex="802"
+	            	disabled="#{bean.viewHelper.disabledCheckMaisCDI}">
+	                <f:ajax event="click" listener="#{bean.listenerTratarIndicadorEconomico}" render="pnlIndEcon" execute="@form"/>
+	            </awb-h:selectBooleanCheckbox>
+	            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkMaisCDI" value="CDI +" />
+	        </awb-h:panelGroup> 
+	        
+			<!-- CheckBox Taxa Pré -->	        
+	        <awb-h:panelGroup>
+	            <awb-h:selectBooleanCheckbox id="checkTaxaPre" value="#{bean.viewHelper.checkTaxaPre}" tabindex="803"
+	            	disabled="#{bean.viewHelper.disabledCheckTaxaPre}">
+	                <f:ajax event="click" listener="#{bean.listenerTratarIndicadorEconomico}" render="pnlIndEcon" execute="@form"/>
+	            </awb-h:selectBooleanCheckbox>
+	            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkTaxaPre" value="Taxa Pré" />
+	        </awb-h:panelGroup> 
+	        
+			<!-- % CDI -->	        
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtPercCDI" size="20" maxlength="10" disabled="#{bean.viewHelper.disabledPercCDI}"
+                    immediate="false" styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                    value="#{bean.tradeFinNegocVO.ptxcdifinan}" tabindex="804">
+                </awb-h:inputText>
+                <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+            </awb-h:panelGroup>                                	
+
+			<!-- CDI + -->	        
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtCDIMais" size="20" maxlength="10" disabled="#{bean.viewHelper.disabledMaisCDI}"
+                    immediate="false" styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                    value="#{bean.tradeFinNegocVO.pcdimaiscmbio}" tabindex="805">
+                </awb-h:inputText>
+                <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+            </awb-h:panelGroup>
+            
+			<!-- Taxa Pré -->	        
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtTaxaPre" size="20" maxlength="10" disabled="#{bean.viewHelper.disabledTaxaPre}"
+                    immediate="false" styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                    value="#{bean.tradeFinNegocVO.pfixajurocmbio}" tabindex="806">
+                </awb-h:inputText>
+                <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+            </awb-h:panelGroup>
+                                   
+        </awb-h:panelGrid>    
+
+        <!-- LINHA DIVISÓRIA -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable" 
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            
+			<!-- Spread - LINHA CABEC -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_spread}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+					for="txtSpread" />
+			</awb-h:panelGroup>
+
+			<!-- IR - LINHA CABEC -->
+			<awb-h:panelGroup rendered="#{bean.viewHelper.renderIrIof}">
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_IR}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+					for="txtIR" />
+			</awb-h:panelGroup>
+
+			<!-- IOF - LINHA CABEC -->
+			<awb-h:panelGroup rendered="#{bean.viewHelper.renderIrIof}">
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_IOF}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+					for="txtIOF" />
+			</awb-h:panelGroup>
+
+			<!-- Spread - LINHA DADOS -->
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtSpread" size="20" maxlength="10" title="Spread" styleClass="HtmlInputTextBradesco"
+					alt='{"wholePartSize": 3, "decimalPartSize": 5}' tabindex="807"
+					 value="#{bean.tradeFinNegocVO.vtxspreadnegoc}">
+				</awb-h:inputText>
+				<awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtSpread" value=" % AA" />
+			</awb-h:panelGroup>
+
+			<!-- IR - LINHA DADOS -->
+			<awb-h:panelGroup rendered="#{bean.viewHelper.renderIrIof}">
+				<awb-h:inputText id="txtIR" size="20" maxlength="10" title="IR" styleClass="HtmlInputTextBradesco" tabindex="808"
+					alt='{"wholePartSize": 3, "decimalPartSize": 5}' value="#{bean.tradeFinNegocVO.vimpstnegoccmbio}">
+				</awb-h:inputText>
+				<awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtIR" value=" %" />
+			</awb-h:panelGroup>
+
+			<!-- IOF - LINHA DADOS -->
+			<awb-h:panelGroup rendered="#{bean.viewHelper.renderIrIof}">
+				<awb-h:inputText id="txtIOF" size="20" maxlength="10" title="IOF" styleClass="HtmlInputTextBradesco" tabindex="809"
+					alt='{"wholePartSize": 3, "decimalPartSize": 5}' value="#{bean.tradeFinNegocVO.viofnegoccmbio}">
+				</awb-h:inputText>
+				<awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtIOF" value=" %" />
+			</awb-h:panelGroup>
+
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            
+            <awb-h:panelGrid columns="2">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_juros_mora}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="txtJuroMora" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup />
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtJuroMora" title="Juros de Mora" styleClass="HtmlInputTextBradesco"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}' tabindex="810"
+                        value="#{bean.tradeFinNegocVO.vtxmoracmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtJuroMora" value=" %" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboIncideJuros" layout="pageDirection" title="Juros de Mora" tabindex="811"
+                        style="width: 90px;font-family: verdana; font-size: 10px" immediate="false"
+                        value="#{bean.tradeFinNegocVO.cbasejuromora}">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboCodBaseJuros}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_multa}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtMulta" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtMulta" title="Multa" styleClass="HtmlInputTextBradesco"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}' tabindex="812"
+                        value="#{bean.tradeFinNegocVO.vmultanegoccmbio}">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtMulta" value=" %" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+	        <awb-h:panelGrid columns="1">
+	            <!-- LINHA CABEC -->
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_lastro_lca}: " />
+	            </awb-h:panelGroup>
+	
+	            <!-- LINHA DADOS -->
+	            <awb-h:panelGroup>
+	                <awb-h:selectOneRadio id="radioSegTransporte" layout="lineDirection" immediate="false" tabindex="813"
+	                    title="Lastro LCA" styleClass="HtmlSelectOneRadioBradesco"
+	                    value="#{bean.tradeFinNegocVO.cindcdlastragric}">
+	                    <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+	                </awb-h:selectOneRadio>
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+
+        </awb-h:panelGrid>
+        
+        <!-- LINHA DIVISÓRIA -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" id="panelDeposit"
+            columnClasses="panelGridColum50,panelGridColum50">
+            
+        	<!-- Dados do Depositário -->
+            <awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_dados_depositario}" styleClass="HtmlOutputTextBulletBoldBradesco"/>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup />
+
+            <!-- Nome -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_nome}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtNomeDeposit" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtNomeDeposit" title="#{msgs.label_nome}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="814"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosnome}" size="50" maxlength="80">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- CPF/CNPJ -->
+	        <awb-h:panelGrid id="pnlCpfCnpjDepositario">
+	            <!-- Tipo - CPF ou CNPJ -->
+	            <awb-h:panelGroup>
+	                <awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco" immediate="false" tabindex="815"
+	                    value="#{bean.viewHelper.codCpfCnpjDepositarioSelecionado}">
+	                    <awb-f:selectItems value="#{bean.viewHelper.tipoPesquisaCpfCnpj}" />
+	                    <f:ajax event="click" render="pnlCpfCnpjDepositario formModalMessages divSeiModals" execute="@this pnlCpfCnpjDepositario"/>
+	                </awb-h:selectOneRadio>
+	            </awb-h:panelGroup>
+	
+	            <!-- CAMPOS -->
+	            <awb-h:panelGrid columns="2" width="50%">
+	                <awb-h:panelGroup>
+	                    <!-- CAMPO CNPJ -->
+	                    <awb-br:cnpj id="cnpjDepositario" value="#{bean.tradeFinNegocVO.obsCotacaoVO.cnpjDeposit}" tabindex="816"
+	                        titleLabelCnpj="CNPJ" titleInputsCnpj="CNPJ" styleClassInputs="HtmlInputTextBradesco"
+	                        rendered="#{bean.viewHelper.codCpfCnpjDepositarioSelecionado == 2}">
+	                    </awb-br:cnpj>
+	                    <!-- CAMPO CPF -->
+	                    <awb-br:cpf id="cpfDepositario" value="#{bean.tradeFinNegocVO.obsCotacaoVO.cpfDeposit}" tabindex="817"
+	                        titleLabelCpf="CPF" titleInputsCpf="CPF" styleClassInputs="HtmlInputTextBradesco"
+	                        rendered="#{bean.viewHelper.codCpfCnpjDepositarioSelecionado == 3}">
+	                    </awb-br:cpf>
+	                </awb-h:panelGroup>
+	                <awb-h:message for="cnpjDepositario" showSummary="false" showDetail="true" styleClass="error"
+	                    rendered="#{bean.viewHelper.codCpfCnpjDepositarioSelecionado == 2}" />
+	                <awb-h:message for="cpfDepositario" showSummary="false" showDetail="true" styleClass="error"
+	                    rendered="#{bean.viewHelper.codCpfCnpjDepositarioSelecionado == 3}" />
+	            </awb-h:panelGrid>
+	        </awb-h:panelGrid>
+                                    
+            <!-- Endereco -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_endereco}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtEnderecoDeposit" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtEnderecoDeposit" title="#{msgs.label_endereco}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="818"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosender}" size="80" maxlength="160">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <awb-h:panelGroup />                   
+
+            <!-- Carteira de Identidade -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_ctr_ident}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtIdentDeposit" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtIdentDeposit" title="#{msgs.label_det_ctr_ident}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="819"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosident}" size="50" maxlength="20">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>              
+            
+            <!-- Orgão Expedidor -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_org_exped}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtOrgExpDeposit" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtOrgExpDeposit" title="#{msgs.label_det_org_exped}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="820"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosorgao}" size="20" maxlength="6">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>              
+
+            <!-- Estado Civil -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_est_civil}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtEstCivil" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtEstCivil" title="#{msgs.label_det_est_civil}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="821"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosestci}" size="20" maxlength="20">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>            
+            
+            <!-- Regime Civil -->
+            <awb-h:panelGrid columns="1">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_reg_civil}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtRegCivil" />
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtRegCivil" title="#{msgs.label_det_reg_civil}" 
+                    	styleClass="HtmlInputTextBradesco" tabindex="822"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.dadosregci}" size="30" maxlength="20">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>                
+            
+        </awb-h:panelGrid>		
+		        
+    </awb-h:panelGrid>        
+</ui:composition>
+
+</html>

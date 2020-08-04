@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWICS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="1456">
+    <register name="NPCCWICS-HEADER">
+      <field name="NPCCWICS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWICS" />
+      <field name="NPCCWICS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01456" />
+    </register>
+    <register name="NPCCWICS-REGISTRO">
+      <field name="NPCCWICS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWICS-LISTA" minOccurs="0" maxOccurs="40" depends="NPCCWICS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWICS-CMODLD-PRODT-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWICS-CSGL-MODLD-CMBIO" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWICS-IMODLD-PRODT-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

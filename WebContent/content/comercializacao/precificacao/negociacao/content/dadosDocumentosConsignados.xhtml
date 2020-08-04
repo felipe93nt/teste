@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1150 a 1199  -->
+    
+    <!-- botao Collaps Comissão Interna -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosDocumentosConsignados}" tabindex="1150"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(9)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Documentos Consignados" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    
+    <awb-h:panelGrid id="pnlDocConsig" styleClass="panelGridTable" columns="2" columnClasses="panelGridColum20,panelGridColum80"
+    	rendered="#{bean.viewHelper.renderDocumentosConsignados}">
+
+        <awb-h:panelGrid columns="1" id="pnlComboDocs" styleClass="panelGridTable2">
+            <!-- combo Documentos Consignados -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_documento_consignado}:" />
+            </awb-h:panelGroup>            
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboDocumentosConsignados" layout="pageDirection" tabindex="1151"
+                	title="#{msgs.label_documento_consignado}"
+                    style="width: 140px;font-family: verdana; font-size: 10px" immediate="false"
+                    value="#{bean.tradeFinNegocVO.cidtfdcartacsndo}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboDocumentosConsignados}" />
+                    <f:ajax immediate="false" execute="@form" event="change"
+                        render="pnlDocConsig" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+        
+        <awb-h:panelGrid columns="1" id="pnlOutros" styleClass="panelGridTable2"
+        	rendered="#{bean.tradeFinNegocVO.cidtfdcartacsndo == 3}">
+			<!-- input Outros -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_outros}: " />
+            </awb-h:panelGroup>
+            <awb-h:panelGroup>
+                <awb-h:inputText id="txtOutros" title="#{msgs.label_outros}:" styleClass="HtmlInputTextBradesco"
+                	size="100" maxlength="100" immediate="false" tabindex="1152"
+                	value="#{bean.tradeFinNegocVO.obsCotacaoVO.nidtfdcartacsndo}">
+                </awb-h:inputText>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+        
+    </awb-h:panelGrid>
+    
+</ui:composition>
+
+</html>

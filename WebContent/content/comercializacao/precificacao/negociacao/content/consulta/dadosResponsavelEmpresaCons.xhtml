@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    
+    <!-- Campos Responsavel na Empresa (ROF)-->
+    <awb-h:panelGrid styleClass="panelGridTable">
+       <awb-h:panelGroup>
+        <!--awb-h:commandButton value="#{tradeFinanceBean.viewHelper.valueMaisMenosResponsavelEmpresa}" 
+            styleClass="HtmlCommandButtonBradesco" render="formTradeFinMonitDet formModalMessages">
+            <f:ajax immediate="false" execute="@form" event="click"
+                   listener="#{tradeFinanceBean.actionCollapsAreaNegocio(6)}"
+                   render="formTradeFinMonitDet"/>
+        </awb-h:commandButton-->
+           <awb-h:outputLabel value=" #{msgs.label_responsavel_empr}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+       </awb-h:panelGroup>
+     </awb-h:panelGrid>
+     
+     <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderResponsavelEmpresa}">
+         <awb-h:panelGrid width="100%" columns="3" columnClasses="panelGridColum25, panelGridColum25">
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_nome}: " styleClass="HtmlOutputLabelBradesco"/>
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.nomerof}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_CPF}: " styleClass="HtmlOutputLabelBradesco"/>
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.cpfrof}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_cargo}: " styleClass="HtmlOutputLabelBradesco"/>
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.cargorof}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_telefone}: " styleClass="HtmlOutputLabelBradesco"/>
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.telrof}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_email}: " styleClass="HtmlOutputLabelBradesco"/>
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.emailrof}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+         </awb-h:panelGrid>
+     </awb-h:panelGrid>
+     
+</ui:composition>
+</html>

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-rf="http://bradesco.com.br/components-rf-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-br="http://bradesco.com.br/components-br">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection"
+		value="#{msgs.title_boleto_agex_boleto_detlh}" />
+	<ui:param name="passNumber" value="2" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_boleto_agex_boleto_cons',99,'title_boleto_agex_boleto_detlh' )}" />
+	<ui:define name="body">
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- CALENDARIO -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+		<awb-br:bundleWriter functionName="getBundle" id="calendarioFiltro"
+			rendered="true"
+			messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+		</awb-br:bundleWriter>
+
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+
+		<!-- FORM -->
+		<awb-h:form id="formTrdFinBolAgexDetBol">
+
+			<awb-h:panelGrid columns="1" width="600px">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel  value="#{msgs.label_identificacao_cliente}" styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1" width="600px">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_cliente}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.sncunicclicmbio}" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1">
+				<awb-h:panelGroup>
+					<!-- CPF CNPJ -->
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_cpf_cnpj}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.cpfCnpjFormatado}" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1" width="600px">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_identificacao_boleto} " styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable"
+				columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_produto}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.scprodtdesc}" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+				
+				<!-- STAUS -->
+                  <awb-h:panelGroup>
+                      <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel styleClass="HtmlOutputLabelBradesco" value= "#{msgs.label_status}: "/>
+						<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+						value="#{tradeFinBolAgexBean.boletoSelecionado.sdescstatus}"/>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>	
+
+
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_nr_boleto}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+					value="#{tradeFinBolAgexBean.boletoSelecionado.refBradesco}"  />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable"
+				columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_unidade_externa}: " styleClass="HtmlOutputLabelBradesco" />
+						<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.scbanqrcmbio} - 
+							#{tradeFinBolAgexBean.boletoSelecionado.sdcbanqrcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+					</awb-h:panelGroup>
+				
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_num_oper_exterior}: " styleClass="HtmlOutputLabelBradesco" />
+						<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.scopercmbioexter}" styleClass="HtmlOutputTextBoldBradesco"/>
+					</awb-h:panelGroup>
+
+		</awb-h:panelGrid>
+		
+			<awb-h:panelGrid columns="1" width="*">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_tomador}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.stomador}" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1" styleClass="panelGridTable"
+				columnClasses="panelGridColum">
+				<!-- CAMPO OBSERVACAO-->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_obs}: " styleClass="HtmlOutputLabelBradesco"/>
+					<awb-h:outputLabel value="#{tradeFinBolAgexBean.boletoSelecionado.sobservacao}" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid columns="3" styleClass="panelGridDataTable" columnClasses="panelGridColumnDown33,panelGridColumnDown33,panelGridColumnDown33">
+                
+                    <awb-h:panelGrid columns="1">
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_spread}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.svtxspreadnegoc }" />    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_prazo}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.stdiaopercmbio} " />
+                                    <awb-h:outputLabel value=" #{msgs.label_dias} "  styleClass="HtmlOutputTextBoldBradesco"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_moeda}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.sisglindcdfonte }"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>   
+                    </awb-h:panelGrid>
+                    
+                    <awb-h:panelGrid columns="1">
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_data_fechamento}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.sdfchtobletocmbio}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_data_vencimento}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.sdfimnegoccmbio}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_det_vlr_boleto}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.svnegocmoedaestrg }" />    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>     
+                    </awb-h:panelGrid>
+                    
+                    <awb-h:panelGrid columns="1">
+                         <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_saldo_boleto}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.svsdolimsensi}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>      
+                    </awb-h:panelGrid>
+                     
+                </awb-h:panelGrid>
+                
+                <!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+                
+                <awb-h:panelGrid columns="3" styleClass="panelGridDataTable" columnClasses="panelGridColumnTop33,panelGridColumnDown33,panelGridColumnMiddle33">
+                
+                    <awb-h:panelGrid columns="1">
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>                                          
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{msgs.label_limite_credito} " />  
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_produto}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.scprodtlimitege} #{tradeFinBolAgexBean.boletoSelecionado.sdescprodtlimge}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_valor_limite}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.svalorlimge}" />    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                    </awb-h:panelGrid>
+                    
+                    <awb-h:panelGrid columns="1">                            
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_moeda}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value=" #{tradeFinBolAgexBean.boletoSelecionado.sdescmoedage}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_valor_disponivel}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.svalordispge}"/>    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid> 
+                    </awb-h:panelGrid> 
+                    <awb-h:panelGrid columns="1">                        
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />                    
+                                <awb-h:outputLabel styleClass="HtmlOutputLabelBradesco"
+                                    value="#{msgs.label_data_vencimento}: " />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+                                    value="#{tradeFinBolAgexBean.boletoSelecionado.sdfchtolimitege}" />    
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                        
+                        <!-- Numero Limite -->
+							<awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+								<awb-h:outputLabel styleClass="HtmlOutputLabelBradesco" value= "#{msgs.label_num_limite}: "/>
+								<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{tradeFinBolAgexBean.boletoSelecionado.snseqcontrlim}"/>
+							</awb-h:panelGroup>
+							</awb-h:panelGrid>
+                    </awb-h:panelGrid>
+                    
+                </awb-h:panelGrid>
+                
+                <!-- LINHA HORIZONTAL -->
+                <awb-h:panelGrid styleClass="panelGridDataTable">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>                    
+
+			<!-- BOTOES -->
+			<awb-h:panelGrid columns="2" styleClass="panelGridTable">
+
+				<!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" action="#{tradeFinBolAgexBean.actionVoltar}"
+                    immediate="true" styleClass="HtmlCommandButtonBradesco" />
+
+			</awb-h:panelGrid>
+
+			</awb-h:form>
+			<!-- script -->
+			<script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.mask.js" />
+        <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.util.js" />
+		
+	</ui:define>
+
+</ui:composition>
+</html>

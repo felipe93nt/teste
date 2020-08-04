@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition> 
+     <awb-h:panelGrid styleClass="panelGridTable">
+	     
+         <awb-h:panelGrid styleClass="panelGridTable">
+	         <awb-h:outputLabel value="#{msgs.label_dados_funding}" styleClass="HtmlOutputTextBoldBradesco"/>
+	         <awb-h:panelGrid columns="4" styleClass="panelGridTable" id="gridInput" columnClasses="panelGridColum25, panelGridColum25, panelGridColum25">
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_referencia}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:inputText value="#{tradeFinFundingBean.fundingVO.cexterreftfndng}" size="40" maxlength="20"
+                       title="#{msgs.label_det_referencia}" styleClass="HtmlInputTextObrigatorioBradesco" id="inputRef"/>
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_moeda}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:selectOneMenu value="#{tradeFinFundingBean.fundingVO.cindcdeconmmoeda}" id="comboMoeda"
+	                    title="#{msgs.label_det_moeda}" styleClass="HtmlInputTextObrigatorioBradesco">
+	                    <awb-f:selectItems value="#{tradeFinFundingBean.moedaList}"/>
+	                </awb-h:selectOneMenu>
+	            </awb-h:panelGroup>
+	           
+	            <awb-h:panelGroup>
+	            	<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_valor}: " styleClass="HtmlOutputLabelBradesco" for="txtValor"/>
+                    <awb-h:inputText id="txtValor" title="#{msgs.label_det_valor}:" 
+                        styleClass="HtmlInputTextObrigatorioBradesco"
+                        alt="{'type':'money-dot'}" maxlength="18" size="22"
+                        value="#{tradeFinFundingBean.fundingVO.vpcelafndngcmbio}">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+ 
+                <awb-h:commandButton value="#{msgs.bto_incluir}" styleClass="HtmlCommandButtonBradesco right">                    
+                    <f:ajax event="click" execute="gridInput" listener="#{tradeFinFundingBean.incluirReferencia}"
+                            render="formModalMessages gridRef gridInput gridBotoes"/>
+                </awb-h:commandButton>            
+	         </awb-h:panelGrid>
+	         
+	         <awb-th:extDiv id="gridRef">
+		         <awb-h:panelGrid styleClass="panelGridTable" id="panelGriRef">
+	             <!-- RADIO GRID LISTA -->
+				     <awb-f:facet name="header">
+				         <awb-th:extSelectOneRadio id="radioListaRef" layout="spread" immediate="false"
+				              forceId="true" forceIdIndex="false" 
+				              value="#{tradeFinFundingBean.viewHelper.refSelecionado}">
+				             <awb-f:selectItems value="#{tradeFinFundingBean.selectItemRef}"/>
+				         </awb-th:extSelectOneRadio>
+				     </awb-f:facet>
+				 </awb-h:panelGrid>
+				 
+				 <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid2">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable2">
+			         <awb-br:scrollableDataTable var="refLista" value="#{tradeFinanceBean.tradeFinanceVO.pcelasfndng}"
+			                                     id="dataTableRef" width="100%" rowIndexVar="indexLista" 
+			                                     rendered="#{tradeFinanceBean.tradeFinanceVO.pcelasfndng.size() > 0}"> 
+						 <awb-br:scrollableColumn width="3%">
+			                 <awb-f:facet name="header">
+			                     <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+			                 </awb-f:facet>
+			                 <awb-th:extRadio index="#{indexLista}" for=":formTradeFinMonitDet:radioListaRef"/>
+			             </awb-br:scrollableColumn>
+						
+						<awb-br:scrollableColumn>
+						    <awb-f:facet name="header">
+						        <awb-h:outputLabel value="#{msgs.label_ref}" styleClass="tableFontStyle" escape="false" />
+						    </awb-f:facet>
+						    <awb-h:outputLabel value="#{refLista.cexterreftfndng}"  styleClass="HtmlOutputTextBoldBradesco"/>
+						</awb-br:scrollableColumn>
+						
+						 <awb-br:scrollableColumn>
+						       <awb-f:facet name="header">
+						            <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle" escape="false" />
+						       </awb-f:facet>
+						       <awb-h:outputLabel value="#{refLista.descreconmmoeda}"  styleClass="HtmlOutputTextBoldBradesco"/>
+						 </awb-br:scrollableColumn>
+						   
+						 <awb-br:scrollableColumn>
+						      <awb-f:facet name="header">
+						           <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+						      </awb-f:facet>
+						      <awb-h:outputLabel value="#{refLista.vpcelafndngcmbio}"  styleClass="HtmlOutputTextBoldBradesco">
+						      <f:converter converterId="numericConverter"></f:converter>
+						      </awb-h:outputLabel>
+						 </awb-br:scrollableColumn>
+		            </awb-br:scrollableDataTable>
+		          </awb-th:extDiv>
+		        </awb-h:panelGrid> 
+		        <awb-h:panelGrid styleClass="gridBotaoDireita">
+		           <awb-h:commandButton style="align: right" value="#{msgs.bto_excluir}" styleClass="HtmlCommandButtonBradesco"
+		               rendered="#{tradeFinanceBean.tradeFinanceVO.pcelasfndng.size() > 0}"> 
+		               <f:ajax event="click" execute="radioListaRef" listener="#{tradeFinFundingBean.excluirReferencia}"
+                                  render="@form gridRef formModalMessages"/>   
+	                </awb-h:commandButton>              
+		        </awb-h:panelGrid>  
+	        </awb-th:extDiv> 
+         </awb-h:panelGrid>
+         
+         <awb-h:panelGrid width="100%">
+           <awb-f:verbatim>
+               <hr />
+           </awb-f:verbatim>
+         </awb-h:panelGrid>
+         
+         <awb-h:panelGrid columns="2" width="100%" id="gridBotoes">
+            
+             <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" action="tradeFinMonitList" />
+             
+             <awb-h:panelGrid styleClass="gridBotaoDireita">
+                 <awb-h:panelGroup>
+	                 <awb-h:commandButton value="#{msgs.bto_detalhar}" styleClass="HtmlCommandButtonBradesco"
+	                    action="#{tradeFinFundingBean.detalhar}"/>
+	                                      
+	                 <awb-h:commandButton actionListener="#{tradeFinFundingBean.confirmarFunding}" value="#{msgs.bto_confirmar}"
+	                 	styleClass="HtmlCommandButtonBradesco"
+                     	disabled="#{tradeFinanceBean.tradeFinanceVO.pcelasfndng.size() eq 0}">
+	                 </awb-h:commandButton>
+                 </awb-h:panelGroup>
+             </awb-h:panelGrid>
+             
+         </awb-h:panelGrid>
+         
+     </awb-h:panelGrid>
+     
+     <!--  MODAL CONFIRMAÇÃO -->
+     <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinFundingBean}" />
+        <ui:param name="actionConfirmar" value="confirmarFundingIncl" />
+        <ui:param name="actionFechar" value="actionFechar" />
+        <ui:param name="renderModal" value="#{tradeFinFundingBean.viewHelper.renderModal}" />
+     </ui:include>
+     
+   </ui:composition>
+</html>

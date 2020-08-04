@@ -1,0 +1,219 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="3" style="width: 100%;"
+		columnClasses="width: 33%;">
+
+		<!--  GARANTIDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_garantidor_brad}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garantFormataDados}" />
+		</awb-h:panelGroup>
+
+		<!--  BANCO GARANTIDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_bc_garantidor}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.dbcocred}" />
+		</awb-h:panelGroup>
+
+		<!-- CONDICAO BANCO GARANTIDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_condicao_bc_garantidor}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garancondbgar}" />
+		</awb-h:panelGroup>
+
+		<!-- COMISSAO BANCO MANDATORIO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_comiss_bc_mandat}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.pcomismtoricmbio}" />
+			<awb-h:outputLabel value=" %" rendered="#{tradeFinanceBean.tradeFinanceVO.ccobrcomismtori ne '1' and tradeFinanceBean.tradeFinanceVO.ccobrcomismtori ne '0'}" />
+		</awb-h:panelGroup>
+
+		<!-- COBRANCA COMISSAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_comiss_bc_mandat}: " />
+			
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.cobranComissBancoMand}" />
+		</awb-h:panelGroup>
+
+		<!-- CONDICAO BANCO MANDATORIO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_condic_bc_mandat}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garancondbman}" />
+		</awb-h:panelGroup>
+
+		<!--COMISSAO AGENTE FINANCIADOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_comiss_ag_fin_gar}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.pagtefincrcmbio}" />
+	        <awb-h:outputLabel value=" %" rendered="#{tradeFinanceBean.tradeFinanceVO.ccobrcomisagte ne '1' and tradeFinanceBean.tradeFinanceVO.ccobrcomisagte ne '0'}" />
+		</awb-h:panelGroup>
+
+		<!-- COMISSAO GARANTIDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_com_garantidor}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.cobranComissAgente}" />
+		</awb-h:panelGroup>
+
+		<!-- CONDICAO AGENTE FINANCIADOR-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_condic_ag_fin_gar}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garancondagfi}" />
+		</awb-h:panelGroup>
+
+		<!-- DATA LIMITE FRO-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_dt_limite_fro}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.dlimenviorsumo}" />
+<!-- 				value="#{tradeFinanceBean.tradeFinanceVO.dfimnegoccmbio}" /> -->
+		</awb-h:panelGroup>
+
+		<!-- VENCIMENTO DA PROPOSTA-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_dt_venc_prop}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.formatadDataVencProsposta}" />
+		</awb-h:panelGroup>
+
+		<!-- QUANTIDADE RE'S-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_qtde_re}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.qregexporcmbio}" />
+		</awb-h:panelGroup>
+
+		<!-- IMPORTADOR-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_importador}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garanimport}" />
+		</awb-h:panelGroup>
+
+		<!-- MERCADORIA-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_mercadoria}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.mercadoria}" />
+		</awb-h:panelGroup>
+
+		<!-- QUANTIDADE DE EMBARQUE-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_qtde_embarque}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.qprevtembrqcmbio}" />
+		</awb-h:panelGroup>
+
+		<!-- PERIODO DO EMBARQUE-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_periodo_embarque}: " />
+
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.dprevtinicembrq}" />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value=" a " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.dprevtfimembrq}" />
+		</awb-h:panelGroup>
+
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

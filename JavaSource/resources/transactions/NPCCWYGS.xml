@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYGS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="39">
+    <register name="NPCCWYGS-HEADER">
+      <field name="NPCCWYGS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYGS" />
+      <field name="NPCCWYGS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00039" />
+    </register>
+    <register name="NPCCWYGS-REGISTRO">
+      <field name="NPCCWYGS-S-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

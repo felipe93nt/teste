@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWDJS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="6004">
+    <register name="NPCCWDJS-HEADER">
+      <field name="NPCCWDJS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWDJS" />
+      <field name="NPCCWDJS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="06004" />
+    </register>
+    <register name="NPCCWDJS-REGISTRO">
+      <field name="NPCCWDJS-TOTUSD-DESP-TARF" pic="S9(017)V9(2)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWDJS-TOTBRL-DESP-TARF" pic="S9(017)V9(2)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWDJS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWDJS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWDJS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWDJS-CINDCD-DESP-TARF" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-CCONDC-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-NTARIF-BLETO-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-CTPO-DESP-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-NDESP-BLETO-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-ITPO-DESP-CMBIO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWDJS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWDJS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWDJS-VDESP-BLETO-CMBIO" pic="S9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+        <field name="NPCCWDJS-CTARIF-CMBIO-AUTOM" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

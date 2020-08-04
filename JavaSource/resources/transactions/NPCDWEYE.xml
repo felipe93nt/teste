@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWEYE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="49">
+    <register name="NPCDWEYE-HEADER">
+      <field name="NPCDWEYE-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWEYE" />
+      <field name="NPCDWEYE-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00049" />
+    </register>
+    <register name="NPCDWEYE-REGISTRO">
+      <field name="NPCDWEYE-TIPO-PESQUISA" pic="9(01)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYE-CUNIC-PSSOA-CMBIO" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYE-CPSSOA" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYE-CD-CPFCNPJ" pic="9(09)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYE-CD-FILIAL" pic="9(04)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYE-CD-CTRL-CPFCNPJ" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

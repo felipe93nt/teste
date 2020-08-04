@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZNE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="76">
+    <register name="NPCCWZNE-HEADER">
+      <field name="NPCCWZNE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZNE" />
+      <field name="NPCCWZNE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00076" />
+    </register>
+    <register name="NPCCWZNE-REGISTRO">
+      <field name="NPCCWZNE-DPREVT-DSEMB-I" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZNE-DPREVT-DSEMB-F" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZNE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZNE-VPREVT-DSEMB-I" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZNE-VPREVT-DSEMB-F" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZNE-COD-SITUACAO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

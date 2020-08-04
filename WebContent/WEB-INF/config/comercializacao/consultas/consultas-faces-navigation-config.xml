@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+	<!-- NAVEGAÇÃO -->
+	<navigation-rule>
+	
+	    <!-- TRADE FINANCE COTAÇÕES DIVISÃO INTERNACIONAL - GERENCIAL -->
+        <navigation-case>
+            <from-outcome>divisaoInternacionalList</from-outcome>
+            <to-view-id>/content/comercializacao/consultas/divisaoInternacional/divisaoInternacionalList.xhtml</to-view-id>
+        </navigation-case>   
+        
+        <!-- TRADE FINANCE COTAÇÕES À VENCER - GERENCIAL -->
+        <navigation-case>
+            <from-outcome>cotacoesaVencerList</from-outcome>
+            <to-view-id>/content/comercializacao/consultas/cotacoesaVencer/cotacoesaVencerList.xhtml</to-view-id>
+        </navigation-case>  
+        
+        <!-- TRADE FINANCE OPERCAÇÕES PENDENTES - GERENCIAL -->
+        <navigation-case>
+            <from-outcome>operacoesPendList</from-outcome>
+            <to-view-id>/content/comercializacao/consultas/operacoesPend/operacoesPendList.xhtml</to-view-id>
+        </navigation-case> 
+       
+        <!-- TRADE FINANCE AGENDA DE OPERAÇÕES COM SWAP -->
+        <navigation-case>
+            <from-outcome>agendaSwapList</from-outcome>
+            <to-view-id>/content/comercializacao/consultas/agendaSwap/agendaSwapList.xhtml</to-view-id>
+        </navigation-case>        
+       
+	</navigation-rule>
+</faces-config>

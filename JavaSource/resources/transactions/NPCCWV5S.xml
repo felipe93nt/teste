@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWV5S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="62">
+    <register name="NPCCWV5S-HEADER">
+      <field name="NPCCWV5S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWV5S" />
+      <field name="NPCCWV5S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00062" />
+    </register>
+    <register name="NPCCWV5S-REGISTRO">
+      <field name="NPCCWV5S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV5S-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV5S-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV5S-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>
+

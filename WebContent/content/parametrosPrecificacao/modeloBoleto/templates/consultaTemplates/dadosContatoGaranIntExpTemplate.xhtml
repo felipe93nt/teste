@@ -1,0 +1,89 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+
+	<awb-h:panelGrid columns="3" style="width: 100%;"
+		columnClasses="width: 33%;">
+
+		<!-- CONTATO PARA RETIRADA DA GARANTIA -->
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_contato_ret_garan} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<awb-h:panelGrid columns="3" style="width: 100%;"
+		columnClasses="width: 33%;">
+		
+		<!-- NOME -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_nome_ctt}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.retirnome}" />
+		</awb-h:panelGroup>
+
+		<!-- ENDERECO PARA CONTATO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_end_ctt}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:42px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.retirender}" />
+		</awb-h:panelGroup>
+		
+		<awb-h:column></awb-h:column>
+		
+		<!-- CIDADE -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_cidade}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:49px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.retircidade}" />
+		</awb-h:panelGroup>
+		
+		<!-- TELEFONE  -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_telefone}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.retirtele}" />
+		</awb-h:panelGroup>
+		
+		<!-- EMAIL  -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_email}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.retiremail}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

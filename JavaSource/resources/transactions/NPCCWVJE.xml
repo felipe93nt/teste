@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVJE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="3023">
+    <register name="NPCCWVJE-HEADER">
+      <field name="NPCCWVJE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVJE" />
+      <field name="NPCCWVJE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03023" />
+    </register>
+    <register name="NPCCWVJE-REGISTRO">
+      <field name="NPCCWVJE-CCLAUS-CONTR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWVJE-RCLAUS-CONTR-CMBIO" pic="X(3000)" length="3000" bytes="3000" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWVJE-CTPO-CLAUS-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- GRID BOTOES -->
+    <awb-h:panelGrid columns="2" width="100%">
+        <!-- Voltar -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+            action="#{tradeFinanceBean.actionVoltar}" />
+	
+		<awb-h:panelGrid style="float:right" columns="4">
+	       	<!-- Aprovar -->
+			<awb-h:commandButton id="btnConfirmarAprov" value="#{msgs.bto_aprovar}" styleClass="HtmlCommandButtonBradesco right" immediate="false" 
+				actionListener="#{tradeFinanceBean.validarForm}">
+			</awb-h:commandButton>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+	<!--  MODAL CONFIRMAÇÃO -->
+	    <ui:include src="/template/modal.xhtml">
+	        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+	        <ui:param name="bean" value="#{tradeFinanceBean}" />
+	        <ui:param name="actionConfirmar" value="actionConfirmarAprovar" />
+	        <ui:param name="actionFechar" value="actionFecharModal" />
+	        <ui:param name="renderModal" value="#{tradeFinanceBean.viewHelper.renderFechar}" />
+	    </ui:include>
+</ui:composition>
+</html>

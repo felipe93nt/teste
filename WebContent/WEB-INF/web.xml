@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- * Copyright 2004 The Apache Software Foundation. * * Licensed under
+	the Apache License, Version 2.0 (the "License"); * you may not use this file
+	except in compliance with the License. * You may obtain a copy of the License
+	at * * http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+	applicable law or agreed to in writing, software * distributed under the
+	License is distributed on an "AS IS" BASIS, * WITHOUT WARRANTIES OR CONDITIONS
+	OF ANY KIND, either express or implied. * See the License for the specific
+	language governing permissions and * limitations under the License. -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<description>web.xml</description>
+	<display-name>npcc</display-name>
+	
+	<!-- REMOVA AO USAR O WAS  -->
+	<context-param>
+		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<!-- REMOVA AO USAR O WAS  -->
+	<filter>
+		<filter-name>beanResolverFilter</filter-name>
+		<filter-class>br.com.bradesco.web.aq.application.util.BeanResolverFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>forceUTF8CharSet</filter-name>
+		<filter-class>br.com.bradesco.web.aq.view.filters.impl.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>forceUTF8CharSet</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- REMOVA AO USAR O WAS  -->
+	 <filter-mapping>
+		<filter-name>beanResolverFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	
+	
+    <!-- File Upload -->
+    <filter> 
+        <display-name>fileUploadFilter</display-name>
+        <filter-name>FileUploadFilter</filter-name>
+        <filter-class>br.com.bradesco.web.aq.view.components.UIFileUpload.FileUploadFilter</filter-class>
+        <init-param>
+            <param-name>THRESHOLD_SIZE_PARAM</param-name>
+            <param-value>1048576</param-value>
+        </init-param>
+        <init-param>
+            <param-name>UPLOAD_DIRECTORY_PARAM</param-name>
+            <param-value>/fileupload</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>FileUploadFilter</filter-name> 
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- File Watcher
+	<filter> 
+        <display-name>fileWatcherFilter</display-name>
+        <filter-name>FileWatcherFilter</filter-name>
+        <filter-class>br.com.bradesco.web.npcc.view.filters.FileWatcherFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FileWatcherFilter</filter-name> 
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<!--<welcome-file>content/index.xhtml</welcome-file> -->
+	</welcome-file-list>
+
+	<!-- Filtro de segurança WAS -->
+	<!-- DESCOMENTAR PARA UTILIZAR A SEGURANÇA NO WAS 
+	<filter>
+		<display-name>BradescoSecurityFilter</display-name>
+		<filter-name>bradescoSecurityFilter</filter-name>
+		<filter-class>br.com.bradesco.web.aq.application.security.filter.BradescoSecurityFilter</filter-class>
+		<init-param>
+			<param-name>realmName</param-name>
+			<param-value>INTRANET</param-value>
+		</init-param>
+	</filter> -->
+
+	<!-- Mapeamento do filtro de segurança WAS -->
+	<!-- DESCOMENTAR PARA UTILIZAR A SEGURANÇA NO WAS 
+	<filter-mapping>
+		<filter-name>bradescoSecurityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+ -->
+	<filter>
+		<filter-name>bradescoSessionFilter</filter-name>
+		<filter-class>br.com.bradesco.web.aq.application.session.filter.BradescoSessionFilter</filter-class>
+	</filter> 
+
+	<filter-mapping>
+		<filter-name>bradescoSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> 
+
+	<!-- ATIVE O LISTENER ABAIXO AO UTILIZAR O ORACLE MOJARRA (E DESATIVE AO UTILIZAR O APACHE MYFACES) -->
+	<!-- <listener>
+	    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener> -->
+
+	<listener>
+		<listener-class>br.com.bradesco.web.aq.application.bean.cdi.AWBServletContextListener</listener-class>
+	</listener>
+
+	<!-- REMOVA O LISTENER ABAIXO AO USAR O WAS  -->
+	<listener> 
+		<listener-class>org.apache.webbeans.servlet.WebBeansConfigurationListener</listener-class> 
+	</listener>
+
+	<!-- ATIVE O LISTENER ABAIXO AO UTILIZAR O APACHE MYFACES (E DESATIVE AO UTILIZAR O ORACLE MOJARRA) -->
+	<listener>
+		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>org.apache.myfaces.EL_RESOLVER_COMPARATOR</param-name>
+		<param-value>org.apache.myfaces.el.unified.OpenWebBeansELResolverComparator</param-value>
+	</context-param>
+
+	<!-- Protected Areas -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>npcc</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ROLE_CMNC</role-name>
+			<role-name>ROLE_NPCA</role-name>
+			<role-name>ROLE_NPCC</role-name>
+			<role-name>ROLE_NPCD</role-name>
+			<role-name>ROLE_NPCP</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>npcc</web-resource-name>
+			<url-pattern>/images/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>npcc</web-resource-name>
+			<url-pattern>/template/errorPages/401.xhtml</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>npcc</web-resource-name>
+			<url-pattern>/template/css/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>npcc</web-resource-name>
+			<url-pattern>/template/images/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+	</security-constraint>
+	<!-- Validation By Basic -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>INTRANET</realm-name>
+	</login-config>
+
+	<!-- Allowed Roles -->
+	<security-role>
+        <role-name>ROLE_CMNC</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_NPCA</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_NPCC</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_NPCD</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_NPCP</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_CADASTRO_CLIENTES</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_CONVIVENCIA_CLIENTES</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ROLE_TRADE_CADASTRO</role-name>
+    </security-role>
+
+	<listener>
+		<listener-class>br.com.bradesco.web.aq.application.security.listeners.JaasRegisterServletContextListener</listener-class>
+	</listener>
+
+	<!-- COMENTE AO UTILIZAR O WAS -->
+<resource-env-ref> 
+		<resource-env-ref-name>BeanManager</resource-env-ref-name> 
+		<resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type> 
+	</resource-env-ref>
+	
+	<context-param>
+          <param-name>com.sun.faces.enableHighAvailability</param-name>
+          <param-value>true</param-value>
+    </context-param>
+
+	<context-param>
+		<param-name>org.apache.myfaces.COMPRESS_STATE_IN_CLIENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.USE_ENCRYPTION</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.SECRET</param-name>
+		<param-value>NWRBNHk2UTI=</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.MAC_SECRET</param-name>
+		<param-value>OGhYMHE3djM=</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.READONLY_AS_DISABLED_FOR_SELECTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.RENDER_VIEWSTATE_ID</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.STRICT_XHTML_LINKS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.CONFIG_REFRESH_PERIOD</param-name>
+		<param-value>2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.ADD_RESOURCE_CLASS</param-name>
+		<param-value>org.apache.myfaces.renderkit.html.util.DefaultAddResource
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.RESOURCE_VIRTUAL_PATH</param-name>
+		<param-value>/faces/myFacesExtensionResource</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>1</param-value>
+	</context-param>
+	<context-param>
+		<description>MyFaces implementation to support partial
+			page save
+			state
+			method</description>
+		<param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>State saving method: &quot;client&quot; or &quot;server&quot;
+			default) See JSF
+			Specification 2.5.2
+		</description>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<context-param>
+		<description>
+			This parameter tells MyFaces if javascript code
+			should be
+			allowed in
+			the rendered HTML output. If javascript is
+			allowed,
+			command_link
+			anchors will have javascript code that submits
+			the
+			corresponding
+			form. If javascript is not allowed, the state saving
+			info and nested
+			parameters will be added as url parameters. Default:
+			true</description>
+		<param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<description>If true, rendered HTML code will be formatted, so
+			that it
+			is &quot;human readable&quot;. i.e. additional line separators
+			and whitespace
+			will be written, that do not influence the HTML code.
+			Default: &quot;true&quot; </description>
+		<param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>If true, a javascript function will be rendered
+			that is
+			able to restore the former vertical scroll on every request.
+			Convenient feature if you have pages with long lists and you do not
+			want the browser page to always jump to the top if you trigger a link
+			or button action that stays on the same page. Default:
+			&quot;false&quot; </description>
+		<param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>
+            /WEB-INF/faces-config.xml
+            ,/WEB-INF/faces-navigation-config.xml
+            ,/WEB-INF/config/comercializacao/precificacao/negociacao/negociacao-faces-navigation-config.xml
+            ,/WEB-INF/config/comercializacao/consultas/consultas-faces-navigation-config.xml
+            ,/WEB-INF/config/comercializacao/consultas/consultas-faces-navigation-config.xml
+            
+		</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<filter>
+		<filter-name>BradescoFilterManager</filter-name>
+		<filter-class>br.com.bradesco.web.aq.view.filters.impl.BradescoFilterManager</filter-class>
+	</filter>
+	<filter>
+        <filter-name>IECompatibilityFilter</filter-name>
+        <filter-class>br.com.bradesco.web.aq.view.filters.BradescoIECompatibilityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>IECompatibilityFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>IECompatibilityFilter</filter-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+		<filter-name>BradescoFilterManager</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>BradescoFilterManager</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>20</session-timeout>
+		<cookie-config>
+          <name>JSESSIONID_npcc_trade</name>
+          <path>/npcc_trade</path>
+        </cookie-config>
+	</session-config>
+
+
+	<!-- Error Pages -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/template/errorPages/400.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/template/errorPages/401.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/template/errorPages/internalError.jsf</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/template/errorPages/403.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/template/errorPages/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/template/errorPages/500.xhtml</location>
+	</error-page>
+
+</web-app>

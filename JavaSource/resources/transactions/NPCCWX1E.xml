@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX1E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="70">
+    <register name="NPCCWX1E-HEADER">
+      <field name="NPCCWX1E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX1E" />
+      <field name="NPCCWX1E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00070" />
+    </register>
+    <register name="NPCCWX1E-REGISTRO">
+      <field name="NPCCWX1E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX1E-FUNCAO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX1E-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX1E-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX1E-HINCL-REG-HIST" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWX1E-CSIT-BLETO-APROV" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX1E-CMOD-CONTR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

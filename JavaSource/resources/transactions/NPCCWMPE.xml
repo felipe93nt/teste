@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWMPE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="23">
+    <register name="NPCCWMPE-HEADER">
+      <field name="NPCCWMPE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWMPE" />
+      <field name="NPCCWMPE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00023" />
+    </register>
+    <register name="NPCCWMPE-REGISTRO">
+      <field name="NPCCWMPE-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

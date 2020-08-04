@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWIAE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="16">
+    <register name="NPCCWIAE-HEADER">
+      <field name="NPCCWIAE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWIAE" />
+      <field name="NPCCWIAE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00016" />
+    </register>
+    <register name="NPCCWIAE-REGISTRO">
+      <field name="NPCCWIAE-CIDTFD-MESA-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIAE-CCMBIO-PRODT-FUTUR" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIAE-CCOMCZ-PRODT-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

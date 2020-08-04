@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition>
+	
+	<presCore:addResource resource="js/jquery.js" />
+	<link rel="stylesheet" type="text/css"
+            href="#{request.contextPath}/faces/javax.faces.resource/template/root/css/modalMessages.css" />
+	
+	<f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinMonitBean.consultar}" />
+    </f:metadata>
+    
+    <awb-h:inputHidden value="#{tradeFinMonitBean.navigationData}" id="navigationData"></awb-h:inputHidden>
+        
+    <!-- Script geral da aplicação -->
+    <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+    
+    <script type="text/javascript">
+	    (function ($) {
+	    	'use strict';
+	    	
+	    	$(document).ready(function () {	    		
+	    		App.navigation.redirect($('#navigationData').val());
+	    	});
+	    })(jQuery.noConflict());
+    </script>
+    
+</ui:composition>
+</html>

@@ -1,0 +1,131 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- MERCADORIA -->
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_mercadoria} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;" rendered="#{tradeFinanceBean.mercadoriaList.size() > 0}">
+
+		<awb-h:panelGrid style="width: 99%;">
+			<awb-h:dataTable id="scrollable_comissaoInterna"
+				var="mercadoriaLista" rows="10" cellspacing="0" cellpadding="10"
+				border="1" style="width: 100%; text-align: center"
+				rowIndexVar="indexLista" value="#{tradeFinanceBean.mercadoriaList}">
+
+				<!-- MERCADORIA -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_mercadoria}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.rmcadoopercmbio}" />
+				</awb-h:column>
+
+				<!-- PAÍS DE ORIGEM -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_pais_origem}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.ipais}" />
+				</awb-h:column>
+				
+				<!-- PAÍS DE EMBARQUE -->
+				<awb-h:column rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 2018}">
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_pais_embrq}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.ipaisembrq}" />
+				</awb-h:column>
+				
+				<!-- BENEFICIARIO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_beneficiario}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.iunicpssoamcado}" />
+				</awb-h:column>
+
+				<!-- PAIS BENEFICIARIO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_pais_beneficiario}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.ipaisbnefc}" />
+				</awb-h:column>
+
+				<!-- PREVISAO EMBARQUE -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_prev_embarque}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.dprevtembrq}" />
+				</awb-h:column>
+
+				<!-- NUMERO DESEMBOLSO -->
+				<awb-h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.label_num_desembolso}"
+							style="font-family: verdana; font-size: 10px" escape="false" />
+					</f:facet>
+					<h:outputText style="font-family: verdana; font-size: 10px;"
+						value="#{mercadoriaLista.ndsembcmbiotrade}" />
+				</awb-h:column>
+			</awb-h:dataTable>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;" rendered="#{tradeFinanceBean.tradeFinanceVO.produto.codigo ne 644}">
+		<!-- SEGURO TRANSPORTE -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_seg_transporte}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-27px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.csegurtrnspmcado}" />
+		</awb-h:panelGroup>
+
+		<!-- CLAUSULA BENEFICIARIO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_clausula_benf_br}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.csegurmcadoorgnz}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYNE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="8430">
+    <register name="NPCCWYNE-HEADER">
+      <field name="NPCCWYNE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYNE" />
+      <field name="NPCCWYNE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08430" />
+    </register>
+    <register name="NPCCWYNE-REGISTRO">
+      <field name="NPCCWYNE-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-QTD-OC-MERC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-QTD-OC-VINC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-QTD-OC-TARI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-QTD-OC-GARN" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-QTD-OC-AVAL" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-DCOTAC-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-CBANQR-CMBIO-FNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-CBANQR-CMBIO-RCDOR" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-CBANQR-CMBIO-AVISO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-PTX-FIXA-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWYNE-CINDCD-ECONM-MOE-LIB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-TMES-LIBOR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-VTX-LIBOR-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <register name="NPCCWYNE-CONTATO">
+        <field name="NPCCWYNE-CONTATO-NOME" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-CONTATO-TELE" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWYNE-CONTATO-ROF">
+        <field name="NPCCWYNE-NOME" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-TELEFONE" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-CPF" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-CARGO" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-EMAIL" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <field name="NPCCWYNE-OUTRAS-ESPCS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-OBSERVACAO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-MOTIVO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYNE-CUNIC-PSSOA-CMBIO-T" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYNE-CUNIC-PSSOA-INDICA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYNE-LST-AVA" minOccurs="0" maxOccurs="20" depends="NPCCWYNE-QTD-OC-AVAL" dependsType="number">
+        <field name="NPCCWYNE-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="NPCCWYNE-LST-MER" minOccurs="0" maxOccurs="20" depends="NPCCWYNE-QTD-OC-MERC" dependsType="number">
+        <field name="NPCCWYNE-NDSEMB-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CMCADO-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CPAIS-EMBRQ" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-QPREVT-EMBRQ-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CUNIC-PSSOA-MCADO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CPAIS-BNEFC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-DPREVT-EMBRQ" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWYNE-LST-VIN" minOccurs="0" maxOccurs="20" depends="NPCCWYNE-QTD-OC-VINC" dependsType="number">
+        <field name="NPCCWYNE-NBLETO-NEGOC-VNCLO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CINDCD-VNCLO-IMPOR" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWYNE-LST-TAR" minOccurs="0" maxOccurs="20" depends="NPCCWYNE-QTD-OC-TARI" dependsType="number">
+        <field name="NPCCWYNE-CINDCD-ECONM-MOE-TAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CCONDC-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-VTARIF-OPER-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+      <register name="NPCCWYNE-LST-GAR" minOccurs="0" maxOccurs="20" depends="NPCCWYNE-QTD-OC-GARN" dependsType="number">
+        <field name="NPCCWYNE-CCATLG-GARNT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-CINDCD-ECONM-MOE-GAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-VTX-GARNT-CMBIO" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWYNE-DVCTO-GARNT-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-CINDCD-GARNT-PRINC" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYNE-CIDTFD-GARNT-ADCIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYNE-RCOMPL-GARNT-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

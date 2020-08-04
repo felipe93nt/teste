@@ -1,0 +1,130 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<!-- MIXED PAYMENT -->
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_det_mixed} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!-- PARCELAS DESEMBOLSO -->
+	<awb-h:panelGrid style="width: 99%;">
+		<awb-h:dataTable var="des" rows="10" cellspacing="0" cellpadding="10"
+			border="1" style="width: 100%; text-align: center"
+			rowIndexVar="indexdes" value="#{tradeFinanceBean.parcelaDesembList}">
+
+			<!-- VALOR -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_desembolso}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{des.vpcelacreditprevt}">
+					<f:converter converterId="numericConverter"></f:converter>
+				</h:outputText>
+			</awb-h:column>
+
+			<!-- PERCENTUAL -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_percentual}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{des.vpcelacartaprevt}" />
+			</awb-h:column>
+			
+			<!-- À VISTA/PRAZO -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_a_vista_prazo}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{des.nprzpcelacarta}" />
+			</awb-h:column>
+			
+			<!-- DIAS -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_dias}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{des.tdiapgtocarta}" />
+			</awb-h:column>
+		</awb-h:dataTable>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- PRAZO TOTAL OPERACAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_prazo_total}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.tdiaopercmbio}" />
+		</awb-h:panelGroup>
+		<!-- EMBARQUE PARCIAL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_embarque_parcial}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.formataEmbarqueParcial}" />
+		</awb-h:panelGroup>
+		<!-- QUANTIDADE EMBARQUES -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_qtde_embarque}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.qprevtembrqcmbio}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+	
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+		
+		<!-- FORMA DE PAGAMENTO COMPLEMENTAR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_forma_pagamento_complementar}: " />
+			<awb-h:inputTextarea disabled="true"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.formapagto}"
+				style="width: 100%" rows="2" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

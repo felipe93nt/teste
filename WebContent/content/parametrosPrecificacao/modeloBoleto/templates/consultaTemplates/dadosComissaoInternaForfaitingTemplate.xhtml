@@ -1,0 +1,180 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<!-- COMISSAO INTERNA-->
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;"
+		rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_comissao_int} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="3" style="width: 100%;"
+		columnClasses="width: 33%;">
+
+		<!-- SPREAD APROVADO -->
+		<awb-h:panelGroup
+			rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo ne 2018}">
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_spread_apvr}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:132px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadaprov}% AA" />
+		</awb-h:panelGroup>
+
+		<!-- SPREAD NEGOCIADO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_spread_negoc}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadnegoc}% AA" />
+		</awb-h:panelGroup>
+		
+		<!-- SPREAD TOTAL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_spread_total}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadtot}% AA" />
+		</awb-h:panelGroup>
+
+		<!-- CUSTO TOTAL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_custo_total}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.descctotal}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	<awb-h:panelGrid style="width: 99%;"
+		rendered="#{not empty tradeFinanceBean.tradeFinanceVO.listaDesembolso}">
+		<awb-h:dataTable id="scrollable_comissaoInterna" var="des" rows="10"
+			cellspacing="0" cellpadding="10" border="1"
+			style="width: 100%; text-align: center" rowIndexVar="indexdes"
+			value="#{tradeFinanceBean.tradeFinanceVO.listaDesembolso}">
+			
+			<!-- DATA DESEMBOLSO -->
+			<awb-br:scrollableColumn width="3%">
+				<awb-f:facet name="header">
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" escape="false"
+						value="#{msgs.label_desembolso}"/>
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;" 
+					value="#{des.dataDesembolsoFormat}" />
+			</awb-br:scrollableColumn>
+
+			<!-- VALOR DESEMBOLSO -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_vlr_desembolso}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.vprevtdsembcmbio}">
+					<f:converter converterId="numericConverter"></f:converter>
+				</awb-h:outputLabel>
+			</awb-br:scrollableColumn>
+
+			<!-- LIBOR TRAVADA -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<h:outputLabel value="#{msgs.label_det_libor_travada}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.vtxliborcmbio}" />
+			</awb-br:scrollableColumn>
+
+			<!-- FUNDING -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_funding}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.ptxjurofndng}" />
+			</awb-br:scrollableColumn>
+
+			<!-- SPREAD -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_spread}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.pspreadtxcmbio}" />
+			</awb-br:scrollableColumn>
+
+			<!-- TAXA -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_taxa}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.pjuronegoccmbio}" />
+			</awb-br:scrollableColumn>
+
+			<!--  PRAZO -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_prazo}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.tdiafinandsemb}" />
+			</awb-br:scrollableColumn>
+
+			<!--  VALOR JUROS -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_valor_juros}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.vjurodsembcmbio}">
+					<f:converter converterId="numericConverter"></f:converter>
+				</awb-h:outputLabel>
+			</awb-br:scrollableColumn>
+
+			<!--  VALOR SAQUE -->
+			<awb-br:scrollableColumn>
+				<awb-f:facet name="header">
+					<awb-h:outputLabel value="#{msgs.label_valor_saque}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</awb-f:facet>
+				<awb-h:outputLabel style="font-family: verdana; font-size: 10px;"
+					value="#{des.vdsembnegoccmbio}">
+					<f:converter converterId="numericConverter"></f:converter>
+				</awb-h:outputLabel>
+			</awb-br:scrollableColumn>
+		</awb-h:dataTable>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWMPS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="14">
+    <register name="NPCCWMPS-HEADER">
+      <field name="NPCCWMPS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWMPS" />
+      <field name="NPCCWMPS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00014" />
+    </register>
+    <register name="NPCCWMPS-REGISTRO">
+      <field name="NPCCWMPS-CCLI-BLOQ-DQMTO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

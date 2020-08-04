@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<!-- Utilizar nesse include range de 'TABINDEX' de 500 a 599  -->
+
+    <awb-h:panelGrid id="pnlTomador" styleClass="panelGridTable">
+        <!-- Filtro Tomador -->
+        <awb-h:panelGrid id="filtroTomador" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            
+            <!-- TOMADOR -->
+            <awb-h:panelGrid >
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_tomador}: "/>
+                </awb-h:panelGroup>
+                
+                <!-- LUPA TOMADOR -->
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="" size="50" maxlength="70" id="txtTomador" tabindex="500"
+                        value="#{bean.tomadorModal.ipssoacmbio}" immediate="false"
+                        styleClass="HtmlInputTextBradesco action-on-enter">
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+                    <awb-br:brCommandSearch id="txtTomador-action" tabindex="501">
+                        <f:ajax execute="@form" event="click" render="pnlTomador div_modalTomador formModalMessages"
+                            listener="#{bean.openModalTomador}" />
+                    </awb-br:brCommandSearch>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid  columns="2" styleClass="panelGridTable">
+                <awb-h:panelGrid rendered="#{bean.viewHelper.renderAbout}">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{msgs.label_about}:"
+                            styleClass="HtmlOutputTextBulletBoldBradesco" for="radioAbout" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:selectOneRadio id="radioAbout" layout="lineDirection" tabindex="502"
+                            styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+                            value="#{bean.tradeFinNegocVO.ccobrcomisadcio}" >
+                            <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />                            
+                              <f:ajax event="click" listener="#{bean.atualizarAboutTomador}" execute="@form" render="pnlTomador" />                            
+                        </awb-h:selectOneRadio>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+    
+                <awb-h:panelGrid rendered="#{bean.viewHelper.renderAbout}">                
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputTextBulletBoldBradesco" value="#{msgs.label_percentual_about}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputText id="txtPercentAbout" styleClass="HtmlInputTextBradesco" tabindex="503"
+                        disabled="#{bean.tradeFinNegocVO.ccobrcomisadcio == 1 ? false:true}"
+                            alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                            value="#{bean.tradeFinNegocVO.pcobervarprodt}">
+                        </awb-h:inputText>
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" %" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+            
+            <awb-h:panelGrid>                
+            </awb-h:panelGrid>
+
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+    
+    <!-- MODAL SELECT TOMADOR -->
+    <awb-th:extDiv id="div_modalTomador">
+        <awb-br:modalContent id="content_modalTomador" 
+                             closeId="formTdFnNgModBenef:botaoFechar"
+                             autoOpen="true" 
+                             openId="lupaTomador"
+                             resizable="true" 
+                             draggable="true"
+                             contentPath="#{request.contextPath}/content/global/beneficiarioModal/beneficiarioModal.xhtml"
+                             header="Selecionar Tomador"
+                             width="750" height="520" 
+                             onHideServerCallback="#{benefModalBean.closeModalBeneficiario}"
+                             rendered="#{benefModalBean.viewHelper.renderModalBeneficiario}"
+                             closable="false" closeOnEscape="false"
+                             reRender="@form formModalMessages" />
+    </awb-th:extDiv>
+     
+     
+</ui:composition>
+
+</html>

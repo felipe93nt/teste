@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZCE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="60">
+    <register name="NPCCWZCE-HEADER">
+      <field name="NPCCWZCE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZCE" />
+      <field name="NPCCWZCE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00060" />
+    </register>
+    <register name="NPCCWZCE-REGISTRO">
+      <field name="NPCCWZCE-JUROS-EMB-DED" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZCE-VNEGOC-MOEDA-ESTRG" pic="9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWZCE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZCE-VTRAVA-LIBOR-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWZCE-VTX-LIBOR-CMBIO" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWZCE-VTX-SPREAD-NEGOC" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+    </register>
+  </input>
+</copybook>
+

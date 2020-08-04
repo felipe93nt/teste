@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_incluir_lc_importacao}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList"
+        value="#{breadCrumbBean.loadCaminho('title_tradeFinance_negociacao',99,'title_incluir_lc_importacao')}" />
+        
+    <!-- Carrega os dados da tela para realizar a duplicação -->
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinanceNegociacaoInclBean.iniciarDuplicacaoPorProduto}" />
+    </f:metadata>
+
+    <ui:define name="body">
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <script type="text/javascript" src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+        <awb-br:bundleWriter functionName="getBundle" id="calendarioFiltro" rendered="true"
+            messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+        </awb-br:bundleWriter>
+
+        <!-- FORM -->
+        <awb-h:form id="formTrdFinNegIncl">
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Cliente - tabindex 100 a 199 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosCliente.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- Dados do Produto - tabindex 200 a 299 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosProduto.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- NRO APROVACAO CREDITO - tabindex 300 a 399 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosAprovCredito.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- VALOR e MOEDA - tabindex 400 a 499 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosValorMoedaLcImport.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- PRECIFICACAO - tabindex 500 a 599 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosPrecificacaoLcImport.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- COMISSAO INTERNA (Spread) - tabindex 600 a 699 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissaoInternaUnica.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+           
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- MERCADORIA - tabindex 700 a 799 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosMercadoriaLcImport.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- OPERACAO VINCULADA - tabindex 1100 a 1149 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosOperacaoVinculada.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- DOCUMENTOS CONSIGNADOS - tabindex 1150 a 1199 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosDocumentosConsignados.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- RESPONSAVEL EMPRESA - tabindex 1200 a 1299 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosResponsavelEmpresa.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- TARIFAS - tabindex 1300 a 1399 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosTarifas.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- COMISSAO - tabindex 1400 a 1499 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosComissaoReduzida.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- MODELO BOLETO - tabindex 1500 a 1599 -->
+            <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosModeloBoleto.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- OBSERVACOES OUTRAS ESPECIFICACOES - tabindex 1600 a 1699 -->
+            <ui:include
+                src="/content/comercializacao/precificacao/negociacao/content/dadosObsOutrasEspecificacoes.xhtml">
+				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+			</ui:include>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid styleClass="panelGridTable">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES E MODAIS - tabindex 9000 a 9099 -->
+            <ui:include 
+                src="/content/comercializacao/precificacao/negociacao/content/botoesAndModalIncl.xhtml">
+            </ui:include>
+            
+            <!--  MODAL CONFIRMAÇÃO LC importacao-->
+            <ui:include src="/content/global/vincularOperacaoLcModal/vincularOperacaoLcModal.xhtml">
+                <ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}" />
+                <ui:param name="actionConfirmar" value="confirmarVincularOperacaoLC" />
+                <ui:param name="actionFechar" value="actionFecharModalLc" />
+            </ui:include>
+            
+        </awb-h:form>
+
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+    </ui:define>
+
+</ui:composition>
+</html>

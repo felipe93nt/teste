@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+		<!-- OBSERVACAO -->
+		<awb-h:panelGrid styleClass="panelGridTable" columns="1">
+			<awb-h:panelGrid styleClass="panelGridTable" columns="1">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_obs_interno}"
+						styleClass="HtmlOutputLabelBradesco" />
+				</awb-h:panelGroup>
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao1}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao2}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao3}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao4}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao5}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao6}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao7}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao8}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao9}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+				<awb-h:outputLabel
+					style="white-space: normal;" escape="false" value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.obsCotacaoVO.observacao10}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+	
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid width="100%">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+	
+		<awb-h:panelGrid styleClass="panelGridTable" columns="2" id="gridCustoExterno"
+			columnClasses="panelGridColum50,panelGridColum50">
+	
+	        <!-- FUNCIONARIO -->
+			<awb-h:panelGrid columns="1" width="100%">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_funcionario}: "
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.funcionario}"
+						styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+	
+	        <!-- DATA DA COTACAO -->
+			<awb-h:panelGrid columns="1" width="100%">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_dtctc}: "
+						styleClass="HtmlOutputLabelBradesco" />
+	                
+	                <awb-h:outputLabel rendered="#{tradeFinMonitCtcPendBean.tradeFinanceVO.csitbletocmbio == 33}"
+	                    value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.dcotacfndngcmbio}"
+	                    styleClass="HtmlOutputTextBoldBradesco" />
+	                    
+					<awb-h:outputLabel rendered="#{tradeFinMonitCtcPendBean.tradeFinanceVO.csitbletocmbio != 33}"
+						value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.dataHoje}"
+						styleClass="HtmlOutputTextBoldBradesco" />
+	                    
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+	
+			<!-- LIMITE DA COTACAO -->
+			<awb-h:panelGrid columns="1" width="100%" id="divDataLimite"
+				 rendered="#{not tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_limite_ctc}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+	
+				<awb-h:panelGroup>
+					<awb-br:calendar id="calendario"
+						titulo="#{msgs.label_det_limite_ctc}" 
+						disableInputFields="false"
+						clientValidationLevel="date"
+						onInputChange="limpaData('formTradeFinMonitDet:calendario','validarLimiteCotacao')"
+						onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+						value="#{tradeFinMonitCtcPendBean.limiteCtc}" />
+					<awb-h:outputLabel value=" " escape="false" />
+					<awb-h:commandButton style="display:none;"
+						styleClass="ajax-call validarLimiteCotacao">
+						<f:ajax execute="divDataLimite" event="click"
+							render="formModalMessages divDataLimite divSeiModals"
+							listener="#{tradeFinMonitCtcPendBean.validarLimiteCotacao}" />
+							<f:param name="paramtpoData" id="paramtpoData" value="2" />  
+					</awb-h:commandButton>
+				</awb-h:panelGroup>	
+				
+			</awb-h:panelGrid>
+	
+			<!-- LIMITE DA COTACAO - UNIDADE EXTERNA -->
+			<awb-h:panelGrid columns="1" width="100%"
+				rendered="#{tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_limite_ctc}: "
+						styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel
+						value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.dlimfndngcmbio}"
+						styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+	
+		</awb-h:panelGrid>
+	
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-h:outputLabel value="#{msgs.label_custo_externo}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGrid>
+	
+		<awb-h:panelGrid styleClass="panelGridTable" columns="2" columnClasses="panelGridColum50,panelGridColum50" render="liborCustoExternoPanelGrid">
+			<!-- TAXA FIXA - CUSTO EXTERNO -->
+				<awb-h:panelGrid columns="1" rendered="#{not tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_tx_fixa}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup columns="2">
+						<awb-h:inputText value="#{tradeFinMonitCtcPendBean.custoExternoVO.ptxfixacmbio}"
+							size="10" maxlength="9" title="#{msgs.label_det_tx_fixa}" alt="{'wholePartSize': 3, 'decimalPartSize': 5}" styleClass="HtmlInputTextBradesco"
+							disabled="#{tradeFinMonitCtcPendBean.viewHelper.disabledTaxaFixa}" id="taxaFixa">
+		                        <f:ajax execute="@form" event="change" render="liborCustoExternoPanelGroup liborMeses taxaFixa pgLiborTravada"
+		                            immediate="false" listener="#{tradeFinMonitCtcPendBean.valueChangeListenerTaxaFixa}" />                            
+						</awb-h:inputText>
+						<awb-h:outputLabel value="%" styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-h:panelGroup>
+					
+					<!-- LIBOR TRAVADA -->
+					<awb-h:panelGroup id="pgLiborTravada" style="margin-left:400px;">
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_libor_travada}: " styleClass="HtmlOutputLabelBradesco" />
+						<awb-h:outputLabel rendered="#{tradeFinanceBean.viewHelper.renderValorLiborTravada}"  value="#{tradeFinanceBean.tradeFinanceVO.vtravaliborcmbio}% AA" styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+			<!-- TAXA FIXA - UNIDADE EXTERNA -->
+			<awb-h:panelGrid columns="1"	
+				rendered="#{tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_tx_fixa}: " styleClass="HtmlOutputLabelBradesco" />
+					<awb-h:outputLabel value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.ptxfixacmbio} %" styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+	
+			<!-- LIBOR - CUSTO EXTERNO -->
+			<awb-h:panelGroup id="liborCustoExternoPanelGroup">
+				<awb-h:panelGrid columns="1"
+					rendered="#{not tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+					<awb-h:panelGrid columns="1">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel value="#{msgs.label_det_libor}: "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+							<awb-h:outputLabel value=""
+								styleClass="HtmlOutputTextBoldBradesco" />
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+		                <awb-h:panelGrid columns="3">		                    
+							<awb-h:selectOneMenu styleClass="HtmlInputTextBradesco" title="Libor"
+		                        value="#{tradeFinMonitCtcPendBean.custoExternoVO.cindcdeconmmoeda}" 
+		                        disabled="#{tradeFinMonitCtcPendBean.viewHelper.disabledLibor}" id="liborMoeda">
+		                        <f:selectItems value="#{selectItemBean.moeda}" />
+		                    </awb-h:selectOneMenu>
+		                    <awb-h:panelGroup>
+		                    	<awb-h:inputText value="#{tradeFinMonitCtcPendBean.custoExternoVO.tmesliborcmbio}"
+		                            styleClass="HtmlInputTextBradesco" size="5" maxlength="5" alt="{'type' : 'integer'}" title="Libor" id="liborMeses"
+		                            disabled="#{tradeFinMonitCtcPendBean.viewHelper.disabledLibor or tradeFinMonitCtcPendBean.viewHelper.disabledLiborMeses}">
+	                            </awb-h:inputText>
+		                        <awb-h:outputLabel value=" Meses + " styleClass="HtmlOutputTextBoldBradesco" />
+		                    </awb-h:panelGroup>
+		
+		                    <awb-h:panelGroup>
+		                    	<awb-h:inputText value="#{tradeFinMonitCtcPendBean.custoExternoVO.vtxliborcmbio}" 
+		                            styleClass="HtmlInputTextBradesco" size="10" maxlength="9" alt="{'wholePartSize': 3, 'decimalPartSize': 5}" id="liborTaxa" 
+	                           		disabled="#{tradeFinMonitCtcPendBean.viewHelper.disabledLibor}">
+			                        <f:ajax execute="@form" event="change" render="liborCustoExternoPanelGroup liborMeses taxaFixa"
+			                            immediate="false" listener="#{tradeFinMonitCtcPendBean.valueChangeListenerLiborCustoExterno}" />                            
+								</awb-h:inputText>
+		                        <awb-h:outputLabel value=" % AA" styleClass="HtmlOutputTextBoldBradesco" />
+		                    </awb-h:panelGroup>
+		                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	
+				<!-- LIBOR - UNIDADE EXTERNA -->
+				<awb-h:panelGrid columns="1"
+					rendered="#{tradeFinMonitCtcPendBean.viewHelper.isUnidadeExt}">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_libor}: "
+							styleClass="HtmlOutputLabelBradesco" />
+						<awb-h:outputLabel
+							value="#{tradeFinMonitCtcPendBean.tradeFinanceVO.preclibor}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGroup>
+	
+			<!-- UNIDADE EXTERNA -->
+			<awb-h:panelGrid columns="1" id="gridUnidExt">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_unidade_externa_bco_corres}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:inputText
+						value="#{tradeFinMonitCtcPendBean.unidadeExternaVO.bancocorr}"
+						id="input_bco_corr" styleClass="HtmlInputTextObrigatorioBradesco" title="#{msgs.label_unidade_externa_bco_corres}"
+						immediate="false" size="50" maxlength="70" />
+	
+					<awb-br:brCommandSearch id="unidExt1">
+						<f:ajax execute="input_bco_corr" event="click"
+							render="formModalMessages div_modalUnidExt gridUnidExt"
+							listener="#{tradeFinMonitCtcPendBean.openModalUnidExternaBcCorresp}" />
+					</awb-br:brCommandSearch>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			
+			<!-- COMISSÃO DE DESEMBOLSO -->
+			<awb-h:panelGrid columns="1" rendered="#{tradeFinMonitCtcPendBean.tradeFinanceVO.cprodtservc == 644}">
+				<awb-h:panelGroup>
+		        	<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		        	<h:outputText styleClass="HtmlOutputLabelBoldBradesco" value="Comissão de Desembolso: " />
+		        </awb-h:panelGroup>
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtComissDesemb" styleClass="HtmlInputTextBradesco"
+		            	alt="{'type':'money-dot'}" maxlength="18" size="22"
+		            	value="#{tradeFinMonitCtcPendBean.custoExternoVO.vlrcomisdsemb}">
+		            </awb-h:inputText>
+		        </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+	        <awb-h:panelGrid columns="1" rendered="#{tradeFinMonitCtcPendBean.tradeFinanceVO.cprodtservc != 644}">
+	        </awb-h:panelGrid>
+	
+			<!-- BANCO REEMBOLSADOR -->
+			<awb-h:panelGrid columns="1" id="gridUnidDesemb">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_bc_ree_desembolsador}: "
+						styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:inputText title="#{msgs.label_det_bc_ree_desembolsador}"
+						value="#{tradeFinMonitCtcPendBean.bancoReembolsadorVO.bancodesemb}"
+						id="input_bco_desemb" styleClass="HtmlInputTextObrigatorioBradesco"
+						immediate="false" size="50" maxlength="70" />
+					<awb-br:brCommandSearch id="unidExt2">
+						<f:ajax execute="input_bco_desemb" event="click"
+							render="formModalMessages div_modalUnidExt gridUnidDesemb"
+							listener="#{tradeFinMonitCtcPendBean.openModalBcDesembReemb}" />
+					</awb-br:brCommandSearch>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			
+		</awb-h:panelGrid>
+	
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid width="100%">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+	
+	    <!-- COMISSAO -->
+		<awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColum50,panelGridColum50">
+	        <awb-h:outputLabel value="Comissão Banqueiro"
+	            styleClass="HtmlOutputTextBulletBoldBradesco" />
+	    
+	    		<!-- LINHA CABEC -->
+	            <awb-h:panelGroup />
+	             
+	            <!-- LINHA DADOS -->
+	            <awb-h:panelGroup />
+	    	
+	    	<!-- BOTAO INCLUIR -->
+			<awb-h:panelGrid columns="1" width="10%" styleClass="right">
+			
+				<!-- LINHA CABEC -->
+	            <awb-h:panelGroup />
+	                
+				<awb-h:panelGroup styleClass="right">
+					<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+						id="btoIncluirComissao" value="#{msgs.bto_incluir}">
+						<f:ajax immediate="false" execute="@form" event="click"
+							render="pnlComissExt div_modalComissaoExtManut formModalMessages"
+							listener="#{tradeFinMonitCtcPendBean.listenerIncluirComissaoExterna}" />
+					</awb-h:commandButton>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+	
+		<!-- RADIO GRID LISTA -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-f:facet name="header">
+				<awb-th:extSelectOneRadio id="radioListaComissao2" layout="spread"
+					immediate="false" forceId="true" forceIdIndex="false"
+					value="#{tradeFinMonitCtcPendBean.viewHelper.comissaoExtSelecionado}">
+					<awb-f:selectItems
+						value="#{tradeFinMonitCtcPendBean.selectItemComissaoExt}" />
+				</awb-th:extSelectOneRadio>
+			</awb-f:facet>
+		</awb-h:panelGrid>
+	
+		<!-- LISTA COMISSAO BANQUEIRO -->
+	    <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlComissExt">
+	        <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable2">
+				<awb-br:scrollableDataTable var="comissaoLista"
+					value="#{tradeFinMonitCtcPendBean.listaComissaoExt.getComissaoBanqueiro()}"
+					rowIndexVar="indexComExt" id="listaComissao2" width="100%"
+					rendered="#{tradeFinMonitCtcPendBean.listaComissaoExt.getComissaoBanqueiro().size() > 0}">
+	                
+					<awb-br:scrollableColumn width="2%" styleClass="c">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-th:extRadio index="#{indexComExt}"
+							for=":formTradeFinMonitDet:radioListaComissao2" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="20%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Tipo" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.tipoComissaoExt}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="13%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Valor" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.vprevtcomiscmbio}">
+							<f:converter converterId="numericConverter"></f:converter>
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="7%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Taxa(%)" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.pjuronegoccmbio}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="5%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Período" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.periodoTaxa}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="5%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Moeda" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.moedaComissao}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Periodicidade"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.periodicidadeComissao}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Momento" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.momentoComissao}" />
+					</awb-br:scrollableColumn>
+	
+					<awb-br:scrollableColumn width="11%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Parcelas" styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{comissaoLista.qpcelacmbiotrade}" />
+					</awb-br:scrollableColumn>
+	
+				</awb-br:scrollableDataTable>
+	        </awb-th:extDiv>
+		</awb-h:panelGrid>
+	
+		<!-- BOTOES COMISSAO -->
+		<awb-h:panelGrid columns="1" width="100%" styleClass="right" id="gridBotoesComissaoExt"
+			rendered="#{tradeFinMonitCtcPendBean.listaComissaoExt.getComissaoBanqueiro().size() > 0}">
+			
+	        <awb-h:panelGrid columns="3" width="10%" styleClass="right">
+	            <awb-h:panelGroup>
+	    			<!-- Alterar Comissao Externa -->
+	    			<awb-h:commandButton id="btoAltComissao" value="#{msgs.bto_alterar}"
+	    				styleClass="HtmlCommandButtonBradesco">
+	    				<f:ajax immediate="false" execute="@form" event="click"
+	    					render="pnlComissExt div_modalComissaoExtManut formModalMessages"
+	    					listener="#{tradeFinMonitCtcPendBean.listenerAlterarComissaoExterna}" />
+	    			</awb-h:commandButton>
+	    		</awb-h:panelGroup>
+	    
+	    		<awb-h:panelGroup>
+	    			<!-- Excluir Comissao Externa -->
+	    			<awb-h:commandButton id="btoExcComissao" value="#{msgs.bto_excluir}"
+	    				styleClass="HtmlCommandButtonBradesco">
+	    				<f:ajax immediate="false" execute="radioListaComissao2" event="click"
+	    					render="pnlComissExt gridBotoesComissaoExt formModalMessages"
+	    					listener="#{tradeFinMonitCtcPendBean.listenerExcluirComissaoExterna}" />
+	    			</awb-h:commandButton>
+	    		</awb-h:panelGroup>
+	    
+	    		<awb-h:panelGroup style="float:right">
+	    			<!-- Detalhar Comissao Externa -->
+	    			<awb-h:commandButton id="btnDetalharComissao"
+	    				styleClass="HtmlCommandButtonBradesco" value="#{msgs.bto_detalhar}">
+	    				<f:ajax immediate="false" execute="radioListaComissao2" event="click"
+	    					render="formTradeFinMonitDet formModalMessages divSeiModals"
+	    					listener="#{tradeFinMonitCtcPendBean.listenerDetalharComissaoExterna}" />
+	    			</awb-h:commandButton>
+	    		</awb-h:panelGroup>
+	        </awb-h:panelGrid>
+		</awb-h:panelGrid>
+		
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid width="100%">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+	
+		<!-- OBSERVACAO -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_obs_interno}: "
+					styleClass="HtmlOutputLabelBradesco" />
+			</awb-h:panelGroup>
+			<awb-h:inputTextarea
+				value="#{tradeFinMonitCtcPendBean.custoExternoVO.observacao}"
+				onkeydown="textCounter(this,500);" onkeyup="textCounter(this,500);"
+				styleClass="HtmlInputTextareaObrigatorio" style="width: 98%"
+				rows="10" />		
+				
+		</awb-h:panelGrid>
+	
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+	
+		<!-- BOTOES -->
+		<awb-h:panelGrid columns="2" styleClass="panelGridTable" id="divBotoes">
+			<!-- VOLTAR -->
+			<awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+				action="tradeFinCotacoesPendentes" />
+	
+			<awb-h:panelGrid columns="3" width="10%" styleClass="right">
+				
+	            <!-- DETALHAR -->
+				<awb-h:commandButton value="#{msgs.bto_detalhar}"
+					styleClass="HtmlCommandButtonBradesco"
+					action="#{tradeFinMonitCtcPendBean.detalhar}" />
+	
+				<!-- DEVOLVER -->
+				<awb-h:commandButton value="#{msgs.bto_devolver}"
+					styleClass="HtmlCommandButtonBradesco">
+					<f:ajax listener="#{tradeFinMonitCtcPendBean.devolver}"
+						render="div_modalDevolver formModalMessages"
+						execute="@this" />
+				</awb-h:commandButton>
+
+				<!-- CONFIRMAR -->
+				<awb-h:commandButton value="#{msgs.bto_confirmar}"
+					styleClass="HtmlCommandButtonBradesco">
+	                <f:ajax listener="#{tradeFinMonitCtcPendBean.validarForm}"
+	                    render="formModalMessages divBotoes" execute="@form" />
+	            </awb-h:commandButton>
+			</awb-h:panelGrid>
+	        
+	        <!--  MODAL CONFIRMAÇÃO -->
+	        <ui:include src="/template/modal.xhtml">
+	            <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+	            <ui:param name="bean" value="#{tradeFinMonitCtcPendBean}" />
+	            <ui:param name="actionConfirmar" value="actionConfirmar" />
+	            <ui:param name="actionFechar" value="actionFecharModal" />
+	            <ui:param name="renderModal"
+	                value="#{tradeFinMonitCtcPendBean.viewHelper.renderModal}" />
+	        </ui:include>
+	        
+		</awb-h:panelGrid>
+	
+		<awb-th:extDiv id="div_modalUnidExt">
+			<awb-br:modalContent id="content_modalUnidExt"
+				closeId="formTdFnNgModUniExt:botaoFechar" autoOpen="true"
+				contentPath="#{request.contextPath}/content/global/unidadeExternaModal/modalUnidExtList.xhtml"
+				header="Selecionar Unidade Externa" width="500" height="350"
+				onHideServerCallback="#{unidadeExternaModalBean.closeModal}"
+				rendered="#{unidadeExternaModalBean.viewHelper.renderModal}"
+				reRender="formTradeFinMonitDet:gridUnidDesemb formTradeFinMonitDet:gridUnidExt" />
+		</awb-th:extDiv>
+	
+		<awb-th:extDiv id="div_modalDevolver">
+			<awb-br:modalContent id="modalDevolver"
+				closeId="formModalDevolver:btnCancelar" autoOpen="true"
+				contentPath="#{request.contextPath}/content/global/devolverModal/modalDevolver.xhtml"
+				header="#{msgs.info_confirmar_devolucao}" width="500" height="300"
+				reRender="@form formModalMessages"
+	            onHideServerCallback="#{tradeFinMonitCtcPendBean.closeModalDevolver}"
+				rendered="#{devolverModalBean.viewHelper.renderModal}" />
+		</awb-th:extDiv>
+	
+		<awb-th:extDiv id="div_modalComissaoExtManut">
+			<awb-br:modalContent id="content_modalComissaoExtManut"
+				closeId="formModalComissExt:botaoCancelar" autoOpen="true"
+				openId="btnModalComissaExt, btoExcComissao, btoIncluirComissao"
+				resizable="true" draggable="true"
+				contentPath="#{request.contextPath}/content/global/comissaoExtManutModal/modalComissExtManut.xhtml"
+				header="Comissão Banqueiro" width="1000" height="500"
+				onHideServerCallback="#{comissaoExtManutModalBean.closeModal}"
+				rendered="#{comissaoExtManutModalBean.viewHelper.renderModal}"
+				reRender="@form" />
+		</awb-th:extDiv>
+</ui:composition>
+</html>

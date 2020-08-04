@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWAZS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="1766">
+    <register name="NPCDWAZS-HEADER">
+      <field name="NPCDWAZS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWAZS" />
+      <field name="NPCDWAZS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01766" />
+    </register>
+    <register name="NPCDWAZS-REGISTRO">
+      <field name="NPCDWAZS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWAZS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCDWAZS-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWAZS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWAZS-CINDCD-FONTE-CONS" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWAZS-ISGL-INDCD-ECONM" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

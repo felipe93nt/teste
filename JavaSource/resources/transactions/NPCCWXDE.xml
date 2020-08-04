@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXDE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="54">
+    <register name="NPCCWXDE-HEADER">
+      <field name="NPCCWXDE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXDE" />
+      <field name="NPCCWXDE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00054" />
+    </register>
+    <register name="NPCCWXDE-REGISTRO">
+      <field name="NPCCWXDE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXDE-NDSEMB-CMBIO-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXDE-HINCL-REG-HIST" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

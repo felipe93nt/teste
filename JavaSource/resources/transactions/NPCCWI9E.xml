@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWI9E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="113">
+    <register name="NPCCWI9E-HEADER">
+      <field name="NPCCWI9E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWI9E" />
+      <field name="NPCCWI9E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00113" />
+    </register>
+    <register name="NPCCWI9E-REGISTRO">
+      <field name="NPCCWI9E-RMOTVO-BLETO-CMBIO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

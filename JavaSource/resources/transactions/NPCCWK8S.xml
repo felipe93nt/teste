@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWK8S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="2776">
+    <register name="NPCCWK8S-HEADER">
+      <field name="NPCCWK8S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWK8S" />
+      <field name="NPCCWK8S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="02776" />
+    </register>
+    <register name="NPCCWK8S-REGISTRO">
+      <field name="NPCCWK8S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWK8S-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWK8S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWK8S-DOCUMENTO" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK8S-NSEQ-CONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK8S-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK8S-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK8S-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK8S-NM-NOME-CLIENTE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK8S-CDOCTO-PSSOA-EMPR" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK8S-DINDCD-OBRIG-AVALS" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWFGS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="8256">
+    <register name="NPCDWFGS-HEADER">
+      <field name="NPCDWFGS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWFGS" />
+      <field name="NPCDWFGS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08256" />
+    </register>
+    <register name="NPCDWFGS-REGISTRO">
+      <field name="NPCDWFGS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWFGS-LISTA" minOccurs="0" maxOccurs="40" depends="NPCDWFGS-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWFGS-IBANQR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWFGS-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWFGS-CID-BANQR-SWIFT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWFGS-CFLIAL-BANQR-SWIFT" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWFGS-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWFGS-IPAIS" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWFGS-CMUN-INTL-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWFGS-IMUN-INTL-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWFGS-CTROCA-MSGEM-SWIFT" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWFGS-CINDCD-BLOQUEADO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

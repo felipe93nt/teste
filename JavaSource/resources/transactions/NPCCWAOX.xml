@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWAOX" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="153">
+    <register name="NPCCWAOX-HEADER">
+      <field name="NPCCWAOX-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWAOX" />
+      <field name="NPCCWAOX-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00153" />
+    </register>
+    <register name="NPCCWAOX-REGISTRO">
+      <field name="NPCCWAOX-S-CCOND-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWAOX-S-DCCOND-ECONC" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAOX-S-DALTER" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAOX-S-CUSUAR" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAOX-S-HMANUT" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

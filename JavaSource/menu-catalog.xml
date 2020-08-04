@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns="http://www.bradesco.com/menu">
+
+<menuItem id="1" action="" labelKey="menu.labelKey.novaPlataformaCambio">
+
+	<!-- <link labelKey="Ajuda" action="#{helpBean.getHelpAction}" link="" /> -->
+	
+	<menuItem id="2" action="" actionListener="" labelKey="menu.labelKey.cadastro">
+		
+		<!-- PARAMETROS -->
+		<menuItem id="3" labelKey="menu.labelKey.parametros" title="menu.labelKey.parametros.title" />
+        
+        <!-- PARAMETROS PRECIFICAÇÃO -->
+        <menuItem id="3" labelKey="menu.labelKey.parametrosPrecificacao" title="menu.labelKey.parametrosPrecificacao.title" />
+            <menuItem id="4" action="#{tipoClausulaBean.iniciar}" labelKey="menu.labelKey.parametrosPrecificacao.tipoClausula" />
+            <menuItem id="4" action="#{clausulaBean.iniciar}" labelKey="menu.labelKey.parametrosPrecificacao.clausulas" />
+            <menuItem id="4" action="#{modeloBoletoBean.iniciar}" labelKey="menu.labelKey.parametrosPrecificacao.modeloBoleto" />
+            <menuItem id="4" action="#{prazoStandbyBean.iniciar}" labelKey="menu.labelKey.parametrosPrecificacao.prazoStandby" />
+				
+	</menuItem>
+    
+    <menuItem id="2" action="" actionListener="" labelKey="menu.labelKey.comercializacao">
+        <!-- PARAMETROS PRECIFICAÇÃO -->
+        <menuItem id="3" labelKey="menu.labelKey.precificacao" title="menu.labelKey.precificacao.title" />
+            <menuItem id="4" action="#{tradeFinanceNegociacaoInclBean.iniciar}" labelKey="menu.labelKey.precificacao.tradeFinanceNegociacao" />
+            
+               <!-- PARAMETROS LOG -->
+           <menuItem id="4" action="#{tradeFinanceLogBean.iniciar}" labelKey="menu.labelKey.precificacao.tradeFinanceLog" />
+           
+        
+        <!-- PARAMETROS -->
+        <menuItem id="3" labelKey="menu.labelKey.monitor" title="menu.labelKey.monitor.title" />
+           <menuItem id="4" action="#{tradeFinMonitBean.iniciar}" labelKey="menu.labelKey.precificacao.tradeFinanceNegociacao" />
+         
+             <!-- PARAMETROS -->
+           <menuItem id="4" action="#{tradeFinMonitCtcPendBean.iniciar}" labelKey="menu.labelKey.precificacao.tradeFinMonitCtcPendBean" />
+           
+         <!-- COMERCIALIZACAO - BOLETOS AGEX -->       
+	    <menuItem id="3" labelKey="menu.labelKey.boleto.agex" title="menu.labelKey.boleto.agex.title" />
+		    <menuItem id="4" action="#{tradeFinBolAgexBean.iniciar}" labelKey="menu.labelKey.boleto.agex.inclusao" />
+		    <menuItem id="4" action="#{efetivacaoBoletoBean.iniciar}" labelKey="menu.labelKey.boleto.agex.efetivacao_inclusao" />
+		    <menuItem id="4" action="#{tradeFinBolAgexBean.consultarBoletoAgex}" labelKey="menu.labelKey.boleto.agex.consulta_boleto" />
+		    <menuItem id="4" action="#{baixarBoletoBean.iniciar}" labelKey="menu.labelKey.boleto.agex.baixa_estorno" />
+		    <menuItem id="4" action="#{estornoBaixaBean.iniciar}" labelKey="menu.labelKey.boleto.agex.efetivacao_baixa_estorno" />
+		    <menuItem id="4" action="#{consultarLogBean.iniciar}" labelKey="menu.labelKey.boleto.agex.consulta_log" />  
+
+	 </menuItem>
+	 
+	
+      
+    
+     <menuItem id="2" action="" actionListener="" labelKey="menu.labelKey.operacionalizacao">
+        <!-- PARAMETROS FORMALIZACAO -->
+        <menuItem id="3" labelKey="menu.labelKey.formalizacao" title="menu.labelKey.formalizacao.title" />
+            <menuItem id="4" action="#{tradeFinMonitFormalizacaoBean.iniciar}" labelKey="menu.labelKey.formalizacao.tradeFinMonitFormalizacaoBean" />
+    </menuItem>
+	
+</menuItem>
+</menu>

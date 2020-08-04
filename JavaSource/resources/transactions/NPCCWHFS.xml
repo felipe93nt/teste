@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWHFS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="28">
+    <register name="NPCCWHFS-HEADER">
+      <field name="NPCCWHFS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWHFS" />
+      <field name="NPCCWHFS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00028" />
+    </register>
+    <register name="NPCCWHFS-REGISTRO">
+      <field name="NPCCWHFS-TDIA-LIQDC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWHFS-DLIQDC-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

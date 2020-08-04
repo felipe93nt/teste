@@ -1,0 +1,650 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" lang="pt"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+<awb-f:view>
+    
+    <ui:param name="server" value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>
+            <!-- LOGO -->  
+            <td width="25%">
+                <img alt="Logo" src="#{server}/images/logo-bradesco.png" style="width:158px; height: 42px;" />
+            </td>
+            
+            <!-- DADOS BRADESCO -->
+            <td width="45%" style="font-family: verdana; font-size: 10px;">
+                <span style="color: #989898;"> Departamento Internacional e Câmbio – Unidade Mesa de Trade Finance </span> <br />
+                <span style="color: #989898;">Endereço: </span><span style="font-weight: bold;"> Av. Paulista, 1.450 - 2ªSobre-Loja Prédio Itapeva - Bela Vista - São Paulo </span> 
+            </td>
+            
+            <!-- COTACAO -->
+            <td width="20%" style="padding: 5px 20px;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10px; font-weight: bold;">
+                            Cotação:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            __/__/____
+                        </td>
+                    </tr>
+                </table> 
+            </td>
+            
+            <!-- DATA -->
+            <td width="10%" style="padding: 5px 20px;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10px; font-weight: bold;">
+                            Data:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            __/__/____
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <tr>
+            <!-- TITULO -->  
+            <td colspan="2" style="font-family: verdana; font-weight: bold; text-align: center;">
+                <span style="font-size: 16px;">COTAÇÃO DE FINANCIAMENTO DE IMPORTAÇÃO</span> <br />
+                <span style="font-size: 12px;">(LINHA DE BANCO A BANCO - INDIRETO)</span>
+            </td>
+            
+            <!-- N Aprov Credito -->
+            <td style="padding: 5px 20px;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10px; font-weight: bold;">
+                            Nº Aprov. Crédito:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            __/__/____
+                        </td>
+                    </tr>
+                </table> 
+            </td>
+            
+            <!-- Validade -->
+            <td style="padding: 5px 20px;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10px; font-weight: bold;">
+                            Validade:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            __/__/____
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <h4 style="font-family: verdana; font-weight: bold;">
+        Cotação: Indicativa
+    </h4>
+    
+    <hr style="background-color:#000000; height: 1px;" />
+
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; border: solid 1px #B1B1B1;">
+        <tr>        
+            <!-- Empresa -->
+            <td width="50%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Empresa:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            ____
+                            <!-- <awb-h:outputLabel value="#{modeloBoleto.imodcontrcmbio}" /> -->                            
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- CNPJ -->
+            <td width="15%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            CNPJ:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            _____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Banco -->
+            <td width="10%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            BCO:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            _____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Agencia -->
+            <td width="10%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            AG:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            _____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Conta -->
+            <td width="15%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Conta:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        I. ESPECIFICAÇÕES DA OPERAÇÃO
+    </h4>
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; border: solid 1px #B1B1B1;">
+        <tr>        
+            <!-- Valor -->
+            <td width="20%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Valor:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px; text-align: center">
+                            _____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Prazo -->
+            <td width="15%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Prazo:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px; text-align: center">
+                            ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Exportador / País -->
+            <td width="65%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Exportador / País:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        I.I CUSTOS NO EXTERIOR PELO DESEMBOLSO
+    </h4>
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; border: solid 1px #B1B1B1;">
+        <tr>        
+            <!-- Banqueiro Correspondente -->
+            <td width="25%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Banqueiro Correspondente:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Praça -->
+            <td width="25%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Praça:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                        ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Prazo -->
+            <td width="25%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Prazo:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                        ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Previsão Desembolso -->
+            <td width="25%" style="border: solid 1px #B1B1B1;">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Previsão Desembolso:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                        ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- Juros -->
+            <td width="25%" style="border: solid 1px #B1B1B1;" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Juros:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                        ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Pagamento -->
+            <td width="25%" style="border: solid 1px #B1B1B1;" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Pagamento:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                        ____
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Comissão do Banqueiro -->
+            <td width="50%" style="border: solid 1px #B1B1B1;" colspan="2">
+                <table width="100%">
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Comissão do Banqueiro:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            <table width="100%">
+                                <tr>
+                                    <td width="70%">
+                                        
+                                    </td>
+                                    <td width="30%">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">
+                                        
+                                    </td>
+                                    <td width="30%">
+                                        
+                                    </td>
+                                </tr>
+                            </table>            
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        I.II COMISSÃO E TARIFA
+    </h4>
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; border: solid 1px #B1B1B1;">
+        
+        <tr>        
+            <!-- Comissão -->
+            <td width="25%" style="border: solid 1px #B1B1B1;" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Comissão:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Débito -->
+            <td width="25%" style="border: solid 1px #B1B1B1;" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Débito:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                           
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+            
+            <!-- Tarifas -->
+            <td width="50%" style="border: solid 1px #B1B1B1;" colspan="2">
+                <table width="100%">
+                    <tr>
+                        <td style="font-family: verdana; font-size: 8px; font-weight: bold;">
+                            Tarifas:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 12px;">
+                            <table width="100%" style="font-family: verdana; font-size: 12px;">
+                                <tr>
+                                    <td width="70%">
+                                        (se houver):
+                                    </td>
+                                    <td width="30%">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">
+                                        (se houver):  
+                                    </td>
+                                    <td width="30%">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="70%">
+                                        (se houver):            
+                                    </td>
+                                    <td width="30%">
+                                        
+                                    </td>
+                                </tr>
+                            </table>            
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        I.III ESQUEMA DE AMORTIZAÇÃO:
+    </h4>
+    
+    <hr /> 
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; font-family: verdana; font-size: 12px;">
+        <tr>        
+            <td width="15%">
+                00/00/0000           
+            </td>
+            <td width="85%">
+                Juros           
+            </td>
+        </tr>
+        <tr>        
+            <td>
+                00/00/0000           
+            </td>
+            <td>
+                Juros           
+            </td>
+        </tr>
+        <tr>        
+            <td>
+                00/00/0000           
+            </td>
+            <td>
+                Juros           
+            </td>
+        </tr>
+        <tr>        
+            <td>
+                00/00/0000           
+            </td>
+            <td>
+                Principal + Juros            
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        II GARANTIAS**:
+    </h4>
+    
+    <hr />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- Formalização -->
+            <td width="100%" style="font-family: verdana; font-size: 12px;">
+               <p align="justify">
+                     <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        III CONDIÇÕES DE FECHAMENTO:
+    </h4>
+    
+    <hr />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- Formalização -->
+            <td width="100%" style="font-family: verdana; font-size: 12px;">
+                <p align="justify">
+                     <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        IV JUROS E MORA:
+    </h4>
+    
+    <hr />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- Formalização -->
+            <td width="100%" style="font-family: verdana; font-size: 12px;">
+               <p align="justify">
+                     <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        V FORMALIZAÇÃO:
+    </h4>
+    
+    <hr />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- Formalização -->
+            <td width="100%" style="font-family: verdana; font-size: 12px;">
+               <p align="justify">
+                     <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        VI OBSERVAÇÕES (Nome e CPF/CNPJ dos Avalistas, Garantidores e outras informações adicionais):
+    </h4>
+    
+    <hr />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- Formalização -->
+            <td width="100%" style="font-family: verdana; font-size: 12px;">
+               <p align="justify">
+                     <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+    <hr />
+    <br />
+    
+    <h4 style="font-family: verdana; font-weight: bold;">
+        Operador:   
+    </h4>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        
+        <tr>        
+            <!-- branco -->
+            <td width="70%">
+                   
+            </td>
+            
+            <!-- Assinatura -->
+            <td width="30%" style="border-top: solid 1px #000000; font-family: verdana; font-size: 14px; text-align: center; font-weight: bold;">
+               Identificação e Assinatura da Empresa
+            </td>
+            
+        </tr>
+    </table>
+    
+    
+</awb-f:view>
+
+</html>

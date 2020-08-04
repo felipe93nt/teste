@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+	<!-- NAVEGACION -->
+	<navigation-rule>
+	
+	    <!-- TRADE FINANCE NEGOCIAÇÃO -->
+        <navigation-case>
+            <from-outcome>tradeFinNegInicio</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/tradeFinNegInicio.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TRADE FINANCE MONITOR -->
+        <navigation-case>
+            <from-outcome>tradeFinMonitList</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinMonitList.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TEMPLATE DE EXPORTACAO -->
+        <navigation-case>
+            <from-outcome>tradeFinMonitListExportTemplate</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinMonitListExportTemplate.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TEMPLATE DE EXPORTACAO GARANTIA -->
+        <navigation-case>
+            <from-outcome>garantiaExpComplExportTemplate</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/garantiaExpComplExportTemplate.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TEMPLATE DE EXPORTACAO - OPERAÇÕES PENDENTES DE DESEMBOLSO E A DESEMBOLSAR -->
+        <navigation-case>
+            <from-outcome>operacoesPendListPrintTemplate</from-outcome>
+            <to-view-id>/content/comercializacao/consultas/operacoesPend/operacoesPendListPrintTemplate.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TRADE FINANCE MONITOR COTACOES FECHADAS -->
+        <navigation-case>
+            <from-outcome>tradeFinCotacoesFechadas</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinCotacoesFechadas.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TEMPLATE DE EXPORTACAO -->
+        <navigation-case>
+            <from-outcome>tradeFinCotacoesFechadasExportTemplate</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinCotacoesFechadasExportTemplate.xhtml</to-view-id>
+        </navigation-case>
+       
+        <navigation-case>
+            <from-outcome>finimpDiretoAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>refinimpDiretoAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpIndiretoAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpEcaAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpEcaDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaDvgt.xhtml</to-view-id>
+        </navigation-case>
+    
+         <navigation-case>
+            <from-outcome>refinimpIndiretoAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>lei4131Analisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Analisar.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>cotacaoPPEAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>workingCapitalAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>forfaitingAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexAnalisar.xhtml</to-view-id>
+        </navigation-case>
+
+        <!-- TRADE FINANCE MONITOR COTACOES PENDENTES -->
+        <navigation-case>
+            <from-outcome>tradeFinCotacoesPendentes</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinCotacoesPendentes.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TEMPLATE DE EXPORTACAO -->
+        <navigation-case>
+            <from-outcome>tradeFinCotacoesPendentesExportTemplate</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/tradeFinCotacoesPendentesExportTemplate.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TRADE FINANCE MONITOR COTACOES PENDENTES - CUSTO EXTERNO -->
+        <navigation-case>
+            <from-outcome>finimpDiretoPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131PendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131PendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>forfaitingPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>garantiaIntExpPendCustoExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpPendCustoExt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TRADE FINANCE MONITOR COTACOES PENDENTES - UNIDADE EXTERNA -->
+        <navigation-case>
+            <from-outcome>finimpDiretoPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131PendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131PendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>forfaitingPendUnidadeExt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingPendUnidadeExt.xhtml</to-view-id>
+        </navigation-case>
+                
+        <!-- TRADE FINANCE MONITOR COTACOES PENDENTES - DIVERGENCIA -->
+         <navigation-case>
+            <from-outcome>finimpDiretoPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>refinimpDiretoPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpIndiretoPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>refinimpIndiretoPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lei4131PendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131PendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>cotacaoPPEPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>workingCapitalPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>forfaitingPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpEcaPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+        
+		<navigation-case>
+            <from-outcome>garantiaIntExpPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+
+		<navigation-case>
+            <from-outcome>lcImportacaoPendDivergencia</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoPendDivergencia.xhtml</to-view-id>
+        </navigation-case>
+
+        <!-- MONITOR - TRADE FINANCE CONSULTA FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingCons.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- MONITOR - TRADE FINANCE PERDIDO FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingConsPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingPrd.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- MONITOR - TRADE FINANCE FECHAR FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingConsFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- MONITOR - TRADE FINANCE BAIXA FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingConsBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- MONITOR - TRADE FINANCE INCLUIR DESEMBOLSOS FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingInclDesemb</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingInclDesemb.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- MONITOR - TRADE FINANCE FUNDING FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingConsFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingFndg.xhtml</to-view-id>
+        </navigation-case>
+    
+        <!-- FINIMP DIRETO -->
+        <navigation-case>
+            <from-outcome>finimpDiretoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpDiretoFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- FINIMP ECA -->
+        <navigation-case>
+            <from-outcome>finimpEcaIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpEcaFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaFch.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>finimpEcaLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpEcaAprovar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpEca/finimpEcaAprovar.xhtml</to-view-id>
+        </navigation-case>
+
+        <!-- REFINIMP DIRETO -->
+        <navigation-case>
+            <from-outcome>refinimpDiretoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpDiretoFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- FINIMP INDIRETO -->
+        <navigation-case>
+            <from-outcome>finimpIndiretoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>finimpIndiretoFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- REFINIMP INDIRETO -->
+        <navigation-case>
+            <from-outcome>refinimpIndiretoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>refinimpIndiretoFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- LEI 4131 -->
+        <navigation-case>
+            <from-outcome>lei4131Incl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Incl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Alt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Alt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Dvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Dvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Cons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Cons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Prrg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Prrg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Fndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Fndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Baixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Baixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Prd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Prd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lei4131Fch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Fch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- PPE -->
+        <navigation-case>
+            <from-outcome>cotacaoPPEIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPECons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPECons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEAlong</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEAlong.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEPrrg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEPrrg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEFch.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cotacaoPPEPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPEPrd.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- WORKING CAPITAL -->
+        <navigation-case>
+            <from-outcome>workingCapitalIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalAlong</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalAlong.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalPrrg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalPrrg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalFndg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalFndg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>workingCapitalFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- FORFAITING -->
+        <navigation-case>
+            <from-outcome>forfaitingIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>forfaitingAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>forfaitingDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- BNDS -->
+        <navigation-case>
+            <from-outcome>tradeFinNegBndesIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/tradeFinNegBndesIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- BNDES PRE -->
+        <navigation-case>
+            <from-outcome>bndesPreCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreCons.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPreIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPreFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPrePrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPrePrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bndesPreBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPreAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPreLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreLog.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>bndesPreAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreAlt.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>bndesPreDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPre/bndesPreDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- BNDES POS -->
+        <navigation-case>
+            <from-outcome>bndesPosCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosCons.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bndesPosBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>bndesPosAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosAlt.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>bndesPosDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/bndesPos/bndesPosDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- N.C.E -->
+        <navigation-case>
+            <from-outcome>nceCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceCons.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>nceIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceIncl.xhtml</to-view-id>
+        </navigation-case>
+          
+        <navigation-case>
+            <from-outcome>nceAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceAlt.xhtml</to-view-id>
+        </navigation-case>
+          
+        <navigation-case>
+            <from-outcome>nceAditar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceAditar.xhtml</to-view-id>
+        </navigation-case>
+
+		<navigation-case>
+			<from-outcome>nceDvgt</from-outcome>
+			<to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceDvgt.xhtml</to-view-id>
+		</navigation-case>
+        
+        <navigation-case>
+            <from-outcome>nceFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>ncePrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/ncePrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nceBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>nceAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>nceLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/nce/nceLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+        <!-- GARANTIA INTERNACIONAL EXPEDIDA -->
+        <navigation-case>
+            <from-outcome>garantiaIntExpCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>garantiaIntExpPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>garantiaIntExpBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpPrrg</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpPrrg.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpAlt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpAprovar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpAprovar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>garantiaIntExpDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        
+         <!-- COTACOES PENDENTES DE COMPLEMENTO - GARANTIA EXPEDIDA - COMPLEMENTO -->
+       <navigation-case>
+            <from-outcome>garantiaExpCompl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/monitor/garantiaExpCompl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- GARANTIA EXPEDIDA - COMPLEMENTO - INCLUIR-->
+        <navigation-case>
+            <from-outcome>garantiaIntExpInclCompl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpInclCompl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!--  ALTERAR COMPLEMENTO GARANTIA -->
+        <navigation-case>
+            <from-outcome>garantiaIntExpAltCompl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/garantiaIntExp/garantiaIntExpAltCompl.xhtml</to-view-id>
+        </navigation-case>
+        
+
+        <!-- L/C DE IMPORTAÇÃO -->
+        <navigation-case>
+            <from-outcome>lcImportacaoCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoCons.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoBaixa.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoAlt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>lcImportacaoFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lcImportacaoAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lcImportacaoLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lcImportacaoAprovar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoAprovar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lcImportacaoDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lcImportacao/lcImportacaoDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- PROEX EQUALIZAÇÃO -->
+        <navigation-case>
+            <from-outcome>proexEqualizacaoIncl</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexEqualizacaoIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexCons</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexCons.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexAlt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexAlt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexDvgt</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexDvgt.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexFch</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexFch.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexPrd</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexPrd.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>proexBaixa</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexBaixa.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexAnalisar</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexAnalisar.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>proexLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/proex/proexLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- TRADE FINANCE LOG -->
+		<navigation-case>
+			<from-outcome>tradeFinLog</from-outcome>
+			<to-view-id>/content/comercializacao/precificacao/log/tradeFinLog.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>tradeFinLogDet</from-outcome>
+			<to-view-id>/content/comercializacao/precificacao/log/tradeFinLogDet.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>tradeFinLogDiferencas</from-outcome>
+			<to-view-id>/content/comercializacao/precificacao/log/tradeFinLogDiferencas.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+            <from-outcome>finimpDiretoLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpDireto/finimpDiretoLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>refinimpDiretoLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpDireto/refinimpDiretoLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>finimpIndiretoLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/finimpIndireto/finimpIndiretoLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>refinimpIndiretoLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/refinimpIndireto/refinimpIndiretoLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lei4131Log</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/lei4131/lei4131Log.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>cotacaoPPELog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/cotacaoPPE/cotacaoPPELog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>workingCapitalLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/workingCapital/workingCapitalLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>forfaitingLog</from-outcome>
+            <to-view-id>/content/comercializacao/precificacao/negociacao/forfaiting/forfaitingLog.xhtml</to-view-id>
+        </navigation-case>
+       
+	</navigation-rule>
+</faces-config>

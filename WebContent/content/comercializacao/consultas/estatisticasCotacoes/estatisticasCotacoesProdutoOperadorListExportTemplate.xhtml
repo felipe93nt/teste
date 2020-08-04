@@ -1,0 +1,231 @@
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:ui="http://java.sun.com/jsf/facelets" lang="pt"
+ 	xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+ 	xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core">
+ 	
+	<awb-f:view>
+	
+		<ui:param name="server" value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+				
+		<!-- Cabeçalho -->	
+		<awb-th:extHtmlTag value="span" style="float: left; font-weight: bold; font-size: 15px; margin-top: 35px; margin-right: 15px">
+			Consultas - Estatística de Cotações
+		</awb-th:extHtmlTag>
+		
+		<awb-th:extHtmlTag value="hr" style="border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+		
+		<br />
+		
+		<!-- Cabeçalho -->	
+		<awb-th:extHtmlTag value="span" style="float: left; font-weight: bold; font-size: 15px; margin-top: 35px; margin-right: 15px">
+			Estatística de Fechamento em Quantidade
+		</awb-th:extHtmlTag>
+		
+		<awb-th:extHtmlTag value="hr" style="border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+		
+		<!-- Conteudo totais -->		
+		<awb-h:dataTable value="#{listaCotacoesEstatisticasProdutoOperador}" var="ctc" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >	
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{listaCotacoesEstatisticasTotais.nomedocampo}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.idtppesquisa}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Fechada" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ctfechadaqt}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Perdida" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ctperdidaqt}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Em Negociação-Firme" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ctnegofirqt}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Em Negociação-Indicativa" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ctnegoindqt}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Baixada" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ctbaixadaqt}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Total" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.totqtdcotac}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="Fechada vs Valor Total (%)" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.percentualct}" />
+			</awb-h:column>				
+			
+		</awb-h:dataTable>
+		
+				<!-- Conteudo totais quantidade -->		
+			<awb-h:dataTable value="#{listaCotacoesEstatisticasTotais}" var="tot" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >	
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="Totais:" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdstfec}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdstper}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdstnfi}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdstnin}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdstbai}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdtotal}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot.totqtdperfv}" />
+			</awb-h:column>				
+			
+		</awb-h:dataTable>
+		
+		<!-- Cabeçalho -->	
+		<awb-th:extHtmlTag value="span" style="float: left; font-weight: bold; font-size: 15px; margin-top: 35px; margin-right: 15px">
+			Estatística de Fechamento em USD
+		</awb-th:extHtmlTag>
+		
+		<awb-th:extHtmlTag value="hr" style="border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+		
+		<!-- Conteudo valores -->		
+		<awb-h:dataTable value="#{listaCotacoesEstatisticasProdutoOperador}" var="ctc2" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >	
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.idtppesquisa}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.ctfechadavl}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.ctperdidavl}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.ctnegofirvl}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.ctnegoindvl}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.ctbaixadavl}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.totvalprodt}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc2.percentualvl}" />
+			</awb-h:column>				
+			
+		</awb-h:dataTable>
+		
+		    <!-- Conteudo totais valores -->		
+			<awb-h:dataTable value="#{listaCotacoesEstatisticasTotais}" var="tot2" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >	
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="Totais:" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalstfec}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalstper}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalstnfi}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalstnin}" />
+			</awb-h:column>
+
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalstbai}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvaltotal}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<awb-h:outputLabel value="#{tot2.totvalperfv}" />
+			</awb-h:column>				
+			
+		</awb-h:dataTable>
+		
+		
+
+	</awb-f:view>
+</html>

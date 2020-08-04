@@ -1,0 +1,597 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" lang="pt"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core">
+
+<awb-f:view>
+    
+    <ui:param name="server" value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%;" >
+        <tr>
+            <!-- LOGO -->  
+            <td width="25%">
+                <img alt="Logo" src="#{server}/images/logo-bradesco.png" style="width:158px; height: 42px;" /><br />
+                <span style="color: #989898; font-family: verdana; font-size: 16pt; position:absolute; top:55px; left:20px; "> Departamento Internacional e Câmbio</span>
+            </td>
+        </tr>
+    </table>
+        
+    <br />
+    <br />
+        
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+        <tr>
+            <!-- TITULO -->  
+            <td colspan="2" style="font-family: verdana; font-weight: bold; text-align: center;">
+                <awb-h:outputLabel value="#{dadosBoleto.titulo}" style="font-size: 14pt;" /> <br />
+                <awb-h:outputLabel value="#{dadosBoleto.subTitulo}" style="font-size: 12pt;" />
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+        <tr>
+            <td colspan="2" style="font-family: verdana; font-size: 10pt; font-weight: bold; text-align: right;">
+                <awb-h:outputLabel value="#{dadosBoleto.dataPorExtenso}" style="font-size: 10pt;" /> <br />
+           </td>
+        </tr>
+    </table>
+    
+    <br />
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+        <tr>        
+            <!-- Condições de Liberação: -->
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold;">
+                            Condições de Liberação:
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- Empresa -->
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+                            NOME DA EMPRESA:
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+                            <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.nomecompletocli}" />                            
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- CNPJ -->
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+                            CNPJ:
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+                            <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.cpfCnpjFormatado}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- NÚMERO DA PEL -->
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px; ">
+                            PEL NR:
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.nppstapontucmbio ne '0' ? dadosBoleto.dadosBasico.nppstapontucmbio : dadosBoleto.dadosBasico.nseqcontrlim}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- REFERENCIA -->
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+                            REF:
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+							<awb-h:outputLabel value="#{dadosBoleto.titulo}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- Valor Financiado -->
+            <td width="19%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value=" " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value="Valor Financiado" />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold;">
+							<awb-h:outputLabel value=" : #{dadosBoleto.dadosBasico.simblrectacmbio} " />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vprevtrectacmbio}">
+								<f:converter converterId="numericConverter"></f:converter>
+							</awb-h:outputLabel>
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- Agente Financeiro -->
+            <td width="19%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value=" " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value="Agente Financeiro" />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold;">
+							<awb-h:outputLabel value=" : #{dadosBoleto.dadosBasico.simbleconmmoeda} " />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vagtefincrcmbio}">
+								<f:converter converterId="numericConverter"></f:converter>
+							</awb-h:outputLabel>
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+        <tr>        
+            <!-- Banco Mandatário -->
+            <td width="19%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value=" " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold; width:200px;">
+							<awb-h:outputLabel value="Banco Mandatário" />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; font-weight: bold;">
+							<awb-h:outputLabel value=" : #{dadosBoleto.dadosBasico.simbleconmmoeda} " />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vbcomtoricmbio}">
+								<f:converter converterId="numericConverter"></f:converter>
+							</awb-h:outputLabel>
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    <br />
+    <br />
+    
+    <!-- Prezados Senhores -->
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold;">
+                            Prezados Senhores,
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    <br />
+    
+    <!-- CLAUSULAS 1 FIXA -->
+    <ui:repeat var="item" value="#{dadosBoleto.clausulasRegiaoUm}" varStatus="status">
+        <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+            <tr>        
+                <!-- Formalização -->
+                <td width="100%" style="font-family: verdana; font-size: 12pt; text-align: justify;">
+                    <ui:repeat var="clasula" value="#{item.clausulas}" varStatus="status">
+                        <awb-h:outputLabel value="#{clasula.rclauscontrcmbio}"
+                        style="word-wrap: break-word; overflow: hidden; white-space: pre-line; text-overflow: ellipsis;white-space: pre-wrap;"></awb-h:outputLabel><br />
+                    </ui:repeat>
+                </td>
+            </tr>
+        </table>
+    </ui:repeat>
+    
+    <br />
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+		<!-- • Valor da Exportação: ATÉ ........................ (valor por extenso) -->
+        <tr>        
+            <td width="100%">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px; vertical-align: text-top;">
+                            <awb-h:outputLabel value="• Valor da Exportação: ATÉ: " />                            
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt; ">
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.simbleconmmoeda} " />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vnegocmoedaestrg}">
+								<f:converter converterId="numericConverter"></f:converter>
+							</awb-h:outputLabel>
+							<awb-h:outputLabel value=" (" />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vnegocmoedaestrg}">
+								<f:attribute name="siglatmoeda" value="#{dadosBoleto.dadosBasico.simbleconmmoeda}" />
+								<f:attribute name="generoextenso" value="masculino" />
+								<f:converter converterId="extensoConverter"></f:converter>
+							</awb-h:outputLabel>
+							<awb-h:outputLabel value=")" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+        
+		<!-- • Valor do Financiamento: ATÉ ........................ (valor por extenso) -->  
+        <tr>        
+            <td width="100%" >
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px; vertical-align: text-top;">
+        	    			<awb-h:outputLabel value="• Valor do Financiamento: ATÉ: " />                            
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.simblrectacmbio} " />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vprevtrectacmbio}">
+								<f:converter converterId="numericConverter"></f:converter>
+							</awb-h:outputLabel>
+							<awb-h:outputLabel value=" (" />
+							<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.vprevtrectacmbio}">
+								<f:attribute name="siglatmoeda" value='#{empty dadosBoleto.dadosBasico.simblrectacmbio ? "" : dadosBoleto.dadosBasico.simblrectacmbio}' />
+								<f:attribute name="generoextenso" value="masculino" />
+								<f:converter converterId="extensoConverter"></f:converter>
+							</awb-h:outputLabel>
+							<awb-h:outputLabel value=")" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Mercadoria: ......................................... -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Mercadoria: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+	                        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.obsCotacaoVO.mercadoria}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Quantidade de embarques: até ....... (..........) embarques -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Quantidade de embarques: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="até #{dadosBoleto.dadosBasico.qprevtembrqcmbio} (" />
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.qprevtembrqcmbio}">
+								<f:attribute name="siglatmoeda" value="" />
+								<f:attribute name="generoextenso" value="masculino" />
+								<f:converter converterId="extensoConverter"></f:converter>
+							</awb-h:outputLabel>
+					        <awb-h:outputLabel value=") embarques" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Quantidade de RE´s: até ....... (.........) RE´s (Registros de Exportação) por jogo de documentos -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Quantidade de RE´s: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="até #{dadosBoleto.dadosBasico.qregexporcmbio} (" /> 
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.qregexporcmbio}"> 
+								<f:attribute name="siglatmoeda" value="" />
+								<f:attribute name="generoextenso" value="masculino" />
+								<f:converter converterId="extensoConverter"></f:converter>
+							</awb-h:outputLabel>
+					        <awb-h:outputLabel value=") RE´s (Registros de Exportação) por jogo de documentos" /> 
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Período de Embarque: de ...../...../....... até ...../...../....... -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Período de Embarque: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="de #{dadosBoleto.dadosBasico.dprevtinicembrq} até #{dadosBoleto.dadosBasico.dprevtfimembrq}" /> 
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Importador/País: ................./................., desde que previamente aprovado pelo BNDES. -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Importador/País: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+	                        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.obsCotacaoVO.garanimport} , desde que previamente aprovado pelo BNDES." />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Prazo do Financiamento: até ...... (......) anos, a contar da data de cada embarque, desde que previamente aprovado pelo BNDES --> 
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Prazo do Financiamento: " />  
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="até #{dadosBoleto.dadosBasico.tdiaopercmbio} (" />  
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.tdiaopercmbio}" >  
+								<f:attribute name="siglatmoeda" value="" />
+								<f:attribute name="generoextenso" value="masculino" />
+								<f:converter converterId="extensoConverter"></f:converter>
+							</awb-h:outputLabel>
+					        <awb-h:outputLabel value=") Meses, a contar da data de cada embarque, desde que previamente aprovado pelo BNDES" />  
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Amortização: texto informado no campo na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Amortização: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.obsCotacaoVO.amortizar}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Grupo Mercadoria (Boleto): texto informado no campo na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Grupo: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.grupomercadoriaboleto}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Comissão Banco Mandatário valor e texto informado nos campos na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Comissão Banco Mandatário: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.pcomismtoricmbio}" />
+					        <awb-h:outputLabel value=" %" rendered="#{dadosBoleto.dadosBasico.ccobrcomismtori ne '1' and dadosBoleto.dadosBasico.ccobrcomismtori ne '0'}" />
+					        <awb-h:outputLabel value=" - #{tradeFinanceBean.tradeFinanceVO.cobranComissBancoMand}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Comissão Agente Financeiro valor e texto informado nos campos na tela --> 
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Comissão Agente Financeiro:" />  
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.pagtefincrcmbio}" />  
+					        <awb-h:outputLabel value=" %" rendered="#{dadosBoleto.dadosBasico.ccobrcomisagte ne '1' and dadosBoleto.dadosBasico.ccobrcomisagte ne '0'}" />
+					        <awb-h:outputLabel value=" - #{dadosBoleto.dadosBasico.cobranComissAgente}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Banco Garantidor/País: valor e texto informado nos campos na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Banco Garantidor/País: " /> 
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.dbcocred} - #{dadosBoleto.dadosBasico.obsCotacaoVO.garancondbgar}" /> 
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Garantias ao BNDES: texto informado no campo na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Garantias ao BNDES: " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.obsCotacaoVO.garanbnds}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Garantias Bradesco: texto informado no campo na tela -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Garantias Bradesco: " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value="#{dadosBoleto.dadosBasico.obsCotacaoVO.garanbrad}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+
+		<!-- • Vencimento desta Proposta: até ..../..../............. -->
+        <tr>        
+            <td width="100%" valign="top">
+                <table>
+                    <tr>
+                        <td style="font-family: verdana; font-size: 10pt; font-weight: bold; width:250px;">
+					        <awb-h:outputLabel value="• Vencimento desta Proposta: " />
+                        </td>
+                        <td style="font-family: verdana; font-size: 12pt;">
+					        <awb-h:outputLabel value=" até #{dadosBoleto.dadosBasico.formatadDataVencProsposta}" />
+                        </td>
+                    </tr>
+                </table>    
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    <br />
+    
+    <!-- CLAUSULAS 2 EM DIANTE -->
+    <ui:repeat var="item" value="#{dadosBoleto.clausulasRegiaoDois}" varStatus="status">
+        
+        <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+            <tr>        
+                <!-- Formalização -->
+                <td width="100%" style="font-family: verdana; font-size: 12pt; text-align: justify;">
+                    <ui:repeat var="clasula" value="#{item.clausulas}" varStatus="status">
+                        <awb-h:outputLabel value="#{clasula.rclauscontrcmbio}" 
+                        style="word-wrap: break-word; overflow: hidden; white-space: pre-line; text-overflow: ellipsis;white-space: pre-wrap;"></awb-h:outputLabel><br />
+                    </ui:repeat>
+                </td>
+            </tr>
+        </table>
+        
+        <hr />
+        <br />
+    </ui:repeat>
+    
+    <hr /> 
+    <br />
+    <br />
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- branco -->
+            <td width="45%" style="font-family: verdana; font-size: 12pt; text-align: center;">
+				Atenciosamente:
+            </td>
+			<td width="10%" style="font-family: verdana; font-size: 10pt; font-weight: bold;">
+				<awb-h:outputLabel value=" " />
+			</td>
+            <!-- Assinatura -->
+            <td width="45%" style="font-family: verdana; font-size: 12pt; text-align: center;">
+				DE ACORDO:
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    <table cellspacing="0" cellpadding="0" style="width: 100%; ">
+        <tr>        
+            <!-- branco -->
+            <td width="45%" style="border-top: solid 1px #000000; font-family: verdana; font-size: 12pt; text-align: center; font-weight: bold;">
+				BANCO BRADESCO S/A
+            </td>
+			<td width="10%" style="font-family: verdana; font-size: 10pt; font-weight: bold;">
+				<awb-h:outputLabel value=" " />
+			</td>
+            <!-- Assinatura -->
+            <td width="45%" style="border-top: solid 1px #000000; font-family: verdana; font-size: 12pt; text-align: center; font-weight: bold;">
+				<awb-h:outputLabel value="#{dadosBoleto.dadosBasico.nomecompletocli}" />
+            </td>
+        </tr>
+    </table>
+    
+</awb-f:view>
+
+</html>

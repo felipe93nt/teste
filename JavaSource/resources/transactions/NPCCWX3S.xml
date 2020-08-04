@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX3S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="18">
+    <register name="NPCCWX3S-HEADER">
+      <field name="NPCCWX3S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX3S" />
+      <field name="NPCCWX3S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00018" />
+    </register>
+    <register name="NPCCWX3S-REGISTRO">
+      <field name="NPCCWX3S-S-TDIA-OPERD-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>
+

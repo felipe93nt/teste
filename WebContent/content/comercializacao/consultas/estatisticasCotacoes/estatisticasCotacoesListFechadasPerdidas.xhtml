@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+	<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" rendered="#{estatisticasCotacoesBean.listaCotacoesFechadasPerdidas.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size">
+			<awb-br:keepState pdcDataScrollerID="dataScroller" resource="cws">
+			
+				<awb-h:panelGroup>
+					<awb-h:outputLabel value="Estatística de Fechamento em USD: " styleClass="HtmlOutputLabelBoldBradesco" />
+				</awb-h:panelGroup>
+				<br/> <br/>
+				
+				<awb-br:scrollableDataTable value="#{estatisticasCotacoesBean.listaCotacoesFechadasPerdidas}" 
+				width="100%"
+				var="ctc" styleClass="panelGridTable" rows="15" rendered="#{estatisticasCotacoesBean.listaCotacoesFechadasPerdidas.size() > 0}">
+
+					<awb-br:scrollableColumn width="20%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Mês" styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel styleClass="tableFontStyle" value="#{ctc.mes}" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechada"
+							
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.cotfechada}" >
+						<f:converter converterId="numericConverter" />
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdida"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.cotperdida}" >
+						<f:converter converterId="numericConverter" />
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Total"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.cottotal}" >
+						<f:converter converterId="numericConverter" />
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="25%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Fechado vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.fechadovlt}" >
+						<f:converter converterId="numericConverter" />
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="25%" styleClass="r">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="Perdido vs Valor Total (%)"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.perdidovlt}" >
+						<f:converter converterId="numericConverter" />
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+				 
+			</awb-br:keepState>
+		</awb-th:extDiv>
+
+	</awb-h:panelGrid>
+	
+	<!--  valor total vem na lista e vai ficar junto com o grid de cima
+	<awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" rendered="#{estatisticasCotacoesBean.listaCotacoesFechadasPerdidas.size() > 0}">
+		<awb-th:extDiv styleClass="overflow-auto full-size">
+				
+				<awb-br:scrollableDataTable value="#{estatisticasCotacoesBean.estatisticaCotacoesVO}" var="ctc" styleClass="panelGridTable" 
+					rendered="#{estatisticasCotacoesBean.listaCotacoesFechadasPerdidas.size() > 0}">
+
+					<awb-br:scrollableColumn width="20%">
+						<awb-h:outputLabel value="Total:" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%">
+						<awb-h:outputLabel value="1" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%">
+						<awb-h:outputLabel value="2" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="10%">
+						<awb-h:outputLabel value="3" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="25%">
+						<awb-h:outputLabel value="4" />
+					</awb-br:scrollableColumn>
+					
+					<awb-br:scrollableColumn width="25%">
+						<awb-h:outputLabel value="5" />
+					</awb-br:scrollableColumn>
+					
+				</awb-br:scrollableDataTable>
+				 
+		</awb-th:extDiv>
+	</awb-h:panelGrid>	
+		-->
+</ui:composition>
+
+</html>

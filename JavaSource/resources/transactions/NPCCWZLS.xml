@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZLS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="7699">
+    <register name="NPCCWZLS-HEADER">
+      <field name="NPCCWZLS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZLS" />
+      <field name="NPCCWZLS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="07699" />
+    </register>
+    <register name="NPCCWZLS-REGISTRO">
+      <field name="NPCCWZLS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZLS-QTDE-OCOR2" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZLS-LISTA" minOccurs="0" maxOccurs="10" depends="NPCCWZLS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZLS-IRZ-SCIAL" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-DTPO-SGMTO-CLI" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-DTCOTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-NOME-UND-ORGNZ" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-ECONM-MOEDA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-VNEGOC-MOEDA-ESTRG" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-CPRODT-DESC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-PRZ-MED-TOT" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-VTX-SPREAD-NEGOC" pic="X(022)" length="22" bytes="22" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-UNI-BNC-CST" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWZLS-LISTA2" minOccurs="0" maxOccurs="100" depends="NPCCWZLS-QTDE-OCOR2" dependsType="number">
+        <field name="NPCCWZLS-ISGL-INDCD-ECONM" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZLS-VNEGOC-MOEDA-TOT" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

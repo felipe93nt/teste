@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWANE" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="68">
+    <register name="NPCCWANE-HEADER">
+      <field name="NPCCWANE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWANE" />
+      <field name="NPCCWANE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00068" />
+    </register>
+    <register name="NPCCWANE-REGISTRO">
+      <field name="NPCCWANE-E-CCOND-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWANE-E-DALTER" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

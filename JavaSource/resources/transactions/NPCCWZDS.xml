@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZDS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="14654">
+    <register name="NPCCWZDS-HEADER">
+      <field name="NPCCWZDS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZDS" />
+      <field name="NPCCWZDS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="14654" />
+    </register>
+    <register name="NPCCWZDS-REGISTRO">
+      <field name="NPCCWZDS-TOT-QTD-STFEC" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-STFEC" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-STPER" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-STPER" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-STNFI" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-STNFI" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-STNIN" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-STNIN" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-STBAI" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-STBAI" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-TOTAL" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-TOTAL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-QTD-PERFV" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-TOT-VAL-PERFV" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZDS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZDS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWZDS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZDS-ID-TPPESQUISA" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-FECHADA-QT" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-FECHADA-VL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-PERDIDA-QT" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-PERDIDA-VL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-NEGOFIR-QT" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-NEGOFIR-VL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-NEGOIND-QT" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-NEGOIND-VL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-BAIXADA-QT" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-CT-BAIXADA-VL" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-TOT-QTD-COTAC" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-TOT-VAL-PRODT" pic="X(023)" length="23" bytes="23" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-PERCENTUAL-CT" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZDS-PERCENTUAL-VL" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

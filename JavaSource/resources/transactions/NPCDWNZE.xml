@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWNZE" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="21">
+    <register name="NPCDWNZE-HEADER">
+      <field name="NPCDWNZE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWNZE" />
+      <field name="NPCDWNZE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00021" />
+    </register>
+    <register name="NPCDWNZE-REGISTRO">
+      <field name="NPCDWNZE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

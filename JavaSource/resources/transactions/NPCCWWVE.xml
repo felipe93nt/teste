@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWVE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="72">
+    <register name="NPCCWWVE-HEADER">
+      <field name="NPCCWWVE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWVE" />
+      <field name="NPCCWWVE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00072" />
+    </register>
+    <register name="NPCCWWVE-REGISTRO">
+      <field name="NPCCWWVE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWVE-VPREVT-DSEMB-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWWVE-TDIA-CAREN-PRINC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CINDCD-PCOBR-PRINC" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-TDIA-CAREN-JURO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CINDCD-PCOBR-JUROS" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CINDCD-FCOBR-COTAC" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CPAIS-MOEDA-DSEMB" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-CINDCD-ECONMC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWVE-PRZ-OPER-AJUSTADO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

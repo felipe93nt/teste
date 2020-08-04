@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZGS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="1004">
+    <register name="NPCCWZGS-HEADER">
+      <field name="NPCCWZGS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZGS" />
+      <field name="NPCCWZGS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01004" />
+    </register>
+    <register name="NPCCWZGS-REGISTRO">
+      <field name="NPCCWZGS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZGS-LISTA" minOccurs="0" maxOccurs="13" depends="NPCCWZGS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWZGS-MES" pic="X(09)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZGS-COT-FECHADA" pic="9(017)V9(002)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZGS-COT-PERDIDA" pic="9(017)V9(002)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZGS-COT-TOTAL" pic="9(017)V9(002)" length="19" bytes="19" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZGS-FECHADO-VLT" pic="9(003)V9(002)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWZGS-PERDIDO-VLT" pic="9(003)V9(002)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

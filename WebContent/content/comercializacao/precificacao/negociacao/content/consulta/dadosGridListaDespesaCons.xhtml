@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+	<ui:composition>
+		<!-- Campos Precificação-->
+	    <awb-h:panelGrid>
+	        <awb-h:panelGroup>
+	            <!-- DESPESA -->
+	            <awb-h:outputLabel value=" #{msgs.label_desp}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+	        </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+		
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<!-- RADIO GRID LISTA -->
+			<awb-f:facet name="header">
+				<awb-th:extSelectOneRadio id="radioListaDespesa" layout="spread"
+					immediate="false" forceId="true" forceIdIndex="false"
+					value="#{tradeFinanceBean.viewHelper.bancoSelecionado}">
+					
+					<f:ajax event="change"
+						listener="#{tradeFinanceBean.montaTabelaListaDespesa}"
+						render="tipoDesp" execute="radioListaDespesa" />
+					
+					<awb-f:selectItems value="#{tradeFinanceBean.selectItemRadioDesp}" />
+				</awb-th:extSelectOneRadio>
+			</awb-f:facet>
+		</awb-h:panelGrid>
+		<awb-h:panelGrid styleClass="panelGridDataTable">
+			<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAQ1"
+				resource="cws">
+				<awb-br:scrollableDataTable value="#{tradeFinanceBean.cotacoesList.listaCotacoes}" var="des" rows="10"
+					rowIndexVar="indexdes" styleClass="panelGridTable">
+
+					<awb-br:scrollableColumn width="2%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-th:extRadio index="#{indexdes}"
+							for=":formTradeFinMonitDet:radioListaDespesa" />
+					</awb-br:scrollableColumn>
+
+					<!-- BANCO CORRESPONDENTE / BANCO FINANCIADOR -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_banco_financiador}"
+								styleClass="tableFontStyle" escape="false" rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc eq 1715}"/>
+							<awb-h:outputLabel value="#{msgs.label_banco_correspondente}"
+								styleClass="tableFontStyle" escape="false" rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc eq 2018}"/>
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.nbanqrcmbiofndng} - #{des.pracacmbiofndmg}" rendered = "#{!empty des.pracacmbiofndmg}"/>
+					</awb-br:scrollableColumn>
+
+					<!-- BANCO AVISADOR / BANCO REEMBOLSADOR -->
+					<awb-br:scrollableColumn rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc eq 2018}">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_banco_avisador}"
+								styleClass="tableFontStyle" escape="false"  />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.nbanqrcmbioaviso} - #{des.pracacmbioaviso} " rendered = "#{!empty des.pracacmbioaviso}" />
+					</awb-br:scrollableColumn>
+
+					<!-- BANCO CONFIRMADOR -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<h:outputLabel value="#{msgs.label_banco_reembolsador}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.nbanqrcmbiorcdor} - #{des.pracacmbiorcdor}" rendered ="#{!empty des.nbanqrcmbiorcdor}" />
+					</awb-br:scrollableColumn>
+
+					<!-- DATA DA COTACAO -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_det_dt_ctc}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.dcotacfndngcmbio}" />
+					</awb-br:scrollableColumn>
+
+					<!-- VALIDADE DA COTAÇÃO -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_det_validade_ctc}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.dlimfndngcmbio}" />
+					</awb-br:scrollableColumn>
+
+					<!-- STATUS DA COTACAO -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_status_cotacao}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.nindcdfndngutlzd}" />
+					</awb-br:scrollableColumn>
+
+					<!-- CONTATO DIV. INTERN. -->
+					<awb-br:scrollableColumn width="10%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_contato_div}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{des.nusuarmanut}" />
+					</awb-br:scrollableColumn>
+				</awb-br:scrollableDataTable>
+			</awb-br:keepState>
+		</awb-h:panelGrid>
+
+		<awb-h:panelGrid styleClass="panelGridDataTable" id="tipoDesp">
+			<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAPB" resource="cws">
+				<awb-br:scrollableDataTable
+					rendered="#{tradeFinanceBean.listaDespesas.size() > 0}"
+					value="#{tradeFinanceBean.listaDespesas}" var="ctc" rows="10"
+					rowIndexVar="indexdes" styleClass="panelGridTable">
+
+					<!-- TIPO DE DESPESAS -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_tp_despesas}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ntpodespcmbio}" />
+					</awb-br:scrollableColumn>
+
+					<!-- POR CONTA -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_det_por_conta}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nidtfdrespdesp}" />
+					</awb-br:scrollableColumn>
+
+					<!-- TAXA -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_taxa}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.pdespnegoccmbio}" />
+					</awb-br:scrollableColumn>
+
+					<!-- PERIODO TAXA -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_det_periodo_tx}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nbasebletonegoc}" />
+					</awb-br:scrollableColumn>
+
+					<!-- PERIODICIDADE -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_det_periodicidade}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nfluxoperdccmbio}" />
+					</awb-br:scrollableColumn>
+
+					<!-- MOEDA -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_moeda}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nindcdeconmmoeda}" />
+					</awb-br:scrollableColumn>
+
+					<!-- VALOR -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_valor}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.vdespbletocmbio}">
+							<f:converter converterId="numericConverter"></f:converter>
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+
+					<!-- FORMA DE PAGAMENTO -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_forma_pgt}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nformacobrdesp}" />
+					</awb-br:scrollableColumn>
+
+					<!-- VALOR MINIMO -->
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_valor_minimo}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.vmindespcmbio}">
+							<f:converter converterId="numericConverter"></f:converter>
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+				</awb-br:scrollableDataTable>
+			</awb-br:keepState>
+		</awb-h:panelGrid>
+</ui:composition>
+</html>

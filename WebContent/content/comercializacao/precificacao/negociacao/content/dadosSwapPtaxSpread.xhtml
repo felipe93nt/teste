@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 500 a 599  -->
+
+    <awb-h:panelGrid id="pnlSwap" columns="6" styleClass="panelGridTable40">
+        <!-- LINHA CABEC -->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Swap: " />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid>
+            <awb-h:panelGroup />
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid>
+            <awb-h:panelGroup />
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid>
+            <awb-h:panelGroup />
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="PTAX: " />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Spread All-In: " />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+            <awb-h:selectOneRadio id="radioSwap" layout="lineDirection" title="Swap"
+                styleClass="HtmlSelectOneRadioBradesco" tabindex="500" disabled="#{!bean.authorized('ROLE_TRADE_LIBOR')}"
+                value="#{bean.tradeFinNegocVO.cindcdnegocswap}" immediate="false">
+                <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+                <f:ajax event="click" listener="#{bean.listenerTratarSwap}" render="pnlSwap"
+                    execute="@form" />
+            </awb-h:selectOneRadio>
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup>
+            <awb-h:selectBooleanCheckbox id="checkLibor" tabindex="501"
+                disabled="#{bean.viewHelper.disabledCheckLibor}"
+                value="#{bean.tradeFinNegocVO.cindcdnegoclibor}" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkLibor" value="Libor" />
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup>
+            <awb-h:selectBooleanCheckbox id="checkFluxo" tabindex="502"
+                disabled="#{bean.viewHelper.disabledCheckFluxo}"
+                value="#{bean.tradeFinNegocVO.cnegocswapfluxo}" />
+            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkFluxo" value="Fluxo" />
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup>
+            <awb-h:selectBooleanCheckbox id="checkMeMn" tabindex="503"
+                disabled="#{bean.viewHelper.disabledCheckMeMn}"
+                value="#{bean.tradeFinNegocVO.cnegocswapestrg}">
+                <f:ajax event="click" listener="#{bean.listenerTratarCheckMeMn}" render="pnlSwap"
+                    execute="@form" />
+            </awb-h:selectBooleanCheckbox>
+            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkMeMn" value="ME/MN" />
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup>
+            <awb-h:selectOneMenu id="comboPtax" layout="pageDirection" title="PTAX" tabindex="504"
+                style="width: 80px;font-family: verdana; font-size: 10px" immediate="false"
+                disabled="#{bean.viewHelper.disabledComboPtax}"
+                value="#{bean.tradeFinNegocVO.ctpocotactx}">
+                <awb-f:selectItems value="#{bean.viewHelper.comboCodigoPtax}" />
+            </awb-h:selectOneMenu>
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup>
+            <awb-h:inputText id="txtSpreadAll" title="Spread All-In" styleClass="HtmlInputTextBradesco"
+                disabled="#{bean.viewHelper.disabledTxtSpreadAll}" tabindex="505"
+                alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                value="#{bean.tradeFinNegocVO.ptxswapcmpdo}">
+            </awb-h:inputText>
+            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="txtSpreadAll" value=" %" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

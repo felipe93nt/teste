@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDIADP" type="CWS">
+  <header>
+    <property name="FWO">BUSINESS</property>
+    <property name="Length">564</property> 
+    <property name="RouterTransaction">FRWK1100</property>
+  </header>
+  <inputdependencies>
+    <dependency>FRWKGL01</dependency>
+    <dependency>GSEGGLAA</dependency>
+    <dependency>NPCDWFGE</dependency>
+  </inputdependencies>
+  <input maxBytes="118" />
+  <outputdependencies>
+	<dependency>FRWKGL01</dependency>
+    <dependency>FRWKEBL2</dependency>
+    <dependency>FRWKEBL3</dependency>
+    <dependency>GSEGGLBB</dependency>
+    <dependency>NPCDWFGS</dependency>
+  </outputdependencies>
+</copybook>
+

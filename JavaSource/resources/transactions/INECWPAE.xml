@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="INECWPAE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="18">
+    <register name="INECWPAE-HEADER">
+      <field name="INECWPAE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="INECWPAE" />
+      <field name="INECWPAE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00018" />
+    </register>
+    <register name="INECWPAE-BLOCO-ENTRADA">
+      <field name="INECWPAE-E-CINDCD-ECONM" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:awb-f="http://bradesco.com.br/components-core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:prescore="http://bradesco.com.br/presentation_core">
+
+<ui:composition >
+          <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+          				columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+          		<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+	                <awb-h:panelGroup>
+	                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_descricao}: " />
+	                </awb-h:panelGroup>
+	                <awb-h:panelGroup>
+	                    <awb-h:inputText title="#{msgs.label_descricao}" maxlength="80" size="85"
+	                        value="#{modeloBoletoBean.modeloBoletoVO.imodcontrcmbio}"
+	                        styleClass="HtmlInputTextObrigatorioBradesco">
+	                    </awb-h:inputText>
+	                </awb-h:panelGroup>
+            	</awb-h:panelGrid>
+                 
+          		<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+	                <awb-h:panelGroup>
+	                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_modelo_padrao}: " />
+	                </awb-h:panelGroup>
+		            <awb-h:selectBooleanCheckbox id="checkModeloPadrao" 
+		                value="#{modeloBoletoBean.modeloBoletoVO.cindcdmodpdrao}" />
+            	</awb-h:panelGrid>
+            	
+            	<awb-h:panelGrid>    
+        		</awb-h:panelGrid>
+            	
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid>
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" style="margin: 5px 0px 8px 0px;" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid width="100%">
+                <awb-br:dualList id="dualListModeloBoleto" forceId="true" useCheckBox="true" idItem="ctpoclauscmbio"
+                    valueItem="itpoclauscmbio" leftTitle="Tipos de Cláusulas à inserir"
+                    leftList="#{modeloBoletoBean.viewHelper.listaEsquerda}" rightTitle="Tipos de Cláusulas Inseridas"
+                    rightList="#{modeloBoletoBean.viewHelper.listaDireita}">
+                </awb-br:dualList>
+            </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton id="btnVoltar" value="#{msgs.bto_voltar}" action="#{modeloBoletoBean.actionVoltar}"
+                    immediate="true" styleClass="HtmlCommandButtonBradesco" />
+                <!-- CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarAlt" styleClass="HtmlCommandButtonBradesco right"
+                    action="#{modeloBoletoBean.incluirClausulas}" value="#{msgs.bto_confirmar}" />
+            </awb-h:panelGrid>
+</ui:composition>
+</html>

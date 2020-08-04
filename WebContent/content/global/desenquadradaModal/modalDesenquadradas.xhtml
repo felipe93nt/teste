@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+        <body>
+
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+
+            <awb-h:form id="frameForm">
+                
+                <!-- GRID CREDITOS -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+                    rendered="#{not empty desenquadradasModalBean.desenquadradas.creditos}">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableCreditos">
+                    
+                        <awb-br:scrollableDataTable id="dataTableCreditos" var="item" rows="25"
+                            width="100%" rowIndexVar="indice" value="#{desenquadradasModalBean.desenquadradas.creditos}">
+
+                            <!-- MOTIVO -->
+                            <awb-br:scrollableColumn styleClass="c" width="34%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_motivo_credito}" styleClass="tableFontStyle"
+                                        escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.desccred}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- INFORMADO NA OPERACAO -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_informado_operacao}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.vmotvosolic}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- CADASTRO NO LIMITE DE CREDITO -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_cadastro_limite_credito}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.vmotvodisp}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+
+                    </awb-th:extDiv>
+                	<br />
+                </awb-h:panelGrid>
+                
+                <!-- GRID PAGTO ANTECIPADO -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+                    rendered="#{not empty desenquadradasModalBean.desenquadradas.pagamentosAntecipados}">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTablePagamentosAntecipados">
+                    
+                        <awb-br:scrollableDataTable id="dataTablePagamentosAntecipados" var="item" rows="10"
+                            width="100%" rowIndexVar="indice" value="#{desenquadradasModalBean.desenquadradas.pagamentosAntecipados}">
+
+                            <!-- MOTIVO -->
+                            <awb-br:scrollableColumn styleClass="c" width="34%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_motivo_diversos}" styleClass="tableFontStyle"
+                                        escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.descpgto}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- DATA PREVISAO DESEMBOLSO -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_data_previsao_desembolso}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.dprevtdsemb}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- DATA PREVISAO EMBARQUE -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_data_previsao_embarque}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.dprevtembrq}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+
+                    </awb-th:extDiv>
+                	<br />
+                </awb-h:panelGrid>
+                
+                <!-- GRID STAND BY -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+                    rendered="#{not empty desenquadradasModalBean.desenquadradas.standBy}">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableStandBy">
+                    
+                        <awb-br:scrollableDataTable id="dataTableStandBy" var="item" rows="10"
+                            width="100%" rowIndexVar="indice" value="#{desenquadradasModalBean.desenquadradas.standBy}">
+
+                            <!-- MOTIVO -->
+                            <awb-br:scrollableColumn styleClass="c" width="34%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_motivo_diversos}" styleClass="tableFontStyle"
+                                        escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.descstand}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- PRAZO PARAMETRIZADO -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_prazo_parametrizado_dias}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.tdiamax}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- PRAZO OPERACAO -->
+                            <awb-br:scrollableColumn styleClass="c" width="33%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_det_pzr_operacao}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.tdiavaldd}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+
+                    </awb-th:extDiv>
+                	<br />
+                </awb-h:panelGrid>
+                
+                <!-- GRID ANY BANK -->
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar"
+                    rendered="#{not empty desenquadradasModalBean.desenquadradas.anyBank}">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableAnyBank">
+               
+                        <awb-br:scrollableDataTable id="dataTableAnyBank" var="item" rows="10"
+                            width="100%" rowIndexVar="indice" value="#{desenquadradasModalBean.desenquadradas.anyBank}">
+
+                            <!-- MOTIVO -->
+                            <awb-br:scrollableColumn styleClass="c" width="34%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_motivo_diversos}" styleClass="tableFontStyle"
+                                        escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.descany}" />
+                            </awb-br:scrollableColumn>
+
+                            <!-- CONDIÇÃO ANY -->
+                            <awb-br:scrollableColumn styleClass="c" width="66%">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_condicao_any_bank}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{item.condicao}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+
+                    </awb-th:extDiv>
+                	<br />
+                </awb-h:panelGrid>
+                
+                <awb-h:panelGrid styleClass="panelGridDataTable">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+                            value="#{msgs.label_justificativa}: " />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputTextarea
+                            style="width: 99%; height: 100px; overflow-x: none; overflow-y: none;"
+                            immediate="false" title="#{msgs.label_justificativa}"
+                            styleClass="HtmlInputTextObrigatorioBradesco auto-focus"
+                            value="#{desenquadradasModalBean.desenquadradas.justificativa}" id="justificativa"
+                            onkeydown="textCounter(this, 1000);" onkeyup="textCounter(this, 1000);" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+
+                <br />
+                
+                <awb-h:panelGrid styleClass="panelGridDataTable" columns="2">
+                    <awb-h:panelGroup>
+                        <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0;"
+                            styleClass="HtmlCommandButtonBradesco left" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                     	<awb-h:commandButton style="right: 0; bottom: 0;"
+                            styleClass="HtmlCommandButtonBradesco right" id="btoConfirmar"
+                            action="#{desenquadradasModalBean.confirmar}" value="#{msgs.bto_confirmar}" />
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+                
+            </awb-h:form>
+            
+            <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+            <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.util.js" />
+
+        </body>
+    </ui:define>
+</ui:composition>
+</html>

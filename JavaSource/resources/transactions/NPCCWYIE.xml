@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYIE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="84">
+    <register name="NPCCWYIE-HEADER">
+      <field name="NPCCWYIE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYIE" />
+      <field name="NPCCWYIE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00084" />
+    </register>
+    <register name="NPCCWYIE-REGISTRO">
+      <field name="NPCCWYIE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYIE-CUNIC-PSSOA-CMBIO-B" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYIE-CUNIC-PSSOA-CMBIO-A" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYIE-CINDCD-CNTRA-GARNT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYIE-TDIA-CNTRA-GARNT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYIE-DVCTO-CNTRA-GARNT" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYIE-DABERT-CNTRA-GARNT" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYIE-CINDCD-RENOV-CNTRA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYIE-QDIA-ALERT-CNTRA" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYIE-DALERT-VCTO-CNTRA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYIE-CINDCD-CUSTO-EXTER" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 200 a 299  -->
+
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+
+        <!-- combo Produto -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value="#{msgs.label_produto}: "
+                    for="comboProduto" />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.produto.descricao}" />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!-- combo Modalidade-->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_modalidade}: "
+                    for="comboModalidade" />
+            </awb-h:panelGroup>
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboModalidade" layout="pageDirection" title="Modalidade" tabindex="200"
+                    styleClass="HtmlSelectOneMenuObrigatorioBradesco" immediate="false"
+                    value="#{bean.tradeFinNegocVO.cmodldprodtcmbio}" disabled="#{bean.viewHelper.disabledModalidade}">
+                    <awb-f:selectItems value="#{bean.viewHelper.comboModalidade}" />
+                    <f:ajax immediate="false" execute="@form" event="change"
+                        render="formTrdFinNegIncl div_modalLimites formModalMessages"
+                        listener="#{bean.listenerTrocaModalidade}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!-- STATUS -->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_status}: " />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.viewHelper.statusCotacao}" />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="3" styleClass="panelGridTable"
+		columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        
+        <!-- LIMITE COTACAO -->
+		<awb-h:panelGrid width="100%" id="divLimiteCotacao">
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_limite_ctc}: "
+					styleClass="HtmlOutputLabelBoldBradesco" />
+			</awb-h:panelGroup>
+			<awb-h:panelGroup>
+				<awb-br:calendar id="calendarLimCot" titulo="Calendário" tabindex="201"
+					disableInputFields="false" clientValidationLevel="date"
+					onInputChange="limpaData('formTrdFinNegIncl:calendarLimCot','validarLimiteCotacao')"
+					onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+					value="#{bean.viewHelper.dataLimiteCotacao}" />
+				<awb-h:outputLabel value=" " escape="false" />
+
+				<awb-h:commandButton style="display:none;" styleClass="ajax-call validarLimiteCotacao">
+					<f:ajax execute="divLimiteCotacao" event="click"
+						render="divLimiteCotacao formModalMessages divSeiModals"
+						listener="#{bean.validarDiaUtil}" />
+					<f:param name="campoData" value="1" />
+				</awb-h:commandButton>
+
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+
+		<!-- combo Tipo de Cotação-->
+		<awb-h:panelGrid>
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+					value="#{msgs.label_det_tp_ctc}: " for="comboTipoCotacao" />
+			</awb-h:panelGroup>
+			<awb-h:panelGroup>
+				<awb-h:selectOneMenu id="comboTipoCotacao" layout="pageDirection" tabindex="202"
+					title="Tipo de Cotação" styleClass="HtmlSelectOneMenuBradesco"
+					immediate="false" value="#{bean.tradeFinNegocVO.ctponegoccmbio}"
+					disabled="#{bean.viewHelper.disabledTipoCotacao}">
+					<awb-f:selectItems value="#{bean.viewHelper.comboTipoCotacao}" />
+				</awb-h:selectOneMenu>
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+        
+        <!-- NUMERO COTACAO -->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup rendered="#{bean.tradeFinNegocVO.ncotacao != null and bean.tradeFinNegocVO.ncotacao != ''}">
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value="#{msgs.label_det_ctc}: " />
+                <awb-h:outputLabel value="#{bean.tradeFinNegocVO.ncotacao}" styleClass="HtmlOutputTextBoldBradesco"/>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+        
+	</awb-h:panelGrid>
+</ui:composition>
+
+</html>

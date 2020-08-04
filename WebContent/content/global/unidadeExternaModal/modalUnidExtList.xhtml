@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body"> 
+
+    <body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formTdFnNgModUniExt" >
+            <awb-h:panelGrid width="100%">
+                <awb-h:column>
+
+					<awb-th:extSelectOneRadio forceId="true" forceIdIndex="false" id="radio" layout="spread"
+					    value="#{unidadeExternaModalBean.viewHelper.itemSelecListaUnidExt}" styleClass="auto-focus">
+					    <awb-f:selectItems itemLabel="" value="#{unidadeExternaModalBean.selectItemRadioListaUnidExt}" />
+					</awb-th:extSelectOneRadio>
+		
+				    <!-- GRID -->
+				    <awb-h:panelGrid styleClass="panelGridDataTable">
+				             <awb-br:keepState pdcDataScrollerID="dataScroller"
+				                 stateID="#{unidadeExternaModalBean.viewHelper.nomeStateIdListaSelUnidExt}" resource="cws">
+				                 <awb-br:scrollableDataTable id="dataSelUnidExt" value="#{unidadeExternaModalBean.listaUniExterna}" var="item" rows="5"
+				                     width="100%" rowIndexVar="indexLista" rendered="#{unidadeExternaModalBean.listaUniExterna.size() > 0}">
+				
+				                     <awb-br:scrollableColumn width="7%">
+				                         <awb-f:facet name="header">
+				                         </awb-f:facet>
+				                         <awb-th:extRadio index="#{indexLista}" for=":formTdFnNgModUniExt:radio" />
+				                     </awb-br:scrollableColumn>
+
+			                        <awb-br:scrollableColumn width="50%">
+			                            <awb-f:facet name="header">
+			                                <awb-h:outputLabel value="#{msgs.label_unidade_externa}" styleClass="tableFontStyle" escape="false" />
+			                            </awb-f:facet>
+			                            <awb-h:outputLabel value="#{item.ibanqrcmbio}" />
+			                        </awb-br:scrollableColumn>
+			
+			                        <awb-br:scrollableColumn width="40%">
+			                            <awb-f:facet name="header">
+			                                <awb-h:outputLabel value="#{msgs.label_cidade}" styleClass="tableFontStyle" escape="false" />
+			                            </awb-f:facet>
+			                            <awb-h:outputLabel value="#{item.imunintlcmbio}" />
+			                        </awb-br:scrollableColumn>
+
+				            </awb-br:scrollableDataTable>
+				        </awb-br:keepState>
+				    
+				        <!-- PAGINACAO -->
+				        <awb-br:awbDataScroller resource="cws" for="dataSelUnidExt" styleClass="pagination" id="dataScroller"
+				            renderFacetsIfSinglePage="true" actionListener="#{unidadeExternaModalBean.paginarUnidExt}"
+				            stateID="#{unidadeExternaModalBean.viewHelper.nomeStateIdListaSelUnidExt}">
+                            <f:facet name="first">
+                                <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                    title="#{msgs.label_txt_primeira}" />
+                            </f:facet>
+                            <f:facet name="fastrewind">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                            </f:facet>
+                            <f:facet name="previous">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                            </f:facet>
+                            <f:facet name="next">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                            </f:facet>
+                            <f:facet name="fastforward">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                                    title="#{msgs.label_txt_avanco}" />
+                            </f:facet>
+                            <f:facet name="last">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                                    title="#{msgs.label_txt_ultima}" />
+                            </f:facet>
+				        </awb-br:awbDataScroller>
+				    </awb-h:panelGrid>
+
+                </awb-h:column>
+            </awb-h:panelGrid>
+            <br />
+
+            <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" />
+            <awb-h:commandButton action="#{unidadeExternaModalBean.selecionarUnidExt}" value="Selecionar"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+        </awb-h:form>
+
+    </body>
+    
+    <!-- Script geral da aplicação -->
+    <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+    
+</ui:define>
+</ui:composition>
+
+</html>

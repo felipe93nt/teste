@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- BOTOES -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable" rendered="true" id="pnlBotoes">
+
+        <!-- VOLTAR -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+            action="tradeFinMonitList">
+            <awb-br:submitCheckClient />
+        </awb-h:commandButton>
+
+        <awb-h:panelGrid columns="2" styleClass="right">
+
+            <!-- Baixar Saldo -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+                    disabled="#{tradeFinanceBean.tradeFinanceVO.isSaldoIgualZero() and tradeFinanceNegociacaoAltBean.desembolsoForfaitingVO.isSaldoIgualZero()}"
+                    value="#{msgs.bto_baixar_saldo}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTradeFinMonitDet pnlBotoes"
+                        listener="#{tradeFinanceNegociacaoAltBean.listenerBaixarSaldo}" />
+                    <awb-f:attribute name="paramConfirmar" value="2" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+
+            <!-- CONFIRMAR -->
+            <awb-h:panelGroup>
+                <awb-h:commandButton id="btoConfirmar" styleClass="HtmlCommandButtonBradesco"
+                    value="#{msgs.bto_confirmar}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="formModalMessages formTradeFinMonitDet pnlBotoes"
+                        listener="#{tradeFinanceNegociacaoAltBean.listenerConfirmarIncluirDesembolsoForfaiting}" />
+                    <awb-f:attribute name="paramConfirmar" value="1" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+
+    <!--  MODAL CONFIRMAÇÃO -->
+    <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}" />
+        <ui:param name="actionConfirmar" value="actionModalConfirmarDesembForfaiting" />
+        <ui:param name="actionFechar" value="actionFecharModalConfirma" />
+        <ui:param name="renderModal" value="#{tradeFinanceNegociacaoAltBean.viewHelper.renderModal}" />
+    </ui:include>
+
+    <!-- MODAL ALERTAS -->
+    <ui:include src="/template/modalAlerta.xhtml">
+        <ui:param name="message" value="#{tradeFinanceNegociacaoAltBean.viewHelper.mensagemFluxoValidacao}" />
+        <ui:param name="bean" value="#{tradeFinanceNegociacaoAltBean}" />
+        <ui:param name="actionConfirmar" value="fecharModalAlertaAlteracao" />
+        <ui:param name="renderModal" value="#{tradeFinanceNegociacaoAltBean.viewHelper.renderModalAlerta}" />
+    </ui:include>
+    
+    <!-- MODAL LIMITES/PROPOSTAS -->
+    <awb-th:extDiv id="div_modalLimites">
+        <awb-br:modalContent id="modalLimites" iconUrl="info" autoOpen="true" reRender="@form divSeiModals" resizable="true"
+            draggable="true" width="1000" height="650" closable="false" closeOnEscape="false"
+            header="Limites Disponíveis" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinMonitFecharBean.closeModalLimites}" 
+            rendered="#{limitesModalBean.viewHelper.renderModal}"
+            contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+    </awb-th:extDiv>
+    
+     <awb-th:extDiv id="div_modalLiborTravada">
+        <awb-br:modalContent id="modalLiborTravada" 
+                             closeId="formModalLiborTrav:botaoFechar" 
+                             autoOpen="true" 
+                             openId="txtUnidExt-action" 
+                             resizable="true" 
+                             draggable="true"
+                             contentPath="#{request.contextPath}/content/global/liborTravadaModal/liborTravadaModal.xhtml" 
+                             header="Incluir Libor Travada" 
+                             width="200"  
+                             height="200" 
+                             onHideServerCallback="#{tradeFinanceNegociacaoAltBean.closeModalLiborTravada}"
+                             rendered="#{liborTravadaModalBean.viewHelper.renderModalLiborTravada}"
+                             reRender="@form"/>
+     </awb-th:extDiv>
+
+</ui:composition>
+</html>

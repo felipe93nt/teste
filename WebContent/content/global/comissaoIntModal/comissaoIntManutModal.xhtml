@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body"> 
+
+    <body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formModalComissInt" >
+            <awb-h:panelGrid width="100%" id="pnlComissaoInterna">
+                <awb-h:column>
+
+		            <awb-h:panelGrid id="pnlDadosComissao" columns="5" width="100%">
+		                <!-- LINHA CABEC -->
+        
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <h:outputText styleClass="HtmlOutputLabelBradesco" value="Moeda: " />
+                            <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                                value="#{comissaoIntManutModalBean.viewHelper.nomeMoedaComissaoInterna}" />
+                        </awb-h:panelGroup>
+		
+		                <awb-h:panelGroup>
+		                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+		                        value="Periodicidade:" />
+		                </awb-h:panelGroup>
+		
+		                <awb-h:panelGroup>
+		                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+		                        value="Momento:" />
+		                </awb-h:panelGroup>
+        
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                value="Qtd. Parcelas:" />
+                        </awb-h:panelGroup>
+        
+                        <awb-h:panelGroup>
+                        </awb-h:panelGroup>
+		
+		                <!-- LINHA DADOS -->
+		               <awb-h:panelGroup>
+		               </awb-h:panelGroup>
+		
+		               <awb-h:panelGroup>
+		                   <awb-h:selectOneMenu id="comboPeriodicidade" layout="pageDirection" title="Comissão Sobre"
+                                disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                style="width: 150px;font-family: verdana; font-size: 10px" immediate="false"
+                                value="#{comissaoIntManutModalBean.itemListaComissaoInterna.cfluxoperdccmbio}"
+                                styleClass="ajax-no-loading auto-focus" tabindex="1">
+		                       <awb-f:selectItems value="#{comissaoIntManutModalBean.viewHelper.comboPeriodicidade}" />
+                                <f:ajax immediate="false" execute="pnlComissaoInterna" event="change"
+                                    render="formModalMessages pnlComissaoInterna"
+                                    listener="#{comissaoIntManutModalBean.listenerTrocaPeriodicidadeComissaoInterna}" />
+		                   </awb-h:selectOneMenu>
+		               </awb-h:panelGroup>
+		                
+		                <awb-h:panelGroup>
+		                   <awb-h:selectOneMenu id="comboMomento" layout="pageDirection" title="Moeda Comissão"
+                                disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                style="width: 100px;font-family: verdana; font-size: 10px" immediate="false"
+                                value="#{comissaoIntManutModalBean.itemListaComissaoInterna.codMomentoComissao}"
+                                styleClass="ajax-no-loading" tabindex="2">
+		                       <awb-f:selectItems value="#{comissaoIntManutModalBean.viewHelper.comboMomento}" />
+		                       <f:ajax immediate="false" execute="pnlComissaoInterna" event="change"
+                                    render="pnlComissaoInterna formModalMessages"
+                                    listener="#{comissaoIntManutModalBean.listenerComboMomento}" />
+		                   </awb-h:selectOneMenu>
+		                </awb-h:panelGroup>
+
+							<awb-h:panelGroup>
+                            <awb-h:inputText id="txtQtdParcelas" title="Parcelas" maxlength="5"
+                                disabled="#{comissaoIntManutModalBean.viewHelper.disabledTxtParcelaComissaoInt}" 
+                                size="7"  alt="{'type':'integer'}" tabindex="3"
+                                value="#{comissaoIntManutModalBean.itemListaComissaoInterna.qpcelacmbiotrade}"
+                                styleClass="HtmlInputTextBradesco">
+                            </awb-h:inputText>
+                        </awb-h:panelGroup>
+
+                       <awb-h:panelGroup>
+                           <awb-h:commandButton id="btoGerar" value="Gerar" styleClass="HtmlCommandButtonBradesco right ajax-no-loading" tabindex="4"
+                                disabled="#{comissaoIntManutModalBean.viewHelper.disabledBotaoGerar}">
+                                <f:ajax execute="pnlComissaoInterna" event="click"
+                                    render="pnlComissaoInterna formModalMessages btnConfirmar"
+                                    listener="#{comissaoIntManutModalBean.listenerGerarParcelaComissaoInterna}" />
+                           </awb-h:commandButton>
+                       </awb-h:panelGroup>
+
+		            </awb-h:panelGrid>
+
+		            <!-- LINHA DIVISÓRIA -->
+		            <awb-h:panelGrid width="100%">
+		                <awb-f:verbatim>
+		                    <hr />
+                        </awb-f:verbatim>
+                    </awb-h:panelGrid>
+
+                    <awb-h:panelGrid id="pnlDadosIrregular" columns="5" styleClass="panelGridTable"
+                        rendered="#{comissaoIntManutModalBean.itemListaComissaoInterna.periodicidadeIrregular}">
+                        <!-- <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{msgs.label_n_parcela}" />
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup>
+                                <awb-h:inputText id="txtNumParcela" styleClass="HtmlInputTextBradesco"
+                                    disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                    alt="{'type':'integer'}" maxlength="5" size="7"
+                                     value="#{comissaoIntManutModalBean.itemListaParcelaIrreg.npcelacomis}">
+                                     <f:ajax execute="@form" event="change"
+                                             immediate="false" render="formModalMessages pnlDadosIrregular"
+                                             listener="#{comissaoIntManutModalBean.listenerTrocaPrazo}" />
+                                </awb-h:inputText>
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid> -->
+
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{msgs.label_prazo}" />
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup>
+                                <awb-h:inputText id="txtPrazo" styleClass="HtmlInputTextBradesco ajax-no-loading auto-focus" tabindex="5"
+                                    disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                    alt="{'type':'integer'}" maxlength="5" size="7"
+                                     value="#{comissaoIntManutModalBean.itemListaParcelaIrreg.tdianegocpcela}">
+                                     <f:ajax execute="@form" event="change"
+                                             immediate="false" render="formModalMessages pnlDadosIrregular"
+                                             listener="#{comissaoIntManutModalBean.listenerTrocaPrazo}" />
+                                </awb-h:inputText>
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+
+                        <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{msgs.label_vencimento}" />
+                            </awb-h:panelGroup>
+            
+                            <awb-h:panelGroup>
+                            
+                                <awb-br:calendar id="dataVencimento" disableInputFields="false" tabindex="6"
+                                    disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                    onInputChange="limpaData('formModalComissInt:dataVencimento','listenerTrocaVencimento')"
+                                    onFieldFilled="errorStyleChanger" clientValidationLevel="date"
+                                    onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+                                    value="#{comissaoIntManutModalBean.itemListaParcelaIrreg.dateVctopcelatrade}" />
+                                <awb-h:outputLabel value=" " escape="false" />                                    
+                                <awb-h:commandButton style="display:none;" styleClass="ajax-call listenerTrocaVencimento ajax-no-loading">
+                                    <f:ajax execute="@form" event="click"
+                                             immediate="false" render="formModalMessages pnlDadosIrregular"
+                                             listener="#{comissaoIntManutModalBean.listenerTrocaVencimento}" />
+                                </awb-h:commandButton>
+                                
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+
+                        <awb-h:panelGrid>
+                            <awb-h:panelGroup>
+                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+                                    value="#{msgs.label_valor}" />
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup>
+                                <awb-h:inputText id="txtValor" styleClass="HtmlInputTextBradesco ajax-no-loading" tabindex="7"
+                                    disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}"
+                                    alt="{'type':'money-dot'}" maxlength="18" size="22"
+                                    value="#{comissaoIntManutModalBean.itemListaParcelaIrreg.vpcelacomiscmbio}">
+                                </awb-h:inputText>
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+        
+                        <awb-h:panelGrid columns="2" styleClass="right">
+                            <awb-h:panelGroup>
+                                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco ajax-no-loading" id="btoIncluirComiss"
+                                    disabled="#{comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}" tabindex="8"
+                                    value="#{msgs.bto_incluir}">
+                                    <f:ajax immediate="false" execute="pnlComissaoInterna" event="click"
+                                        render="pnlComissaoInterna formModalMessages btnConfirmar"
+                                        listener="#{comissaoIntManutModalBean.listenerIncluirParcelaIrregular}" />
+                                </awb-h:commandButton>
+                            </awb-h:panelGroup>
+
+                            <awb-h:panelGroup>
+                                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco ajax-no-loading" id="btoExcluirComiss"
+                                    disabled="#{empty comissaoIntManutModalBean.itemListaComissaoInterna.listaParcelasComissao or
+                                    comissaoIntManutModalBean.viewHelper.disabledModalComissaoInt}" tabindex="9"
+                                    value="#{msgs.bto_excluir}">
+                                    <f:ajax immediate="false" execute="pnlDadosIrregular pnlLstParcComiss" event="click"
+                                        render="formModalMessages pnlComissaoInterna btnConfirmar"
+                                        listener="#{comissaoIntManutModalBean.listenerExcluirParcelaIrregular}" />
+                                </awb-h:commandButton>
+                            </awb-h:panelGroup>
+                        </awb-h:panelGrid>
+                    </awb-h:panelGrid>
+        
+                    <!-- GRID -->
+                    <awb-h:panelGrid id="pnlLstParcComiss" styleClass="panelGridDataTable"
+                        rendered="#{not empty comissaoIntManutModalBean.itemListaComissaoInterna.listaParcelasComissao}">
+            
+                        <!-- RADIO GRID LISTA -->
+                        <awb-f:facet name="header">
+                            <awb-th:extSelectOneRadio id="radioLstParcComiss" layout="spread" immediate="false"
+                                forceId="true" forceIdIndex="false" tabindex="10"
+                                value="#{comissaoIntManutModalBean.viewHelper.itemSelecListaParcelaComiss}">
+                                <awb-f:selectItems value="#{comissaoIntManutModalBean.itensRadioListaParcelaComiss}"/>
+                            </awb-th:extSelectOneRadio>
+                        </awb-f:facet>
+
+                        <!-- GRID -->
+                        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar">
+                            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableTarifas">
+                                 <awb-br:keepState pdcDataScrollerID="dataScroller"
+                                     stateID="NPCCIAH6" resource="cws">
+                                    <awb-br:scrollableDataTable id="dataParcelas" 
+                                       value="#{comissaoIntManutModalBean.itemListaComissaoInterna.listaParcelasComissao}"
+                                       var="item" rows="4" width="100%" rowIndexVar="indexLista">
+                
+                                        <awb-br:scrollableColumn width="3%"
+                                        
+                                            rendered="#{comissaoIntManutModalBean.itemListaComissaoInterna.periodicidadeIrregular}">
+                                            <awb-f:facet name="header">
+                                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                                            </awb-f:facet>
+                                            <awb-th:extRadio index="#{indexLista}"
+                                                for=":formModalComissInt:radioLstParcComiss" />
+                                        </awb-br:scrollableColumn>
+                       
+                                       <awb-br:scrollableColumn width="14%" styleClass="c">
+                                           <awb-f:facet name="header">
+                                               <awb-h:outputLabel value="#{msgs.label_n_parcela}" styleClass="tableFontStyle"
+                                                   escape="false" />
+                                           </awb-f:facet>
+                                           <awb-h:outputLabel value="#{item.npcelacomis}" />
+                                       </awb-br:scrollableColumn>
+                       
+                                       <awb-br:scrollableColumn width="20%" styleClass="c">
+                                           <awb-f:facet name="header">
+                                               <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+                                           </awb-f:facet>
+                                           <awb-h:outputLabel value="#{item.tdianegocpcela}" />
+                                       </awb-br:scrollableColumn>
+                       
+                                       <awb-br:scrollableColumn width="23%" styleClass="c">
+                                           <awb-f:facet name="header">
+                                               <awb-h:outputLabel value="#{msgs.label_vencimento}" styleClass="tableFontStyle" escape="false" />
+                                           </awb-f:facet>
+                                           <awb-h:outputLabel value="#{item.vencimentoComissao}" />
+                                       </awb-br:scrollableColumn>
+                       
+                                       <awb-br:scrollableColumn width="40%" styleClass="r">
+                                           <awb-f:facet name="header">
+                                               <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+                                           </awb-f:facet>
+                                           <awb-h:outputLabel value="#{item.valorParcelaComissao}" />
+                                       </awb-br:scrollableColumn>
+                            
+                                    </awb-br:scrollableDataTable>
+                                </awb-br:keepState>
+                            </awb-th:extDiv>
+                        </awb-h:panelGrid>
+                        
+                        <!-- PAGINACAO -->
+                        <awb-br:awbDataScroller id="dataScroller" for="dataParcelas"
+                            renderFacetsIfSinglePage="true" resource="cws" styleClass="pagination"
+                            stateID="NPCCIAH6">
+                            <f:facet name="first">
+                                <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                    title="#{msgs.label_txt_primeira}" />
+                            </f:facet>
+                            <f:facet name="fastrewind">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                            </f:facet>
+                            <f:facet name="previous">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                            </f:facet>
+                            <f:facet name="next">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                            </f:facet>
+                            <f:facet name="fastforward">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                                    title="#{msgs.label_txt_avanco}" />
+                            </f:facet>
+                            <f:facet name="last">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                                    title="#{msgs.label_txt_ultima}" />
+                            </f:facet>
+                        </awb-br:awbDataScroller>
+				    </awb-h:panelGrid>
+
+                </awb-h:column>
+            </awb-h:panelGrid>
+            <br />
+
+            <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" tabindex="12"  />
+            <awb-h:commandButton action="#{comissaoIntManutModalBean.confirmaModalComissaoInterna}" value="Confirmar" tabindex="11"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right auto-focus" id="btnConfirmar"
+                disabled="#{comissaoIntManutModalBean.viewHelper.disabledConfirmar}"/> 
+                
+        </awb-h:form>
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+    </body>
+</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Campos Comissão Interna (Spread)-->
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:panelGroup>
+            <!-- COMISSÃO INTERNA -->
+            <awb-h:outputLabel value=" #{msgs.label_comissao_int}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+        
+        <awb-h:panelGrid width="100%" columns="4" id="div_comissaoInt" columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+       
+        	<awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo eq 2018}">
+                <!-- COBRANÇA COMISSÃO C/ ABOUT -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_cobranca_comissao_about}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.comissaoInterna}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <!-- COBRANÇA COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_cobranca_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.descrComissao}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.valorComissaoBoleto}"
+                    styleClass="HtmlOutputTextBoldBradesco">
+                    <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- MOEDA COMISSÃO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_moeda_comissao}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.isglindcdeconmmoeda}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- COMISSÃO SOBRE -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_comissao_sobre}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.identificaCobranca}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- MINIMO A COBRAR -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_minimo_cobrar}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vmincobrcomis}"
+                    styleClass="HtmlOutputTextBoldBradesco">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- SPREAD APROVADO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_apvr}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadaprov}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- SPREAD NEGOCIADO -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_negoc}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadnegoc}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- FLAT -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_flat}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.ptxflatpnalt}%"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <!-- VALOR -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_valor}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vlxtotalcomis}"
+                    styleClass="HtmlOutputTextBoldBradesco">
+                <f:converter converterId="numericConverter"></f:converter>
+                </awb-h:outputLabel>
+            </awb-h:panelGroup>
+            
+            <awb-h:panelGroup>
+                <!-- SPREAD TOTAL -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_spread_total}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadtot}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="%" />    
+            </awb-h:panelGroup>
+            
+        </awb-h:panelGrid>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaComissaoInt" layout="spread" immediate="false" forceId="true"
+                forceIdIndex="false" value="#{tradeFinanceBean.viewHelper.comissaoIntSelecionado}">
+                <f:ajax event="change" listener="#{tradeFinanceBean.detalhesComissaoIntRadio}"
+                    render="div_comissaoInt" execute="radioListaComissaoInt" />
+                <awb-f:selectItems value="#{tradeFinanceBean.selectItemComissaoInt}" />
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+        
+        <!--  GRID  -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid2">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable2">
+                <awb-br:scrollableDataTable var="comissaoIntLista" value="#{tradeFinanceBean.comissaoIntList}"
+                    id="radioListaComissaoInt" width="100%" rowIndexVar="indexComInt"
+                    rendered="#{tradeFinanceBean.comissaoIntList.size() > 0 and tradeFinanceBean.tradeFinanceVO.ccomiscartanacio eq 'Sim'}">
+                    <awb-br:scrollableColumn width="3%">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-th:extRadio index="#{indexComInt}" for=":formTradeFinMonitDet:radioListaComissaoInt" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn rendered="#{!tradeFinanceBean.tradeFinanceVO.produto.garantia and !(tradeFinanceBean.tradeFinanceVO.produto.codigo eq 2018)}">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_data}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel
+                        	value="#{comissaoIntLista.dprevtdsembcmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+                   
+                    <awb-br:scrollableColumn rendered="#{tradeFinanceBean.tradeFinanceVO.produto.garantia}"> 
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_data}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel
+                        	value="#{tradeFinanceBean.tradeFinanceVO.dprevtgarntexpdi}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+                    
+                    <awb-br:scrollableColumn width="10%" styleClass="c"  rendered="#{tradeFinanceBean.tradeFinanceVO.produto.codigo eq 2018}">
+                          <awb-f:facet name="header">
+                              <awb-h:outputLabel value="#{msgs.label_data}" styleClass="tableFontStyle" escape="false" />
+                          </awb-f:facet>
+                          <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.dinclreg}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_periodicidade}" styleClass="tableFontStyle"
+                                escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoIntLista.ifluxoperdccmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_momento}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoIntLista.descrmomento}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoIntLista.isglindcdeconmmoeda}"
+                            styleClass="HtmlOutputTextBoldBradesco" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{comissaoIntLista.vprevtcomiscmbio}"
+                            styleClass="HtmlOutputTextBoldBradesco" >
+                        <f:converter converterId="numericConverter"></f:converter>
+                        </awb-h:outputLabel>
+                    </awb-br:scrollableColumn>
+
+                </awb-br:scrollableDataTable>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+        
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColum50, panelGridColum50"
+            rendered="#{tradeFinanceBean.comissaoIntList.size() > 0}">
+            <awb-h:panelGroup>
+                <!-- CUSTO TOTAL -->
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_custo_total}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.descctotal}"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+            <awb-h:commandButton value="#{msgs.bto_detalhar}" id="btnDetalharComissaoInt"
+                styleClass="HtmlCommandButtonBradesco" style="float: right"
+                rendered="#{tradeFinanceBean.comissaoIntList.size() > 0}">
+                <f:ajax listener="#{tradeFinanceBean.detalharComissaoInterna}" render="div_modalComissaoInt divSeiModals formModalMessages" />
+            </awb-h:commandButton>
+        </awb-h:panelGrid>
+        
+    </awb-h:panelGrid>
+
+    <awb-th:extDiv id="div_modalComissaoInt">
+        <awb-br:modalContent id="content_modalComissaoInt" closeId="formModalComissaoInt:btnCancelar" autoOpen="true"
+            openId="btnDetalharComissaoInt" resizable="true" draggable="true"
+            contentPath="#{request.contextPath}/content/comercializacao/precificacao/negociacao/content/consulta/dadosComissaoInternaModalCons.xhtml"
+            header="#{msgs.label_comissao_int}" width="1000" height="530"
+            onHideServerCallback="#{tradeFinanceBean.fecharModalComissaoInt}"
+            rendered="#{tradeFinanceBean.viewHelper.renderModalComissaoInt}" />
+    </awb-th:extDiv>
+
+</ui:composition>
+</html>

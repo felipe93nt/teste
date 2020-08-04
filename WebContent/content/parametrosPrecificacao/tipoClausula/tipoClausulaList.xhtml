@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_tipoClausula_list}" />
+    <ui:param name="passNumber" value="1" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_tipoClausula_list',0)}" />
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tipoClausulaBean.iniciar}" />
+    </f:metadata>
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formTipoClausula">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- RADIO GRID LISTA -->
+            <f:facet name="header">
+                <h:selectOneRadio id="radio" forceId="true" forceIdIndex="false"
+                    value="#{tipoClausulaBean.viewHelper.codItemSelecionadoLista}">
+                    <f:selectItems value="#{tipoClausulaBean.selectItemRadioLista}" />
+                </h:selectOneRadio>
+            </f:facet>
+
+            <awb-h:panelGrid styleClass="panelGridDataTable">
+                <awb-br:keepState pdcDataScrollerID="dataScroller"
+                    stateID="#{tipoClausulaBean.viewHelper.nomeStateIdLista}" resource="cws">
+                    <awb-br:scrollableDataTable id="dataTable" value="#{tipoClausulaBean.lista}" var="item" rows="10"
+                        width="100%" rowIndexVar="indexLista" rendered="#{tipoClausulaBean.lista.size() > 0}">
+
+                        <!-- Primeira coluna - RADIO -->
+                        <awb-br:scrollableColumn width="3%">
+                            <f:facet name="header">
+                                <h:outputText value=" " styleClass="tableFontStyle" escape="false" />
+                            </f:facet>
+                            <awb-th:extRadio index="#{indexLista}" for=":formTipoClausula:radio" />
+                        </awb-br:scrollableColumn>
+
+                        <awb-br:scrollableColumn width="100%">
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.label_Tipos_Clasula}" styleClass="tableFontStyle"
+                                    escape="false" />
+                            </f:facet>
+                            <h:outputText value="#{item.itpoclauscmbio}" />
+                        </awb-br:scrollableColumn>
+
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+
+                <!-- PAGINACAO -->
+                <awb-br:awbDataScroller resource="cws" for="dataTable" styleClass="pagination" id="dataScroller"
+                    renderFacetsIfSinglePage="true" actionListener="#{tipoClausulaBean.paginar}"
+                    stateID="#{tipoClausulaBean.viewHelper.nomeStateIdLista}">
+                    <f:facet name="first">
+                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                            title="#{msgs.label_txt_primeira}" />
+                    </f:facet>
+                    <f:facet name="fastrewind">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}"
+                            title="#{msgs.label_txt_retrocesso}" />
+                    </f:facet>
+                    <f:facet name="previous">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}"
+                            title="#{msgs.label_txt_anterior}" />
+                    </f:facet>
+                    <f:facet name="next">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}"
+                            title="#{msgs.label_txt_proxima}" />
+                    </f:facet>
+                    <f:facet name="fastforward">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                            title="#{msgs.label_txt_avanco}" />
+                    </f:facet>
+                    <f:facet name="last">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                            title="#{msgs.label_txt_ultima}" />
+                    </f:facet>
+                </awb-br:awbDataScroller>
+            </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+                    action="nav_index">
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+                <awb-h:panelGrid style="float:right" columns="3">
+                    <!-- INCLUIR -->
+                    <awb-h:commandButton id="btnIncluir" styleClass="HtmlCommandButtonBradesco"
+                        action="#{tipoClausulaBean.incluir}" value="#{msgs.bto_incluir}">
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    <!-- ALTERAR -->
+                    <awb-h:commandButton id="btnAlterar" styleClass="HtmlCommandButtonBradesco"
+                        action="#{tipoClausulaBean.alterar}" value="#{msgs.bto_alterar}"
+                        disabled="#{tipoClausulaBean.lista.size() == 0}">
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    <!-- Excluir -->
+                    <awb-h:commandButton id="btnExcluir" styleClass="HtmlCommandButtonBradesco"
+                        action="#{tipoClausulaBean.excluir}" value="#{msgs.bto_excluir}"
+                        disabled="#{tipoClausulaBean.lista.size() == 0}">
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+
+                </awb-h:panelGrid>
+
+                <!-- MODAL EXCLUSÃO -->
+                <ui:include src="/template/modal.xhtml">
+                    <ui:param name="message" value="#{msgs.info_confirmar_exclusao}" />
+                    <ui:param name="bean" value="#{tipoClausulaBean}" />
+                    <ui:param name="actionConfirmar" value="actionConfirmarExcluir" />
+                    <ui:param name="actionFechar" value="actionFecharModal" />
+                    <ui:param name="renderModal" value="#{tipoClausulaBean.viewHelper.renderModal}" />
+                </ui:include>
+
+            </awb-h:panelGrid>
+        </awb-h:form>
+
+    </ui:define>
+</ui:composition>
+
+</html>

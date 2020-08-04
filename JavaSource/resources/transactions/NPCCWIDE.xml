@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWIDE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="89">
+    <register name="NPCCWIDE-HEADER">
+      <field name="NPCCWIDE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWIDE" />
+      <field name="NPCCWIDE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00089" />
+    </register>
+    <register name="NPCCWIDE-REGISTRO">
+      <field name="NPCCWIDE-CUSUAR-LIM-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDE-CTPO-DESP-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWIDE-DTPO-DESP-CMBIO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWIDE-NTPO-SIT-CMBIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYBS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3616">
+    <register name="NPCCWYBS-HEADER">
+      <field name="NPCCWYBS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYBS" />
+      <field name="NPCCWYBS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03616" />
+    </register>
+    <register name="NPCCWYBS-SAIDA">
+      <field name="NPCCWYBS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYBS-LISTA-DESP" minOccurs="0" maxOccurs="20" depends="NPCCWYBS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWYBS-NDESP-BLETO-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-CTPO-DESP-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NTPO-DESP-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-CIDTFD-RESP-DESP" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NIDTFD-RESP-DESP" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-PDESP-NEGOC-CMBIO" pic="9(004)V9(09)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWYBS-CBASE-BLETO-NEGOC" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NBASE-BLETO-NEGOC" pic="X(005)" length="5" bytes="5" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-CFLUXO-PERDC-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NFLUXO-PERDC-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NINDCD-ECONM-MOEDA" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-VDESP-BLETO-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWYBS-CFORMA-COBR-DESP" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYBS-NFORMA-COBR-DESP" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYBS-VMIN-DESP-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

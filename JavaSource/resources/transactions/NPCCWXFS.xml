@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWXFS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3298">
+    <register name="NPCCWXFS-HEADER">
+      <field name="NPCCWXFS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWXFS" />
+      <field name="NPCCWXFS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03298" />
+    </register>
+    <register name="NPCCWXFS-REGISTRO">
+      <field name="NPCCWXFS-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXFS-NCOMIS-INTRN-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWXFS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWXFS-LISTA" minOccurs="0" maxOccurs="99" depends="NPCCWXFS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWXFS-NPCELA-COMIS-INTRN" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWXFS-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWXFS-VPCELA-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWXFS-PRAZO-PARCELA" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

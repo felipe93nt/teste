@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 400 a 499  -->
+    
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        <awb-h:panelGrid columns="1">
+            <!-- combo Moeda Operação -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_moeda_operacao}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaOper" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboMoedaOper" layout="pageDirection" title="Moeda Operação" 
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda" tabindex="400"
+                        value="#{bean.tradeFinNegocVO.cindcdeconmmoeda}" immediate="false">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboMoedaOperacao}" />
+                        <f:ajax immediate="false" execute="@form" event="change"
+                            render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerCalcularValorLimite}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1">
+            <!-- txt Valor ME -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_valor_ME}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtValorME" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtValorME" title="#{msgs.label_valor_ME}"  styleClass="HtmlInputTextObrigatorioBradesco"
+                        alt="{'type':'money-dot'}" maxlength="18" size="22" tabindex="401"
+                        value="#{bean.tradeFinNegocVO.vnegocmoedaestrg}">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerTrocaValorMe}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <!-- sem cabec -->
+                <awb-h:panelGroup />
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_moeda_limite}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.moedaLimite}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        <awb-h:panelGrid columns="1">
+            <!-- About -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_about}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco"/>
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtAbout" styleClass="HtmlInputTextBradesco" tabindex="402"
+                        alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+                        value="#{bean.tradeFinNegocVO.vlimcobervar}">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerTrocaValorMe}" />
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" value=" %" />
+                </awb-h:panelGroup>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+            <!-- Embarque Até -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_embarque_ate}: " styleClass="HtmlOutputLabelBoldBradesco" />
+            </awb-h:panelGroup>
+            <awb-h:panelGroup>
+                <awb-br:calendar id="calendEmbAte" disableInputFields="false" tabindex="403"
+		           		onFieldFilled="errorStyleChanger" clientValidationLevel="date"
+		           		onInputChange="limpaData('formTrdFinNegIncl:calendEmbAte','listenerTratarPrazo')"
+		           		onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		           		value="#{bean.viewHelper.dataLimiteEmbarque}">
+		        </awb-br:calendar>
+		        <awb-h:outputLabel value=" " escape="false" />
+                <awb-h:commandButton style="display:none;"
+                 		id="calendarEmbarqueAte-calendar" styleClass="ajax-call listenerTratarPrazo">
+                    <f:ajax execute="@form" event="click" render="formModalMessages formTrdFinNegIncl divSeiModals labelPrzTotOper"
+                        listener="#{bean.listenerTratarPrazo}" />
+                         <f:param name="campoData" value="2" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+        <awb-h:panelGrid columns="1">
+        	<!-- Valor Moeda Limite -->
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_moeda_limite_vlr}: " />
+
+                <!-- o campo 'vlMoedaLimite' deve apenas ser exibido na tela, esse é o valor original -> 'tradeFinNegocVO.vmoedalimgerc' -->
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                    value="#{bean.tradeFinNegocVO.vlMoedaLimite}" >
+                    <f:converter converterId="numericConverter" />
+                </h:outputText> 
+                
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+        columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+        <awb-h:panelGrid columns="1">
+            <!-- combo Prazo -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_prazo}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco"/>
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboPrazo" layout="pageDirection" tabindex="404"
+                        styleClass="HtmlSelectOneMenuBradesco"
+                        value="#{bean.tradeFinNegocVO.cprznegoccmbio}" immediate="false">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboPrazo}" />
+                        <f:ajax immediate="false" execute="@form" event="change" 
+                        	render="pnMixPayment txtPrazoMaxAprz txtLetras"
+                            listener="#{bean.listenerTratarPrazo}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+        		<!-- input Prazo Máximo para Apresentação -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Prazo Máximo para Apresentação: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco"/>
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtPrazoMaxAprz" maxlength="5" size="7" 
+                    	styleClass="HtmlInputTextObrigatorioBradesco" tabindex="405"
+                    	disabled="#{bean.tradeFinNegocVO.cprznegoccmbio != 1}" alt="{'type':'integer'}" 
+                    	value="#{bean.tradeFinNegocVO.tdiavalddcarta}">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerCalcPrazoTotalOper}" />
+                    </awb-h:inputText>
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" Dias" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+        		<!-- input Letras -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_letras}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco"/>
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtLetras" maxlength="5" size="7" 
+                    	styleClass="HtmlInputTextObrigatorioBradesco" tabindex="406"
+                        disabled="#{bean.tradeFinNegocVO.cprznegoccmbio != 2}" alt="{'type':'integer'}" 
+                        value="#{bean.tradeFinNegocVO.tdiavalddletra}">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerCalcPrazoTotalOper}" />
+                    </awb-h:inputText>
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" Dias" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="1" id="pnMixPayment">
+	    <awb-h:panelGrid rendered="#{bean.tradeFinNegocVO.cprznegoccmbio == 3}">
+	        <awb-h:panelGroup>
+	            <awb-h:outputLabel value=" Mixed Payment" styleClass="HtmlOutputTextBulletBoldBradesco" />
+	        </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+	
+	    <awb-h:panelGrid columns="2" styleClass="panelGridTable"
+	    	rendered="#{bean.tradeFinNegocVO.cprznegoccmbio == 3}">
+	        <awb-h:panelGrid columns="4" styleClass="panelGridTable2">        	
+	            <awb-h:panelGrid columns="1">
+	            	<!-- input Valor -->            	
+	                <awb-h:panelGrid>
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_valor}:"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:inputText id="txtValorMixPay" styleClass="HtmlInputTextBradesco" tabindex="407"
+	                            alt="{'type':'money-dot'}" maxlength="18" size="22"
+	                            value="#{bean.tradeFinNegocVO.parcelaVO.vpcelacreditprevt}">
+	                        </awb-h:inputText>
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	    
+	            <awb-h:panelGrid columns="1">
+	    			<!-- input Percentual -->
+	                <awb-h:panelGrid>
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_percentual}:"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:inputText id="txtPercentual" maxlength="5" size="7" tabindex="408"
+	                            alt="{'type':'integer'}" styleClass="HtmlInputTextBradesco"
+	                            value="#{bean.tradeFinNegocVO.parcelaVO.vpcelacartaprevt}">
+	                        </awb-h:inputText>
+	                        <h:outputText styleClass="HtmlOutputTextBoldBradesco" value=" %" />
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	
+	            <awb-h:panelGrid columns="1">
+	                <!-- combo À Vista / Prazo -->
+	                <awb-h:panelGrid>
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_a_vista_prazo}"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:selectOneMenu id="comboVistaPrazo" layout="pageDirection" tabindex="409"
+	                            styleClass="HtmlSelectOneMenuBradesco"
+	                            value="#{bean.tradeFinNegocVO.parcelaVO.cprzpcelacarta}" immediate="false">
+	                            <awb-f:selectItems value="#{bean.viewHelper.comboAVistaPrazo}" />
+		                        <f:ajax immediate="false" execute="@form" event="change" render="txtDias"
+		                            listener="#{bean.listenerTratarAvistaPrazo}" />
+	                        </awb-h:selectOneMenu>
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	    
+	            <awb-h:panelGrid columns="1">
+	            	<!-- input Dias -->
+	                <awb-h:panelGrid>
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_dias}:"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:inputText id="txtDias" maxlength="5" size="7" 
+	                        	styleClass="HtmlInputTextBradesco" tabindex="410"
+	                        	disabled="#{bean.tradeFinNegocVO.parcelaVO.cprzpcelacarta != 2}"
+	                            alt="{'type':'integer'}" value="#{bean.tradeFinNegocVO.parcelaVO.tdiapgtocarta}">
+	                        </awb-h:inputText>
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	        </awb-h:panelGrid>
+	    
+	        <awb-h:panelGrid columns="1" styleClass="right">
+	            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclMixedPayment" tabindex="411"
+	                value="#{msgs.bto_incluir}">
+	                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+	                    listener="#{bean.listenerIncluirMixedPayment}" />
+	            </awb-h:commandButton>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	
+	    <!-- GRID Mixed Payment -->
+	    <awb-h:panelGrid id="gridParcelas" styleClass="panelGridDataTable" 
+	    	rendered="#{not empty bean.tradeFinNegocVO.listaParcelas}">
+	
+	        <!-- RADIO GRID LISTA -->
+	        <awb-f:facet name="header">
+	            <awb-th:extSelectOneRadio id="radioMixedPayment" layout="spread" immediate="false"
+	                forceId="true" forceIdIndex="false" tabindex="412"
+	                value="#{bean.viewHelper.itemSelecListaParcelas}">
+	                <awb-f:selectItems value="#{bean.itensRadioListaParcelas}" />
+	            </awb-th:extSelectOneRadio>
+	        </awb-f:facet>
+	
+	        <!-- GRID -->
+	        <awb-h:panelGrid styleClass="panelGridDataTable">
+	            <awb-br:keepState pdcDataScrollerID="dataScrollerListaMixedPayment"
+	                stateID="#{bean.viewHelper.stateIdListaParcelas}" resource="cws">
+	                <awb-br:scrollableDataTable id="dataTableMixedPayment" var="itemMixedPayment" rows="20"
+	                    width="100%" rowIndexVar="indexListaMixedPayment"
+	                    value="#{bean.tradeFinNegocVO.listaParcelas}">
+
+	                    <awb-br:scrollableColumn width="3%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-th:extRadio index="#{indexListaMixedPayment}" for=":formTrdFinNegIncl:radioMixedPayment" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="25%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemMixedPayment.vpcelacreditprevt}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_percentual}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemMixedPayment.vpcelacartaprevt}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="25%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_a_vista_prazo}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemMixedPayment.nprzpcelacarta}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="30%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_dias}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemMixedPayment.tdiapgtocarta}" />
+	                    </awb-br:scrollableColumn>
+	
+	                </awb-br:scrollableDataTable>
+	            </awb-br:keepState>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	
+	    <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+	        <awb-h:panelGrid columns="3" styleClass="panelGridTable2">
+	            <awb-h:panelGrid columns="1">
+	            	<!-- label Prazo Total Operação -->
+	                <awb-h:panelGrid>
+	                    <!-- sem cabec -->
+	                    <awb-h:panelGroup />
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_prazo_total}: " />
+	                        <h:outputText id="labelPrzTotOper" styleClass="HtmlOutputTextBoldBradesco"
+	                            value="#{bean.tradeFinNegocVO.tdiaopercmbio}" />
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	    
+	            <awb-h:panelGrid columns="1">
+	            	<!-- radio Embarque  Parcial-->
+	                <awb-h:panelGrid>
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_embarque_parcial}:"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:selectOneRadio id="radioEmbarqParcial" layout="lineDirection" tabindex="413"
+	                            styleClass="HtmlSelectOneRadioBradesco"
+	                            value="#{bean.tradeFinNegocVO.cindcdembrqpcial}" immediate="false">
+	                            <awb-f:selectItems value="#{selectItemBean.simNaoStr}" />
+	                        </awb-h:selectOneRadio>
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	    
+	            <awb-h:panelGrid columns="1">
+	                <awb-h:panelGrid>
+	                	<!-- input Quantidade Embarques -->
+	                    <awb-h:panelGroup>
+	                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                        <awb-h:outputLabel value="#{msgs.label_det_qtde_embarque}:"
+	                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+	                    </awb-h:panelGroup>
+	                    <awb-h:panelGroup>
+	                        <awb-h:inputText id="txtQtdEmbarque" maxlength="5" size="7" tabindex="414"
+	                            alt="{'type':'integer'}" styleClass="HtmlInputTextBradesco"
+	                            value="#{bean.tradeFinNegocVO.qprevtembrqcmbio}">
+	                        </awb-h:inputText>
+	                    </awb-h:panelGroup>
+	                </awb-h:panelGrid>
+	            </awb-h:panelGrid>
+	        </awb-h:panelGrid>
+	    
+	        <awb-h:panelGrid columns="1" styleClass="right">
+	            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoExclMixedPayment" tabindex="415"
+	                value="#{msgs.bto_excluir}" rendered="#{not empty bean.tradeFinNegocVO.listaParcelas}">
+	                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+	                    listener="#{bean.listenerExcluirMixedPayment}" />
+	            </awb-h:commandButton>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	
+	    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+	        <!-- LINHA CABEC -->
+	        <awb-h:panelGroup>
+	            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Forma de Pagamento Complementar:" />
+	        </awb-h:panelGroup>
+	
+	        <!-- LINHA DADOS -->
+	        <awb-h:panelGroup>
+	            <awb-h:inputTextarea id="txtFormaPagCompl" immediate="false" cols="250" rows="2" tabindex="416"
+	             	onkeydown="textCounter(this,200);" onkeyup="textCounter(this,200);" length="200;"
+	                styleClass="HtmlInputTextBradesco" value="#{bean.tradeFinNegocVO.obsCotacaoVO.fpgtocomplcmbio}">
+	            </awb-h:inputTextarea>
+	        </awb-h:panelGroup>
+	    </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

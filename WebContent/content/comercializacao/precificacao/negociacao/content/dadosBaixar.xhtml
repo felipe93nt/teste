@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition> 
+     <awb-h:panelGrid columns="2" styleClass="panelGridTable"
+		columnClasses="panelGridColum50, panelGridColum50">
+		    
+		    <!-- OPERADOR -->
+		    <awb-h:panelGrid>
+				<awb-h:panelGroup>
+				    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				    <awb-h:outputLabel value="#{msgs.label_operador}: " styleClass="HtmlOutputLabelBradesco" />
+				    <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.nusuarinclt}"
+				        styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		  
+		    <!-- DATA DA BAIXA -->
+            <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_data_baixa}: " styleClass="HtmlOutputLabelBradesco" />
+	                <awb-h:outputLabel value="#{tradeFinBaixarBean.dataAtual}"
+	                    styleClass="HtmlOutputTextBoldBradesco" />
+	            </awb-h:panelGroup>
+            </awb-h:panelGrid>
+		  
+		      
+			<!-- COMBO MOEDA -->
+			<awb-h:panelGrid columns="1">
+			    <awb-h:panelGroup>
+			        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			        <h:outputText value="#{msgs.label_moeda}: " styleClass="HtmlOutputLabelBradesco" />
+			    </awb-h:panelGroup>
+			    <awb-h:panelGroup width="100%">
+			        <awb-h:selectOneMenu id="comboMoedaBaixar" immediate="true"
+			            styleClass="HtmlSelectOneMenuObrigatorioBradesco" title="#{msgs.label_moeda}"
+			            value="#{tradeFinanceBean.tradeFinanceVO.cindcdeconmpnalt}">
+			            <awb-f:selectItems value="#{tradeFinBaixarBean.comboMoeda}" />
+			        </awb-h:selectOneMenu>
+			        <h:outputText value=" " escape="false" />
+			    </awb-h:panelGroup>
+			</awb-h:panelGrid>
+		    
+		    <!-- TAXA DE COMPROMISSO -->
+		    <awb-h:panelGrid columns="1">
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="Taxa de Compromisso: " styleClass="HtmlOutputLabelBradesco" />
+	            </awb-h:panelGroup>
+	             
+	            <!-- LINHA DADOS -->
+	            <awb-h:panelGroup>
+	                <awb-br:brInputText id="txtMulta" title="Taxa de Compromisso"
+	                    alt="{'type':'money-dot'}" maxlength="18" size="25"
+	                    value="#{tradeFinanceBean.tradeFinanceVO.vpnaltanteccmbio}"
+	                    styleClass="HtmlInputTextBradesco">
+	                </awb-br:brInputText>
+	            </awb-h:panelGroup>
+		    </awb-h:panelGrid>
+		    
+		    <awb-h:outputLabel value=""/>
+		    <awb-h:outputLabel value=""/>
+		    
+			<!-- COMBO MOTIVO -->
+		    <awb-h:panelGrid width="100%">
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <h:outputText value="#{msgs.label_motivo}: " styleClass="HtmlOutputLabelBradesco" />
+		        </awb-h:panelGroup>
+		        <awb-h:panelGroup width="100%">
+		           <awb-h:selectOneMenu id="cboBaixar" immediate="true"
+		                styleClass="HtmlSelectOneMenuObrigatorioBradesco" title="#{msgs.label_motivo}"
+		                value="#{tradeFinanceBean.tradeFinanceVO.cmotvobletocmbio}">
+		                <awb-f:selectItems value="#{tradeFinBaixarBean.comboMotivosPerdaItens}" />
+		            </awb-h:selectOneMenu>
+		        </awb-h:panelGroup>
+		    </awb-h:panelGrid>
+
+	 </awb-h:panelGrid>
+	
+	 <!-- LINHA DIVISÓRIA -->
+	 <awb-h:panelGrid width="100%">
+	     <br></br>
+	     <awb-f:verbatim>
+	         <hr />
+	     </awb-f:verbatim>
+	 </awb-h:panelGrid>
+	
+	 <awb-h:panelGrid columns="2" width="100%">
+	
+	     <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+	         action="#{tradeFinBaixarBean.actionVoltar}" />
+	     <awb-h:panelGrid styleClass="gridBotaoDireita">
+	         <awb-h:panelGroup>
+	             <awb-h:commandButton id="btnConfirmarFechar" styleClass="HtmlCommandButtonBradesco right"
+	                 actionListener="#{tradeFinBaixarBean.validarForm}" value="#{msgs.bto_confirmar}" />
+	         </awb-h:panelGroup>
+	     </awb-h:panelGrid>
+	 </awb-h:panelGrid>
+	
+	 <!--  MODAL CONFIRMAÇÃO -->
+     <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinBaixarBean}" />
+        <ui:param name="actionConfirmar" value="actionConfirmar" />
+        <ui:param name="actionFechar" value="actionFechar" />
+        <ui:param name="renderModal" value="#{tradeFinBaixarBean.viewHelper.renderModal}" />
+     </ui:include>
+	 
+   </ui:composition>
+</html>

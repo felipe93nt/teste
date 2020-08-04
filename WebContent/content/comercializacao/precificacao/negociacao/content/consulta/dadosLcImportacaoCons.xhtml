@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+	<awb-h:panelGrid styleClass="panelGridTable"
+		rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+		<awb-h:panelGrid width="100%" columns="3"
+			columnClasses="panelGridColum33, panelGridColum25,panelGridColum25">
+			
+			<!-- MOEDA OPERACAO -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_moeda_operacao}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.moedaoperacao}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+
+			<!-- VALOR ME -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_valor_ME}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vnegocmoedaestrg}"
+					styleClass="HtmlOutputTextBoldBradesco">
+				<f:converter converterId="numericConverter"></f:converter>
+				</awb-h:outputLabel>
+			</awb-h:panelGroup>
+
+			<!-- MOEDA LIMITE -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_moeda_limite}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.moedalimite}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+			
+			<!-- ABOUT -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_about}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vlimcobervar} %"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+			
+			<!-- EMBARQUE ATE -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_embarque_ate}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.dlimembrqcmbio}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+
+			<!-- MOEDA LIMITE VALOR -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_moeda_limite_vlr}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vmoedalimgerc}"
+					styleClass="HtmlOutputTextBoldBradesco">
+				<f:converter converterId="numericConverter"></f:converter>
+				</awb-h:outputLabel>
+			</awb-h:panelGroup>
+
+			<!-- PRAZO -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_prazo}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.formataPrazoLC}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+
+			<!-- PRAZO MAXIMO -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_prazo_maximo}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.valddcarta}" styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+			
+			<!-- LETRAS -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_letras}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.tdiavalddletra}" styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+
+	<!-- MIXED PAYMENT -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-h:panelGroup>
+			<awb-h:outputLabel value=" #{msgs.label_det_mixed}"
+				styleClass="HtmlOutputTextBulletBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	<!-- PARCELAS DESEMBOLSO -->
+	<awb-h:panelGrid styleClass="panelGridDataTable">
+		<awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAQ8" resource="cws">
+			<awb-br:scrollableDataTable
+				value="#{tradeFinanceBean.parcelaDesembList}" var="des"
+				rows="10" rowIndexVar="indexdes" styleClass="panelGridTable">
+
+				<!-- VALOR -->
+				<awb-br:scrollableColumn>
+					<awb-f:facet name="header">
+						<awb-h:outputLabel value="#{msgs.label_valor}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{des.vpcelacreditprevt}">
+					<f:converter converterId="numericConverter"></f:converter>
+					</awb-h:outputLabel>
+				</awb-br:scrollableColumn>
+
+				<!-- PERCENTUAL -->
+				<awb-br:scrollableColumn>
+					<awb-f:facet name="header">
+						<awb-h:outputLabel value="#{msgs.label_percentual}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{des.vpcelacartaprevt}" />
+				</awb-br:scrollableColumn>
+
+				<!-- À VISTA/PRAZO -->
+				<awb-br:scrollableColumn>
+					<awb-f:facet name="header">
+						<h:outputLabel value="#{msgs.label_a_vista_prazo}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{des.nprzpcelacarta}" />
+				</awb-br:scrollableColumn>
+
+				<!-- DIAS -->
+				<awb-br:scrollableColumn>
+					<awb-f:facet name="header">
+						<awb-h:outputLabel value="#{msgs.label_dias}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{des.tdiapgtocarta}" />
+				</awb-br:scrollableColumn>
+			</awb-br:scrollableDataTable>
+		</awb-br:keepState>
+
+		<awb-h:panelGrid styleClass="panelGridTable" columns="3"
+			columnClasses="panelGridColum50">
+			<!-- PRAZO TOTAL OPERACAO -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_prazo_total}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{tradeFinanceBean.tradeFinanceVO.tdiaopercmbio}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+			<!-- EMBARQUE PARCIAL -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_embarque_parcial}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{tradeFinanceBean.tradeFinanceVO.formataEmbarqueParcial}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+			<!-- QUANTIDADE EMBARQUES -->
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="#{msgs.label_det_qtde_embarque}: "
+					styleClass="HtmlOutputLabelBradesco" />
+				<awb-h:outputLabel
+					value="#{tradeFinanceBean.tradeFinanceVO.qprevtembrqcmbio}"
+					styleClass="HtmlOutputTextBoldBradesco" />
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+
+		<!--LINHA DIVISORIA  -->
+		<awb-h:panelGrid width="100%">
+			<awb-f:verbatim>
+				<hr class="linhaPontilhada" />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+
+		<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel
+					value="#{msgs.label_forma_pagamento_complementar}: "
+					styleClass="HtmlOutputTextBulletBoldBradesco" />
+			</awb-h:panelGroup>
+			<awb-h:inputTextarea disabled="true"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.formapagto}"
+				style="width: 100%" rows="2" />
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+</ui:composition>
+</html>

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+
+<!-- #HTML declara??o de bibliotecas de componentes e tags -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-br="http://bradesco.com.br/components-br" lang="pt"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext">
+
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+	<ui:define name="body">
+		<body>
+			<awb-h:panelGrid width="100%">
+			
+				<!-- css -->
+				<awb-br:stylesheet href="/css/pages.css" />
+				<!-- FORM -->
+			
+				<awb-h:form prependId="false" id="formModalFlxPgt">
+					<awb-h:panelGroup>
+						<awb-h:panelGrid width="100%">
+		                    <awb-h:column>
+		                        <awb-h:panelGrid columns="4" width="100%"
+		                            columnClasses="panelGridColumn25,panelGridColum25,panelGridColum25,panelGridColum25">
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_prev_desembolso}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.dprevtdsembcmbio}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Moeda de Desembolso: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.viewHelper.nomeMoedaDesembolso}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Valor: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.vprevtdsembcmbio}" />
+		                            </awb-h:panelGroup>
+		                            
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="Prazo Operação(Dias): " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.tdiaopercmbio}" />                          
+		                            </awb-h:panelGroup>
+		                        </awb-h:panelGrid>
+		
+		                        <!-- LINHA DIVISÓRIA -->
+		                        <awb-h:panelGrid width="100%">
+		                            <awb-f:verbatim>
+		                                <hr class="linhaPontilhada"/>
+		                            </awb-f:verbatim>
+		                        </awb-h:panelGrid>
+		
+		                        <awb-h:panelGrid columns="4" width="100%" columnClasses="panelGridColumn25,panelGridColum25,panelGridColum25,panelGridColum25">
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_princ_dias}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.tdiacarenprinc}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco"
+		                                    value="#{msgs.label_det_periodicidade}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.nomePrincPeriodicidade}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_qtde_parcelas}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.qtdeocorrprinc}" />
+		                            </awb-h:panelGroup>
+		                            
+		                            <awb-h:panelGroup>
+		                            </awb-h:panelGroup>
+		                            
+		                        </awb-h:panelGrid>
+		
+		                        <!-- LINHA DIVISÓRIA -->
+		                        <awb-h:panelGrid width="100%">
+		                            <awb-f:verbatim>
+		                                <hr class="linhaPontilhada"/>
+		                            </awb-f:verbatim>
+		                        </awb-h:panelGrid>
+		
+		                        <awb-h:panelGrid columns="4" width="100%" columnClasses="panelGridColumn25,panelGridColum25,panelGridColum25,panelGridColum25">
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_juros_dias}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.jurosCarencia}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco"
+		                                    value="#{msgs.label_det_periodicidade}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.nomeJurosPeriodicidade}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_qtde_parcelas}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.qtdeocorrjuros}" />
+		                            </awb-h:panelGroup>
+		
+		                            <awb-h:panelGroup>
+		                                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_momento}: " />
+		                                <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+		                                    value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.nomeJurosMomento}" />
+		                            </awb-h:panelGroup>
+		                        </awb-h:panelGrid>
+		
+		                        <!-- LINHA DIVISÓRIA -->
+		                        <awb-h:panelGrid width="100%">
+		                            <awb-f:verbatim>
+		                                <hr class="linhaPontilhada"/>
+		                            </awb-f:verbatim>
+		                        </awb-h:panelGrid>
+		
+		                        <!-- DADOS FLUXO IRREGULAR -->
+		                        <awb-h:panelGrid id="pnlDadosIrregular" columns="5" styleClass="panelGridTable"
+		                            rendered="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.periodicidadeIrregular}">
+		                                <!-- PRAZO IRREGULAR -->
+		                                <awb-h:panelGrid id="divPrazo">
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+		                                            value="#{msgs.label_prazo}" />
+		                                    </awb-h:panelGroup>
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:inputText id="txtPrazo" styleClass="HtmlInputTextBradesco ajax-no-loading"
+		                                            disabled="#{fluxoPgtoManutModalBean.viewHelper.disabledDadosIrregular}"
+		                                            alt="{'type':'integer'}" maxlength="5" size="5" tabindex="2"
+		                                            value="#{fluxoPgtoManutModalBean.itemListaParcelaIrreg.tdianegocpcela}">
+		                                            <f:ajax execute="@form" event="change" immediate="false" render="formModalMessages pnlDadosIrregular"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerTrocaPrazo}" />
+		                                        </awb-h:inputText>
+		                                    </awb-h:panelGroup>
+		                                </awb-h:panelGrid>
+		
+		                                <!-- VENCIMENTO IRREGULAR -->
+		                                <awb-h:panelGrid id="divDtVenc" width="100%">
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+		                                            value="#{msgs.label_vencimento}" />
+		                                    </awb-h:panelGroup>
+		                                    <awb-h:panelGroup>
+		                                        <awb-br:calendar id="dataVencimento" tabindex="2"
+		                                            disableInputFields="false" clientValidationLevel="date"
+		                                            onInputChange="limpaData('formModalFlxPgt:dataVencimento','listenerTrocaDataVencimento')"
+		                                            onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+		                                            value="#{fluxoPgtoManutModalBean.itemListaParcelaIrreg.dateVctopcelatrade}" 
+		                                            disabled="#{fluxoPgtoManutModalBean.viewHelper.disabledDadosIrregular}"/>
+		                                        <awb-h:outputLabel value=" " escape="false" />
+		                                        <awb-h:commandButton style="display:none;" styleClass="ajax-call listenerTrocaDataVencimento ajax-no-loading">
+		                                            <f:ajax execute="divDtVenc" event="click"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerTrocaDataVencimento}"
+		                                                render="formModalMessages pnlDadosIrregular" />
+		                                        </awb-h:commandButton>
+		                                    </awb-h:panelGroup>
+		                                </awb-h:panelGrid>
+		
+		                                <!-- PRINCIPAL IRREGULAR -->
+		                                <awb-h:panelGrid>
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                                        <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" 
+		                                            value="Principal" />
+		                                    </awb-h:panelGroup>
+		                                    <awb-h:panelGroup>
+		                                    
+											<awb-h:inputText id="txtPrincipal" styleClass="HtmlInputTextBradesco" tabindex="3" disabled="#{fluxoPgtoManutModalBean.viewHelper.disabledDadosIrregular 
+	                                            or fluxoPgtoManutModalBean.viewHelper.disabledValorQuandoIrregularTipoJuros}" alt="{'type':'money-dot'}" maxlength="18" size="22"
+	                                            value="#{fluxoPgtoManutModalBean.itemListaParcelaIrreg.valorPrincipalParcelaFluxoPgto}">
+	                                        </awb-h:inputText>
+		                                    </awb-h:panelGroup>
+		                                </awb-h:panelGrid>
+		                                
+		                                <!-- BOTOES IRREGULAR -->
+		                                <awb-h:panelGrid columns="2" styleClass="right">
+		                                    
+		                                    <!-- INCLUIR -->
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco  ajax-no-loading" id="btoIncluirComiss"
+		                                            disabled="#{fluxoPgtoManutModalBean.viewHelper.disabledDadosIrregular}" tabindex="4"
+		                                            value="#{msgs.bto_incluir}">
+		                                            <f:ajax immediate="false" execute="@form" event="click"
+		                                                render="pnlLstParcFluxo formModalFlxPgt formModalMessages"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerIncluirParcelaIrregular}" />
+		                                        </awb-h:commandButton>
+		                                    </awb-h:panelGroup>
+		                                    
+		                                    <!-- ALTERAR -->
+		                                    <awb-h:panelGroup>
+		                                        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco ajax-no-loading" id="btoExcluirComiss" tabindex="5"
+		                                            disabled="#{empty fluxoPgtoManutModalBean.itemListaFluxoPgto.listaParcelasFluxoPgto or
+		                                            fluxoPgtoManutModalBean.viewHelper.disabledDadosIrregular}"
+		                                            value="#{msgs.bto_excluir}">
+		                                            <f:ajax immediate="false" execute="@form" event="click"
+		                                                render="pnlLstParcFluxo formModalFlxPgt formModalMessages"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerExcluirParcelaIrregular}" />
+		                                        </awb-h:commandButton>
+		                                    </awb-h:panelGroup>
+		                                </awb-h:panelGrid>
+		                        </awb-h:panelGrid>
+								
+		                        <!-- GRID -->
+		                        <awb-h:panelGrid id="pnlLstParcFluxo" styleClass="panelGridDataTable">
+		                            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_parcelas_princ_jr}" />
+		                            <!-- GRID -->
+		                            <awb-h:panelGrid id="pnlDadosGrid" styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar">
+		                                <awb-th:extDiv style="height: 350px; overflow: auto;" id="div_dataTableTarifas">
+						        			<awb-br:editableDataTable id="tableParcela" forceId="true" rowIndexVar="indexListaFluxos" var="item"
+												rowId="#{item.npceladsembtrade}" style="width:100%" value="#{fluxoPgtoManutModalBean.itemListaFluxoPgto.listaParcelasFluxoPgto}">
+												
+		                                        <awb-br:editableColumn id="indice" width="22%" styleClass="c" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="#{msgs.label_n_parcela}" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            <awb-h:outputLabel value="#{item.npceladsembtrade}" />
+		                                        </awb-br:editableColumn>
+		        								
+		        								<awb-br:editableColumn id="principal" width="18%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="Principal" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            <awb-h:inputText value="#{item.valorPrincipalParcelaFluxoPgto}" disabled="#{item.valorPrincipalParcelaFluxoPgto eq null}" style="text-align:right" valueChangeListener="#{fluxoPgtoManutModalBean.valueChangeListener}">
+			                                            <f:ajax execute="@form" event="change" immediate="false" render="formModalMessages formModalFlxPgt:pnlDadosGrid"
+			                                                listener="#{fluxoPgtoManutModalBean.listenerTrocaPrazo2}" />
+		                                            </awb-h:inputText>
+		                                        </awb-br:editableColumn>
+		        								
+		        								<awb-br:editableColumn id="juros" width="18%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="Juros" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            <awb-h:outputLabel value="#{item.valorJurosParcelaFluxoPgto}" styleClass="right"/>
+		                                        </awb-br:editableColumn>
+		        								
+		                                        <awb-br:editableColumn id="prazo" width="19%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+													
+													<awb-h:inputText value="#{item.tdianegocpcela}" style="text-align:right" valueChangeListener="#{fluxoPgtoManutModalBean.valueChangeListener}">
+														<f:ajax execute="@form" event="change" immediate="false" render="formModalMessages formModalFlxPgt:pnlDadosGrid"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerTrocaPrazo2}" />
+												  	</awb-h:inputText>
+		                                        </awb-br:editableColumn>
+		        								
+		                                        <awb-br:editableColumn id="vencimento" width="25%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="#{msgs.label_vencimento}" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            
+		                                            <awb-h:inputText value="#{item.vencimentoFluxoPgto}" style="text-align:right" valueChangeListener="#{fluxoPgtoManutModalBean.valueChangeListener}">
+		                                            	<f:ajax execute="@form" event="change" immediate="false" render="formModalMessages formModalFlxPgt:pnlDadosGrid"
+		                                                listener="#{fluxoPgtoManutModalBean.listenerTrocaPrazo2}" />
+		                                            </awb-h:inputText>
+		                                        </awb-br:editableColumn>
+		                                        
+		                                        <awb-br:editableColumn id="indice5" width="32%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            <awb-h:outputLabel styleClass="right" value="#{item.valorParcelaFluxoPgto}" />
+		                                        </awb-br:editableColumn>
+		                                        
+		                                        <awb-br:editableColumn id="indice6" width="32%" sortable="true" insertable="true" movable="true" removable="true">
+		                                            <awb-f:facet name="header">
+		                                                <awb-h:outputLabel value="Saldo Devedor" styleClass="tableFontStyle" escape="false" />
+		                                            </awb-f:facet>
+		                                            <awb-h:outputLabel styleClass="right" value="#{item.valorSaldoDevedorFluxoPgto}" />
+		                                        </awb-br:editableColumn>
+		                                    </awb-br:editableDataTable>
+		                                </awb-th:extDiv>
+		                            </awb-h:panelGrid>
+		                        </awb-h:panelGrid>
+		                    </awb-h:column>
+		                </awb-h:panelGrid>
+		                <br />
+						<awb-h:panelGrid width="100%" columnClasses="panelGridColum25,panelGridColum25">
+							<awb-h:panelGroup  width="50%" style="right: 0; bottom: 0; position: absolute;">
+								<awb-h:commandButton id="botaoConfirmar" action="#{fluxoPgtoManutModalBean.showModal}" value="Confirmar"
+				                    styleClass="HtmlCommandButtonBradesco right auto-focus">
+				                </awb-h:commandButton>
+							</awb-h:panelGroup>
+						</awb-h:panelGrid>
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-br:modal id="modalDOIS" title="Mensagem de confirmação" message="#{fluxoPgtoManutModalBean.mensagem}"
+							titleImageIcon="info" draggable="true" resizable="true" rendered="#{fluxoPgtoManutModalBean.renderModal}" >
+							<awb-f:facet name="buttons">
+								<awb-h:panelGroup>
+									<awb-h:commandButton id="botaoCancelar" styleClass="action-on-enter" value="Cancelar" actionListener="#{fluxoPgtoManutModalBean.actionFecharModalConfirma}" immediate="true" >
+				                    	<awb-br:submitCheckClient />
+				                	</awb-h:commandButton>
+					                <awb-h:commandButton id="botaoConfirmar2" styleClass="action-on-enter modal-confirmation" value="Confirmar" 
+					                	actionListener="#{fluxoPgtoManutModalBean.confirmarModal}" onclick="closeModal()">
+					                </awb-h:commandButton>
+								</awb-h:panelGroup>
+							</awb-f:facet>
+						</awb-br:modal>
+					</awb-h:panelGroup>
+					<awb-h:panelGroup width="50%" style="left: 0; bottom: 0; position: absolute;">
+		                <awb-h:commandButton imediate="true" faces-redirect="true" id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+		                	action="#{fluxoPgtoManutModalBean.btnCancelarFluxoPagamento}" styleClass="HtmlCommandButtonBradesco left" tabindex="9" >
+		                </awb-h:commandButton>
+		                <awb-h:inputHidden value="#{fluxoPgtoManutModalBean.viewHelper.modalId}" id="modalId2"></awb-h:inputHidden>
+		            </awb-h:panelGroup>
+				</awb-h:form>
+			</awb-h:panelGrid>
+		</body>
+		<script type="text/javascript" src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+		
+		<!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+            
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+		<script>
+			function closeModal() {
+				window.parent.closeModalContent(document.getElementById("modalId2").value);
+			}
+		</script>
+	</ui:define>
+</ui:composition>
+</html>

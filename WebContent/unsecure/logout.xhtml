@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- #HTML declaração de bibliotecas de componentes e tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core" lang="pt"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+	<!-- #VIEW declara??o de view principal do JSF -->
+	<awb-f:view encoding="UTF-8">
+		<ui:param name="helpID" value="helpID" />
+<head>
+	<meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1" />
+	<title>Logout</title>
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/faces/javax.faces.resource/template/root/css/tiles.css"/>
+	<link rel="stylesheet" type="text/css" href="#{request.contextPath}/faces/javax.faces.resource/template/root/css/components.css"/>
+	<link rel="stylesheet" type="text/css" media="print" href="#{request.contextPath}/faces/javax.faces.resource/template/root/css/print.css"/>
+
+	<!-- #COMUM adiciona recursos comuns da AWB -->
+	<presCore:addResource resource="js/jquery.js" />
+	<presCore:addResource resource="js/brquery.js" />
+
+	<script type="text/javascript">
+		var $jB = jQuery.noConflict();
+	</script>
+</head>
+
+
+
+<body leftmargin="0" topmargin="0" scroll="no">
+<!-- HEADER -->
+<awb-h:panelGrid id="mainLayout" border="0" cellpadding="0"
+			cellspacing="0" styleClass="tmainpage" headerClass="theaderPanelGridLogout"
+			footerClass="tfooterPanel" columnClasses="ccontext2">
+			<awb-f:facet name="header">
+				 <awb-f:subview id="subHeader">
+					<awb-h:panelGroup>
+						<awb-h:panelGrid cellpadding="0" cellspacing="0" border="0"
+							columns="1">
+							<awb-h:panelGroup>
+								<img src="#{request.contextPath}/faces/javax.faces.resource/template/root/images/logo_marca.png" class="img_logo" />
+							</awb-h:panelGroup>
+						</awb-h:panelGrid>
+					</awb-h:panelGroup>
+				</awb-f:subview>
+			</awb-f:facet>
+
+
+
+			<awb-h:panelGroup>
+				<p style="padding-left: 5px;">A sessão foi encerrada.
+				<br/>
+				<br/>
+				Para efetuar a reautenticação, feche o seu navegador.</p>
+			</awb-h:panelGroup>
+
+
+			<awb-f:facet name="footer">
+				<awb-f:subview id="footer">
+			<awb-h:panelGroup>
+			<awb-h:panelGrid width="100%" columns="3" cellpadding="0" cellspacing="0"
+					align="left" styleClass="tfooterpanelGrid"
+					columnClasses="tfooterColumnLeft,tfooterColumnAuto,tfooterColumnRight">
+					<awb-h:panelGroup>
+						<img src="#{request.contextPath}/faces/javax.faces.resource/template/root/images/canto_rodape.gif" />
+					</awb-h:panelGroup>
+					<img src="#{request.contextPath}/faces/javax.faces.resource/template/root/images/pixel_invisivel.gif" />
+					<awb-h:panelGroup>
+						<awb-h:outputLabel value="#{msgs.label_footer}" styleClass="footerText" />
+						<awb-br:versionInfo />
+					</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			</awb-h:panelGroup>
+			</awb-f:subview>
+			</awb-f:facet>
+</awb-h:panelGrid>
+
+
+
+</body>
+</awb-f:view>
+</html>

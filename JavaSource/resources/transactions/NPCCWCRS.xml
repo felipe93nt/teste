@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWCRS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="5166">
+    <register name="NPCCWCRS-HEADER">
+      <field name="NPCCWCRS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWCRS" />
+      <field name="NPCCWCRS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="05116" />
+    </register>
+    <register name="NPCCWCRS-REGISTRO">
+      <field name="NPCCWCRS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWCRS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWCRS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWCRS-CMOTVO-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWCRS-RMOTVO-BLETO-CMBIO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

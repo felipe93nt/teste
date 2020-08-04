@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYCS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="13">
+    <register name="NPCCWYCS-HEADER">
+      <field name="NPCCWYCS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYCS" />
+      <field name="NPCCWYCS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00013" />
+    </register>
+  </output>
+</copybook>
+

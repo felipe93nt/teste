@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition> 
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 100 a 199  -->
+
+    <awb-h:panelGrid id="pnlClientes" styleClass="panelGridTable">
+        <awb-h:panelGrid id="pnlCliente" columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+
+            <!-- Filtro Cliente -->
+            <awb-h:panelGrid id="filtroCliente" rendered="#{bean.viewHelper.clienteEditavel}">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_cliente}: "
+                        for="txtCliente" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText title="#{msgs.label_cliente}" size="50" maxlength="50" id="txtCliente"
+                        value="#{bean.clienteSelecaoVO.nomeCliente}" immediate="false"
+                        styleClass="HtmlInputTextObrigatorioBradesco auto-focus action-on-enter"
+                        validatorMessage="Mínimo 3 caracteres" tabindex="100">
+                        <awb-f:validator validatorId="customLengthValidator" />
+                        <awb-f:attribute name="minimum" value="3" />
+                        <awb-f:attribute name="maximum" value="50" />
+                    </awb-h:inputText>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value=" " />
+                    <awb-br:brCommandSearch id="txtCliente-action" tabindex="101">
+                        <f:ajax execute="@form" event="click" render="pnlCliente div_modalCliente formModalMessages"
+                            listener="#{bean.listenerPesquisarClientePorNome}" />
+                    </awb-br:brCommandSearch>
+                </awb-h:panelGroup>
+                <awb-h:message for="txtCliente" id="messageError" errorClass="TextValidatorMessage" />
+            </awb-h:panelGrid>
+            
+            <!-- NOME DO CLIENTE EM PAGINAS QUE NAO PERMITEM EDICAO -->
+            <awb-h:panelGrid rendered="#{!bean.viewHelper.clienteEditavel}">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_cliente}: "/>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{bean.clienteSelecaoVO.nomeCliente}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- CPF CNPJ -->
+            <awb-h:panelGrid rendered="#{bean.viewHelper.clienteEditavel}">
+                <!-- Tipo de pesquisa CPF CNPJ -->
+                <awb-h:panelGroup>
+                    <awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+                        value="#{bean.viewHelper.codCpfCnpjSelecionado}" id="radioCpfCnpj" tabindex="102">
+                        <awb-f:selectItems value="#{bean.viewHelper.tipoPesquisaCpfCnpj}" />
+                        
+                        <f:ajax execute="@this radioCpfCnpj txtCliente" event="click"
+                            render="formModalMessages gridCpfCnpj radioCpfCnpj pnlCliente"
+                            immediate="false" listener="#{bean.listenerMudaCpfCnpjCliente}" />
+                            
+                    </awb-h:selectOneRadio>
+                </awb-h:panelGroup>
+
+                <!-- CAMPOS -->
+                <awb-h:panelGrid columns="2" width="50%" id="gridCpfCnpj">
+                    <awb-h:panelGroup>
+                        <!-- CAMPO CNPJ -->
+                        <awb-br:cnpj id="cnpjCliente" value="#{bean.clienteSelecaoVO.cnpj}" tabindex="103"
+                            titleLabelCnpj="CNPJ" titleInputsCnpj="CNPJ" styleClassInputs="HtmlInputTextObrigatorioBradesco action-on-enter"
+                            binding="#{bean.viewHelper.cnpjClienteBinding}"
+                            rendered="#{bean.viewHelper.codCpfCnpjSelecionado == 2}">
+                        </awb-br:cnpj>
+                        <!-- CAMPO CPF -->
+                        <awb-br:cpf id="cpfCliente" value="#{bean.clienteSelecaoVO.cpf}" tabindex="104"
+                            titleLabelCpf="CPF" titleInputsCpf="CPF" styleClassInputs="HtmlInputTextObrigatorioBradesco action-on-enter"
+                            binding="#{bean.viewHelper.cpfClienteBinding}"
+                            rendered="#{bean.viewHelper.codCpfCnpjSelecionado == 3}">
+                        </awb-br:cpf>
+                    </awb-h:panelGroup>
+                    <!-- LUPA CPF CNPJ -->
+                    <awb-br:brCommandSearch styleClass="cnpjCliente-action cpfCliente-action" tabindex="105">
+                        <f:ajax execute="@this pnlCliente" event="click" 
+                            render="pnlCliente div_modalCliente gridCpfCnpj radioCpfCnpj formModalMessages"
+                            listener="#{bean.listenerPesquisarClientePorCpfCnpj}" />
+                    </awb-br:brCommandSearch>
+                    <awb-h:message for="cnpjCliente" showSummary="false" showDetail="true" styleClass="error"
+                        rendered="#{bean.viewHelper.codCpfCnpjSelecionado == 2}" />
+                    <awb-h:message for="cpfCliente" showSummary="false" showDetail="true" styleClass="error"
+                        rendered="#{bean.viewHelper.codCpfCnpjSelecionado == 3}" />
+                </awb-h:panelGrid>
+            </awb-h:panelGrid>
+            
+            <!-- CPF/CNPJ EM PAGINAS QUE NAO PERMITEM EDICAO -->
+            <awb-h:panelGrid rendered="#{!bean.viewHelper.clienteEditavel}">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_cpf_cnpj}: "/>
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{bean.tradeFinNegocVO.cpfCnpjFormatado}" />
+                </awb-h:panelGroup>
+                
+            </awb-h:panelGrid>
+            
+            <!-- botao Detalhar -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup />
+                <!-- BOTAO QUE ABRE O MODAL RELATORIO AUDITOR -->
+                <awb-h:panelGroup style="float:right">
+                    <awb-h:commandButton id="openModalDetalharClienteButton" value="#{msgs.bto_detalhar_cliente}" tabindex="106"
+                        styleClass="HtmlCommandButtonBradesco" rendered="#{bean.viewHelper.renderDetalheCliente}"
+                        disabled="#{empty bean.tradeFinNegocVO.cunicclicmbio or bean.tradeFinNegocVO.cunicclicmbio eq 0}">
+                        <f:ajax listener="#{relatorioAuditorModalBean.openModal}"
+                            render="formModalMessages div_modalRelAuditor" />
+                        <!-- CLIENTE SELECIONADO PASSADO COMO PARAMETRO PARA O MODAL REALTORIO AUDITOR -->
+                        <awb-f:attribute name="paramCodPessoaRelAuditor" value="#{bean.tradeFinNegocVO.cunicclicmbio}" />
+                        <awb-f:attribute name="paramCodProdutoRelAuditor" id="paramCodProdutoRelAuditor" value="#{bean.tradeFinNegocVO.cprodtservc}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <!-- txt Banco -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_banco}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtBanco" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtBanco" title="#{msgs.label_banco}" maxlength="30" disabled="true" size="34" tabindex="107"
+                        value="#{bean.clienteSelecaoVO.nomeBanco}"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- txt Agencia -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_agencia_minusculo}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtAgencia" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtAgencia" title="#{msgs.label_agencia_minusculo}" maxlength="5" size="9"
+                        value="#{bean.clienteSelecaoVO.codAgencia}" disabled="true" tabindex="108"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- txt Conta -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_conta_minusculo}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtConta" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true" tabindex="109"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Cidade/Estado: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.iciddeender} - #{bean.tradeFinNegocVO.csgluf}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Unidade de Negócio: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.nomeundorgnz}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Rating: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.crting}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable"
+            columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+            <!-- input Contato -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_contato}: "
+                        for="txtContatoCli" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtContatoCli" title="#{msgs.label_contato}" maxlength="30" size="52"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.nomecttclicmbio}" tabindex="110"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- input Telefone -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_telefone}: "
+                        for="txtFoneCli" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtFoneCli" title="#{msgs.label_contato}" maxlength="15" size="16" tabindex="111"
+                        alt="{'type':'ddd-phone'}" value="#{bean.tradeFinNegocVO.obsCotacaoVO.telcttclicmbio}"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Segmento: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.isgmto}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33"
+           		rendered="#{bean.tradeFinNegocVO.cprodtservc == 661 or bean.tradeFinNegocVO.cprodtservc == 662 or
+           					bean.tradeFinNegocVO.cprodtservc == 663 or bean.tradeFinNegocVO.cprodtservc == 664 or
+           					bean.tradeFinNegocVO.cprodtservc == 665 or bean.tradeFinNegocVO.cprodtservc == 666 or
+           					bean.tradeFinNegocVO.cprodtservc == 667 or bean.tradeFinNegocVO.cprodtservc == 670 or
+           					bean.tradeFinNegocVO.cprodtservc == 3934}">            
+            <!-- input Cargo -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_cargo}: "
+                        for="txtCargoCli" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtCargoCli" title="#{msgs.label_det_cargo}" maxlength="50" size="52" tabindex="112"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.cargonome}" styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- input E-mail -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_det_email}: "
+                        for="txtEmailCli" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtEmailCli" title="#{msgs.label_det_email}" maxlength="80" size="70" tabindex="113"
+                        value="#{bean.tradeFinNegocVO.obsCotacaoVO.cargoemail}" styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid>
+                <awb-h:panelGroup />
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>        
+        
+    </awb-h:panelGrid>
+
+    <!-- IMPORTA XHTML DO MODAL RELATORIO AUDITOR -->
+    <ui:include src="/content/global/relatorioAuditorModal/relatorioAuditorModal.xhtml">
+    </ui:include>
+
+</ui:composition>
+
+</html>

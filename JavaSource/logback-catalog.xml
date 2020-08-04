@@ -1,0 +1,58 @@
+<!--
+Atenção:
+- substituir <nome_aplicação> abaixo pelo nome da aplicação.
+-->
+
+<configuration>
+
+	<property name="PATH_LOG" value="suportedbdc_logs"/>
+	<property name="CHANNEL" value="intranet"/>
+	
+	<property name="APP_NAME" value="npcc_trade"/><!--Alterar-->
+	
+	<appender name="FILE-rolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/${PATH_LOG}/${CHANNEL}/${APP_NAME}/${APP_NAME}.log</file>
+	
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+			
+			<FileNamePattern>/${PATH_LOG}/${CHANNEL}/${APP_NAME}/${APP_NAME}.%d{yyyy-MM-dd}.%i.log</FileNamePattern> 
+			
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			
+			<maxHistory>2</maxHistory> 
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			
+		</rollingPolicy>
+	
+		<Append>true</Append>
+
+		<layout	class="br.com.bradesco.web.aq.application.log.impl.layout.BradescoPatternLayout">
+			<commonLayoutPattern>[%d] [%p] [%t] [%S] [%U] [%I] [%N] [%c] [%m] [%file] %n</commonLayoutPattern>
+		</layout>
+	</appender>
+	<!--LOGGER DA APLICACAO-->
+	<logger name="br.com.bradesco.web.npcc_trade"><!--Alterar-->
+		<level value="info" />
+		<appender-ref ref="FILE-rolling" />
+	</logger>
+	
+	<!--LOGGER AWB-->
+	<logger name="br.com.bradesco.web.aq">
+		<level value="info" />
+		<appender-ref ref="FILE-rolling" />
+	</logger>	
+	
+	<!--LOGGER FACES-->
+	<logger name="javax.faces">
+		<level value="info" />
+		<appender-ref ref="FILE-rolling" />
+	</logger>
+
+	<logger name="org.apache.myfaces">
+		<level value="info" />
+		<appender-ref ref="FILE-rolling" />
+	</logger>
+
+</configuration>

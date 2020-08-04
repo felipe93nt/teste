@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVXS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="14">
+    <register name="NPCCWVXS-HEADER">
+      <field name="NPCCWVXS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVXS" />
+      <field name="NPCCWVXS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00014" />
+    </register>
+    <register name="NPCCWVXS-REGISTRO">
+      <field name="NPCCWVXS-DATA-UTIL" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>
+

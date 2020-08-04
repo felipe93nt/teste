@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_clausulas_incl}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_clausulas_list',1)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <!-- FORM -->
+        <awb-h:form id="formClausula">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid>
+				<!-- COMBO TIPO CLAUSULAS -->
+                <awb-h:panelGrid columns="1" styleClass="panelGridTable2" columnClasses="panelGridColum33">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText value="#{msgs.label_tipo_clausulas}" styleClass="HtmlOutputLabelBoldBradesco" />
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:selectOneMenu id="tpoClausula" immediate="false" title="#{msgs.label_tipo_clausulas}"
+                            styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+                            value="#{clausulaBean.clausulaVO.ctpoclauscmbio}">
+                            <awb-f:selectItems value="#{clausulaBean.viewHelper.comboTipoClausulaItens}" />
+                        </awb-h:selectOneMenu>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+            
+                <!-- CAMPO DESCRICAO-->
+                <awb-h:panelGrid width="100%">
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_descricao}"/>
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                        <awb-h:inputTextarea title="#{msgs.label_descricao}" id="areaDescricao"
+                            value="#{clausulaBean.clausulaVO.rclauscontrcmbio}" onkeyup="textCounter(this,3000);"
+                            styleClass="HtmlInputTextObrigatorioBradesco" cols="200" rows="10">
+                        </awb-h:inputTextarea>
+                    </awb-h:panelGroup>
+                </awb-h:panelGrid>
+			</awb-h:panelGrid>
+            
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" immediate="true"
+                    action="#{clausulaBean.actionVoltar}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                <!-- CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarIncl" styleClass="HtmlCommandButtonBradesco right"
+                    value="#{msgs.bto_confirmar}" actionListener="#{clausulaBean.validarForm}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+            </awb-h:panelGrid>
+
+            <!-- MODAL CONFIRMAÇÃO -->
+            <ui:include src="/template/modal.xhtml">
+                <ui:param name="message" value="#{msgs.info_confirmar_inclusao}" />
+                <ui:param name="bean" value="#{clausulaBean}" />
+                <ui:param name="actionConfirmar" value="actionConfirmar" />
+                <ui:param name="actionFechar" value="actionFecharModal" />
+                <ui:param name="renderModal" value="#{clausulaBean.viewHelper.renderModal}" />
+            </ui:include>
+
+        </awb-h:form>
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/meiomask.js" />
+        <script type="text/javascript" src="#{request.contextPath}/javascript/util.js" />
+        
+    </ui:define>
+</ui:composition>
+
+</html>

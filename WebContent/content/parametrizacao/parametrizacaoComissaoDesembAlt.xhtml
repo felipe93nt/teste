@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-f="http://bradesco.com.br/components-core"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+    <!-- CAMINHO DE PAO -->
+    <ui:param name="selection" value="#{msgs.title_param_comiss_cesemb}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_param_comiss_cesemb',2)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <awb-h:form id="formComissaoDesembolcons">
+        
+            <!-- LINHA -->
+            <awb-h:panelGrid width="100%">
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+			<awb-h:panelGrid id="panelDadosFiltro" columns="3">
+
+						<!-- COMBO PRODUTO -->
+					<awb-h:panelGroup styleClass="table-line-spacing-10">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_produto}:" />
+						</awb-h:panelGroup>
+						<br />
+	 					<awb-h:selectOneMenu id="comboProduto" layout="pageDirection"
+							title="#{msgs.label_produto}"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+							value="#{comissaoDesembolsoBean.viewHelper.filtro.cprodtservc}"
+							disabled ="true"
+							immediate="true">
+							<awb-f:selectItems
+								value="#{comissaoDesembolsoBean.viewHelper.comboProdutos}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGroup>
+
+					<!-- COMBO MOEDA -->
+					<awb-h:panelGroup styleClass="table-line-spacing-10">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_moeda}:" />
+						</awb-h:panelGroup>
+						<br />
+						<awb-h:selectOneMenu id="comboMoedaBaixar" layout="pageDirection"
+							title="#{msgs.label_moeda}"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+							value="#{comissaoDesembolsoBean.viewHelper.filtro.cindcdeconmmoeda}"
+							disabled ="true"
+							immediate="false">
+
+							<awb-f:selectItems value="#{tradeFinBaixarBean.comboMoeda}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGroup>
+					 </awb-h:panelGrid>
+            
+            
+            <br></br>
+
+            <!-- Input Valor ME -->
+              <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+              
+                    <awb-h:panelGroup>
+                     <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_valor_ME}   " />
+                     <hr />
+                    
+                     <h:outputText styleClass="HtmlOutputTextBradesco" value="Abaixo de:  " /> 
+                        
+                    <awb-h:inputText title="#{msgs.label_valor_ME}"  maxlength="85" size="80" styleClass="HtmlInputTextObrigatorioBradesco"
+                   alt="{'type':'money-dot'}"
+                   value="#{comissaoDesembolsoBean.comissaoDesembolsoVO.vlimcomisfixa}">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+              
+              
+               <!-- Input Comissao desembolso -->
+                <awb-h:panelGroup>
+                	 <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_com_desemb}: " />
+                	  <hr />
+                    <awb-h:inputText title="#{msgs.label_com_desemb}" 
+                          maxlength="85" size="80" styleClass="HtmlInputTextObrigatorioBradesco" alt="{'type':'money-dot'}"
+                         value="#{comissaoDesembolsoBean.comissaoDesembolsoVO.vcomisfixa}">
+                         
+                    </awb-h:inputText>
+                     </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" action="#{comissaoDesembolsoBean.actionVoltar}"
+                    immediate="true" styleClass="HtmlCommandButtonBradesco" />
+                <!-- CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarIncl" styleClass="HtmlCommandButtonBradesco right"
+                    actionListener="#{comissaoDesembolsoBean.validarForm}" value="#{msgs.bto_confirmar}" />
+            </awb-h:panelGrid>
+
+            <!-- MODAL CONFIRMAÇÃO -->
+            <ui:include src="/template/modal.xhtml">
+                <ui:param name="message" value="#{msgs.info_confirmar_alteracao}" />
+                <ui:param name="bean" value="#{comissaoDesembolsoBean}" />
+                <ui:param name="actionConfirmar" value="actionConfirmar" />
+                <ui:param name="actionFechar" value="actionFecharModal" />
+                <ui:param name="renderModal" value="#{comissaoDesembolsoBean.viewHelper.renderModal}" />
+            </ui:include>
+
+        </awb-h:form>
+      
+          <!-- Script geral da aplicação -->
+         <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+         <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+          <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.util.js" />  
+
+    </ui:define>
+</ui:composition>
+</html>

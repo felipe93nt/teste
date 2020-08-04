@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <awb-h:panelGrid columns="2" width="100%">
+
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco"
+            action="#{tradeFinMonitFecharBean.actionVoltar}" />
+        <awb-h:panelGrid styleClass="gridBotaoDireita">
+
+            <awb-h:panelGrid style="float:right" columns="5">
+
+                <!-- BOTÃO GERAR BOLETO -->
+                <awb-h:panelGroup>
+                    <awb-h:outputLink id="btnVisualizar" title="Gerar Boleto" 
+                        styleClass="seiBtnImprimirGrupo tab sei-button" value="javascript:;">
+                        <sei:seiAction id="seiAction" type="print" render="divSeiModals formModalMessages"
+                            action="#{tradeFinanceBean.gerarBoleto}" jsActionArgs="getExportPdfOnly">
+                            <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                                pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                        </sei:seiAction>
+                        <awb-h:outputLabel value="#{msgs.bto_imprimir}" />
+                    </awb-h:outputLink>
+                </awb-h:panelGroup>
+
+                <!-- BOTÃO ANEXAR DOCUMENTO -->
+                <awb-h:commandButton value="#{msgs.bto_anx_docs}" styleClass="HtmlCommandButtonBradesco">
+                    <f:ajax listener="#{tradeFinanceBean.anexarDocumentos}"
+                        render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this" immediate="false" />
+                </awb-h:commandButton>
+
+                <!-- BOTÃO ANEXAR EMAIL -->
+                <awb-h:commandButton value="#{msgs.bto_anx_email}" styleClass="HtmlCommandButtonBradesco">
+                    <f:ajax listener="#{tradeFinanceBean.anexarEmail}"
+                        render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this" immediate="false" />
+                </awb-h:commandButton>
+
+                <!-- BOTÃO IMPRIMIR -->
+                <awb-h:panelGroup>
+                    <awb-h:outputLink id="exportButton" title="#{msgs.bto_imprimir}"
+                        styleClass="seiBtnImprimirGrupo tab sei-button" value="javascript:;">
+                        <sei:seiAction type="print" render="seiDivModals divSeiModals" action="#{tradeFinanceBean.actionExportar}"
+                            jsActionArgs="getExportPdfOnly">
+                            <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                                pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                        </sei:seiAction>
+                    </awb-h:outputLink>
+                </awb-h:panelGroup>
+
+				<!-- BOTÃO CONFIRMAR -->
+                <awb-h:commandButton id="btnConfirmarFechar" styleClass="HtmlCommandButtonBradesco right"
+                    actionListener="#{tradeFinMonitFecharBean.validarForm}" value="#{msgs.bto_confirmar}" />
+
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <!-- Modal Anexar E-mail -->
+    <awb-th:extDiv id="div_modalAnexarEmail">
+        <awb-br:modalContent id="modalAnexarEmail" iconUrl="info" closeId="frameForm:botaoFechar" autoOpen="true"
+            reRender="@form" resizable="false" draggable="false"
+            contentPath="#{request.contextPath}/content/global/anexarArquivoGccModal/modalAnexarArquivoGcc.xhtml"
+            header="#{anexarArquivoGccModalBean.viewHelper.titleModal}"
+            onHideServerCallback="#{anexarArquivoGccModalBean.closeModal}"
+            rendered="#{anexarArquivoGccModalBean.viewHelper.renderModal}">
+        </awb-br:modalContent>
+    </awb-th:extDiv>
+
+    <!--  MODAL CONFIRMAÇÃO -->
+    <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+        <ui:param name="bean" value="#{tradeFinMonitFecharBean}" />
+        <ui:param name="actionConfirmar" value="actionConfirmar" />
+        <ui:param name="actionFechar" value="actionFechar" />
+        <ui:param name="renderModal" value="#{tradeFinMonitFecharBean.viewHelper.renderFechar}" />
+    </ui:include>
+    
+    <!--  MODAL REVALIDAR CUSTO EXTERNO -->
+    <ui:include src="/template/modal.xhtml">
+        <ui:param name="message" value="#{msgs.info_cotar_custo_externo}" />
+        <ui:param name="bean" value="#{tradeFinMonitFecharBean}" />
+        <ui:param name="actionConfirmar" value="actionSim" />
+        <ui:param name="actionFechar" value="actionNao" />
+        <ui:param name="renderModal" value="#{tradeFinMonitFecharBean.viewHelper.renderModalFecharCotarCustorExterno}" />
+    </ui:include>
+
+    <!-- MODAL DESENQUADRADAS -->
+    <awb-th:extDiv id="div_modalDesenquadradas">
+        <awb-br:modalContent id="modalDesenquadradas" iconUrl="info" autoOpen="true"
+            reRender="@form divSeiModals formModalMessages" resizable="true" draggable="true" width="850" height="500"
+            closable="false" closeOnEscape="false" header="Desenquadramentos" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinMonitFecharBean.closeModalDesenquadradas}"
+            rendered="#{desenquadradasModalBean.viewHelper.renderModalDesenquadradas}"
+            contentPath="#{request.contextPath}/content/global/desenquadradaModal/modalDesenquadradas.xhtml" />
+    </awb-th:extDiv>
+	
+	<!-- MODAL LIMITES/PROPOSTAS -->
+    <awb-th:extDiv id="div_modalLimites">
+        <awb-br:modalContent id="modalLimites" iconUrl="info" autoOpen="true" reRender="@form divSeiModals formModalMessages" resizable="true"
+            draggable="true" width="1000" height="650" closable="false" closeOnEscape="false"
+            header="Limites Disponíveis" closeId="frameForm:botaoFechar"
+            onHideServerCallback="#{tradeFinMonitFecharBean.closeModalLimites}" 
+            rendered="#{limitesModalBean.viewHelper.renderModal}"
+            contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+    </awb-th:extDiv>
+	
+</ui:composition>
+</html>

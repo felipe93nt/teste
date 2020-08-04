@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+
+<!-- #HTML declaração de bibliotecas de componentes e tags -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+    lang="pt">
+
+<ui:composition>
+    <!-- css -->
+        <awb-br:stylesheet href="/css/modal.css" />
+    <awb-br:modal title="Mensagem"  styleClass="HtmlOutputTextBoldBradesco"
+        titleImageIcon="info" 
+        mainDivClass="uiModalMainDivIntranet" 
+        headerDivClass="uiModalHeaderDivIntranet" 
+        bodyDivClass="uiModalBodyDivIntranet"
+        footerDivClass="uiModalFooterDivIntranet"
+        rendered="#{renderModal}">
+
+        <awb-h:panelGroup  styleClass="HtmlOutputTextBoldBradesco">
+            <p>#{message}</p>
+        </awb-h:panelGroup>
+
+        <awb-f:facet name="buttons">
+            <awb-h:panelGroup>
+                 <awb-h:commandButton value="OK"
+                    action="#{bean[actionConfirmar]}" >
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-f:facet>
+    </awb-br:modal>
+</ui:composition>
+</html>

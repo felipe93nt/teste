@@ -1,0 +1,110 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- OBSERVACAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_obs_interno}: " />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao1}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao2}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao3}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao4}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao5}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao6}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao7}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao8}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao9}" />
+				<p/>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.observacao10}" />
+				<p/>
+
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!-- OUTRAS ESPECIFICAÇÕES -->
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_outras_espc}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.outrasespcs}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	
+	<!-- IN2746215 - Apresentar o campo Orcamento na tela de consulta e relatório de impressão -->
+    <awb-h:panelGrid columns="1" style="width: 100%;" 
+		columnClasses="width: 25%;"
+		rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc == 622 or 
+					tradeFinanceBean.tradeFinanceVO.cprodtservc == 624 or
+					tradeFinanceBean.tradeFinanceVO.cprodtservc == 638 or 
+					tradeFinanceBean.tradeFinanceVO.cprodtservc == 639 or
+            		tradeFinanceBean.tradeFinanceVO.cprodtservc == 640 or 
+            		tradeFinanceBean.tradeFinanceVO.cprodtservc == 1713}">  
+		<br />
+        <!-- LINHA CABEC -->
+        <awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel 
+				style="font-family: verdana; font-size: 10px"
+				value="Orçamento: " />
+        </awb-h:panelGroup>
+
+        <!-- LINHA DADOS -->
+        <awb-h:panelGroup>
+			<awb-h:outputLabel 
+				style="font-family: verdana; font-size: 10px; font-weight: bold; " 
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.orcamento}"/>
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+    
+</awb-f:view>
+</html>

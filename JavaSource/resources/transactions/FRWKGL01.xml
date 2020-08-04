@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="FRWKGL01" type="CWS">
+  <header>
+    <property name="FWO">HEADER</property>
+  </header>
+  <inputdependencies />
+  <input maxBytes="216">
+    <register name="FRWKGL01-HEADER">
+      <field name="FRWKGL01-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKGL01" />
+      <field name="FRWKGL01-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="216" />
+    </register>
+    <register name="FRWKGL01-REGISTRO">
+      <register name="FRWKGL01-BLOCO-RETORNO">
+        <field name="FRWKGL01-COD-RETORNO" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="FRWKGL01-BLOCO-ENTR-SAID">
+        <field name="FRWKGL01-TAM-LAYOUT-RESTO" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CIDTFD-SESS" pic="X(32)" length="32" bytes="32" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-NOPER-FLUXO" pic="X(40)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-EXTER" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-EMPRESA-OPERANTE" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-DEPEND-OPERANTE" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CCANAL" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CIDTFD-PERIF" pic="X(15)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IDIOMA" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-DT-LOCAL" pic="9(08)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-HR-LOCAL" pic="9(06)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-IFLUXO-MONET" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-LOGOUT" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-PARAL" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-DADOS" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-TUSUAR-SEGRC" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-CAUTEN-SEGRC" pic="X(30)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-TUSUAR-AUTOR" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-CUSUAR-AUTOR" pic="X(30)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-INIC-BLSEG" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-TAM-BLSEG" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+  <outputdependencies/>
+  <output maxBytes="216">
+    <register name="FRWKGL01-HEADER">
+      <field name="FRWKGL01-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="FRWKGL01" />
+      <field name="FRWKGL01-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="216" />
+    </register>
+    <register name="FRWKGL01-REGISTRO">
+      <register name="FRWKGL01-BLOCO-RETORNO">
+        <field name="FRWKGL01-COD-RETORNO" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="FRWKGL01-BLOCO-ENTR-SAID">
+        <field name="FRWKGL01-TAM-LAYOUT-RESTO" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CIDTFD-SESS" pic="X(32)" length="32" bytes="32" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-NOPER-FLUXO" pic="X(40)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-EXTER" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-EMPRESA-OPERANTE" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-DEPEND-OPERANTE" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CCANAL" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-CIDTFD-PERIF" pic="X(15)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IDIOMA" pic="9(02)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-DT-LOCAL" pic="9(08)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-HR-LOCAL" pic="9(06)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-IFLUXO-MONET" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-LOGOUT" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-PARAL" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-IFLUXO-DADOS" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-TUSUAR-SEGRC" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-CAUTEN-SEGRC" pic="X(30)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-TUSUAR-AUTOR" pic="X(01)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-CUSUAR-AUTOR" pic="X(30)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="FRWKGL01-INIC-BLSEG" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="FRWKGL01-TAM-BLSEG" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>

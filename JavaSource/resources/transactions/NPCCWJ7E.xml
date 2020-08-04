@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWJ7E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="1366">
+    <register name="NPCCWJ7E-HEADER">
+      <field name="NPCCWJ7E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWJ7E" />
+      <field name="NPCCWJ7E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01366" />
+    </register>
+    <register name="NPCCWJ7E-REGISTRO">
+      <field name="NPCCWJ7E-FUNCAO-IAE" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWJ7E-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ7E-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ7E-VLIM-APROV-CUSTO" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWJ7E-QTD-FAIXA-OPER" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWJ7E-FAIXAS" minOccurs="30" maxOccurs="30">
+        <field name="NPCCWJ7E-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWJ7E-VLIM-INFER-BANQR" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWJ7E-VLIM-SUPE-BANQR" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWN7S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="11236">
+    <register name="NPCCWN7S-HEADER">
+      <field name="NPCCWN7S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWN7S" />
+      <field name="NPCCWN7S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="11236" />
+    </register>
+    <register name="NPCCWN7S-REGISTRO">
+      <field name="NPCCWN7S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWN7S-LISTA" minOccurs="0" maxOccurs="10" depends="NPCCWN7S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWN7S-S-NOME-CLIENTE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-CCPF-CNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-CFLIAL-CPF-CNPJ" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-CCTRL-CPF-CNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-CPRODT-DESC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-DCBANQR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-COPER-CMBIO-EXTER" pic="X(012)" length="12" bytes="12" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-RTOM-OBS-BLETO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-ROBS-BLETO-CMBIO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN7S-S-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-VTX-SPREAD-NEGOC" pic="9(006)V9(009)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWN7S-S-DFIM-NEGOC-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-ISGL-INDCD-FONTE" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-VNEGOC-MOEDA-ESTRG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN7S-S-VSDO-LIM-SENSI" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN7S-S-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-HMANUT-REG" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-CUSUAR" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-NOME-FUNC" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN7S-S-TIPO-MANUT" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

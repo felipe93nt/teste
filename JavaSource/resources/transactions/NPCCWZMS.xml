@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZMS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="262">
+    <register name="NPCCWZMS-HEADER">
+      <field name="NPCCWZMS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZMS" />
+      <field name="NPCCWZMS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00262" />
+    </register>
+    <register name="NPCCWZMS-SAIDA">
+      <field name="NPCCWZMS-CUNIC-PSSOA-DCMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZMS-IPAIS-CMBIO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZMS-ICIDD-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZMS-LOGRD-CMBIO" pic="X(079)" length="79" bytes="79" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

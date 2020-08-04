@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:presCore="http://bradesco.com.br/presentation_core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+    <!-- CAMINHO DE PAO -->
+    <ui:param name="selection" value="#{msgs.title_modelo_boleto_list}" />
+    <ui:param name="passNumber" value="1" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_modelo_boleto_list',0)}" />
+
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formModeloBoleto">
+
+           <!-- FILTROS TELA -->
+           <awb-h:panelGrid width="100%">
+         
+               <awb-h:panelGroup id="filtros">
+
+                       <awb-h:selectOneMenu id="cboModeloBoleto" immediate="true" style="width:230px"
+                           title="#{msgs.label_pais}"
+                           value="#{modeloBoletoBean.viewHelper.filtroProduto}">
+                           <awb-f:selectItems value="#{modeloBoletoBean.comboProdutos}" />
+                       </awb-h:selectOneMenu>
+
+                       <awb-h:commandButton id="btoPesquisar" styleClass="HtmlCommandButtonBradesco"
+                           action="#{modeloBoletoBean.pesquisar}" value="#{msgs.bto_pesquisar}" style="margin-left:10px;" />
+
+                   </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <awb-h:panelGrid width="100%" rendered="#{modeloBoletoBean.lista.size() > 0}">
+                <awb-f:verbatim>
+                    <hr class="linhaPontilhada" style="margin: 5px 0px 8px 0px;" />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- RADIO GRID LISTA -->
+            <f:facet name="header">
+                <awb-h:selectOneRadio id="radio" forceId="true" forceIdIndex="false"
+                    value="#{modeloBoletoBean.viewHelper.codItemSelecionadoLista}">
+                    <awb-f:selectItems value="#{modeloBoletoBean.selectItemRadioLista}" />
+                </awb-h:selectOneRadio>
+            </f:facet>
+
+            <!-- GRID -->
+            <awb-h:panelGrid styleClass="panelGridDataTable">
+                <awb-br:keepState pdcDataScrollerID="dataScroller" stateID="#{modeloBoletoBean.viewHelper.nomeStateIdLista}"
+                    resource="cws">
+                    <awb-br:scrollableDataTable id="dataTable" value="#{modeloBoletoBean.lista}" var="item" rows="10"
+                        width="100%" rowIndexVar="indexLista" rendered="#{modeloBoletoBean.lista.size() > 0}">
+
+                        <awb-br:scrollableColumn width="2%">
+                            <f:facet name="header">
+                                <h:outputText value=" " styleClass="tableFontStyle" escape="false" />
+                            </f:facet>
+                            <awb-th:extRadio index="#{indexLista}" for=":formModeloBoleto:radio" />
+                        </awb-br:scrollableColumn>
+
+                        <awb-br:scrollableColumn styleClass="c">
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.label_descricao}" styleClass="tableFontStyle"
+                                    escape="false" />
+                            </f:facet>
+                            <h:outputText value="#{item.cindcdtpomanut}" />
+                        </awb-br:scrollableColumn>
+
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+
+                <!-- Paginação -->
+                <awb-br:awbDataScroller resource="cws" for="dataTable" styleClass="pagination" id="dataScroller"
+                    renderFacetsIfSinglePage="false" actionListener="#{modeloBoletoBean.paginar}"
+                    stateID="#{modeloBoletoBean.viewHelper.nomeStateIdLista}" rendered="#{modeloBoletoBean.lista.size() > 0}">
+                    <f:facet name="first">
+                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                            title="#{msgs.label_txt_primeira}" />
+                    </f:facet>
+                    <f:facet name="fastrewind">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}"
+                            title="#{msgs.label_txt_retrocesso}" />
+                    </f:facet>
+                    <f:facet name="previous">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}"
+                            title="#{msgs.label_txt_anterior}" />
+                    </f:facet>
+                    <f:facet name="next">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}"
+                            title="#{msgs.label_txt_proxima}" />
+                    </f:facet>
+                    <f:facet name="fastforward">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                            title="#{msgs.label_txt_avanco}" />
+                    </f:facet>
+                    <f:facet name="last">
+                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                            title="#{msgs.label_txt_ultima}" />
+                    </f:facet>
+                </awb-br:awbDataScroller>
+            </awb-h:panelGrid>
+            
+             <awb-h:panelGrid columns="2" width="100%" rendered="true">
+            <!-- VISUALIZAR -->
+                    <awb-h:commandButton id="btnVisualizar" styleClass="HtmlCommandButtonBradesco"
+                        action="#{modeloBoletoBean.incluir}" value="#{msgs.bto_visualizar}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    </awb-h:panelGrid>
+            
+                    <!-- LINHA DIVISÓRIA -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+            <!-- BOTOES -->
+            <awb-h:panelGrid columns="2" width="100%" rendered="true">
+                <!-- VOLTAR -->
+                <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" action="nav_index">
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+                <awb-h:panelGrid style="float:right" columns="3">
+                    <!-- INCLUIR -->
+                    <awb-h:commandButton id="btnIncluir" styleClass="HtmlCommandButtonBradesco"
+                        action="#{modeloBoletoBean.incluir}" value="#{msgs.bto_incluir}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    <!-- ALTERAR -->
+                    <awb-h:commandButton id="btnAlterar" styleClass="HtmlCommandButtonBradesco"
+                        action="#{modeloBoletoBean.alterar}" value="#{msgs.bto_alterar}"
+                        disabled="#{modeloBoletoBean.lista.size() == 0}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    <!-- Excluir -->
+                    <awb-h:commandButton id="btnExcluir" styleClass="HtmlCommandButtonBradesco"
+                        action="#{modeloBoletoBean.excluir}" value="#{msgs.bto_excluir}"
+                        disabled="#{modeloBoletoBean.lista.size() == 0}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                     <!-- Duplicar -->
+                    <awb-h:commandButton id="btnDuplicar" styleClass="HtmlCommandButtonBradesco"
+                       value="#{msgs.bto_duplicar}"
+                        disabled="#{modeloBoletoBean.lista.size() == 0}" >
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    
+                </awb-h:panelGrid>
+                <!-- MODAL EXCLUSÃO -->
+            <ui:include src="/template/modal.xhtml">
+                <ui:param name="message" value="#{msgs.info_confirmar_exclusao}" />
+                <ui:param name="bean" value="#{modeloBoletoBean}" />
+                <ui:param name="actionConfirmar" value="actionConfirmarExcluir" />
+                <ui:param name="actionFechar" value="actionFecharModal" />
+                <ui:param name="renderModal" value="#{modeloBoletoBean.viewHelper.renderModal}" />
+            </ui:include>
+  </awb-h:panelGrid>
+       </awb-h:form>
+
+        <!-- script -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/meiomask.js" />
+        
+    </ui:define>
+</ui:composition>
+
+</html>

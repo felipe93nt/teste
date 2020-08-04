@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWZXE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="7750">
+    <register name="NPCCWZXE-HEADER">
+      <field name="NPCCWZXE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWZXE" />
+      <field name="NPCCWZXE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="07750" />
+    </register>
+    <register name="NPCCWZXE-REGISTRO">
+      <field name="NPCCWZXE-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-QTD-OC-VINC" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-QTD-OC-TARI" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-QTD-OC-GARN" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-QTD-OC-AVAL" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-DCOTAC-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-CBANQR-CMBIO-FNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-CBANQR-CMBIO-RCDOR" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-CBANQR-CMBIO-AVISO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-PTX-FIXA-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWZXE-CINDCD-ECONM-MOE-LIB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-TMES-LIBOR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-VTX-LIBOR-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <register name="NPCCWZXE-CONTATO">
+        <field name="NPCCWZXE-CONTATO-NOME" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-CONTATO-TELE" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWZXE-CONTATO-ROF">
+        <field name="NPCCWZXE-NOME" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-TELEFONE" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-CPF" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-CARGO" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-EMAIL" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <field name="NPCCWZXE-OUTRAS-ESPCS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-OBSERVACAO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-MOTIVO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWZXE-CUNIC-PSSOA-CMBIO-T" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWZXE-CUNIC-PSSOA-INDICA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWZXE-LST-AVA" minOccurs="0" maxOccurs="20" depends="NPCCWZXE-QTD-OC-AVAL" dependsType="number">
+        <field name="NPCCWZXE-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="NPCCWZXE-LST-VIN" minOccurs="0" maxOccurs="20" depends="NPCCWZXE-QTD-OC-VINC" dependsType="number">
+        <field name="NPCCWZXE-NBLETO-NEGOC-VNCLO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-CINDCD-VNCLO-IMPOR" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWZXE-LST-TAR" minOccurs="0" maxOccurs="20" depends="NPCCWZXE-QTD-OC-TARI" dependsType="number">
+        <field name="NPCCWZXE-CINDCD-ECONM-MOE-TAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-CCONDC-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-NTARIF-BLETO-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-VTARIF-OPER-CMBIO" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+      <register name="NPCCWZXE-LST-GAR" minOccurs="0" maxOccurs="20" depends="NPCCWZXE-QTD-OC-GARN" dependsType="number">
+        <field name="NPCCWZXE-NGARNT-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-CCATLG-GARNT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-CINDCD-ECONM-MOE-GAR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-VTX-GARNT-CMBIO" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWZXE-DVCTO-GARNT-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-CINDCD-GARNT-PRINC" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWZXE-CIDTFD-GARNT-ADCIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWZXE-RCOMPL-GARNT-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body"> 
+
+    <body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formModalTomador" >
+            <awb-h:panelGrid styleClass="panelGridDataTable">
+                <awb-h:column>
+
+					<awb-th:extSelectOneRadio id="radio" forceId="true" forceIdIndex="false" layout="spread" styleClass="auto-focus"
+					    value="#{tomadorModalBean.viewHelper.itemSelecListaTomador}">
+					    <awb-f:selectItems itemLabel="" value="#{tomadorModalBean.selectItemRadioListaTomador}" />
+					</awb-th:extSelectOneRadio>
+		
+				    <!-- GRID -->
+				    <awb-h:panelGrid styleClass="panelGridDataTable">
+				             <awb-br:keepState pdcDataScrollerID="dataScroller"
+				                 stateID="#{tomadorModalBean.viewHelper.nomeStateIdListaSelTomador}" resource="cws">
+				                 <awb-br:scrollableDataTable id="dataSelTomador" value="#{tomadorModalBean.listaTomador}" var="item" rows="5"
+				                     width="100%" rowIndexVar="indexLista" rendered="#{tomadorModalBean.listaTomador.size() > 0}">
+				
+				                     <awb-br:scrollableColumn width="5%">
+				                         <awb-f:facet name="header">
+				                         </awb-f:facet>
+				                         <awb-th:extRadio index="#{indexLista}" for=":formModalTomador:radio" />
+				                     </awb-br:scrollableColumn>
+
+			                        <awb-br:scrollableColumn width="24%">
+			                            <awb-f:facet name="header">
+			                                <awb-h:outputLabel value="#{msgs.label_nome}" styleClass="tableFontStyle" escape="false" />
+			                            </awb-f:facet>
+			                            <awb-h:outputLabel value="#{item.ncunicpssoacmbiot}" />
+			                        </awb-br:scrollableColumn>
+			
+			                        <awb-br:scrollableColumn width="24%">
+			                            <awb-f:facet name="header">
+			                                <awb-h:outputLabel value="#{msgs.label_cpf_barra_cnpj}" styleClass="tableFontStyle" escape="false" />
+			                            </awb-f:facet>
+			                            <awb-h:outputLabel value="#{item.cpfCnpjFormatado}" />
+			                        </awb-br:scrollableColumn>
+            
+                                    <awb-br:scrollableColumn width="24%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_cidade}" styleClass="tableFontStyle" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.iciddeender}" />
+                                    </awb-br:scrollableColumn>
+            
+                                    <awb-br:scrollableColumn width="24%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_pais}" styleClass="tableFontStyle" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.ipais}" />
+                                    </awb-br:scrollableColumn>
+
+				            </awb-br:scrollableDataTable>
+				        </awb-br:keepState>
+				    
+				        <!-- PAGINACAO -->
+				        <awb-br:awbDataScroller resource="cws" for="dataSelTomador" styleClass="pagination" id="dataScroller"
+				            renderFacetsIfSinglePage="true" actionListener="#{tomadorModalBean.paginarTomador}"
+				            stateID="#{tomadorModalBean.viewHelper.nomeStateIdListaSelTomador}">
+                            <f:facet name="first">
+                                <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                    title="#{msgs.label_txt_primeira}" />
+                            </f:facet>
+                            <f:facet name="fastrewind">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                            </f:facet>
+                            <f:facet name="previous">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                            </f:facet>
+                            <f:facet name="next">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                    value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                            </f:facet>
+                            <f:facet name="fastforward">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+                                    title="#{msgs.label_txt_avanco}" />
+                            </f:facet>
+                            <f:facet name="last">
+                                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+                                    title="#{msgs.label_txt_ultima}" />
+                            </f:facet>
+				        </awb-br:awbDataScroller>
+				    </awb-h:panelGrid>
+
+                </awb-h:column>
+            </awb-h:panelGrid>
+            <br />
+
+            <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" />
+            <awb-h:commandButton action="#{tomadorModalBean.selecionarTomador}" value="Selecionar"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+        </awb-h:form>
+
+    </body>
+    
+    <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+</ui:define>
+</ui:composition>
+
+</html>

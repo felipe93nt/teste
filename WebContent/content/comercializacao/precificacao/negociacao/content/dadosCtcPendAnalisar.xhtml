@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+	<!-- BOTOES -->
+	<awb-h:panelGrid columns="2" width="100%">
+
+		<awb-h:commandButton value="#{msgs.bto_voltar}"
+			styleClass="HtmlCommandButtonBradesco"
+			action="#{tradeFinMonitFormalizacaoBean.actionVoltarFinFechar}" />
+
+		<awb-h:panelGrid style="float:right" columns="4">
+
+			<!-- Imprimir -->
+			<awb-h:panelGroup>
+				<awb-h:outputLink id="exportButton" title="#{msgs.bto_imprimir}"
+					styleClass="seiBtnImprimirGrupo tab sei-button" value="javascript:;">
+					<sei:seiAction type="print" render="seiDivModals divSeiModals"
+						action="#{tradeFinMonitBean.actionExportar}"
+						jsActionArgs="getExportPdfOnly">
+						<sei:seiSettings pageOrientation="landscape"
+							pageNumberLabel="#{msgs.label_pagina}"
+							pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+					</sei:seiAction>
+				</awb-h:outputLink>
+			</awb-h:panelGroup>
+
+			<awb-h:panelGroup>
+				<awb-h:commandButton id="btnConfirmarFechar"
+					styleClass="HtmlCommandButtonBradesco right"
+					actionListener="#{tradeFinMonitFormalizacaoBean.validarForm}"
+					value="#{msgs.bto_confirmar}" />
+
+				<awb-h:commandButton value="#{msgs.bto_devolver}"
+					styleClass="HtmlCommandButtonBradesco"
+					action="#{tradeFinMonitFormalizacaoBean.actionDevolver}" />
+
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+
+	<awb-th:extDiv id="div_modalDevolver">
+		<awb-br:modalContent id="modalDevolver"
+			closeId="formModalDevolver:btnCancelar" autoOpen="true"
+			resizable="true" draggable="true"
+			contentPath="#{request.contextPath}/content/global/devolverModal/modalDevolver.xhtml"
+			header="#{msgs.info_confirmar_devolucao}" width="500" height="300"
+			reRender="@form formModalMessages"
+			onHideServerCallback="#{tradeFinMonitFormalizacaoBean.closeModalDevolver}"
+			rendered="#{devolverModalBean.viewHelper.renderModal}" />
+	</awb-th:extDiv>
+
+	<!-- MODAL CONFIRMAÇÃO -->
+	<ui:include src="/template/modal.xhtml">
+		<ui:param name="message" value="#{msgs.info_confirmar_operacao}" />
+		<ui:param name="bean" value="#{tradeFinMonitFormalizacaoBean}" />
+		<ui:param name="actionConfirmar" value="actionConfirmar" />
+		<ui:param name="actionFechar" value="actionFecharModal" />
+		<ui:param name="renderModal"
+			value="#{tradeFinMonitFormalizacaoBean.viewHelper.renderFechar}" />
+	</ui:include>
+
+</ui:composition>
+
+</html>

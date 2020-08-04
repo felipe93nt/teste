@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"	xmlns:ui="http://java.sun.com/jsf/facelets" lang="pt"
+ 	xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+ 	xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core">
+ 	
+	<awb-f:view>
+	
+		<ui:param name="server" value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+				
+		<!-- Cabeçalho -->		
+		<awb-th:extHtmlTag value="span" style="float: left; font-weight: bold; font-size: 15px; margin-top: 35px; margin-right: 15px">
+			Cotações Pendentes de Complemento
+		</awb-th:extHtmlTag>
+		
+		<awb-th:extHtmlTag value="hr" style="border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+		
+		<br />
+			
+		<!-- Conteudo -->		
+		<awb-h:dataTable value="#{lista}" var="ctc" border="1" cellspacing="0" cellpadding="10" style="width: 100%; text-align: center" >
+	
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_det_operacao}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.nbletocmbioano}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_data}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.dtcotacao}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_cliente}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.ncunicclicmbio}" />
+			</awb-h:column>			
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_moeda}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.simbleconmmoeda}" />
+			</awb-h:column>	
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_valor}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.vnegocmoedaestrg}" />
+			</awb-h:column>
+			
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_produto}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.dprodtservc}" />
+			</awb-h:column>				
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_modalidade}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.dmodldprodtcmbio}" />
+			</awb-h:column>	
+
+			<awb-h:column>
+				<f:facet name="header">
+                	<awb-h:outputLabel value="#{msgs.label_det_status}" escape="false" />
+               	</f:facet>
+				<awb-h:outputLabel value="#{ctc.dsitbletocmbio}" />
+			</awb-h:column>	
+		</awb-h:dataTable>
+	</awb-f:view>
+</html>

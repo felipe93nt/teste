@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1100 a 1199  -->
+
+    <!-- botao Collaps Operação Vinculada -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosOperacaoVinculada}" tabindex="1100"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(5)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Operação Vinculada" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid id="pnlOperVinculada" styleClass="panelGridTable"
+        rendered="#{bean.viewHelper.renderOperacaoVinculada}">
+
+        <awb-h:panelGrid columns="3" styleClass="panelGridTable">
+            
+            <awb-h:panelGroup>
+               <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+               <awb-h:outputLabel value="#{msgs.label_det_operacao}: "
+                   styleClass="HtmlOutputLabelBoldBradesco" />
+            </awb-h:panelGroup>
+            
+            <awb-h:column/>
+            
+            <awb-h:column/>
+            
+            
+            <awb-h:panelGrid columns="3">
+	            <awb-h:panelGrid columns="2">
+	                <awb-h:inputText value="#{bean.operVinculadasVO.danobase}" tabindex="1101"
+	                    size="2" maxlength="4" alt="{'type':'integer'}"
+	                    styleClass="HtmlInputTextBradesco">
+	                </awb-h:inputText>
+	                <awb-h:inputText id="txtOperacao" title="Operação" size="11" maxlength="9" tabindex="1102"
+	                    value="#{bean.operVinculadasVO.numoperacao}" alt="{'type':'integer'}"
+	                    immediate="false" styleClass="HtmlInputTextBradesco">
+	                </awb-h:inputText>
+	            </awb-h:panelGrid>
+	            
+	            <awb-h:panelGroup>
+	                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclOperacao" tabindex="1103"
+	                    value="#{msgs.bto_incluir}">
+	                    <f:ajax immediate="false" execute="@form" event="click"
+	                        render="formTrdFinNegIncl formModalMessages"
+	                        listener="#{bean.listenerIncluirOperacaoVinculada}" />
+	                </awb-h:commandButton>
+	            </awb-h:panelGroup>
+	            
+			</awb-h:panelGrid>
+           
+			<awb-h:column/>
+			
+            <awb-h:panelGrid columns="1" styleClass="right">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoOperacoes" value="Operações" tabindex="1104">
+                    <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                        listener="#{bean.listenerModalOperacoesVinculadas}" />
+                </awb-h:commandButton>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaOperVinculada" layout="spread" immediate="false" forceId="true"
+                forceIdIndex="false" tabindex="1105"
+                value="#{bean.viewHelper.itemSelecListaOperacaoVinculada}">
+                <awb-f:selectItems value="#{bean.itensRadioListaOperacaoVinculada}" />
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+
+        <!-- GRID OPERACAO VINCULADA -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridOperVinc"
+            rendered="#{not empty bean.tradeFinNegocVO.listaOperacaoVinculada}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableOperVinc">
+                <awb-br:keepState pdcDataScrollerID="dataScrollerListaOperacaoVinculada"
+                    stateID="#{bean.viewHelper.stateIdListaOperacaoVinculada}" resource="cws">
+                    <awb-br:scrollableDataTable id="dataTableOperacaoVinculada" var="itemOperacaoVinculada" rows="20"
+                        width="100%" rowIndexVar="indexListaOperacaoVinculada"
+                        value="#{bean.tradeFinNegocVO.listaOperacaoVinculada}">
+    
+                        <awb-br:scrollableColumn width="3%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-th:extRadio index="#{indexListaOperacaoVinculada}"
+                                for=":formTrdFinNegIncl:radioListaOperVinculada" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="20%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="No. Operação" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOperacaoVinculada.nbletocmbioano}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="10%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOperacaoVinculada.iindcdeconmmoeda}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="35%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOperacaoVinculada.valorMoeda}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="32%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Produto" styleClass="tableFontStyle" escape="false" style="" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemOperacaoVinculada.iprodtservc}" />
+                        </awb-br:scrollableColumn>
+    
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+            <awb-h:panelGrid width="98%" />
+
+            <awb-h:panelGrid width="2%" styleClass="right">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoExclOperacaoVinculada"
+                        disabled="#{empty bean.tradeFinNegocVO.listaOperacaoVinculada}" tabindex="1106"
+                    value="#{msgs.bto_excluir}">
+                    <f:ajax execute="@form" event="click" render="pnlOperVinculada div_modalOperVinculada formModalMessages"
+                        listener="#{bean.listenerExcluirOperacaoVinculada}" />
+                </awb-h:commandButton>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+    
+    <!-- MODAL CONSULTA OPERACOES -->
+    <awb-th:extDiv id="div_modalOperVinculada">
+       <awb-br:modalContent id="modalOperacoesVinculadas" iconUrl="info" autoOpen="true" reRender="@form"
+           resizable="true" draggable="true" width="1000" height="450" closable="false" closeOnEscape="false"
+           header="Vincular Operações" closeId="formModalOperVinc:botaoFechar"
+           onHideServerCallback="#{oprVincModalBean.closeModalOperacoesVinculadas}"
+           rendered="#{oprVincModalBean.viewHelper.renderModalOperacoesVinculadas}"
+           contentPath="#{request.contextPath}/content/global/oprVincModal/oprVincModal.xhtml" />
+    </awb-th:extDiv>
+    
+</ui:composition>
+
+</html>

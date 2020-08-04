@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    
+    <awb-h:panelGrid columns="3" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+       <awb-h:panelGroup>
+           <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+           <awb-h:outputLabel value="#{msgs.label_det_n_apr_cred}: " styleClass="HtmlOutputLabelBradesco"/>
+           <awb-h:outputLabel value="#{(tradeFinanceBean.tradeFinanceVO.nppstapontucmbio ne 0 and tradeFinanceBean.tradeFinanceVO.nppstapontucmbio ne null) ? tradeFinanceBean.tradeFinanceVO.nppstapontucmbio : tradeFinanceBean.tradeFinanceVO.nseqcontrlim}"
+                              styleClass="HtmlOutputTextBoldBradesco"/>
+       </awb-h:panelGroup>
+       
+       <!-- 2011 644 -->
+       
+       <awb-h:panelGroup rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc eq 2011 or tradeFinanceBean.tradeFinanceVO.cprodtservc eq 644}">
+           <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+           <awb-h:outputLabel value="#{msgs.label_det_tomador}: " styleClass="HtmlOutputLabelBradesco"/>
+           <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.ncunicpssoacmbiot}" styleClass="HtmlOutputTextBoldBradesco"/>
+       </awb-h:panelGroup>
+       
+       <awb-h:panelGroup rendered="#{tradeFinanceBean.tradeFinanceVO.cprodtservc eq 644}">
+              <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+              <awb-h:outputLabel value="#{msgs.label_percentual_about}: " styleClass="HtmlOutputLabelBradesco"/>
+              <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.pcobervarprodt}%" styleClass="HtmlOutputTextBoldBradesco"/>
+       </awb-h:panelGroup>
+       
+    </awb-h:panelGrid>
+                
+</ui:composition>
+</html>

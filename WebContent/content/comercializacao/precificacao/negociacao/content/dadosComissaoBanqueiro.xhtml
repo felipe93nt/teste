@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 850 a 899  
+         Deve ser exibido junto com os dados da Precificação. A tela de inclusão não mostra essas informações-->
+
+    <awb-h:panelGrid id="pnlComissBanqueiro" styleClass="panelGridTable"
+        rendered="#{bean.viewHelper.renderPrecificacao}">
+
+        <!-- LINHA DIVISÓRIA -->
+        <awb-h:panelGrid styleClass="panelGridTable">
+            <awb-f:verbatim>
+                <hr />
+            </awb-f:verbatim>
+        </awb-h:panelGrid>
+        
+        <awb-h:panelGroup>
+            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="Comissão Banqueiro" />
+        </awb-h:panelGroup>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaComissaoBanqueiro" layout="spread" immediate="false" tabindex="850"
+                forceId="true" forceIdIndex="false"
+                value="#{bean.viewHelper.itemSelecListaComissaoBanqueiro}">
+                <awb-f:selectItems value="#{bean.itensRadioListaComissaoBanqueiro}" />
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+
+        <!-- GRID COMISSAO Banqueiro -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridComisBanqueiro"
+            rendered="#{not empty bean.tradeFinNegocVO.listaComissaoExterna.getComissaoBanqueiro()}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableComisBanqueiro">
+                <awb-br:scrollableDataTable id="dataTableComissaoBanqueiro" var="itemComissaoBanqueiro" rows="20"
+                    width="100%" rowIndexVar="indexListaComissaoBanqueiro"
+                    value="#{bean.tradeFinNegocVO.listaComissaoExterna.getComissaoBanqueiro()}">
+
+                    <awb-br:scrollableColumn width="2%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-th:extRadio index="#{indexListaComissaoBanqueiro}"
+                            for=":formTrdFinNegIncl:radioListaComissaoBanqueiro" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="15%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Tipo" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.tipoComissaoExt}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="19%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.vprevtcomiscmbio}">
+                            <f:converter converterId="numericConverter"></f:converter>
+                        </awb-h:outputLabel>
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="7%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Taxa(%)" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.pjuronegoccmbio}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="10%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Cobrança Comissão" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.periodoTaxa}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="7%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.moedaComissao}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="15%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Periodicidade" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.periodicidadeComissao}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="15%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Momento" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.momentoComissao}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="10%" styleClass="c">
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Parcelas" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemComissaoBanqueiro.qpcelacmbiotrade}" />
+                    </awb-br:scrollableColumn>
+
+                </awb-br:scrollableDataTable>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="3" width="10%" styleClass="right">
+            <awb-h:panelGroup style="float:right">
+                <!-- Detalhar Comissao Banqueiro -->
+                <awb-h:commandButton id="btnDetalharComissaoBanq" styleClass="HtmlCommandButtonBradesco" tabindex="851"
+                    disabled="#{empty bean.tradeFinNegocVO.listaComissaoExterna.getComissaoBanqueiro()}"
+                    value="#{msgs.bto_detalhar}">
+                    <f:ajax immediate="false" execute="@form" event="click"
+                        render="pnlComissBanqueiro formTrdFinNegIncl formModalMessages divSeiModals"
+                        listener="#{bean.listenerDetalharComissaoBanqueiro}" />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <awb-br:modalContent id="modalComissaoBanqueiro" 
+                                     closeId="formModalComissExt:botaoCancelar" 
+                                     autoOpen="true" 
+                                     openId="btnDetalharComissaoBanq" 
+                                     resizable="true" 
+                                     draggable="true"
+                                     contentPath="#{request.contextPath}/content/global/comissaoExtManutModal/modalComissExtManut.xhtml" 
+                                     header="Comissao Banqueiro" 
+                                     width="1000"  
+                                     height="530" 
+                                     onHideServerCallback="#{comissaoExtManutModalBean.closeModal}"
+                                     rendered="#{comissaoExtManutModalBean.viewHelper.renderModal}"
+                                     reRender="@form"/>
+
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition>
+
+    <awb-th:extDiv id="div_modalRelAuditor">
+         <awb-br:modalContent id="content_modalRelAuditor" 
+                              iconUrl="info" 
+                              closeId="mainForm:btVoltarDetalhe" 
+                              autoOpen="true" 
+                              resizable="true" 
+                              draggable="true" 
+                              contentPath="#{relatorioAuditorModalBean.viewHelper.url}"
+                              header="Relatório Auditor" 
+                              width="1050" 
+                              height="600"
+                              onHideServerCallback="#{relatorioAuditorModalBean.closeModal}"
+                              rendered="#{relatorioAuditorModalBean.viewHelper.renderModal}"
+                              reRender="divSeiModals"/>
+    </awb-th:extDiv>
+
+</ui:composition>
+
+</html>

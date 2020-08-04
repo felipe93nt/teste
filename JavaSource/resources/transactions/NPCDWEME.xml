@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWEME" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="134">
+    <register name="NPCDWEME-HEADER">
+      <field name="NPCDWEME-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWEME" />
+      <field name="NPCDWEME-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00134" />
+    </register>
+    <register name="NPCDWEME-REGISTRO">
+      <field name="NPCDWEME-TIPO-PESQUISA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEME-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEME-IPSSOA-CMBIO" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEME-IREDZD-PSSOA-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

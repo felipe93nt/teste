@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWGKS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="8992">
+    <register name="NPCDWGKS-HEADER">
+      <field name="NPCDWGKS-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWGKS" />
+      <field name="NPCDWGKS-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08992" />
+    </register>
+    <register name="NPCDWGKS-REGISTRO">
+      <field name="NPCDWGKS-CPSSOA-JURID-SUPE" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-NSEQ-UND-SUPE" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-CIDTFD-TPO-UND-SUPE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-CRCONH-UND-SUPE-M" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-CRCONH-UND-SUPE-F" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-IRZ-SCIAL-SUPE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWGKS-CTPO-UND-ORGNZ-SUPE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWGKS-ITPO-UND-ORGNZ-SUPE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWGKS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWGKS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCDWGKS-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWGKS-CPSSOA-JURID-SUBR" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWGKS-NSEQ-UND-SUBR" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWGKS-CIDTFD-TPO-UND-SUBR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWGKS-CRCONH-UND-SUBR-M" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWGKS-CRCONH-UND-SUBR-F" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWGKS-IRZ-SCIAL-SUBR" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWGKS-CTPO-UND-ORGNZ-SUBR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWGKS-ITPO-UND-ORGNZ-SUBR" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

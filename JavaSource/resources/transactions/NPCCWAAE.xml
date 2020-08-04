@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWAAE" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="203">
+    <register name="NPCCWAAE-HEADER">
+      <field name="NPCCWAAE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWAAE" />
+      <field name="NPCCWAAE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00203" />
+    </register>
+    <register name="NPCCWAAE-REGISTRO">
+      <field name="NPCCWAAE-CCOND-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWAAE-RCONDC-ECONC-CMBIO" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAAE-CUSUAR-MANUT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAAE-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWAAE-FILLER" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

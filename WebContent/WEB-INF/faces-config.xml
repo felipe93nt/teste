@@ -1,0 +1,78 @@
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+
+	<application>
+
+		<message-bundle>br.com.bradesco.web.npcc_trade.view.bundle.Messages</message-bundle>
+
+		<!-- Jboss EL Resolver -->
+		<!--<el-resolver>org.jboss.weld.el.WeldELResolver</el-resolver> -->
+
+		<!-- Tomcat EL Resolver -->
+		<el-resolver>org.apache.webbeans.el22.WebBeansELResolver</el-resolver>
+		
+		
+		<!-- WAS EL Resolver
+		<el-resolver>org.apache.webbeans.el.WebBeansELResolver</el-resolver>
+		-->
+		<locale-config>
+			<default-locale>pt</default-locale>
+			<supported-locale>pt</supported-locale>
+			<supported-locale>es</supported-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<resource-bundle>
+    		<base-name>br.com.bradesco.web.npcc_trade.view.bundle.Messages</base-name>
+    		<var>msgs</var>
+		</resource-bundle>
+	</application>
+	
+	<factory>
+		<application-factory>br.com.bradesco.web.aq.view.application.BradescoApplicationFactoryImpl</application-factory>
+	</factory>
+	
+	<!-- CONF. DE CONVERTERS -->
+	<converter>  
+		<converter-id>valorConverter</converter-id>  
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.ValorConverter</converter-class>  
+	</converter>
+	
+	<converter>  
+		<converter-id>bigDecimalConverter</converter-id>  
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.BigDecimalConverter</converter-class>  
+	</converter>
+	
+	<converter>  
+		<converter-id>stringConverter</converter-id>  
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.StringConverter</converter-class>  
+	</converter>
+
+	<converter>
+		<converter-id>cnpjConverter</converter-id>
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.CNPJConverter</converter-class>
+	</converter> 
+
+	<converter>
+		<converter-id>baseCNPJConverter</converter-id>
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.BaseCNPJConverter</converter-class>
+	</converter>
+	
+	<converter>
+		<converter-id>numericConverter</converter-id>
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.NumericConverter</converter-class>
+	</converter>
+	
+	<converter>
+		<converter-id>extensoConverter</converter-id>
+		<converter-class>br.com.bradesco.web.npcc_trade.utils.converter.ExtensoConverter</converter-class>
+	</converter>
+
+	<!-- CONF. DE VALIDATORS -->
+	<validator>
+		<validator-id>customLengthValidator</validator-id>
+		<validator-class>br.com.bradesco.web.npcc_trade.utils.validator.CustomLengthValidator</validator-class>
+	</validator>
+</faces-config>

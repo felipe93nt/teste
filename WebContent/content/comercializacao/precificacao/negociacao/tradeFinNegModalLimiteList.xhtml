@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body"> 
+
+    <body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formTrdFinNegModalLimite" >
+            <awb-h:panelGrid width="100%">
+                <awb-h:column>
+
+		            <!-- RADIO GRID LISTA -->
+		            <f:facet name="header">
+		                <awb-h:selectOneRadio id="radio" forceId="true" forceIdIndex="false"
+		                    value="#{tradeFinanceNegociacaoInclBean.viewHelper.itemSelecListaModalLimites}">
+		                    <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.selectItemRadioListaModalLimites}" />
+		                </awb-h:selectOneRadio>
+		            </f:facet>
+		
+				    <!-- GRID -->
+				    <awb-h:panelGrid styleClass="panelGridDataTable"
+				        rendered="#{not empty tradeFinanceNegociacaoInclBean.listaModalLimite}">
+				             <awb-br:keepState pdcDataScrollerID="dataScroller"
+				                 stateID="#{tradeFinanceNegociacaoInclBean.viewHelper.stateIdListaModalLimites}" resource="cws">
+				                 <awb-br:scrollableDataTable id="dataLimite" value="#{tradeFinanceNegociacaoInclBean.listaModalLimite}" var="item" rows="4"
+				                     width="100%" rowIndexVar="indexLista" rendered="#{tradeFinanceNegociacaoInclBean.listaModalLimite.size() > 0}">
+				
+				                     <awb-br:scrollableColumn width="3%">
+				                         <f:facet name="header">
+				                             <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+				                         </f:facet>
+				                         <awb-th:extRadio index="#{indexLista}" for=":formTrdFinNegModalLimite:radio" />
+				                     </awb-br:scrollableColumn>
+				    
+				                <!-- XXX -->
+				                <awb-br:scrollableColumn width="29%" styleClass="c">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_produto}" styleClass="tableFontStyle"
+				                            escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.descrprodtlimite}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="7%">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.descrmoeda}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="14%">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_valor_limite}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.valorLimite}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="15%">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_valor_disponivel}" styleClass="tableFontStyle"
+				                            escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.valorDisponivel}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="7%" styleClass="c">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_vencimento}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.dataVencimento}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="5%" styleClass="c">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.pvctolimgerc}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="5%" styleClass="c">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_spread}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.txSpread}" />
+				                </awb-br:scrollableColumn>
+				
+				                <awb-br:scrollableColumn width="25%" styleClass="c">
+				                    <f:facet name="header">
+				                        <awb-h:outputLabel value="#{msgs.label_garantia_principal}" styleClass="tableFontStyle" escape="false" />
+				                    </f:facet>
+				                    <awb-h:outputLabel value="#{item.descrgarntprinc}" />
+				                </awb-br:scrollableColumn>
+				            </awb-br:scrollableDataTable>
+				        </awb-br:keepState>
+				    
+				        <!-- PAGINACAO -->
+				        <awb-br:awbDataScroller resource="cws" for="dataLimite" styleClass="pagination" id="dataScrollerCadastro"
+				            renderFacetsIfSinglePage="false" actionListener="#{tradeFinanceNegociacaoInclBean.paginarModalLimites}"
+				            stateID="#{tradeFinanceNegociacaoInclBean.viewHelper.stateIdListaModalLimites}">
+				            <f:facet name="first">
+				                <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+				                    title="#{msgs.label_txt_primeira}" />
+				            </f:facet>
+				            <f:facet name="fastrewind">
+				                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}"
+				                    title="#{msgs.label_txt_retrocesso}" />
+				            </f:facet>
+				            <f:facet name="previous">
+				                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}"
+				                    title="#{msgs.label_txt_anterior}" />
+				            </f:facet>
+				            <f:facet name="next">
+				                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}"
+				                    title="#{msgs.label_txt_proxima}" />
+				            </f:facet>
+				            <f:facet name="fastforward">
+				                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+				                    title="#{msgs.label_txt_avanco}" />
+				            </f:facet>
+				            <f:facet name="last">
+				                <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+				                    title="#{msgs.label_txt_ultima}" />
+				            </f:facet>
+				        </awb-br:awbDataScroller>
+				    </awb-h:panelGrid>
+
+                </awb-h:column>
+            </awb-h:panelGrid>
+            <br />
+
+            <awb-h:commandButton id="botaoFechar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" />
+            <awb-h:commandButton action="#{tradeFinanceNegociacaoInclBean.selecionarModalLimite}" value="Selecionar"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+        </awb-h:form>
+
+    </body>
+</ui:define>
+</ui:composition>
+
+</html>

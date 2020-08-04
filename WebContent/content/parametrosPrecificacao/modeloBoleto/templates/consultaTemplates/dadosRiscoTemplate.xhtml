@@ -1,0 +1,106 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid rendered="#{tradeFinanceBean.viewHelper.renderMonitor}" width="100%">
+	<awb-h:panelGrid columns="2" style="width: 100%;" columnClasses="width: 100%;">
+		<awb-h:outputLabel style="font-family: verdana; font-weight: bold; font-size: 10px" value="#{msgs.label_risco_pld} " />
+		<awb-h:outputLabel style="font-family: verdana; font-weight: bold; font-size: 10px" value="#{msgs.label_risco_cambio} " />
+	    
+	    <awb-h:panelGroup>
+	        <awb-h:panelGrid columns="1">
+				<!-- MOVIMENTO INCOMPATIVEL -->
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_mov_incompativel}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.cmovtcincel}" />
+	            </awb-h:panelGroup>
+	            
+				<!-- RATING PLD -->
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_rating_pld}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.crtinglvgemdnhe}" />
+	            </awb-h:panelGroup>
+	        
+				<!-- RESTRIÇOES -->
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_restricoes}: " />
+					<awb-h:outputLabel  style="font-family: verdana; font-size: 10px; font-weight: bold;" value="#{msgs.label_det_restricao}"
+	                 	rendered="#{not tradeFinanceBean.tradeFinanceVO.renderRestricoes}"/>
+					
+					<awb-h:panelGroup columns="1" rendered="#{tradeFinanceBean.tradeFinanceVO.renderRestricoes}">
+						<ui:repeat var="rest" value="#{tradeFinanceBean.tradeFinanceVO.restricoes}">
+						<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{rest}" />
+						<br/>
+					</ui:repeat>
+					</awb-h:panelGroup>
+					
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGroup>
+	    
+	    <awb-h:panelGroup>
+	        <awb-h:panelGrid columns="1">
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_re_entregue}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.reentregue}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_di_entregue}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.dientregue}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_contrato_ausentes}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.cindcdcontrfalt}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_abertura_cc}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.dabertctacli}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_fund_nasc}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.dfundcnasc}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_opr_vencidas}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.qdiavencdcontr}" />
+	            </awb-h:panelGroup>
+	            
+	            <awb-h:panelGroup>
+					<awb-h:graphicImage style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;" url="#{server}/images/bullet.jpg" />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px" value="#{msgs.label_det_pendecias_formal}: " />
+					<awb-h:outputLabel style="font-family: verdana; font-size: 10px; font-weight: bold; " value="#{tradeFinanceBean.tradeFinanceVO.qcontrdoctopend}" />
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGroup>
+	    
+	   
+			
+	</awb-h:panelGrid>
+	
+	 <!-- LINHA DIVISORIA -->
+	    <awb-th:extHtmlTag value="hr"
+			style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); 
+			background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+			</awb-h:panelGrid>
+</awb-f:view>
+</html>

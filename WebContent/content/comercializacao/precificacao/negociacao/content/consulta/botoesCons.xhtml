@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- GRID BOTOES -->
+    <awb-h:panelGrid columns="2" width="100%">
+
+        <!-- Voltar -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" 
+        	action="#{tradeFinanceBean.actionVoltar}"
+        	styleClass="#{tradeFinanceBean.externalAccess ? 
+        				  'HtmlCommandButtonBradesco external-access-disconnect' : 
+        				  'HtmlCommandButtonBradesco'}" />
+
+        <awb-h:panelGrid style="float:right" columns="4">
+        
+            <!-- Gerar Boleto -->
+           	<awb-h:panelGroup> 
+                <awb-h:outputLink id="btnVisualizar" title="Gerar Boleto" rev="#{tradeFinanceBean.tradeFinanceVO.cmodcontrcmbio eq 0 or tradeFinanceBean.habibitaGerarBoleto eq 1}"
+                    styleClass="seiBtnImprimirGrupo tab sei-button" value="javascript:;">
+                    <sei:seiAction id="seiAction" type="print" render="divSeiModals formModalMessages"
+                        action="#{tradeFinanceBean.gerarBoleto}" jsActionArgs="getExportPdfOnly">
+                        <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                            pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                    </sei:seiAction>
+                    <awb-h:outputLabel value="#{msgs.bto_imprimir}"></awb-h:outputLabel>
+                </awb-h:outputLink>
+            </awb-h:panelGroup>
+            
+            <!-- Anexar Documento -->
+            <awb-h:commandButton value="#{msgs.bto_anx_docs}"
+                styleClass="#{tradeFinanceBean.externalAccess ? 
+                			  'HtmlCommandButtonBradesco right external-access-hide' : 
+                			  'HtmlCommandButtonBradesco right'}">
+                
+                <f:ajax listener="#{tradeFinanceBean.anexarDocumentos}"
+                    render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this"
+                    immediate="false" />
+            </awb-h:commandButton>
+            
+            <!-- Anexar Email -->
+            <awb-h:commandButton value="#{msgs.bto_anx_email}"
+                styleClass="#{tradeFinanceBean.externalAccess ? 
+                			  'HtmlCommandButtonBradesco right external-access-hide' : 
+                			  'HtmlCommandButtonBradesco right'}">
+                
+                <f:ajax listener="#{tradeFinanceBean.anexarEmail}"
+                    render="div_modalAnexarEmail formModalMessages divSeiModals" execute="@this"
+                    immediate="false" />
+            </awb-h:commandButton>
+
+            <!-- Imprimir -->
+            <awb-h:panelGroup>
+                <awb-h:outputLink id="exportButton" title="#{msgs.bto_imprimir}" styleClass="seiBtnImprimirGrupo tab sei-button"
+                    value="javascript:;">
+                    <sei:seiAction type="print" render="seiDivModals divSeiModals" action="#{tradeFinMonitBean.actionExportar}" 
+                        jsActionArgs="getExportPdfOnly">
+                        <sei:seiSettings pageOrientation="landscape" pageNumberLabel="#{msgs.label_pagina}"
+                            pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                    </sei:seiAction>
+                </awb-h:outputLink>
+            </awb-h:panelGroup>
+
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <!-- Modal Anexar E-mail -->
+    <awb-th:extDiv id="div_modalAnexarEmail">
+        <awb-br:modalContent id="modalAnexarEmail" iconUrl="info"
+            closeId="frameForm:botaoFechar" autoOpen="true" reRender="@form divSeiModals"
+            resizable="false" draggable="false"
+            contentPath="#{request.contextPath}/content/global/anexarArquivoGccModal/modalAnexarArquivoGcc.xhtml"
+            header="#{anexarArquivoGccModalBean.viewHelper.titleModal}"
+            onHideServerCallback="#{anexarArquivoGccModalBean.closeModal}"
+            rendered="#{anexarArquivoGccModalBean.viewHelper.renderModal}">
+        </awb-br:modalContent>
+    </awb-th:extDiv>
+
+</ui:composition>
+</html>

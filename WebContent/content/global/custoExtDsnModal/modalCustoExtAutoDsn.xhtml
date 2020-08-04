@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">       
+        <body>
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <awb-h:form id="formModalCtExAtDsn">
+           <awb-h:panelGrid styleClass="panelGridDataTable">
+	           <awb-h:panelGrid styleClass="panelGridTable">                
+                    <awb-h:panelGroup>
+                        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                        <awb-h:outputLabel value="#{custoExtAutoDsnModalBean.viewHelper.labelMotivo}: "
+                            styleClass="HtmlOutputTextBulletBoldBradesco"/>
+                    </awb-h:panelGroup>
+                    <awb-h:panelGroup>
+                    <awb-h:inputTextarea title="#{msgs.label_motivo}" immediate="false" cols="90" rows="10" width="100%"
+                        styleClass="HtmlInputTextObrigatorioBradesco auto-focus" value="#{custoExtAutoDsnModalBean.viewHelper.txtMotivo}">
+                    </awb-h:inputTextarea>
+                    </awb-h:panelGroup>
+	           </awb-h:panelGrid>     
+	           
+           </awb-h:panelGrid> 
+            <br />
+
+            <awb-h:commandButton id="botaoCancelar" value="Cancelar" style="left: 0; bottom: 0; position: absolute;"
+                styleClass="HtmlCommandButtonBradesco left" />
+            <awb-h:commandButton action="#{custoExtAutoDsnModalBean.confirmarModalMotivo}" value="Confirmar"
+                style="right: 0; bottom: 0; position: absolute;" styleClass="HtmlCommandButtonBradesco right" />
+        </awb-h:form>
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        </body>
+    </ui:define>
+  </ui:composition>
+</html>     
+    
+    

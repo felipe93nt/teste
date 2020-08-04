@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" 
+    xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" 
+    xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">       
+	    <body onunload="closeModalContent();">
+	    <!-- css -->
+	    <awb-br:stylesheet href="/css/pages.css" />
+	    
+	    
+		<awb-h:form id="formModalFluxoPgt">
+		    <awb-h:panelGrid columns="4" styleClass="panelGridTable" columnClasses="panelGridColumn25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+		        <!-- Data -->
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+<!-- 		            <awb-h:outputLabel value="#{msgs.label_det_data}: " styleClass="HtmlOutputLabelBradesco"/> -->
+		            <awb-h:outputLabel value="#{msgs.label_det_prev_desembolso}: " styleClass="HtmlOutputLabelBradesco"/>
+		            <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.dprevtdsembcmbio}" styleClass="HtmlOutputTextBoldBradesco"/>
+		        </awb-h:panelGroup> 
+		        
+		        <!-- Moeda do desembolso -->
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_moeda_desembolso}: " styleClass="HtmlOutputLabelBradesco"/>
+		            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.simbleconmdsemb}" styleClass="HtmlOutputTextBoldBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <!-- Valor -->
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_valor}: " styleClass="HtmlOutputLabelBradesco"/>
+		            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vnegocmoedaestrg}" styleClass="HtmlOutputTextBoldBradesco">
+		              <f:converter converterId="numericConverter"></f:converter>
+		            </awb-h:outputLabel>
+		        </awb-h:panelGroup>
+                
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="Prazo Operação(Dias): " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{tradeFinanceBean.tradeFinanceVO.tdiaopercmbio}" />                          
+                </awb-h:panelGroup>
+		        
+		    </awb-h:panelGrid>
+		    
+		    <!--  LINHA DIVISÓRIA -->
+		    <awb-h:panelGrid width="100%">
+		        <awb-f:verbatim>
+		            <hr class="linhaPontilhada" />
+		        </awb-f:verbatim>
+		    </awb-h:panelGrid>
+		    
+	        <awb-h:panelGrid columns="4" styleClass="panelGridTable" columnClasses="panelGridColumn25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+			    <!-- Carencia dias -->
+			    <awb-h:panelGroup>
+			        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			        <awb-h:outputLabel value="#{msgs.label_det_princ_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+			        <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.tdiacarenprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+			    </awb-h:panelGroup> 
+			    
+			     <!-- Periodicidade -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_periodicidade}: " styleClass="HtmlOutputLabelBradesco"/>
+                    <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.dfluxoliqdcprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+                </awb-h:panelGroup>
+			    
+			    <!-- Qtde parcelas -->
+			    <awb-h:panelGroup>
+			        <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			        <awb-h:outputLabel value="#{msgs.label_det_qtde_parcelas}: " styleClass="HtmlOutputLabelBradesco"/>
+			        <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.qpcelatradeprinc}" styleClass="HtmlOutputTextBoldBradesco"/>
+			    </awb-h:panelGroup>
+			    
+			</awb-h:panelGrid>
+	
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid width="100%">
+			    <awb-f:verbatim>
+			        <hr class="linhaPontilhada" />
+			    </awb-f:verbatim>
+			</awb-h:panelGrid>	    
+		    
+		    <awb-h:panelGrid columns="4" styleClass="panelGridTable" columnClasses="panelGridColumn25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+	            <!-- Carencia juros -->
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_juros_dias}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.tdiacarenjuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+	            </awb-h:panelGroup> 
+	            
+	            <!-- Periodicidade -->
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_periodicidade}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.dfluxoliqdcjuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+	            </awb-h:panelGroup>
+	            
+	            <!-- qtde parcelas -->
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_qtde_parcelas}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.qpcelatradejuro}" styleClass="HtmlOutputTextBoldBradesco"/>
+	            </awb-h:panelGroup>
+	            
+	            <!-- Momento -->
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_momento}: " styleClass="HtmlOutputLabelBradesco"/>
+	                <awb-h:outputLabel value="#{tradeFinanceBean.fluxoPgtVO.descrmomen}" styleClass="HtmlOutputTextBoldBradesco"/>
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+		    
+		    <!--  LINHA DIVISÓRIA -->
+	        <awb-h:panelGrid width="100%">
+	            <awb-f:verbatim>
+	                <hr class="linhaPontilhada" />
+	            </awb-f:verbatim>
+	        </awb-h:panelGrid>
+		    
+		    <awb-h:panelGrid styleClass="panelGridDataTable">
+			    <awb-h:outputLabel value="#{msgs.label_parcelas_princ_jr}" styleClass="HtmlOutputTextBoldBradesco"/>	
+			    <awb-br:keepState pdcDataScrollerID="dataScroller" stateID="NPCCIAO5" resource="cws">
+<!-- 				    <awb-br:editableDataTable var="fluxoPgtDet" value="#{tradeFinanceBean.fluxoPgtVO.lista}" id="dataTableFluxoPgt" width="100%" rendered="#{tradeFinanceBean.fluxoPgtVO.lista.size() > 0 }">  -->
+				    
+        			<awb-br:editableDataTable var="fluxoPgtDet" id="dataTableFluxoPgt" rendered="#{tradeFinanceBean.fluxoPgtVO.lista.size() > 0 }"
+						style="width:100%" value="#{tradeFinanceBean.fluxoPgtVO.lista}">
+				    
+					     <awb-br:editableColumn id="indice" width="22%" styleClass="c" sortable="true" insertable="true" movable="true" removable="true">
+					         <awb-f:facet name="header">
+					             <awb-h:outputLabel value="#{msgs.label_n_parcela}" styleClass="tableFontStyle" escape="false" />
+					         </awb-f:facet>
+					         <awb-h:outputLabel value="#{fluxoPgtDet.npceladsembtrade}" styleClass="center HtmlOutputTextBoldBradesco"/>
+					     </awb-br:editableColumn>
+					     
+						<awb-br:editableColumn id="principal" width="18%" sortable="true" insertable="true" movable="true" removable="true">
+							<awb-f:facet name="header">
+							    <awb-h:outputLabel value="Principal" styleClass="tableFontStyle" escape="false" />
+							</awb-f:facet>
+							<awb-h:outputLabel value="#{fluxoPgtDet.valorPrincipalParcelaFluxoPgto}" styleClass="right HtmlOutputTextBoldBradesco">
+							</awb-h:outputLabel>
+						</awb-br:editableColumn>
+							
+						<awb-br:editableColumn id="juros" width="18%" sortable="true" insertable="true" movable="true" removable="true">
+	                            <awb-f:facet name="header">
+	                                <awb-h:outputLabel value="Juros" styleClass="center tableFontStyle" escape="false" />
+	                            </awb-f:facet>
+	                            <awb-h:outputLabel value="#{fluxoPgtDet.valorJurosParcelaFluxoPgto}" styleClass="right HtmlOutputTextBoldBradesco">
+	                         </awb-h:outputLabel>
+	                     </awb-br:editableColumn>
+					     
+					     <awb-br:editableColumn  id="prazo" width="19%" styleClass="c" sortable="true" insertable="true" movable="true" removable="true">
+				            <awb-f:facet name="header">
+				                 <awb-h:outputLabel value="#{msgs.label_prazo}" styleClass="tableFontStyle" escape="false" />
+				            </awb-f:facet>
+				            <awb-h:outputLabel value="#{fluxoPgtDet.tdianegocpcela}"  styleClass="center HtmlOutputTextBoldBradesco"/>
+				        </awb-br:editableColumn>
+				        
+				        <awb-br:editableColumn id="vencimento" width="25%" sortable="true" insertable="true" movable="true" removable="true">
+				            <awb-f:facet name="header">
+				                 <awb-h:outputLabel value="#{msgs.label_vencimento}" styleClass="tableFontStyle" escape="false" />
+				            </awb-f:facet>
+				            <awb-h:outputLabel value="#{fluxoPgtDet.dvctopcelatrade}"  styleClass="right HtmlOutputTextBoldBradesco"/>
+				        </awb-br:editableColumn>
+				        
+				        <awb-br:editableColumn id="indice5" width="32%" sortable="true" insertable="true" movable="true" removable="true">
+				            <awb-f:facet name="header">
+				                 <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+				            </awb-f:facet>
+				            <awb-h:outputLabel value="#{fluxoPgtDet.vpcelamesatrade}"  styleClass="right HtmlOutputTextBoldBradesco">
+				            </awb-h:outputLabel>
+				        </awb-br:editableColumn>
+				        
+						<awb-br:editableColumn id="indice6" width="32%" sortable="true" insertable="true" movable="true" removable="true">
+						    <awb-f:facet name="header">
+						        <awb-h:outputLabel value="Saldo Devedor" styleClass="tableFontStyle" escape="false" />
+						    </awb-f:facet>
+						    <awb-h:outputLabel styleClass="right HtmlOutputTextBoldBradesco" value="#{fluxoPgtDet.valorSaldoDevedorFluxoPgto}" />
+						</awb-br:editableColumn>
+				    </awb-br:editableDataTable>
+		        </awb-br:keepState>
+		    
+		    </awb-h:panelGrid>          
+		    
+		    <!--  LINHA DIVISÓRIA -->
+		    <awb-h:panelGrid width="100%">
+		        <awb-f:verbatim>
+		            <hr />
+		        </awb-f:verbatim>
+		    </awb-h:panelGrid>
+		    
+		    <awb-h:panelGrid styleClass="gridBotaoEsquerda">
+			    <awb-h:commandButton value="#{msgs.bto_cancelar}" id="btnCancelar"
+			        styleClass="HtmlCommandButtonBradesco" style="float: left;" >
+			            <awb-br:submitCheckClient />
+			    </awb-h:commandButton>
+		    </awb-h:panelGrid>
+		</awb-h:form>
+		</body>
+	</ui:define>
+  </ui:composition>
+</html>     
+    

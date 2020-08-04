@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+<ui:define name="body">	
+
+<body>
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <awb-h:form id="frameForm">
+                <awb-h:panelGrid styleClass="panelGridDataTable">
+                    <awb-h:column>
+
+                        <awb-th:extSelectOneRadio forceId="true" forceIdIndex="false" id="mainRadio" layout="spread"
+                            value="#{clienteModalBean.viewHelper.itemSelecListaSelCliente}" styleClass="auto-focus">
+                            <f:selectItems value="#{clienteModalBean.selectItemRadioLista}" />
+                        </awb-th:extSelectOneRadio>
+
+                        <!-- GRID -->
+                        <awb-h:panelGrid width="100%">
+                            <awb-br:keepState pdcDataScrollerID="dataScroller"
+                                stateID="#{clienteModalBean.viewHelper.nomeStateIdListaSelCliente}" resource="cws">
+                                <awb-br:scrollableDataTable id="dataTable" value="#{clienteModalBean.lista}" var="item"
+                                    rows="10" rowIndexVar="indice" width="100%"
+                                    rendered="#{clienteModalBean.lista.size() > 0}">
+
+                                    <awb-br:scrollableColumn width="4%">
+                                        <awb-f:facet name="header">
+                                        </awb-f:facet>
+                                        <awb-th:extRadio index="#{indice}" for=":frameForm:mainRadio" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="9%" styleClass="c">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_codigo}"
+                                                styleClass="HtmlOutputTextBradesco" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.cunicpssoacmbio}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="30%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_nome}"
+                                                styleClass="HtmlOutputTextBradesco" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.iredzdpssoacmbio}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="15%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="CPF/CNPJ" styleClass="HtmlOutputTextBradesco"
+                                                escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel  value="#{item.cpfCnpjFormatado}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="20%">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_banco}"
+                                                styleClass="HtmlOutputTextBradesco" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.bconome}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="7%" styleClass="c">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_agencia}"
+                                                styleClass="HtmlOutputTextBradesco" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.cagbcria}" />
+                                    </awb-br:scrollableColumn>
+
+                                    <awb-br:scrollableColumn width="15%" styleClass="c">
+                                        <awb-f:facet name="header">
+                                            <awb-h:outputLabel value="#{msgs.label_conta}"
+                                                styleClass="HtmlOutputTextBradesco" escape="false" />
+                                        </awb-f:facet>
+                                        <awb-h:outputLabel value="#{item.contaDvFormatado}" />
+                                    </awb-br:scrollableColumn>
+                                </awb-br:scrollableDataTable>
+                            </awb-br:keepState>
+
+                            <awb-br:awbDataScroller resource="cws" for="dataTable" styleClass="pagination"
+                                id="dataScroller" renderFacetsIfSinglePage="true"
+                                actionListener="#{clienteModalBean.paginar}"
+                                stateID="#{clienteModalBean.viewHelper.nomeStateIdListaSelCliente}">
+                                <f:facet name="first">
+                                    <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+                                        title="#{msgs.label_txt_primeira}" />
+                                </f:facet>
+                                <f:facet name="fastrewind">
+                                    <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                        value="#{msgs.label_retrocesso}" title="#{msgs.label_txt_retrocesso}" />
+                                </f:facet>
+                                <f:facet name="previous">
+                                    <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                        value="#{msgs.label_anterior}" title="#{msgs.label_txt_anterior}" />
+                                </f:facet>
+                                <f:facet name="next">
+                                    <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                        value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+                                </f:facet>
+                                <f:facet name="fastforward">
+                                    <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                        value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+                                </f:facet>
+                                <f:facet name="last">
+                                    <awb-br:awbCommandButton styleClass="button pagination-btn"
+                                        value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+                                </f:facet>
+                            </awb-br:awbDataScroller>
+                        </awb-h:panelGrid>
+
+                    </awb-h:column>
+                </awb-h:panelGrid>
+                
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid styleClass="panelGridTable">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="2" width="100%">
+
+                    <!-- VOLTAR -->
+                    <awb-h:commandButton id="botaoFechar" styleClass="HtmlCommandButtonBradesco"
+                        value="#{msgs.bto_cancelar}">
+                    </awb-h:commandButton>
+
+                    <awb-h:panelGrid styleClass="right">
+                        <!-- CONFIRMAR -->
+                        <awb-h:commandButton id="btnSelecionar" styleClass="HtmlCommandButtonBradesco"
+                            action="#{clienteModalBean.selecionarCliente}"
+                            value="#{msgs.bto_selecionar}">
+                        </awb-h:commandButton>
+                    </awb-h:panelGrid>
+
+                </awb-h:panelGrid>
+
+            </awb-h:form>
+    </body>
+    
+    <!-- Script geral da aplicação -->
+    <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+    
+</ui:define>
+</ui:composition>
+
+</html>

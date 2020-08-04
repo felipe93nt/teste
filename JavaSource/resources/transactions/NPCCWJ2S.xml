@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWJ2S" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="6000">
+    <register name="NPCCWJ2S-HEADER">
+      <field name="NPCCWJ2S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWJ2S" />
+      <field name="NPCCWJ2S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="06000" />
+    </register>
+    <register name="NPCCWJ2S-REGISTRO">
+      <field name="NPCCWJ2S-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ2S-MOEDA-DESC" pic="X(044)" length="44" bytes="44" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWJ2S-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ2S-PRODT-DESC" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWJ2S-VLIM-APROV-CUSTO" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWJ2S-QTD-FAIXA-OPER" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWJ2S-TB-FAIXAS">
+        <register name="NPCCWJ2S-TB-FAIXAS-OCCURS" minOccurs="30" maxOccurs="30">
+          <field name="NPCCWJ2S-CIDTFD-FAIXA-OPER" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+          <field name="NPCCWJ2S-VLIM-INFER-BANQR" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+          <field name="NPCCWJ2S-VLIM-SUPE-BANQR" pic="9(015)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+          <field name="NPCCWJ2S-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+          <field name="NPCCWJ2S-BANQR-DESC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWJ2S-BANQR-PRACA-DESC" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+          <field name="NPCCWJ2S-S-CID-BANQR-SWIFT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        </register>
+      </register>
+    </register>
+  </output>
+</copybook>
+

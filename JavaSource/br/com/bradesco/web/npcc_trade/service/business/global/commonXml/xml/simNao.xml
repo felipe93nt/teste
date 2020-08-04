@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<simNao codigo="1">
+		<nome>Sim</nome>
+	</simNao>
+	<simNao codigo="2">
+		<nome>Não</nome>
+	</simNao>
+</root>

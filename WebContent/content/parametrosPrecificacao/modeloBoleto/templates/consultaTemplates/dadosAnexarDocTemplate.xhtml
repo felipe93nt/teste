@@ -1,0 +1,65 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid rendered="#{tradeFinanceBean.viewHelper.renderMonitor}" width="100%">
+		<awb-h:panelGrid columns="4" style="width: 100%;" rendered="#{tradeFinanceBean.viewHelper.renderMonitor}"
+			columnClasses="width: 25%;" width="100%">
+
+		<awb-h:panelGrid style="width: 99%;">
+			<awb-th:extDiv styleClass="overflow-auto full-size"
+				id="div_dataTableDoc">
+				<awb-h:outputLabel
+					style="font-family: verdana; font-weight: bold; font-size: 10px"
+					value="#{msgs.label_doc_anx}" />
+
+				<awb-h:dataTable id="scrollable_docLista" var="docLista" rows="10"
+					cellspacing="0" cellpadding="10" border="1"
+					style="width: 100%; text-align: center" rowIndexVar="lista"
+					value="1">
+
+					<!--  DATA ANEXO -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_data_anexo}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+
+					<!-- HORARIO -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_horario}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+
+					<!-- OPERADOR -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_operador}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+
+				</awb-h:dataTable>
+			</awb-th:extDiv>
+		</awb-h:panelGrid>
+		<!-- LINHA DIVISORIA -->
+	
+	</awb-h:panelGrid>
+	
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

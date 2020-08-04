@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection" value="#{msgs.title_estatisticas_cotacao}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_estatisticas_cotacao',0)}" />
+		
+		
+	<!-- Carrega os dados da tela para realizar a duplicação -->
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{estatisticasCotacoesBean.iniciar}" />
+    </f:metadata>
+
+
+	<ui:define name="body">
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+
+		<!-- Componente SEI -->
+		<sei:seiRegion id="allContent">
+
+			<!-- FORM -->
+			<awb-h:form id="formTradeFinMonitDet">
+
+				<!--  LINHA DIVISÓRIA -->
+				<awb-h:panelGrid styleClass="panelGridTable">
+					<awb-f:verbatim>
+						<hr />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable" id="gridConsultas" columnClasses="panelGridColumn25">
+
+					<!-- CLIENTE -->
+					<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+						<!-- Radio: Tipo de consulta -->
+						<awb-h:outputLabel value="Tipo de Consulta: "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+		                <awb-h:panelGroup>
+		                    <awb-h:selectOneRadio styleClass="HtmlSelectOneRadioBradesco" immediate="false"
+		                        value="#{estatisticasCotacoesBean.viewHelper.codTipoConsultaSelecionads}" id="radioTipoConsulta">
+		                        
+		                        <awb-f:selectItems value="#{estatisticasCotacoesBean.viewHelper.tiposConsulta}" />
+		                        
+		                        <f:ajax execute="@this formConsulta formConsulta2" event="click" render="formTradeFinMonitDet formConsulta formConsulta2"
+		                            immediate="false" listener="#{estatisticasCotacoesBean.limparGridConsulta}" />
+		                            
+		                    </awb-h:selectOneRadio>
+		                </awb-h:panelGroup>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" styleClass="panelGridTable" id="formConsulta" rendered="#{estatisticasCotacoesBean.viewHelper.codTipoConsultaSelecionads == 1 or estatisticasCotacoesBean.viewHelper.codTipoConsultaSelecionads == 2}">
+                    
+					<!-- PERIODO COTACAO -->
+					<awb-h:panelGrid columns="1" id="divPeriodoCotacao">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel value="Período: "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGroup>
+                        
+                        <awb-h:panelGrid columns="3" width="310px">
+                        
+	                        <awb-h:column>
+	                            <awb-br:calendar id="periodoCotacaoInicio" titulo="Calendario" alt="Data Início"
+	                                disableInputFields="false" clientValidationLevel="date"
+	                                onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                                value="#{estatisticasCotacoesBean.viewHelper.periodoCotacao.inicio}" />
+	                        </awb-h:column>
+	                        <awb-h:column>
+	                            <awb-h:outputLabel value="#{msgs.label_a}" styleClass="HtmlOutputLabelBradesco" style="text-align: center;" />
+	                        </awb-h:column>
+	                        <awb-h:column>
+	                            <awb-br:calendar id="periodoCotacaoFim" titulo="Calendario" alt="Data Fim"
+	                                disableInputFields="false" clientValidationLevel="date"
+	                                onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+	                                value="#{estatisticasCotacoesBean.viewHelper.periodoCotacao.fim}" />
+	                                
+	                        </awb-h:column>
+	                    </awb-h:panelGrid>
+                    </awb-h:panelGrid>
+					
+					<!-- BOTOES -->
+					<awb-h:panelGrid columns="4" styleClass="panelGridTable">
+						<awb-h:panelGroup style="float:right">
+
+							<!-- PESQUISAR -->
+							<awb-h:commandButton value="#{msgs.bto_pesquisar}" styleClass="HtmlCommandButtonBradesco">
+								<f:ajax execute="@form" event="click" render="formTradeFinMonitDet formModalMessages divSeiModals" listener="#{estatisticasCotacoesBean.pesquisarCotacoes}" />
+							</awb-h:commandButton>
+							
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="4" styleClass="panelGridTable" id="formConsulta2" rendered="#{estatisticasCotacoesBean.viewHelper.codTipoConsultaSelecionads == 3}">
+
+					<!-- ANO BASE -->
+					<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel value="Ano Base: " styleClass="HtmlOutputLabelBoldBradesco" for="txtAnoBase" />
+						</awb-h:panelGroup>
+
+						<awb-h:panelGroup style="position: relative; vertical-align: bottom;">
+							<awb-h:inputText
+								value="#{estatisticasCotacoesBean.viewHelper.anoBase}"
+								id="inputQtdDias" size="10" maxlength="10"
+								styleClass="HtmlInputTextBradesco action-on-enter" />
+
+							<awb-h:message for="txtAnoBase" id="messageError" errorClass="TextValidatorMessage" />
+
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+
+
+					<!-- BOTOES -->
+					<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+						<awb-h:panelGroup style="float:right">
+
+							<!-- PESQUISAR -->
+							<awb-h:commandButton value="#{msgs.bto_pesquisar}" styleClass="HtmlCommandButtonBradesco">
+								<f:ajax execute="@form" event="click" render="formTradeFinMonitDet formModalMessages divSeiModals"
+								 listener="#{estatisticasCotacoesBean.pesquisarCotacoesFechadasPendentes}" />
+							</awb-h:commandButton>
+							
+						</awb-h:panelGroup>
+					</awb-h:panelGrid>
+
+				</awb-h:panelGrid>
+
+				<!-- LINHA PONTILHADA -->
+				<awb-h:panelGrid styleClass="panelGridDataTable"
+					rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0}">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- INICIO  GRID  CONSULTA PRODUTO / OPERADOR-->
+
+                <ui:include src="/content/comercializacao/consultas/estatisticasCotacoes/estatisticasCotacoesListProdutoOperador.xhtml"/>
+				
+				<!--FIM  GRID  CONSULTA PRODUTO / OPERADOR-->
+				
+				<!--INICIO  GRID  CONSULTA FECHADAS / PERDIDAS -->
+				
+                <ui:include src="/content/comercializacao/consultas/estatisticasCotacoes/estatisticasCotacoesListFechadasPerdidas.xhtml"/>
+				
+				<!--FIM  GRID  CONSULTA FECHADAS / PERDIDAS -->
+				
+
+				<awb-h:panelGrid columns="2" styleClass="panelGridTable"
+					id="botoesMonit2">
+
+					<awb-h:commandButton value="#{msgs.bto_voltar}"
+						styleClass="HtmlCommandButtonBradesco" action="nav_index" />
+
+					<awb-h:panelGrid style="float:right" columns="7" 
+					rendered="#{estatisticasCotacoesBean.estatisticaCotacoesVO.cotacoes.size() > 0 or estatisticasCotacoesBean.listaCotacoesFechadasPerdidas.size() > 0}">
+
+						<!-- EXPORTAÇÃO -->											
+						<awb-h:outputLink id="exportButton"
+							title="#{msgs.bto_exportar_excel}"
+							
+							styleClass="seiBtnSalvarArquivoGrupo tab sei-button"
+							value="javascript:;">
+
+							<sei:seiAction type="save" action="#{estatisticasCotacoesBean.exportar}"
+								jsActionArgs="App.exportFormats.excel" render="divSeiModals">
+
+								<sei:seiSettings pageOrientation="landscape"
+									pageNumberLabel="#{msgs.label_pagina}"
+									pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+							</sei:seiAction>
+						</awb-h:outputLink>
+
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:form>
+		</sei:seiRegion>
+
+		<!-- SEI API -->
+		<sei:seiApi id="seiApp" usePrintModal="true" useSaveModal="true"/>
+
+		<!-- Script para exportação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/export.js" />
+
+		<!-- Script geral da aplicação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/app.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+		<!-- Script da pagina -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/comercializacao/precificacao/negociacao/tradeFinMonitList.js" />
+
+	</ui:define>
+</ui:composition>
+
+</html>

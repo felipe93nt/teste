@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+    
+<ui:composition template="/template/root/mainLayout.xhtml">
+<ui:param name="selection" value="#{msgs.title_log_bndes_pos}" />
+    <ui:param name="passNumber" value="2" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_tradeFinance_monitor',99,'title_log_bndes_pos')}" />
+    <ui:define name="body">
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <!-- Componente SEI -->
+        <sei:seiRegion id="allContent">
+        
+            <awb-h:form id="formTradeFinMonitDet">            
+                <awb-h:panelGrid styleClass="panelGridTable">
+                    
+                    <!--LINHA DIVISORIA  -->
+    			    <awb-h:panelGrid width="100%">
+    			       <awb-f:verbatim>
+    			           <hr  />
+    			       </awb-f:verbatim>
+    			    </awb-h:panelGrid>
+                    
+                    <!--DADOS DO CLIENTE  -->
+    	            <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosClienteCons.xhtml"/>
+    	            
+    	            <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+    	            
+    	            <!--DADOS DO PRODUTO  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosProdutoCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!--DADOS DO APROVACAO DE CREDITO  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosAprovCreditoCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!--DADOS VALOR MOEDA BNDES POS  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosValorMoedaBndesPosCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid> 
+                    
+                    <!--DADOS GARANTIDOR BNDES POS  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosGarantidorBndesPosCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!--DADOS GARANTIAS BNDES POS  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosGarantiasBndesPosCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!--DADOS DO MODELO BOLETO  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosModeloBoletoCons.xhtml"/>
+                    
+                    <!--LINHA DIVISORIA  -->
+                    <awb-h:panelGrid width="100%">
+                       <awb-f:verbatim>
+                           <hr class="linhaPontilhada" />
+                       </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!--DADOS DO OBSERVACOES  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosObsOutrasEspecificacoesCons.xhtml"/>
+                    
+                    <!--  LINHA DIVISÓRIA -->
+                    <awb-h:panelGrid width="100%">
+                        <awb-f:verbatim>
+                            <hr />
+                        </awb-f:verbatim>
+                    </awb-h:panelGrid>
+                    
+                    <!-- BOTOES  -->
+                    <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/botoesLogCons.xhtml" />
+				
+    	        </awb-h:panelGrid>
+            </awb-h:form>
+        
+        </sei:seiRegion>
+
+        <!-- SEI API -->
+        <!-- <sei:seiApi useSaveModal="true"></sei:seiApi> -->
+        <sei:seiApi id="seiApp" usePrintModal="true" />
+
+        <!-- Script para exportação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/export.js" />
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+	    <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+        
+    </ui:define>
+</ui:composition>
+</html>

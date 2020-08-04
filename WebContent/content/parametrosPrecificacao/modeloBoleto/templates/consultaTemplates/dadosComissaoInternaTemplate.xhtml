@@ -1,0 +1,249 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<!-- COMISSAO INTERNA-->
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<awb-h:panelGroup>
+			<awb-h:outputLabel
+				style="font-family: verdana; font-weight: bold; font-size: 10px"
+				value="#{msgs.label_comissao_int} " />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="4" width="100%"
+		columnClasses="width: 25%;">
+
+		<!-- COBRANCA DA COMISSAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_cobranca_comissao}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:132px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.descrComissao}" />
+		</awb-h:panelGroup>
+
+		<!-- COMISSAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_comissao}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.comissaoInternaVO.pcomisnegoccmbio}" />
+		</awb-h:panelGroup>
+
+		<!-- MOEDA COMISSAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_moeda_comissao}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.comissaoInternaVO.isglindcdeconmmoeda}" />
+		</awb-h:panelGroup>
+
+		<!-- COMISSÃO SOBRE -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_comissao_sobre}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:15px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.identificaCobranca}" />
+		</awb-h:panelGroup>
+
+		<!-- MÍMNIMO A COBRAR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_minimo_cobrar}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:132px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.vmincobrcomis}">
+				<f:converter converterId="numericConverter"></f:converter>
+			</awb-h:outputLabel>
+		</awb-h:panelGroup>
+
+		<!-- SPREAD APROVADO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_spread_apvr}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadaprov}% AA" />
+		</awb-h:panelGroup>
+
+		<!-- SPREAD NEGOCIADO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_spread_negoc}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadnegoc}% AA" />
+		</awb-h:panelGroup>
+
+		<!-- FLAT -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_flat}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:15px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.ptxflatpnalt}%" />
+		</awb-h:panelGroup>
+
+		<!-- VALOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_valor}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:132px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.vprevtcomiscmbio}">
+				<f:converter converterId="numericConverter"></f:converter>
+			</awb-h:outputLabel>
+		</awb-h:panelGroup>
+		
+		<!-- SPREAD TOTAL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_spread_total}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:132px;"
+				value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadtot}%">
+			</awb-h:outputLabel>
+		</awb-h:panelGroup>		
+		
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid style="width: 99%;" rendered="#{tradeFinanceBean.comissaoIntList.size() > 0}">
+		<awb-h:dataTable id="scrollable_comissaoInterna" var="comissaoIntLista"
+			rows="10" cellspacing="0" cellpadding="10" border="1"
+			style="width: 100%; text-align: center" rowIndexVar="indexLista"
+			value="#{tradeFinanceBean.comissaoIntList}">
+			<!-- DESEMBOLSO -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_data}"
+						style="font-family: verdana; font-size: 10px" escape="false"/>
+				</f:facet>
+				<h:outputText value="#{comissaoIntLista.dprevtdsembcmbio}"
+					style="font-family: verdana; font-size: 10px;" />
+			</awb-h:column>
+			<!-- DESEMBOLSO -->
+			<awb-h:column
+				rendered="#{tradeFinanceBean.tradeFinanceVO.produto.garantia}">
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_data}"
+						style="font-family: verdana; font-size: 10px" escape="false"/>
+				</f:facet>
+				<h:outputText
+					value="#{tradeFinanceBean.tradeFinanceVO.dprevtgarntexpdi}"
+					style="font-family: verdana; font-size: 10px;" />
+			</awb-h:column>
+			<!-- DESEMBOLSO -->
+			<awb-h:column
+				rendered="#{tradeFinanceBean.tradeFinanceVO.produto.codigo eq 2018}">
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_data}"
+						style="font-family: verdana; font-size: 10px" escape="false"/>
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{tradeFinanceBean.tradeFinanceVO.dinclreg}" />
+			</awb-h:column>
+
+			<!-- PERIODICIDADE -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_periodicidade}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{comissaoIntLista.ifluxoperdccmbio}" />
+			</awb-h:column>
+
+			<!-- MOMENTO -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_momento}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{comissaoIntLista.descrmomento}" />
+			</awb-h:column>
+
+			<!-- MOEDA -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_moeda}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{comissaoIntLista.isglindcdeconmmoeda}" />
+			</awb-h:column>
+
+			<!-- VALOR -->
+			<awb-h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.label_valor}"
+						style="font-family: verdana; font-size: 10px" escape="false" />
+				</f:facet>
+				<h:outputText style="font-family: verdana; font-size: 10px;"
+					value="#{comissaoIntLista.vprevtcomiscmbio}">
+					<f:converter converterId="numericConverter"></f:converter>
+				</h:outputText>
+			</awb-h:column>
+
+		</awb-h:dataTable>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- CUSTO TOTAL -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_custo_total}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; "
+				value="#{tradeFinanceBean.tradeFinanceVO.descctotal}" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

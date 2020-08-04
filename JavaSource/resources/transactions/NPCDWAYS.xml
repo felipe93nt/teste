@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWAYS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="657">
+    <register name="NPCDWAYS-HEADER">
+      <field name="NPCDWAYS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWAYS" />
+      <field name="NPCDWAYS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00657" />
+    </register>
+    <register name="NPCDWAYS-REGISTRO">
+      <field name="NPCDWAYS-CD-CNTTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-NOME-CNTTE" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CD-PAIS" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-NOME-PAIS" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-SGL-PAIS-ISO" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-NOME-PAIS-INGLES" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CINDCD-RISCO-ESTRG" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CEXIGE-NRO-FINCR" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CINDCD-LVGEM-DINHE" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CINDCD-PRISO-FSCAL" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CBLOQ-PAIS-CMBIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CINDCD-FONTE-CONS" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWAYS-NTPO-SIT-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWAYS-RJUSTF-SIT-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CUSUAR-INCL" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-IUSUAR-INCL" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-CUSUAR-MANUT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-IUSUAR-MANUT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWAYS-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

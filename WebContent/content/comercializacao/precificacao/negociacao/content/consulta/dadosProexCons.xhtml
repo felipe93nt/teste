@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<!-- REBATE / TAXA DE DESCONTO-->
+	<awb-h:panelGrid width="100%" columns="4"
+		columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+
+		<!-- TAXA EQUALIZACAO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_taxa_equalizacao}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.ptxequalcmbio} %"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+
+		<!--  PRAZO MEDIO ESTIMADO (DIAS)-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_prazo_medio}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.qprzmedcmbio}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+
+		<!-- VALOR EQUALIZAVEL ESTIMADO-->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_valor_equalizavel}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco"
+				value="#{tradeFinanceBean.tradeFinanceVO.valorEqualizavel}">
+			</awb-h:outputLabel>
+		</awb-h:panelGroup>
+
+		<awb-h:panelGroup>
+			<awb-h:outputLabel value="" styleClass="HtmlOutputLabelBradesco" />
+		</awb-h:panelGroup>
+
+		<!-- SPREAD MEDIO ESTIMADO -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_spread_media}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadnegoc} % AA"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+
+		<!-- RECEITA ESTIMADA -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_receita}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.receitaEstimada}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!-- DESPESAS -->
+	<awb-h:panelGrid>
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_despesa}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.despconf}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!--  GRID  -->
+	<awb-h:panelGrid styleClass="panelGridDataTable"
+		columnClasses="scrollable-horizontal-bar">
+		<awb-th:extDiv styleClass="overflow-auto full-size"
+			id="div_dataTableRebate">
+			<awb-br:scrollableDataTable var="rebate"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaRebate}"
+				id="dataTableRebate" rows="10" width="100%" rowIndexVar="indexLista">
+<!-- 				rendered="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaRebate.size() > 0}"> -->
+				<!-- REBATE -->
+				<awb-br:scrollableColumn width="33%">
+					<awb-f:facet name="header">
+						<awb-h:outputLabel value="#{msgs.label_rebate}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{rebate.rebate}"
+						styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-br:scrollableColumn>
+			</awb-br:scrollableDataTable>
+		</awb-th:extDiv>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid styleClass="panelGridTable">
+
+		<!-- DESPESAS (DESCONTO DAS NTN'S) -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_desconto_ntns}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.despdesc}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!-- FORMA DE AMORTIZACAO -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_forma_amortizacao}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.formamor}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+
+	<!--  GRID  -->
+	<awb-h:panelGrid styleClass="panelGridDataTable"
+		columnClasses="scrollable-horizontal-bar">
+		<awb-th:extDiv styleClass="overflow-auto full-size"
+			id="div_dataTableTaxa">
+			<awb-br:scrollableDataTable var="taxaDesconto"
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaTaxa}"
+				id="dataTableTaxa" rows="10" width="100%" rowIndexVar="indexLista">
+<!-- 				rendered="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.listaTaxa.size() > 0}"> -->
+
+				<!-- TAXDE DESCONTO PARA ANTECIPACAO DAS NTNS  -->
+				<awb-br:scrollableColumn width="33%">
+					<awb-f:facet name="header">
+						<awb-h:outputLabel value="#{msgs.label_taxa_de_desconto}"
+							styleClass="tableFontStyle" escape="false" />
+					</awb-f:facet>
+					<awb-h:outputLabel value="#{taxaDesconto.txades}"
+						styleClass="HtmlOutputTextBoldBradesco" />
+				</awb-br:scrollableColumn>
+			</awb-br:scrollableDataTable>
+		</awb-th:extDiv>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid styleClass="panelGridTable">
+
+		<!-- CREDOR -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_credor}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.dbcocred}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	<!-- GARANTIAS -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_garantias}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel
+				value="#{tradeFinanceBean.tradeFinanceVO.obsCotacaoVO.garantias}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+	<!-- VALIDADE DA PROPOSTA -->
+	<awb-h:panelGrid styleClass="panelGridTable">
+		<awb-h:panelGroup>
+			<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			<awb-h:outputLabel value="#{msgs.label_validade_proposta}: "
+				styleClass="HtmlOutputLabelBradesco" />
+			<awb-h:outputLabel rendered="#{not empty tradeFinanceBean.tradeFinanceVO.dinicvalddppsta and not empty tradeFinanceBean.tradeFinanceVO.dfimvalddppsta}"
+				value="De #{tradeFinanceBean.tradeFinanceVO.dinicvalddppsta} Até #{tradeFinanceBean.tradeFinanceVO.dfimvalddppsta}"
+				styleClass="HtmlOutputTextBoldBradesco" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</ui:composition>
+</html>

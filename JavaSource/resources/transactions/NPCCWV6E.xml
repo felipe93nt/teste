@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWV6E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="3654">
+    <register name="NPCCWV6E-HEADER">
+      <field name="NPCCWV6E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWV6E" />
+      <field name="NPCCWV6E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03654" />
+    </register>
+    <register name="NPCCWV6E-REGISTRO">
+      <field name="NPCCWV6E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV6E-CUSUARIO-SESS" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV6E-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV6E-FLAG-PROC" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <register name="NPCCWV6E-DADOS-FDG">
+        <field name="NPCCWV6E-CFNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-DCOTAC-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWV6E-CBANQR-CMBIO-FNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CBANQR-CMBIO-RCDOR" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CBANQR-CMBIO-AVISO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWV6E-PTX-FIXA-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+        <field name="NPCCWV6E-CINDCD-ECONM-MOE-LIB" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-TMES-LIBOR-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-VTX-LIBOR-CMBIO" pic="9(003)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+        <field name="NPCCWV6E-CINDCD-FNDNG-UTL" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <field name="NPCCWV6E-QTDE-DSP" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWV6E-LISTA-DSP" minOccurs="0" maxOccurs="50" depends="NPCCWV6E-QTDE-DSP" dependsType="number">
+        <field name="NPCCWV6E-NDESP-BLETO-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CTPO-DESP-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CFLUXO-PERDC-CMBIO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CIDTFD-RESP-DESP" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-VDESP-BLETO-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWV6E-PDESP-NEGOC-CMBIO" pic="9(004)V9(009)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWV6E-CBASE-BLETO-NEGOC" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV6E-VMIN-DESP-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWV6E-CFORMA-COBR-DESP" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

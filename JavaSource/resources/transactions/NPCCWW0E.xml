@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWW0E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="17924">
+    <register name="NPCCWW0E-HEADER">
+      <field name="NPCCWW0E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWW0E" />
+      <field name="NPCCWW0E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="17924" />
+    </register>
+    <register name="NPCCWW0E-REGISTRO">
+      <field name="NPCCWW0E-CTPO-OPER" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-QTD-OC-REBT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-QTD-OC-TXDE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-NOME-CTT-CLI-CMBIO" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-TEL-CTT-CLI-CMBIO" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-FPGTO-COMPL-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-NIDTFD-CARTA-CSNDO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DESP-CONF" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DESP-DESC" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-FORM-AMOR" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARANTIAS" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-AMORTIZAR" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-PAGA-JURO" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-PART-BNDS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-ORCAMENTO" pic="X(5000)" length="5000" bytes="5000" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-BNDS" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-BRAD" pic="X(500)" length="500" bytes="500" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-TXA-PRE" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-CUST-FIN" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-MERCADORIA" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-NOME" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-CPF-CNPJ-R" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-DADOS-CPF-CNPJ-F" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-DADOS-CPF-CNPJ-D" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWW0E-DADOS-ENDER" pic="X(160)" length="160" bytes="160" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-IDENT" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-ORGAO" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-ESTCI" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-DADOS-REGCI" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-CARGO-NOME" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-CARGO-EMAIL" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-GARANT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-IMPORT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-CONDBGAR" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-CONDBMAN" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-GARAN-CONDAGFI" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-FINALIDADE" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-RETIR-NOME" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-RETIR-CIDADE" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-RETIR-ENDER" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-RETIR-TELE" pic="X(020)" length="20" bytes="20" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWW0E-RETIR-EMAIL" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <register name="NPCCWW0E-LST-RBT" minOccurs="0" maxOccurs="50" depends="NPCCWW0E-QTD-OC-REBT" dependsType="number">
+        <field name="NPCCWW0E-REBATE" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCCWW0E-LST-TDE" minOccurs="0" maxOccurs="50" depends="NPCCWW0E-QTD-OC-TXDE" dependsType="number">
+        <field name="NPCCWW0E-TXADES" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

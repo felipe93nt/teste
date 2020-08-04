@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWN7E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="43">
+    <register name="NPCCWN7E-HEADER">
+      <field name="NPCCWN7E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWN7E" />
+      <field name="NPCCWN7E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00043" />
+    </register>
+    <register name="NPCCWN7E-REGISTRO">
+      <field name="NPCCWN7E-E-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWN7E-E-DATA-INI" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWN7E-E-DATA-FIM" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

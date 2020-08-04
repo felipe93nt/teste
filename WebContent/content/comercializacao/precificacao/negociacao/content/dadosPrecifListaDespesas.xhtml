@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{bean.viewHelper.renderPrecificacao}">
+	 	    
+		    <awb-h:panelGrid columns="4" styleClass="panelGridTable"
+		        columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+	
+		        <!-- combo Tipo de Despesas -->
+		        <awb-h:panelGrid>
+		            <awb-h:panelGroup>
+		                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                <awb-h:outputLabel value="#{msgs.label_tp_despesas}: "
+		                    styleClass="HtmlOutputTextBulletBoldBradesco" for="comboTipoDespesas" />
+		            </awb-h:panelGroup>
+		            <awb-h:panelGroup>
+		                <awb-h:selectOneMenu id="comboTipoDespesas" layout="pageDirection" title="#{msgs.label_tp_despesas}"
+		                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+		                    value="#{bean.tradeFinNegocVO.despesaVO.ctpodespcmbio}">
+		                    <awb-f:selectItems value="#{bean.viewHelper.comboTipoDespesas}" />
+		                </awb-h:selectOneMenu>
+		            </awb-h:panelGroup>
+		        </awb-h:panelGrid>
+	            
+		        <!-- combo Por Conta -->
+		        <awb-h:panelGrid>
+		            <awb-h:panelGroup>
+		                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                <awb-h:outputLabel value="#{msgs.label_det_por_conta}: "
+		                    styleClass="HtmlOutputTextBulletBoldBradesco" for="comboPorConta" />
+		            </awb-h:panelGroup>
+		            <awb-h:panelGroup>
+		                <awb-h:selectOneMenu id="comboPorConta" layout="pageDirection" title="#{msgs.label_det_por_conta}"
+		                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+		                    value="#{bean.tradeFinNegocVO.despesaVO.cidtfdrespdesp}">
+		                    <awb-f:selectItems value="#{bean.viewHelper.comboPorConta}" />
+		                </awb-h:selectOneMenu>
+		            </awb-h:panelGroup>
+		        </awb-h:panelGrid>	            
+		       
+				<!-- Taxa -->	        
+		    	<awb-h:panelGrid columns="1">
+			        <awb-h:panelGrid>
+			            <awb-h:panelGroup>
+			                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+			                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_taxa}: " />
+			            </awb-h:panelGroup>
+			        </awb-h:panelGrid>
+		
+					<awb-h:panelGroup>
+						<awb-h:inputText id="txtTaxaJuros" size="20" maxlength="10"
+							immediate="false" styleClass="HtmlInputTextBradesco" alt='{"wholePartSize": 3, "decimalPartSize": 5}'
+							value="#{bean.tradeFinNegocVO.despesaVO.pdespnegoccmbio}">
+						</awb-h:inputText>
+					</awb-h:panelGroup>					                
+				</awb-h:panelGrid>
+			
+				<!-- Período da Taxa -->
+		        <awb-h:panelGrid>
+		            <awb-h:panelGroup>
+		                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		                <awb-h:outputLabel value="#{msgs.label_det_periodo_tx}:" styleClass="HtmlOutputTextBulletBoldBradesco"
+		                    for="txtPrazoOperEca" />
+		            </awb-h:panelGroup>
+		            <awb-h:panelGroup>
+		                <awb-h:selectOneMenu id="comboPerTaxa" layout="pageDirection"
+		                     styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+		                     value="#{bean.tradeFinNegocVO.despesaVO.cbasebletonegoc}">
+		                     <awb-f:selectItems value="#{bean.viewHelper.comboPeriodoDaTaxa}" />
+		                </awb-h:selectOneMenu>
+		            </awb-h:panelGroup>
+		        </awb-h:panelGrid>
+    	</awb-h:panelGrid>		
+	
+	    <awb-h:panelGrid columns="4" styleClass="panelGridTable"
+	        columnClasses="panelGridColumn25,panelGridColumn25,panelGridColumn25,panelGridColumn25">
+	           
+	        <!-- Moeda -->
+	        <awb-h:panelGrid columns="1">
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_moeda}: "
+	                    styleClass="HtmlOutputLabelBoldBradesco" />
+	            </awb-h:panelGroup>
+	            <awb-h:selectOneMenu styleClass="HtmlSelectOneMenuBradesco"
+	                value="#{bean.tradeFinNegocVO.despesaVO.cindcdeconmmoeda}">
+	                <f:selectItems value="#{selectItemBean.moeda}" />
+	            </awb-h:selectOneMenu>
+	        </awb-h:panelGrid>
+	        
+	        <!-- Valor -->
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_valor}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+	                    for="txtValorMEEca" />
+	            </awb-h:panelGroup>
+	            <awb-h:panelGroup>
+	                <awb-h:inputText id="txtValorMEEca" title="#{msgs.label_valor}"  styleClass="HtmlInputTextBradesco"
+	                    alt="{'type':'money-dot'}" maxlength="18" size="22"
+	                    value="#{bean.tradeFinNegocVO.despesaVO.vdespbletocmbio}">
+	                </awb-h:inputText>
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	        
+	        <!-- Forma de Pagamento -->
+	        <awb-h:panelGrid>
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_forma_pgt}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+		                for="comboMomentoEca" />
+		        </awb-h:panelGroup>
+	            <awb-h:panelGroup>            
+	                <awb-h:selectOneMenu id="comboMomentoEca" layout="pageDirection" title="Momento"
+	                    style="width: 110px;font-family: verdana; font-size: 10px" immediate="false"
+	                    value="#{bean.tradeFinNegocVO.despesaVO.cformacobrdesp}">
+	                    <awb-f:selectItems value="#{selectItemBean.comboFormaPagamento}" />
+	                </awb-h:selectOneMenu>
+	            </awb-h:panelGroup>	        
+	        </awb-h:panelGrid>
+	  
+	        <!-- Valor Mínimo -->
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_valor_minimo}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+	                    for="txtValorMinimoEca" />
+	            </awb-h:panelGroup>
+	            <awb-h:panelGroup>
+	                <awb-h:inputText id="txtValorMinimoEca" title="#{msgs.label_valor_minimo}"  styleClass="HtmlInputTextBradesco"
+	                    alt="{'type':'money-dot'}" maxlength="18" size="22"
+	                    value="#{bean.tradeFinNegocVO.despesaVO.vmindespcmbio}">
+	                </awb-h:inputText>
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	    
+	    <awb-h:panelGrid columns="2" styleClass="panelGridTable"
+	        columnClasses="panelGridColumn50,panelGridColumn50">
+	        <!-- Periodicidade -->
+	        <awb-h:panelGrid>
+	            <awb-h:panelGroup>
+	                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+	                <awb-h:outputLabel value="#{msgs.label_det_periodicidade}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+	                    for="comboPeriodEca" />
+	            </awb-h:panelGroup>          
+	            <awb-h:panelGroup>
+	                <awb-h:selectOneMenu id="comboPeriodEca" layout="pageDirection" title="Periodicidade"
+	                    styleClass="HtmlSelectOneMenuBradesco" immediate="false"
+	                    value="#{bean.tradeFinNegocVO.despesaVO.cfluxoperdccmbio}">
+	                    <awb-f:selectItems value="#{bean.viewHelper.comboPeriodicidade}" />
+	                </awb-h:selectOneMenu>
+	            </awb-h:panelGroup>
+	        </awb-h:panelGrid> 
+	    
+	        <awb-h:panelGrid columns="1" styleClass="right">
+	            <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoInclDespesa"
+	                value="#{msgs.bto_incluir}">
+	                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+	                    listener="#{bean.listenerIncluirDespesa}" />
+	            </awb-h:commandButton>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	        
+		<!-- GRID Despesas -->
+		<awb-h:panelGrid id="gridListaDespesas" styleClass="panelGridDataTable"> 
+		
+		    <!-- RADIO GRID LISTA -->
+		    <awb-f:facet name="header">
+		        <awb-th:extSelectOneRadio id="radioDespesas" layout="spread" immediate="false"
+		            forceId="true" forceIdIndex="false"
+		            value="#{bean.viewHelper.itemSelecListaDespesas}">
+		            <awb-f:selectItems value="#{bean.itensRadioListaDespesas}" />
+		        </awb-th:extSelectOneRadio>
+		    </awb-f:facet>
+		
+		    <!-- GRID -->
+		    <awb-h:panelGrid styleClass="panelGridDataTable">
+		        <awb-br:keepState pdcDataScrollerID="dataScrollerListaDespesas"
+		            stateID="#{bean.viewHelper.stateIdListaDespesas}" resource="cws">
+		            <awb-br:scrollableDataTable id="dataTableListaDespesas" var="itemDespesas" rows="20" width="100%"
+		                rowIndexVar="indexListaDespesas" value="#{bean.tradeFinNegocVO.listaDespesas}">
+	
+	                    <awb-br:scrollableColumn width="3%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-th:extRadio index="#{indexListaDespesas}" for=":formTrdFinNegIncl:radioDespesas" />
+	                    </awb-br:scrollableColumn>
+							
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_tp_despesas}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.ntpodespcmbio}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_det_por_conta}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.nidtfdrespdesp}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_desp_cent}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.pdespnegoccmbio}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_det_periodo}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.nbasebletonegoc}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_det_periodicidade}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.nfluxoperdccmbio}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_moeda}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.nindcdeconmmoeda}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_valor}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.vdespbletocmbio}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_forma_pgt}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.nformacobrdesp}" />
+	                    </awb-br:scrollableColumn>
+	
+	                    <awb-br:scrollableColumn width="10%">
+	                        <awb-f:facet name="header">
+	                            <awb-h:outputLabel value="#{msgs.label_valor_minimo}" styleClass="tableFontStyle" escape="false" />
+	                        </awb-f:facet>
+	                        <awb-h:outputLabel value="#{itemDespesas.vmindespcmbio}" />
+	                    </awb-br:scrollableColumn>
+	
+	                </awb-br:scrollableDataTable>
+	            </awb-br:keepState>
+	        </awb-h:panelGrid>
+	    </awb-h:panelGrid>
+	
+	    <awb-h:panelGrid columns="2" width="10%" styleClass="right">
+		    <awb-h:panelGroup>
+	  			<!-- Alterar Despesa -->
+		        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoAltDespesa"
+		            value="#{msgs.bto_alterar}" rendered="#{not empty bean.tradeFinNegocVO.listaDespesas}">
+		            <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+		                listener="#{bean.listenerAlterarDespesa}" />
+		        </awb-h:commandButton>
+		    </awb-h:panelGroup>	                
+	
+		    <awb-h:panelGroup>
+	  			<!-- Excluir Despesa -->
+		        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoExclDespesa"
+		            value="#{msgs.bto_excluir}" rendered="#{not empty bean.tradeFinNegocVO.listaDespesas}">
+		            <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+		                listener="#{bean.listenerExcluirDespesa}" />
+		        </awb-h:commandButton>
+		    </awb-h:panelGroup>	            	        
+	    </awb-h:panelGrid>
+    </awb-h:panelGrid>
+</ui:composition>
+
+</html>

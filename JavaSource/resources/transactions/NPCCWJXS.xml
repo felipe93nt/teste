@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWJXS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="1736">
+    <register name="NPCCWJXS-HEADER">
+      <field name="NPCCWJXS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWJXS" />
+      <field name="NPCCWJXS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01736" />
+    </register>
+    <register name="NPCCWJXS-REGISTRO">
+      <field name="NPCCWJXS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWJXS-LISTA" minOccurs="0" maxOccurs="40" depends="NPCCWJXS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWJXS-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWJXS-ISIT-BLETO-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

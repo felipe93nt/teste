@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+        <body onunload="closeModalContent();">
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+
+            <awb-h:form id="formModalOperacoesPendTotais">
+
+                <!-- Operações Desembolsadas -->
+                <awb-h:panelGroup rendered="#{operacoesPendBean.listaOperDeDesembolsadas.size() > 0}">
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Operações Desembolsadas" styleClass="HtmlOutputLabelBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable1">
+                        <awb-br:scrollableDataTable id="dataTableTradeFinance1"
+                            value="#{operacoesPendBean.listaOperDeDesembolsadas}" var="ctc" rows="10"
+                            rowIndexVar="indexCtc" width="100%"
+                            rendered="#{operacoesPendBean.listaOperDeDesembolsadas.size() > 0}">
+
+                            <awb-br:scrollableColumn width="250px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Unidade" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.nomeundorgnz}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.isitbletocmbio}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.vprevtdsembcmbio}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+                    </awb-th:extDiv>
+                </awb-h:panelGrid>
+
+                <br />
+
+                <!-- Totais Gerais -->
+                <awb-h:panelGroup rendered="#{operacoesPendBean.listaTotaisGeraisDeDesembolsadas.size() > 0}">
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Totais Gerais" styleClass="HtmlOutputLabelBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid2">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable2">
+                        <awb-br:scrollableDataTable id="dataTableTradeFinance2"
+                            value="#{operacoesPendBean.listaTotaisGeraisDeDesembolsadas}" var="ctc" rows="10"
+                            rowIndexVar="indexCtc" width="100%"
+                            rendered="#{operacoesPendBean.listaTotaisGeraisDeDesembolsadas.size() > 0}">
+
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.isitbletocmbio}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.vprevtdsembcmbio}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+                    </awb-th:extDiv>
+                </awb-h:panelGrid>
+
+                <br />
+
+                <!-- Operações a Desembolsar -->
+                <awb-h:panelGroup rendered="#{operacoesPendBean.listaOperDesembolsar.size() > 0}">
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Operações a Desembolsar" styleClass="HtmlOutputLabelBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid3">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable3">
+                        <awb-br:scrollableDataTable id="dataTableTradeFinance3"
+                            value="#{operacoesPendBean.listaOperDesembolsar}" var="ctc" rows="10"
+                            rowIndexVar="indexCtc" width="100%"
+                            rendered="#{operacoesPendBean.listaOperDesembolsar.size() > 0}">
+
+                            <awb-br:scrollableColumn width="250px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Unidade" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.nomeundorgnz}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.isitbletocmbio}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.vprevtdsembcmbio}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+                    </awb-th:extDiv>
+                </awb-h:panelGrid>
+
+                <br />
+
+                <!-- Totais Gerais -->
+                <awb-h:panelGroup rendered="#{operacoesPendBean.listaTotaisGeraisDesembolsar.size() > 0}">
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Totais Gerais" styleClass="HtmlOutputLabelBoldBradesco" />
+                </awb-h:panelGroup>
+
+                <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid4">
+                    <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable4">
+                        <awb-br:scrollableDataTable id="dataTableTradeFinance4"
+                            value="#{operacoesPendBean.listaTotaisGeraisDesembolsar}" var="ctc" rows="10"
+                            rowIndexVar="indexCtc" width="100%"
+                            rendered="#{operacoesPendBean.listaTotaisGeraisDesembolsar.size() > 0}">
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.isitbletocmbio}" />
+                            </awb-br:scrollableColumn>
+
+                            <awb-br:scrollableColumn width="100px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.vprevtdsembcmbio}" />
+                            </awb-br:scrollableColumn>
+
+                        </awb-br:scrollableDataTable>
+                    </awb-th:extDiv>
+                </awb-h:panelGrid>
+
+                <!--  LINHA DIVISÓRIA -->
+                <awb-h:panelGrid styleClass="panelGridTable">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+
+                <awb-h:panelGrid columns="1" styleClass="panelGridTable" id="botoesMonit2">
+
+                    <awb-h:commandButton id="botaoFechar" value="#{msgs.bto_fechar}"
+                        styleClass="HtmlCommandButtonBradesco" action="nav_index" />
+                </awb-h:panelGrid>
+
+            </awb-h:form>
+
+            <!-- Script geral da aplicação -->
+            <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+
+            <!-- SCRIPT -->
+            <script type="text/javascript"
+                src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+            <!-- SCRIPT -->
+            <script type="text/javascript"
+                src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+        </body>
+    </ui:define>
+</ui:composition>
+</html>
+

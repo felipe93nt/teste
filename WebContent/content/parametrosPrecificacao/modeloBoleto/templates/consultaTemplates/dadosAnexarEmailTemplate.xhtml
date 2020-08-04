@@ -1,0 +1,57 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="4" style="width: 100%;" rendered="#{tradeFinanceBean.viewHelper.renderMonitor}"
+		columnClasses="width: 25%;">
+
+		<awb-h:panelGrid style="width: 99%;">
+			<awb-th:extDiv styleClass="overflow-auto full-size"
+				id="div_dataTableEmail">
+				<awb-h:outputLabel
+					style="font-family: verdana; font-weight: bold; font-size: 10px"
+					value="#{msgs.label_email_anx}" />
+				<awb-h:dataTable id="scrollable_emailLista" var="emailLista"
+					rows="10" cellspacing="0" cellpadding="10" border="1"
+					style="width: 100%; text-align: center" rowIndexVar="indexLista"
+					value="1">
+
+					<!--  DATA ANEXO -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_data_anexo}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+
+					<!-- HORARIO -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_horario}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+
+					<!-- OPERADOR -->
+					<awb-h:column>
+						<f:facet name="header">
+							<h:outputText value="#{msgs.label_operador}"
+								style="font-family: verdana; font-size: 10px" escape="false" />
+						</f:facet>
+						<h:outputText value="1" />
+					</awb-h:column>
+				</awb-h:dataTable>
+			</awb-th:extDiv>
+		</awb-h:panelGrid>
+		<!-- LINHA DIVISORIA -->
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWVVI" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="21525">
+    <register name="NPCCWVVI-HEADER">
+      <field name="NPCCWVVI-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWVVI" />
+      <field name="NPCCWVVI-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="21525" />
+    </register>
+    <register name="NPCCWVVI-BLOCO-RETORNO">
+      <field name="NPCCWVVI-COD-RETORNO" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWVVI-COD-ERRO" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWVVI-COD-MENSAGEM" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+    <register name="NPCCWVVI-DADOS-SESSAO">
+      <field name="NPCCWVVI-CUSUAR-SESSAO" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWVVI-CDEPEN-SESSAO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWVVI-CTERMINAL" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+    <register name="NPCCWVVI-ENTRADA">
+      <field name="NPCCWVVI-E-NBLETO-CMBIO-ANO" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWVVI-E-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+    <register name="NPCCWVVI-REGISTRO">
+      <field name="NPCCWVVI-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWVVI-GRIDE" minOccurs="0" maxOccurs="50" depends="NPCCWVVI-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWVVI-S-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVI-S-DSIT-BLETO-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-DT-COTACAO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-HORARIO" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVI-S-NCUNIC-CLI-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVI-S-DPRODT-SERVC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-CMODLD-PRODT-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWVVI-S-CMODLD-PRODT-DESC" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-VNEGOC-MOEDA-ESTRG" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWVVI-S-CUSUAR-INCLT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-NUSUAR-INCLT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-CINDCD-TPO-MANUT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-FUNCAO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWVVI-S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

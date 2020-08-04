@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection" value="#{msgs.title_descritivo_tarifa_log}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_descritivo_tarifa_log',0)}" />
+        
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{descritivoTarifaLogBean.iniciar}" />
+    </f:metadata>
+        
+	<ui:define name="body">
+
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- CALENDARIO -->
+		<awb-br:bundleWriter functionName="getBundle" id="calendarioTaxas"
+			rendered="true"
+			messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,
+              field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,
+              c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,
+              c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,
+              c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,
+              c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+		</awb-br:bundleWriter>
+
+		<!-- Componente SEI -->
+		<sei:seiRegion id="allContent">	
+		
+		<!-- FORM -->
+		<awb-h:form id="formDescritivoTarifasLog">
+		
+		
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="4" styleClass="panelGridTable" id="gridConsultas"
+				columnClasses="panelGridColum25,panelGridColum25,panelGridColum25,panelGridColum25">
+
+				<!-- PERIODO COTACAO -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable"
+					id="divPeriodoCotacao">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_periodo}:"
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+
+					<awb-h:panelGrid columns="3" width="310px">
+						<awb-h:column>
+							<awb-br:calendar id="periodoCotacaoInicio" titulo="Calendario"
+								alt="Data Início" disableInputFields="false" clientValidationLevel="date"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+								value="#{descritivoTarifaLogBean.viewHelper.filtro.dtinici}" />
+								
+							
+								
+								
+							
+								
+						</awb-h:column>
+						<awb-h:column>
+							<awb-h:outputLabel value="#{msgs.label_a}"
+								styleClass="HtmlOutputLabelBradesco" style="text-align: center;" />
+						</awb-h:column>
+						<awb-h:column>
+							<awb-br:calendar id="periodoCotacaoFim" titulo="Calendario"
+								alt="Data Fim" disableInputFields="false" clientValidationLevel="date"
+								onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+								value="#{descritivoTarifaLogBean.viewHelper.filtro.dtfinal}" />
+						</awb-h:column>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid styleClass="panelGridTable" columns="3"
+				columnClasses="panelGridColum90, panelGridColum10">
+
+				
+				<!-- BOTÃO PESQUISAR -->
+				<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+					<awb-h:panelGroup style="float:right">
+
+					
+						<awb-h:commandButton id="btnPesquisar"
+							styleClass="HtmlCommandButtonBradesco"
+							value="#{msgs.bto_pesquisar}"
+							action="#{descritivoTarifaLogBean.pesquisar}">
+							</awb-h:commandButton>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+
+			<!-- LINHA DIVISÓRIA -->
+			<awb-h:panelGrid width="100%"
+				rendered="#{not empty descritivoTarifaLogBean.listaPesquisa}">
+				<awb-f:verbatim>
+					<hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- GRID FLUXOS -->
+			<awb-h:panelGrid styleClass="panelGridDataTable">
+
+				<!-- RADIO GRID LISTA 
+				<awb-f:facet name="header">
+					<awb-th:extSelectOneRadio id="radioListaCtcPend" layout="spread"
+						immediate="false" forceId="true" forceIdIndex="false"
+						value="#{descritivoTarifaLogBean.viewHelper.ctcSelecionado}">
+						<awb-f:selectItems
+							value="#{descritivoTarifaLogBean.selectItemRadioCtcPend}" />
+					</awb-th:extSelectOneRadio>
+				</awb-f:facet>-->
+			</awb-h:panelGrid>
+
+			<!-- GRID -->
+			<awb-h:panelGrid styleClass="panelGridDataTable"
+				columnClasses="scrollable-horizontal-bar" id="pnlGrid"
+				rendered="#{descritivoTarifaLogBean.listaPesquisa.size() > 0}">
+				<awb-th:extDiv styleClass="overflow-auto full-size"
+					id="div_dataTable">
+					<awb-br:keepState pdcDataScrollerID="dataScroller"
+						stateID="#{descritivoTarifaLogBean.viewHelper.nomeStateIdLista}"
+						resource="cws">
+						<!-- displayWidth="100%" width="2398px" -->
+						<awb-br:scrollableDataTable id="dataTable"
+							displayWidth="100%" width="1326px"
+							value="#{descritivoTarifaLogBean.listaPesquisa}" var="ctc" rows="10"
+							rowIndexVar="indexCtc" styleClass="panelGridTable"
+							rendered="#{descritivoTarifaLogBean.listaPesquisa.size() > 0}">
+							
+							<awb-br:scrollableColumn width="30px" styleClass="c">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+										escape="false" />
+								</awb-f:facet>
+								<!--  <awb-th:extRadio index="#{indexCtc}"
+									for=":formDescritivoTarifasLog:radioListaCtcPend" />
+									-->
+							</awb-br:scrollableColumn>
+
+							<!-- DATA HINCL_REG_HIST                -->
+							<awb-br:scrollableColumn width="80px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_inclusao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.hinclreg}" />
+							</awb-br:scrollableColumn>
+
+							<!-- HORA HMANUT_REG                    -->
+							<awb-br:scrollableColumn width="80px">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_data_manutencao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.hmanutreg}" >
+								<f:convertDateTime type="date" dateType="short" />
+								</awb-h:outputLabel>
+							</awb-br:scrollableColumn>
+							
+							   <!--FUNCIONARIO CUSUAR_MANUT       -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_usuario}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.cusuarincl}" />								
+							</awb-br:scrollableColumn>
+
+                      
+							<!-- DESCRIÇAO RCONDC_ECONC_CMBIO -->
+							<awb-br:scrollableColumn styleClass="min-width-150">
+								<awb-f:facet name="header">
+									<awb-h:outputLabel value="#{msgs.label_descricao}"
+										styleClass="tableFontStyle" escape="false" />
+								</awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.dccondeconc}" />
+							</awb-br:scrollableColumn>
+
+                            <!-- Descrição Alternativa -->
+                            <awb-br:scrollableColumn styleClass="min-width-150">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_descricao_alt}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.dalter}" />
+                            </awb-br:scrollableColumn>
+
+                                                                                  
+                                 <!--CINDCD_TPO_MANUT--> 
+                            <awb-br:scrollableColumn width="150px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_funcao}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+                                <awb-h:outputLabel value="#{ctc.cfuncao}" />
+                            </awb-br:scrollableColumn>
+                            
+                             
+							
+                                 <!--CCONDC_ECONC   -->
+                            <awb-br:scrollableColumn width="80px">
+                                <awb-f:facet name="header">
+                                    <awb-h:outputLabel value="#{msgs.label_tarifa}"
+                                        styleClass="tableFontStyle" escape="false" />
+                                </awb-f:facet>
+								<awb-h:outputLabel value="#{ctc.ccondceconc}" />								
+							</awb-br:scrollableColumn>
+							
+                                                  
+							
+
+						</awb-br:scrollableDataTable>
+					</awb-br:keepState>
+
+					<!-- PAGINAÇÃO  -->
+					<awb-br:awbDataScroller resource="cws" for="dataTable"
+						styleClass="pagination" id="dataScroller"
+						renderFacetsIfSinglePage="true"
+						actionListener="#{descritivoTarifaLogBean.paginar}"
+						stateID="#{descritivoTarifaLogBean.viewHelper.nomeStateIdLista}">
+
+						<awb-f:facet name="first">
+							<awb-br:awbCommandButton styleClass="button"
+								value="#{msgs.label_primeira}"
+								title="#{msgs.label_txt_primeira}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastrewind">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_retrocesso}"
+								title="#{msgs.label_txt_retrocesso}" />
+						</awb-f:facet>
+						<awb-f:facet name="previous">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_anterior}"
+								title="#{msgs.label_txt_anterior}" />
+						</awb-f:facet>
+						<awb-f:facet name="next">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_proxima}" title="#{msgs.label_txt_proxima}" />
+						</awb-f:facet>
+						<awb-f:facet name="fastforward">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_avanco}" title="#{msgs.label_txt_avanco}" />
+						</awb-f:facet>
+						<awb-f:facet name="last">
+							<awb-br:awbCommandButton styleClass="button pagination-btn"
+								value="#{msgs.label_ultima}" title="#{msgs.label_txt_ultima}" />
+						</awb-f:facet>
+					</awb-br:awbDataScroller>
+				</awb-th:extDiv>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- BOTOES -->
+			<awb-h:panelGrid columns="2" styleClass="panelGridTable">
+				<!-- VOLTAR -->
+				<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+					value="#{msgs.bto_voltar}" immediate="true" action="nav_index" />
+
+				<awb-h:panelGrid style="float:right" columns="2"
+					rendered="#{descritivoTarifaLogBean.listaPesquisa.size() > 0}"> 
+									
+				</awb-h:panelGrid>
+				
+			</awb-h:panelGrid>
+
+			<!-- MODAL SELECT CLIENTE 
+			<awb-th:extDiv id="div_modalCliente">
+				<awb-br:modalContent id="modalCliente" iconUrl="info"
+					autoOpen="true" reRender="@form" resizable="true" draggable="true"
+					width="1000" height="520" closable="false" closeOnEscape="false"
+					header="Selecionar Cliente" closeId="frameForm:botaoFechar"
+					onHideServerCallback="#{descritivoTarifaLogBean.closeModal}"
+					rendered="#{descritivoTarifaLogBean.viewHelper.renderModalCliente}"
+					contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+			</awb-th:extDiv>-->
+		</awb-h:form>
+		</sei:seiRegion>
+		
+		<!-- SEI API -->
+		<sei:seiApi useSaveModal="true"></sei:seiApi>
+		<sei:seiApi id="seiApp" usePrintModal="true" />
+
+		<!-- Script para exportação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/export.js" />
+		
+		<!-- Script geral da aplicação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/app.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+
+		<!-- SCRIPT -->
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+    
+    <!-- Campos Precificação-->
+         <awb-h:panelGrid>
+           <awb-h:panelGroup>
+              <!--awb-h:commandButton value="#{tradeFinanceBean.viewHelper.valueMaisMenosPrecificacao}" 
+                  styleClass="HtmlCommandButtonBradesco" render="formTradeFinMonitDet formModalMessages">
+                  <f:ajax immediate="false" execute="@form" event="click"
+                       listener="#{tradeFinanceBean.actionCollapsAreaNegocio(2)}" render="formTradeFinMonitDet"/>
+              </awb-h:commandButton-->
+              <awb-h:outputLabel value=" #{msgs.label_contato_ret_garan}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+           </awb-h:panelGroup>
+         </awb-h:panelGrid>
+         
+         <awb-h:panelGrid styleClass="panelGridTable" columns="3" columnClasses="panelGridColum25, panelGridColum25, panelGridColum25">
+                
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_nome_ctt}: " styleClass="HtmlOutputLabelBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_end_ctt}: " styleClass="HtmlOutputLabelBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+		        </awb-h:panelGroup>
+		        <awb-h:column/>
+		        
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_cidade}: " styleClass="HtmlOutputLabelBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_telefone}: " styleClass="HtmlOutputLabelBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_det_email}: " styleClass="HtmlOutputLabelBradesco"/>
+		        </awb-h:panelGroup>
+		        
+		        <awb-h:panelGroup>
+		        	<awb-h:inputText id="txtConta" title="#{msgs.label_conta_minusculo}" maxlength="15" size="19"
+                        value="#{bean.clienteSelecaoVO.contaDv}" disabled="true"
+                        styleClass="HtmlInputTextBradesco">
+                    </awb-h:inputText>
+		        </awb-h:panelGroup>
+		        
+             </awb-h:panelGrid>
+
+</ui:composition>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWFGE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="118">
+    <register name="NPCDWFGE-HEADER">
+      <field name="NPCDWFGE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWFGE" />
+      <field name="NPCDWFGE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00118" />
+    </register>
+    <register name="NPCDWFGE-REGISTRO">
+      <field name="NPCDWFGE-TIPO-PESQUISA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWFGE-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWFGE-CID-BANQR-SWIFT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWFGE-CFLIAL-BANQR-SWIFT" pic="X(003)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWFGE-IBANQR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWFGE-CPAIS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWFGE-CMUN-INTL-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

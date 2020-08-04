@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:outputLabel value=" #{msgs.label_comissao_int}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" rendered="#{tradeFinanceBean.viewHelper.renderComissaoInterna}">
+        <awb-h:panelGrid width="100%" columns="4" columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_apvr}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadaprov}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_spread_negoc}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.comissaoInternaVO.vtxspreadnegoc}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+
+			<!-- 
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_det_libor_travada}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtravaliborcmbio}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+      		-->
+			<awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel value="#{msgs.label_spread_total}: " styleClass="HtmlOutputLabelBradesco" />
+                <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.vtxspreadtot}% AA"
+                    styleClass="HtmlOutputTextBoldBradesco" />
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

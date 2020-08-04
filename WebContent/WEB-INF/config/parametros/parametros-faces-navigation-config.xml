@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_1.dtd">
+<faces-config>
+
+	<!-- NAVEGACION -->
+	<navigation-rule>
+	
+	    <!-- TIPO CLAUSULA -->
+        <navigation-case>
+            <from-outcome>tipoClausulaList</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/tipoClausula/tipoClausulaList.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tipoClausulaIncl</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/tipoClausula/tipoClausulaIncl.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tipoClausulaAlt</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/tipoClausula/tipoClausulaAlt.xhtml</to-view-id>
+        </navigation-case>
+
+		<!-- CLAUSULAS -->
+		<navigation-case>
+			<from-outcome>clausulaList</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/clausula/clausulaList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clausulaIncl</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/clausula/clausulaIncl.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clausulaAlt</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/clausula/clausulaAlt.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clausulaDet</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/clausula/clausulaDet.xhtml</to-view-id>
+		</navigation-case>
+       
+        <!--  COMERCIALIZAÇÃO -->
+         <!-- BOLETO AGEX - TRADE FINANCE -->
+        <navigation-case>
+            <from-outcome>tradeFinBolAgexIncl</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/agex/tradeFinBolAgexIncl.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>tradeFinBolAgexConsBol</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/agex/tradeFinBolAgexConsBol.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tradeFinBolAgexDetlhBol</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/agex/tradeFinBolAgexDetBol.xhtml</to-view-id>
+        </navigation-case>
+   
+        <navigation-case>
+            <from-outcome>efeIncList</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/efetivacaoInc/efeIncList.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>lstBaxAgex</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/efetivacaoBaixa/lstBaxAgex.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>baxEstorno</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/baixarbolAgex/baxEstorno.xhtml</to-view-id>
+        </navigation-case>
+     
+        <navigation-case>
+            <from-outcome>pesqLog</from-outcome>
+            <to-view-id>/content/comercializacao/boleto/consultalog/pesqLog.xhtml</to-view-id>
+        </navigation-case>
+        
+        <!-- PARAMETRIZAR PRAZO STANDBY -->
+        <navigation-case>
+            <from-outcome>prazoStandbyManut</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/prazoStandby/prazoStandbyManut.xhtml</to-view-id>
+        </navigation-case>
+		
+        <!-- PARAMETRIZAR DESCRITIVO TARIFA -->
+        <navigation-case>
+            <from-outcome>descritivoTarifaList</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/descritivoTarifa/descritivoTarifaList.xhtml</to-view-id>
+        </navigation-case>
+		<navigation-case>
+			<from-outcome>descritivoTarifaIncl</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/descritivoTarifa/descritivoTarifaIncl.xhtml</to-view-id>
+		</navigation-case>
+
+          <!-- PARAMETRIZAR COMISSAO DESEMBOLSO -->
+        <navigation-case>
+            <from-outcome>comissaoDesembolsoBean</from-outcome>
+            <to-view-id>/content/parametrizacao/parametrizacaoComissDesemb.xhtml</to-view-id>
+        </navigation-case>
+		
+		<!-- MODELO DE BOLETO -->
+		<navigation-case>
+			<from-outcome>modeloBoletoList</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modeloBoletoIncl</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoIncl.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modeloBoletoInclClausula</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoInclClausula.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modeloBoletoAlt</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoAlt.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modeloBoletoAltClausula</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoAltClausula.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>modeloBoletoDel</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/modeloBoletoDel.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cotacaoPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/cotacaoPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>forfaitingPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/forfaitingPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>workingCapitalPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/workingCapitalPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>proexPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/proexPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>standbyPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/standbyPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>lcImpPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/lcImpPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bndesPosPrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/bndesPosPrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bndesPrePrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/bndesPrePrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>ncePrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/ncePrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>lei4131PrintTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/lei4131PrintTemplate.xhtml</to-view-id>
+		</navigation-case>
+		
+		<!-- TEMPLATE IMPPRIMIR OS PRODUTOS CONSULTAR -->
+        <navigation-case>
+            <from-outcome>produtosPrintTemplate</from-outcome>
+            <to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/produtosPrintTemplate.xhtml</to-view-id>
+        </navigation-case>
+        
+		<navigation-case>
+			<from-outcome>forfaitingTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/forfaitingTemplate.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>workingCapitalTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/workingCapitalTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cotacaoPPETemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/cotacaoPPETemplate.xhtml</to-view-id>
+		</navigation-case>	
+		<navigation-case>
+			<from-outcome>bndesPosTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/bndesPosTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bndesPreTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/bndesPreTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>finimpEcaTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/finimpEcaTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>garantiaIntExpTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/garantiaIntExpTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>lcImportacaoTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/lcImportacaoTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nceTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/nceTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>proexTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/produtosTemplates/proexTemplate.xhtml</to-view-id>
+		</navigation-case>
+
+		<!-- TEMPLATE IMRIMIR ANALISAR -->
+		<navigation-case>
+			<from-outcome>analisarProdutosTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/analisarProdutosTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bndesPosAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/bndesPosAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>bndesPreAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/bndesPreAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>finimpEcaAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/finimpEcaAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>forfaitingAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/forfaitingAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>garantiaIntExpAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/garantiaIntExpAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>lcImportacaoAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/lcImportacaoAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nceAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/nceAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>proexAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/proexAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>workingCapitalAnalisarTemplate</from-outcome>
+			<to-view-id>/content/parametrosPrecificacao/modeloBoleto/templates/analisarTemplates/workingCapitalAnalisarTemplate.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<!-- Campos Precificação-->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <!-- DESPESA -->
+            <awb-h:outputLabel value=" #{msgs.label_desp}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+	<awb-h:panelGrid styleClass="panelGridTable" columns="1" rendered="#{tradeFinanceBean.viewHelper.renderPrecificacao}">
+
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<!-- RADIO GRID LISTA -->
+			<awb-f:facet name="header">
+				<awb-th:extSelectOneRadio id="radioListaTabelaDespa" layout="spread"
+					immediate="false" forceId="true" forceIdIndex="false"
+					value="#{tradeFinanceBean.viewHelper.bancoSelecionado}">
+					
+					<f:ajax event="change"
+						listener="#{tradeFinanceBean.montaTabelaListaDespesa}"
+						render="div_tipoDespesa" execute="radioListaTabelaDespa" />
+					
+					<awb-f:selectItems value="#{tradeFinanceBean.selectItemRadioDespesa}" />
+				</awb-th:extSelectOneRadio>
+			</awb-f:facet>
+		</awb-h:panelGrid>
+
+		<awb-h:panelGrid styleClass="panelGridDataTable"
+			columnClasses="scrollable-horizontal-bar" id="pnlGridRespDespesa">
+			<awb-th:extDiv styleClass="overflow-auto full-size"
+				id="div_dataTable_resp_desp">
+
+				<awb-br:scrollableDataTable
+					width="100%"
+					rendered="#{tradeFinanceBean.responsavelDespList.listaDespesa.size() > 0}"
+					value="#{tradeFinanceBean.responsavelDespList.listaDespesa}" var="resp"
+					rows="10" rowIndexVar="indexRespInt" styleClass="panelGridTable">
+
+					<awb-br:scrollableColumn width="3%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value=" " styleClass="tableFontStyle"
+								escape="false" />
+						</awb-f:facet>
+						<awb-th:extRadio index="#{indexRespInt}"
+							for=":formTradeFinMonitDet:radioListaTabelaDespa" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_banco}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{resp.nbanqrcmbio}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_funcao}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{resp.nfuncresp}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_praca}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{resp.imunindcmbio}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_pais}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{resp.ipais}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn width="15%">
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_cod_swift}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{resp.cidbanqrswift}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+				</awb-br:scrollableDataTable>
+			</awb-th:extDiv>
+		</awb-h:panelGrid>
+
+		<awb-h:panelGrid styleClass="panelGridDataTable"
+			columnClasses="scrollable-horizontal-bar" id="div_tipoDespesa">
+			<awb-th:extDiv styleClass="overflow-auto full-size"
+				id="div_dataTable_bc_desp">
+				<awb-br:scrollableDataTable
+					rendered="#{tradeFinanceBean.listaDespesas.size() > 0}"
+					value="#{tradeFinanceBean.listaDespesas}" var="ctc" rows="10"
+					rowIndexVar="indexdes" styleClass="panelGridTable">
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_tp_despesas}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.ntpodespcmbio}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_desp_cent}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.pdespnegoccmbio}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_periodo}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nbasebletonegoc}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_periodicidade}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nfluxoperdccmbio}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_moeda}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nindcdeconmmoeda}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_valor}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.vdespbletocmbio}"
+							styleClass="HtmlOutputTextBoldBradesco">
+						<f:converter converterId="numericConverter"></f:converter>
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_forma_pgt}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.nformacobrdesp}"
+							styleClass="HtmlOutputTextBoldBradesco" />
+					</awb-br:scrollableColumn>
+
+					<awb-br:scrollableColumn>
+						<awb-f:facet name="header">
+							<awb-h:outputLabel value="#{msgs.label_valor_minimo}"
+								styleClass="tableFontStyle" escape="false" />
+						</awb-f:facet>
+						<awb-h:outputLabel value="#{ctc.vmindespcmbio}"
+							styleClass="HtmlOutputTextBoldBradesco">
+						<f:converter converterId="numericConverter"></f:converter>
+						</awb-h:outputLabel>
+					</awb-br:scrollableColumn>
+				</awb-br:scrollableDataTable>
+			</awb-th:extDiv>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+</ui:composition>
+</html>

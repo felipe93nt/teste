@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWO9S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="12816">
+    <register name="NPCCWO9S-HEADER">
+      <field name="NPCCWO9S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWO9S" />
+      <field name="NPCCWO9S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="12816" />
+    </register>
+    <register name="NPCCWO9S-REGISTRO">
+      <field name="NPCCWO9S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" value="000" />
+      <register name="NPCCWO9S-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWO9S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWO9S-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-ID-CLUB" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWO9S-CD-CLUB" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-CD-EMPRESA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWO9S-NM-NOME-CLIENTE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWO9S-SEGMENTO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWO9S-IPAIS-GEOGR" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWO9S-ICIDDE-ENDER" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

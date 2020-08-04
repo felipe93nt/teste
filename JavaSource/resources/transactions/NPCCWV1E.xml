@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWV1E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="2102">
+    <register name="NPCCWV1E-HEADER">
+      <field name="NPCCWV1E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWV1E" />
+      <field name="NPCCWV1E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="02102" />
+    </register>
+    <register name="NPCCWV1E-REGISTRO">
+      <field name="NPCCWV1E-NBLETO-NEGOC-CMBIO" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV1E-HMANUT-REG" pic="X(26)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV1E-QTDE-OCORR" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWV1E-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWV1E-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWV1E-NPCELA-DSEMB-CARTA" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV1E-VPCELA-CARTA-PREVT" pic="S9(6)V9(9)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" sign="implicit" />
+        <field name="NPCCWV1E-VPCELA-CREDT-PREVT" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+        <field name="NPCCWV1E-CPRZ-PCELA-CARTA" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWV1E-TDIA-PGTO-CARTA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

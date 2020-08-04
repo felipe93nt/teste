@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+
+<!-- #HTML declaração de bibliotecas de componentes e tags -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+    lang="pt">
+
+<ui:composition>
+    <!-- css -->
+        <awb-br:stylesheet href="/css/modal.css" />
+    <awb-br:modal title="Mensagem de confirmação"
+        titleImageIcon="info"  
+        mainDivClass="uiModalMainDivIntranet" 
+        headerDivClass="uiModalHeaderDivIntranet" 
+        bodyDivClass="uiModalBodyDivIntranet"
+        footerDivClass="uiModalFooterDivIntranet"
+        rendered="#{vincularOperacaoLcBean.viewHelper.renderModal}">
+
+        <awb-h:panelGroup rendered="#{vincularOperacaoLcBean.vincularOperacaoLcVO.csitequal eq '1'}">
+            <p>#{vincularOperacaoLcBean.viewHelper.mesagemConfirmacao}</p>
+        </awb-h:panelGroup>
+
+        <awb-h:panelGroup rendered="#{vincularOperacaoLcBean.vincularOperacaoLcVO.csitequal eq '3'}">
+            <p>#{vincularOperacaoLcBean.viewHelper.mesagemConfirmacao} <br /> #{vincularOperacaoLcBean.viewHelper.mesagemNumeroCotacao}</p>
+        </awb-h:panelGroup>
+        
+        <awb-h:panelGroup>
+            <p>#{vincularOperacaoLcBean.viewHelper.perguntaOperacao}</p>
+        </awb-h:panelGroup>
+        
+        <!-- combo Produto -->
+        <awb-h:panelGrid rendered="#{vincularOperacaoLcBean.vincularOperacaoLcVO.csitequal eq '3'}">
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_produto}: "
+                    for="comboProduto" />
+            </awb-h:panelGroup>
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="comboProduto" layout="pageDirection" title="#{msgs.label_produto}"
+                    styleClass="HtmlSelectOneMenuBradesco"
+                    value="#{vincularOperacaoLcBean.vincularOperacaoLcVO.cprodtservc}" immediate="false">
+                    <awb-f:selectItems value="#{selectItemBean.comboProdutoVincularLC}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <awb-f:facet name="buttons">
+            <awb-h:panelGroup>
+                <awb-h:commandButton styleClass="action-on-enter" value="Não"
+                    actionListener="#{bean[actionFechar]}"
+                    immediate="true" >
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+                <awb-h:commandButton styleClass="action-on-enter modal-confirmation" value="Sim"
+                    action="#{bean[actionConfirmar]}" >
+                    <awb-br:submitCheckClient />
+                </awb-h:commandButton>
+            </awb-h:panelGroup>
+        </awb-f:facet>
+    </awb-br:modal>
+</ui:composition>
+</html>

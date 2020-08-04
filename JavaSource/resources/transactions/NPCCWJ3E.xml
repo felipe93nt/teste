@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWJ3E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="43">
+    <register name="NPCCWJ3E-HEADER">
+      <field name="NPCCWJ3E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWJ3E" />
+      <field name="NPCCWJ3E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00043" />
+    </register>
+    <register name="NPCCWJ3E-REGISTRO">
+      <field name="NPCCWJ3E-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ3E-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWJ3E-VALOR-ME" pic="9(015)V99" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+    </register>
+  </input>
+</copybook>
+

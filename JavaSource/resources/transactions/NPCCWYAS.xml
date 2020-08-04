@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWYAS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="4666">
+    <register name="NPCCWYAS-HEADER">
+      <field name="NPCCWYAS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWYAS" />
+      <field name="NPCCWYAS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="04666" />
+    </register>
+    <register name="NPCCWYAS-SAIDA">
+      <field name="NPCCWYAS-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYAS-CUNIC-PSSOA-DESC" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYAS-CUNIC-PSSOA-IMUN" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYAS-CUNIC-PSSOA-BNF" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYAS-CUNIC-PSSOA-AFI" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWYAS-DLIM-FNDNG-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWYAS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWYAS-LISTA-RESP" minOccurs="0" maxOccurs="20" depends="NPCCWYAS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWYAS-CFNDNG" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYAS-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWYAS-NBANQR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-NFUNC-RESP" pic="X(011)" length="11" bytes="11" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-IMUN-IND-CMBIO" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-IPAIS" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-CID-BANQR-SWIFT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-CINDCD-FNDNG-UTLZD" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWYAS-NINDCD-FNDNG-UTLZD" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

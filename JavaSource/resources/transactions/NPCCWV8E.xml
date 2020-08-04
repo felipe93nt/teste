@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWV8E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="39">
+    <register name="NPCCWV8E-HEADER">
+      <field name="NPCCWV8E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWV8E" />
+      <field name="NPCCWV8E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00039" />
+    </register>
+    <register name="NPCCWV8E-REGISTRO">
+      <field name="NPCCWV8E-PJURO-NEGOC-CMBIO" pic="9(004)V9(09)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      <field name="NPCCWV8E-PAGTE-FINCR-CMBIO" pic="9(004)V9(09)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+    </register>
+  </input>
+</copybook>
+

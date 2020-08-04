@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:awb-br="http://bradesco.com.br/components-br" 
+    xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayoutCore.xhtml">
+    <ui:define name="body">
+        <body>
+
+            <!-- css -->
+            <awb-br:stylesheet href="/css/pages.css" />
+
+            <awb-h:form id="frameForm">
+
+                <awb-h:panelGrid width="100%">
+                    <!-- <ui:include src="/content/parametrosPrecificacao/modeloBoleto/modeloBoletoExportTemplate.xhtml" /> -->
+                    <ui:include src="/content/parametrosPrecificacao/modeloBoleto/templates/#{boletoModalBean.dadosBoleto.template}.xhtml" />
+                </awb-h:panelGrid>
+
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="2" width="100%">
+                    <!-- VOLTAR -->
+                    <awb-h:commandButton id="botaoFechar" value="#{msgs.botao_cancelar}"
+                        styleClass="HtmlCommandButtonBradesco" />
+                    <!-- CONFIRMAR -->
+                    <!-- <awb-h:commandButton action="#{boletoModalBean.selecionar}" value="#{msgs.bto_selecionar}"
+                        styleClass="HtmlCommandButtonBradesco right" /> -->
+                </awb-h:panelGrid>
+
+            </awb-h:form>
+        </body>
+    </ui:define>
+</ui:composition>
+</html>

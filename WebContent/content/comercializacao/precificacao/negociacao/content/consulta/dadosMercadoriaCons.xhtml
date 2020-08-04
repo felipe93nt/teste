@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Campos Mercadoria -->
+    <awb-h:panelGrid styleClass="panelGridTable">
+        <awb-h:panelGroup>
+            <awb-h:outputLabel value=" #{msgs.label_mercadoria}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <!--  GRID  -->
+    <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGrid3"
+        rendered="#{tradeFinanceBean.viewHelper.renderMercadoria}">
+        <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTable3">
+            <awb-br:scrollableDataTable var="mercadoriaLista" value="#{tradeFinanceBean.mercadoriaList}"
+                id="gridListaMercadoria" width="100%" rendered="#{tradeFinanceBean.mercadoriaList.size() > 0}">
+                <awb-br:scrollableColumn width="30%">
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_mercadoria}" styleClass="tableFontStyle"
+                            escape="false" />
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.rmcadoopercmbio}"
+                        styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn width="15%">
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_pais_origem}" styleClass="tableFontStyle"
+                            escape="false" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 644 
+                            								and tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 1642}" />
+                        
+                        <awb-h:outputLabel value="#{msgs.label_pais_destino}" styleClass="tableFontStyle"
+                            escape="false"  rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 1642 
+                            							or tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 644}"/>
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.ipais}" styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+                
+                 <awb-br:scrollableColumn width="15%" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 2018}">
+                    
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_pais_embrq}" styleClass="tableFontStyle"
+                            escape="false"/>
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.ipaisembrq}" styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+               
+                <awb-br:scrollableColumn width="20%">
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_beneficiario}" styleClass="tableFontStyle"
+                            escape="false" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 644 
+                            								and tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 1642}"/>
+                        
+                        <awb-h:outputLabel value="#{msgs.label_det_importador}" styleClass="tableFontStyle"
+                            escape="false"  rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 1642}"/>
+                       	
+                       	<awb-h:outputLabel value="#{msgs.label_det_exportador}" styleClass="tableFontStyle"
+                            escape="false" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 644}"/>   
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.iunicpssoamcado}"
+                        styleClass="HtmlOutputTextBradesco"/>
+                </awb-br:scrollableColumn>
+                
+                <awb-br:scrollableColumn width="15%" >
+                    
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_pais_beneficiario}" styleClass="tableFontStyle"
+                            escape="false"  rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 644 
+                            								and tradeFinMonitBean.tradeFinanceListaVO.produto.codigo != 1642}"/>
+                        
+                        <awb-h:outputLabel value="País Importador" styleClass="tableFontStyle"
+                            escape="false" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 1642}"/>     
+                            
+                       <awb-h:outputLabel value="País Exportador" styleClass="tableFontStyle"
+                            escape="false" rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo == 644}"/>   
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.ipaisbnefc}" styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn width="10%">
+                	
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_prev_embarque}" styleClass="tableFontStyle"
+                            escape="false"/>
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.dprevtembrq}"
+                        styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+        
+                <awb-br:scrollableColumn width="10%">
+                    <awb-f:facet name="header">
+                        <awb-h:outputLabel value="#{msgs.label_num_desembolso}" styleClass="tableFontStyle"
+                            escape="false" />
+                    </awb-f:facet>
+                    <awb-h:outputLabel value="#{mercadoriaLista.ndsembcmbiotrade}"
+                        styleClass="HtmlOutputTextBradesco" />
+                </awb-br:scrollableColumn>
+            </awb-br:scrollableDataTable>
+        </awb-th:extDiv>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid styleClass="panelGridTable" columns="2" columnClasses="panelGridColum50,panelGridColum50"
+        rendered="#{tradeFinanceBean.tradeFinanceVO.produto.codigo ne 644}">
+        <awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo ne 644}">
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel value="#{msgs.label_det_seg_transporte}: " styleClass="HtmlOutputLabelBradesco" />
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.csegurtrnspmcado}"
+                styleClass="HtmlOutputTextBoldBradesco" />
+        </awb-h:panelGroup>
+        <awb-h:panelGroup rendered="#{tradeFinMonitBean.tradeFinanceListaVO.produto.codigo ne 644}">
+            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+            <awb-h:outputLabel value="#{msgs.label_det_clausula_benf_br}: " styleClass="HtmlOutputLabelBradesco" />
+            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.csegurmcadoorgnz}"
+                styleClass="HtmlOutputTextBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

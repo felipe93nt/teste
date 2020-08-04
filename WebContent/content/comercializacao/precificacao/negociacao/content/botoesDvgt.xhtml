@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 9000 a 9099  -->
+    
+    <!-- BOTOES -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable" rendered="true" id="pnlBotoes">
+
+        <!-- VOLTAR -->
+        <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" tabindex="9000"
+            action="tradeFinMonitList">
+            <awb-br:submitCheckClient />
+        </awb-h:commandButton>
+
+        <!-- CONFIRMAR -->
+        <awb-h:panelGroup>
+            <awb-h:commandButton id="btoConfirmar" styleClass="HtmlCommandButtonBradesco right" tabindex="9001"
+                value="#{msgs.bto_confirmar}">
+                <f:ajax immediate="false" execute="@form" event="click"
+                    render="formModalMessages formTrdFinNegIncl pnlClientes"
+                    listener="#{tradeFinanceNegociacaoAltBean.listenerConfirmaAlteracao}" />
+                <awb-f:attribute name="paramConfirmarAlt" value="10" />
+            </awb-h:commandButton>
+        </awb-h:panelGroup>
+
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

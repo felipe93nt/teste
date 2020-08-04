@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWO9E" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="102">
+    <register name="NPCCWO9E-HEADER">
+      <field name="NPCCWO9E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWO9E" />
+      <field name="NPCCWO9E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00102" />
+    </register>
+    <register name="NPCCWO9E-REGISTRO">
+      <field name="NPCCWO9E-NTPO-PAPEL-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWO9E-TIPO-PESQUISA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWO9E-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWO9E-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWO9E-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWO9E-NM-NOME-CLIENTE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

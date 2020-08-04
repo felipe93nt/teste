@@ -1,0 +1,149 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+
+	<ui:param name="server"
+		value="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}" />
+
+	<!-- INICIO -->
+	<awb-h:panelGrid columns="2" columnClasses="width: 100%;">
+		<awb-h:panelGroup style="float: left;">
+			<awb-h:graphicImage value="#{server}/images/logo-bradesco.png" style="width:158px; height: 42px;" />
+		</awb-h:panelGroup>
+		<awb-h:panelGroup style="float: center">
+			<!-- DADOS BRADESCO -->
+            <td width="45%" style="font-family: verdana; font-size: 10pt;">
+                <span style="color: #989898;"> Departamento Internacional e Câmbio – Unidade Mesa de Trade Finance </span> <br />
+                <span style="color: #989898;">Endereço: </span><span style="font-weight: bold;"> Av. Paulista, 1.450 - 2ªSobre-Loja Prédio Itapeva - Bela Vista - São Paulo </span> 
+            </td>
+        </awb-h:panelGroup>
+	</awb-h:panelGrid>
+	<awb-th:extHtmlTag value="hr"
+		style=" border-top: 1px solid #333333; width: 100%;"></awb-th:extHtmlTag>
+	<br />
+
+	<!--DADOS DO CLIENTE  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosClienteTemplate.xhtml" />
+
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS DO PRODUTO  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosProdutosTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS APROVACAO DE CREDITO  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosAprovCreditoTemplate.xhtml" />
+
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS VALOR MOEDA  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosValorMoedaTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS SWAP PTAX  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosSwapTemplate.xhtml" />
+
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!-- FLUXO DE PAGAMENTO  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosFluxoPagamentoTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS PRAZO MEDIO  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosPrazoMedioTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--PRECIFICACAO NCE  -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosprecificacaoNceTemplate.xhtml" />
+		
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+	
+	<!--DADOS TARIFA -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosTarifaTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS COMISSAO -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosComissaoTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+	
+	<!--DADOS MODELO BOLETO -->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosModeloBoletoTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS OBSERVACAO-->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosObservacaoTemplate.xhtml" />
+	
+	<!-- LINHA DIVISORIA -->
+	<awb-th:extHtmlTag value="hr"
+		style="background-color:#FFFFFF; background-image: url(#{server}/images/linha_pontilhada.jpg); background-repeat: repeat-x; height: 1px; width: 100%; margin-top: 9px; margin-bottom: 9px;" />
+
+	<!--DADOS ANEXAR EMAIL-->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosAnexarEmailTemplate.xhtml" />
+	
+	
+	<!--DADOS ANEXAR DOCUMENTOS-->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosAnexarDocTemplate.xhtml" />
+	
+	
+	<!--DADOS RISCO-->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosRiscoTemplate.xhtml" />
+
+	
+	<!--DADOS ALERTA / OPERADOR DSN-->
+	<ui:include
+		src="/content/parametrosPrecificacao/modeloBoleto/templates/consultaTemplates/dadosAlertaTemplate.xhtml" />
+	
+	
+</awb-f:view>
+</html>

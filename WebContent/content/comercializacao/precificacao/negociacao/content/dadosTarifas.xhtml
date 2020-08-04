@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <!-- Utilizar nesse include range de 'TABINDEX' de 1300 a 1399  -->
+
+    <!-- botao Collaps Tarifas -->
+    <awb-h:panelGrid>
+        <awb-h:panelGroup>
+            <awb-h:commandButton value="#{bean.viewHelper.valueMaisMenosTarifas}" tabindex="1300"
+                styleClass="HtmlCommandButtonBradesco">
+                <f:ajax immediate="false" execute="@form" event="click" render="formTrdFinNegIncl formModalMessages"
+                    listener="#{bean.actionCollapsAreaNegocio(7)}" />
+            </awb-h:commandButton>
+            <awb-h:outputLabel value=" Tarifas" styleClass="HtmlOutputTextBulletBoldBradesco" />
+        </awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid id="pnlTarifas" styleClass="panelGridTable"
+        rendered="#{bean.viewHelper.renderTarifas}">
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+            <awb-h:panelGrid columns="1" width="80%">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup>
+                </awb-h:panelGroup>
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboTarifa" layout="pageDirection" title="Tarifa" tabindex="1301"
+                        styleClass="HtmlSelectOneMenuBradesco"
+                        value="#{bean.viewHelper.codTarifa}" immediate="false">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboTarifas}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+            <awb-h:panelGrid columns="1" styleClass="right">
+                <!-- LINHA CABEC -->
+                <awb-h:panelGroup />
+
+                <!-- LINHA DADOS -->
+                <awb-h:panelGroup>
+                    <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoIncluirTarifa" tabindex="1302"
+                        value="#{msgs.bto_incluir}">
+                        <f:ajax immediate="false" execute="@form" event="click" render="formModalMessages pnlTarifas"
+                            listener="#{bean.listenerIncluirTarifa}" />
+                    </awb-h:commandButton>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <!-- RADIO GRID LISTA -->
+        <awb-f:facet name="header">
+            <awb-th:extSelectOneRadio id="radioListaTarifas" layout="spread" immediate="false" forceId="true" tabindex="1303"
+                forceIdIndex="false" value="#{bean.viewHelper.itemSelecListaTarifas}">
+                <awb-f:selectItems value="#{bean.itensRadioListaTarifas}" />
+            </awb-th:extSelectOneRadio>
+        </awb-f:facet>
+
+        <!-- GRID TARIFAS -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridTarifas"
+            rendered="#{not empty bean.tradeFinNegocVO.listaTarifas}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableTarifas">
+                <awb-br:keepState pdcDataScrollerID="dataScrollerListaTarifas"
+                    stateID="#{bean.viewHelper.stateIdListaTarifas}" resource="cws">
+                    <awb-br:scrollableDataTable id="dataTableTarifas" var="itemTarifas" rows="20" width="100%"
+                        rowIndexVar="indexListaTarifas"
+                        value="#{bean.tradeFinNegocVO.listaTarifas}">
+    
+                        <awb-br:scrollableColumn width="3%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value=" " styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-th:extRadio index="#{indexListaTarifas}" for=":formTrdFinNegIncl:radioListaTarifas" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="13%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Código" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemTarifas.ccondceconc}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="30%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Tarifas" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemTarifas.descrdesptarif}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="20%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Moeda" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemTarifas.isglindcdfonte}" />
+                        </awb-br:scrollableColumn>
+    
+                        <awb-br:scrollableColumn width="34%" styleClass="c">
+                            <awb-f:facet name="header">
+                                <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                            </awb-f:facet>
+                            <awb-h:outputLabel value="#{itemTarifas.vdespbletocmbio}">
+                                <f:converter converterId="numericConverter"></f:converter>
+                            </awb-h:outputLabel>
+                        </awb-br:scrollableColumn>
+    
+                    </awb-br:scrollableDataTable>
+                </awb-br:keepState>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+            <awb-h:panelGrid width="98%" />
+
+            <awb-h:panelGrid width="2%" styleClass="right">
+                <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoExclTarifas" tabindex="1304"
+                        disabled="#{empty bean.tradeFinNegocVO.listaTarifas}"
+                    value="#{msgs.bto_excluir}">
+                    <f:ajax execute="@form" event="click" render="pnlTarifas formModalMessages"
+                        listener="#{bean.listenerExcluirTarifas}" />
+                </awb-h:commandButton>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+
+</ui:composition>
+
+</html>

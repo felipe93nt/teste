@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWEYS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="19115">
+    <register name="NPCDWEYS-HEADER">
+      <field name="NPCDWEYS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWEYS" />
+      <field name="NPCDWEYS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="19115" />
+    </register>
+    <register name="NPCDWEYS-REGISTRO">
+      <field name="NPCDWEYS-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CPSSOA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-IREDZD-PSSOA-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CD-EMPRESA" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-NM-NOME-CLIENTE" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CPSSOA-UND-ORGNZ" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-NSEQ-UND-ORGNZ" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CRCONH-UND-ORGNZ-M" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CRCONH-UND-ORGNZ-F" pic="9(006)" length="6" bytes="6" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-IRZ-SCIAL" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CTPO-ASS-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CLIBRC-ASS-DGTAL" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-CMBIO-WEB" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-PAPEL-ATIVO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-ROBS-CLI-CMBIO" pic="X(5000)" length="5000" bytes="5000" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-BLOQ-CLI" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CAUTRZ-NOVOEX" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CAUTRZ-CAM0057" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CINDCD-CRRT-CMBIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-CONVENIO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CEMIS-AVISO-ORD" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-RJUSTF-INATV-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-RJUSTF-INOPR-CMBIO" pic="X(200)" length="200" bytes="200" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-PAPEL-OPER" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CINDCD-FCHTO-AUTOM" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-CUSUAR-INCL" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-IUSUAR-INCL" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CUSUAR-MANUT" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-IUSUAR-MANUT" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-HMANUT-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-CUSUAR-ANLSE" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-IUSUAR-ANLSE" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-HANLSE-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCDWEYS-QTDE-CONT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-QTDE-ENDE" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-QTDE-BRA" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-QTDE-OUT" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-QTDE-MOTVO-I" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-QTDE-MOTVO-A" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCDWEYS-TIPO-DETALHE" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+      <register name="NPCDWEYS-LISTA-CONT" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-CONT" dependsType="number">
+        <field name="NPCDWEYS-CDDI-FONE" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CDDD-FONE" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-NLIN-TFONI-REFT" pic="9(011)" length="11" bytes="11" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-ICNTAT-PSSOA-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-EENDER-ELETR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCDWEYS-LISTA-ENDE" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-ENDE" dependsType="number">
+        <field name="NPCDWEYS-CSEQ-ENDER-PSSOA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-ELOGDR-PSSOA" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-ELOGDR-NRO" pic="X(007)" length="7" bytes="7" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-EBAIRO-ENDER" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CCEP" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCEP-COMPL" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-ICIDDE-ENDER" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CSGL-UF" pic="X(002)" length="2" bytes="2" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-IPAIS-GEOGR" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-SEL-ENDER-GRID" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCDWEYS-LISTA-BRA" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-BRA" dependsType="number">
+        <field name="NPCDWEYS-CAG-BCRIA-B" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCTA-BCRIA-CLI-B" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CDIG-BCRIA-CLI-B" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-RAZAO-B" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CPSSOA-JURID-CTA-B" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CTPO-NEGOC-CTA-B" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-NSEQ-NEGOC-CTA-B" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CINDCD-FCHTO-AUT-B" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCONVE-OPER-CMBIO-B" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CID-BNEFC-CMBIO-B" pic="X(017)" length="17" bytes="17" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CFATO-BACEN-CONVE-B" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCLI-BACEN-CONVE-B" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CINDCD-AVALS-BACEN-B" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CPGDOR-RCDOR-CONVE-B" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CGRP-BACEN-CONVE-B" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CVNCLO-PGDOR-RCDOR-B" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="NPCDWEYS-LISTA-OUT" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-OUT" dependsType="number">
+        <field name="NPCDWEYS-CBCO-O" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CAG-BCRIA-O" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCTA-BCRIA-CLI-O" pic="9(013)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CDIG-BCRIA-CLI-O" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CTPO-CTA-EXTER-O" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-BCO-NOME-FANTAS-O" pic="X(015)" length="15" bytes="15" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CINDCD-FCHTO-AUT-O" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCONVE-OPER-CMBIO-O" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CID-BNEFC-CMBIO-O" pic="X(017)" length="17" bytes="17" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CFATO-BACEN-CONVE-O" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CCLI-BACEN-CONVE-O" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CINDCD-AVALS-BACEN-O" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEYS-CPGDOR-RCDOR-CONVE-O" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CGRP-BACEN-CONVE-O" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEYS-CVNCLO-PGDOR-RCDOR-O" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      </register>
+      <register name="NPCDWEYS-LISTA-MOTVO-A" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-MOTVO-A" dependsType="number">
+        <field name="NPCDWEYS-RTPO-MOTVO-REST-A" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+      <register name="NPCDWEYS-LISTA-MOTVO-I" minOccurs="0" maxOccurs="20" depends="NPCDWEYS-QTDE-MOTVO-I" dependsType="number">
+        <field name="NPCDWEYS-RTPO-MOTVO-REST-I" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

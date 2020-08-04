@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <awb-h:panelGrid columns="4" styleClass="panelGridTable"
+        columnClasses="panelGridColum30,panelGridColum30,panelGridColum20,panelGridColum20">
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColumn55,panelGridColum40">
+            
+            <!-- txt Moeda Operação -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_moeda_operacao}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaOper" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboMoedaOper" layout="pageDirection" title="Moeda Operação"
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda"
+                        value="#{bean.tradeFinNegocVO.cindcdeconmmoeda}" immediate="false"
+                        tabindex="400">
+                        <awb-f:selectItems value="#{bean.viewHelper.comboMoedaOperacao}" />
+                        <f:ajax immediate="false" execute="@form" event="change"
+                            render="formTrdFinNegIncl formModalMessages"
+                            listener="#{bean.listenerCalcularValorLimite}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- txt Valor ME -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_valor_ME}: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtValorME" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtValorME" title="#{msgs.label_valor_ME}"  styleClass="HtmlInputTextObrigatorioBradesco"
+                        alt="{'type':'money-dot'}" maxlength="18" size="22"
+                        value="#{bean.tradeFinNegocVO.vnegocmoedaestrg}" tabindex="401">
+                        <f:ajax execute="@form" event="change" render="formTrdFinNegIncl formModalMessages"
+                            immediate="false" listener="#{bean.listenerTrocaValorMe}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <!-- Moeda do Limite -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <!-- sem cabec -->
+                <awb-h:panelGroup />
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_moeda_limite} " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.moedaLimite}" />
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        <awb-h:panelGrid columns="1">
+			<!-- txt Carência (Meses)-->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="Carência (Meses): "
+						styleClass="HtmlOutputTextBulletBoldBradesco" for="txtCarencia" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:inputText id="txtCarencia" title="Carência" maxlength="5"
+						size="7" alt="{'type':'integer'}"
+						styleClass="HtmlInputTextBradesco"
+						value="#{bean.tradeFinNegocVO.prevDesembolsoVO.tdiacarenprinc}"
+						tabindex="403">
+					</awb-h:inputText>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+        </awb-h:panelGrid>
+                
+        <awb-h:panelGrid columns="1">
+            <!-- txt Prazo Operação(Meses) -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Prazo Operação(Meses): " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtPrazoOper" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtPrazoOper" title="Prazo Operação" maxlength="5" size="7"
+                        alt="{'type':'integer'}" styleClass="HtmlInputTextObrigatorioBradesco"
+                        value="#{bean.tradeFinNegocVO.tdiaopercmbio}" tabindex="404">
+                        <f:ajax immediate="false" execute="@form" event="change" render="formTrdFinNegIncl"
+                            listener="#{bean.listenerTrocaPrazoOperacao}" />
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+
+        <awb-h:panelGrid columns="2" styleClass="panelGridTable" columnClasses="panelGridColumn55,panelGridColum55">
+            <!-- LINHA CABEC -->
+            <awb-h:panelGrid>
+                <!-- Porte -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="#{msgs.label_det_porte}: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaDesembolso" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboPorte" layout="pageDirection" title="Porte"
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda"
+                        value="#{bean.tradeFinNegocVO.cidtfdbndesporte}" immediate="false"
+						tabindex="405">
+                        <awb-f:selectItems value="#{bean.viewHelper.listaComboPorte}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+            
+            <!-- Valor Financiamento -->
+            <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Valor Financiamento: " styleClass="HtmlOutputTextBulletBoldBradesco"
+                        for="txtValorFinan" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:inputText id="txtValorFinan" title="#{msgs.label_det_valor_fin}"  styleClass="HtmlInputTextBradesco"
+                        alt="{'type':'money-dot'}" maxlength="18" size="22"
+                        value="#{bean.tradeFinNegocVO.vprevtrectacmbio}" tabindex="406">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <!-- Valor Moeda Limite -->
+        <awb-h:panelGrid columns="1">
+            <awb-h:panelGrid>
+                <!-- sem cabec Valor Moeda Limite  -->
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_det_moeda_limite_vlr}: " />
+                    <h:outputText styleClass="HtmlOutputTextBoldBradesco"
+                        value="#{bean.tradeFinNegocVO.vmoedalimgerc}" >
+                        <f:converter converterId="numericConverter" />
+                    </h:outputText>    
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+        <awb-h:panelGrid columns="1">
+            <!-- Grupo -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                    <awb-h:outputLabel value="Grupo: "
+                        styleClass="HtmlOutputTextBulletBoldBradesco" for="comboGrupo" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+                    <awb-h:selectOneMenu id="comboGrupo" layout="pageDirection" title="Grupo"
+                        styleClass="HtmlSelectOneMenuBradesco HtmlSelectOneMenuMoeda"
+                        value="#{bean.tradeFinNegocVO.cidtfdbndesgrp}" immediate="false"
+						tabindex="407">
+                        <awb-f:selectItems value="#{bean.viewHelper.listaComboGrupo}" />
+                    </awb-h:selectOneMenu>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+        </awb-h:panelGrid>
+        
+		<!-- txt Grupo Mercadoria (Boleto) -->
+            <awb-h:panelGrid>
+                <awb-h:panelGroup>
+                    <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel
+					value="#{msgs.label_grupo_mercadoria_boleto}: "
+					styleClass="HtmlOutputTextBulletBoldBradesco"
+					for="txtGrupoMercadoriaBoleto" />
+                </awb-h:panelGroup>
+                <awb-h:panelGroup>
+				<awb-h:inputText id="txtGrupoMercadoriaBoleto" title="#{msgs.label_grupo_mercadoria_boleto}"
+					size="50" styleClass="HtmlInputTextBradesco" maxlength="50"
+					value="${bean.tradeFinNegocVO.grupomercadoriaboleto}" tabindex="408">
+                    </awb-h:inputText>
+                </awb-h:panelGroup>
+            </awb-h:panelGrid>
+
+    </awb-h:panelGrid>
+    
+    <awb-h:panelGrid columns="1" styleClass="panelGridTable">
+		<!-- txt Amortização -->
+		<awb-h:panelGrid>
+			<awb-h:panelGroup>
+				<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+				<awb-h:outputLabel value="Amortização: " styleClass="HtmlOutputTextBulletBoldBradesco"
+					for="txtAmortizacao" />
+			</awb-h:panelGroup>
+			<awb-h:panelGroup>
+				<awb-h:inputText id="txtAmortizacao" title="Amortização" size="200"
+					styleClass="HtmlInputTextBradesco" maxlength="200"
+					value="${bean.tradeFinNegocVO.obsCotacaoVO.amortizar}"
+					tabindex="409">
+				</awb-h:inputText>
+			</awb-h:panelGroup>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>    
+
+</ui:composition>
+
+</html>

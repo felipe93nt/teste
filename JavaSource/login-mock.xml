@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users xmlns="http://www.w3.org/2001/XMLSchema-instance">
+
+	<userList userDescription="Desenvolvimento - I919452" userName="I919452" userPassword="cambio08">
+		<userGroups groupName="CMNC0001"></userGroups>
+		<userGroups groupName="NPCA0001"></userGroups>
+		<userGroups groupName="NPCC0001"></userGroups>
+		<userGroups groupName="NPCD0001"></userGroups>
+		<userGroups groupName="NPCP0001"></userGroups>
+		<userGroups groupName="CMNC0007"></userGroups>
+		<userGroups groupName="NPCD0007"></userGroups>
+		<userGroups groupName="NPCC0009"></userGroups>
+	</userList>
+</users>

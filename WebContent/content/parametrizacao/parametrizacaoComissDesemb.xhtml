@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:sei="http://bradesco.com.br/sei">
+<!-- Renan 1207 -->
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<!-- CAMINHO DE PAO -->
+	<ui:param name="selection" value="#{msgs.title_param_comiss_cesemb}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminho('title_param_comiss_cesemb',0)}" />
+
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{comissaoDesembolsoBean.iniciar}" />
+	</f:metadata>
+
+	<ui:define name="body">
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- Componente SEI -->
+		<sei:seiRegion id="allContent">
+
+			<!-- FORM -->
+			<awb-h:form id="formComissaoDesembolcons">
+
+				<!-- LINHA -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- DADOS FILTRO -->
+				<awb-h:panelGrid id="panelDadosFiltro" columns="3">
+
+						<!-- COMBO PRODUTO -->
+					<awb-h:panelGroup styleClass="table-line-spacing-10">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_produto}:" />
+						</awb-h:panelGroup>
+						<br />
+	 					<awb-h:selectOneMenu id="comboProduto" layout="pageDirection"
+							title="#{msgs.label_produto}"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+							value="#{comissaoDesembolsoBean.viewHelper.filtro.cprodtservc}"
+							immediate="true">
+							<awb-f:selectItems
+								value="#{comissaoDesembolsoBean.viewHelper.comboProdutos}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGroup>
+
+					<!-- COMBO MOEDA -->
+					<awb-h:panelGroup styleClass="table-line-spacing-10">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel styleClass="HtmlOutputLabelBoldBradesco"
+								value="#{msgs.label_moeda}:" />
+						</awb-h:panelGroup>
+						<br />
+						<awb-h:selectOneMenu id="comboMoedaBaixar" layout="pageDirection"
+							title="#{msgs.label_moeda}"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+							value="#{comissaoDesembolsoBean.viewHelper.filtro.cindcdeconmmoeda}"
+							immediate="false">
+
+							<awb-f:selectItems value="#{comissaoDesembolsoBean.viewHelper.comboMoeda}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGroup>
+					
+					<!-- AÇÕES -->
+					<awb-h:panelGroup>
+						<!-- BOTÃO PESQUISAR -->
+						<awb-h:commandButton styleClass="HtmlCommandButtonBradesco"
+							style="margin-top: 22px;" id="btoPesquisar"
+							value="#{msgs.bto_pesquisar}"
+							action="#{comissaoDesembolsoBean.pesquisar}">
+					
+						</awb-h:commandButton>
+					</awb-h:panelGroup>
+					
+					
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid width="100%"
+					rendered="#{comissaoDesembolsoBean.listaPesquisa.size() > 0}">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" style="margin: 5px 0px 8px 0px;" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- RADIO GRID LISTA -->
+				<f:facet name="header">
+					<awb-h:selectOneRadio id="radioListaDescr" forceId="true"
+						forceIdIndex="false"
+						value="#{comissaoDesembolsoBean.viewHelper.codItemSelecionadoLista}">
+						<awb-f:selectItems
+							value="#{comissaoDesembolsoBean.selectItemRadioLista}" />
+						<f:ajax immediate="false"
+							listener="#{comissaoDesembolsoBean.atualizarBotoes}" event="click"
+							render="pnlBotoes" execute="@this radioListaDescr divSeiModals" />
+					</awb-h:selectOneRadio>
+				</f:facet>
+
+
+				<!-- VALOR ME E COMISSAO DESEMBOLSO -->
+			
+				<!-- VALOR ME E COMISSAO DESEMBOLSO -->
+
+
+				<awb-h:panelGrid width="100%" rendered="#{comissaoDesembolsoBean.listaPesquisa.size() > 0}">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" style="margin: 5px 0px 8px 0px;" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+ 
+                <!-- GRID PESQUISA -->
+				<awb-h:panelGrid width="96%" rendered="#{not empty comissaoDesembolsoBean.listaPesquisa}">
+					<awb-br:keepState pdcDataScrollerID="dataScrollerListaPapeis" 
+						stateID="#{comissaoDesembolsoBean.viewHelper.nomeStateIdLista}" resource="cws">
+	                    
+	                    <awb-br:scrollableDataTable id="dataTable" value="#{comissaoDesembolsoBean.listaPesquisa}"
+	                    	var="item" rows="10" width="100%" rowIndexVar="indexLista">
+	
+							<awb-br:scrollableColumn width="3%">
+
+								<f:facet name="header">
+									<h:outputLabel value="" styleClass="tableFontStyle" escape="false" />
+								</f:facet>
+	                            <awb-th:extRadio index="#{indexLista}" for=":formComissaoDesembolcons:radioListaDescr" />
+	                        </awb-br:scrollableColumn>             
+							
+							<!-- Produto -->
+							<awb-br:scrollableColumn >
+								<f:facet name="header">
+									<h:outputLabel value="#{msgs.label_produto}" styleClass="tableFontStyle" 
+										escape="false" />
+								</f:facet>
+								<h:outputLabel value="#{item.cprodtdesc}" />
+							</awb-br:scrollableColumn>
+							
+							<!-- Moeda -->
+							<awb-br:scrollableColumn >
+								<f:facet name="header">
+									<h:outputLabel value="#{msgs.label_moeda}"
+										styleClass="tableFontStyle" escape="false" />
+								</f:facet>
+								<h:outputLabel value="#{item.descreconmmoeda}" />
+							</awb-br:scrollableColumn>
+							
+							
+							<!-- Valor ME -->
+							<awb-br:scrollableColumn >
+								<f:facet name="header">
+									<h:outputLabel value="#{msgs.label_valor_ME}"
+										styleClass="tableFontStyle" escape="false" />
+								</f:facet>
+								<h:outputLabel value="#{item.vlimcomisfixa}" />
+							</awb-br:scrollableColumn>
+							
+							<!-- Comissao de Desembolso -->
+							<awb-br:scrollableColumn >
+								<f:facet name="header">
+									<h:outputLabel value="#{msgs.label_com_desemb}"
+										styleClass="tableFontStyle" escape="false" />
+								</f:facet>
+								<h:outputLabel value="#{item.vcomisfixa}" />
+							</awb-br:scrollableColumn>
+							
+                        </awb-br:scrollableDataTable>
+
+					</awb-br:keepState>
+
+                    <awb-br:awbDataScroller resource="cws" for="dataTable" styleClass="pagination" id="dataScroller"
+	                    renderFacetsIfSinglePage="true" actionListener="#{comissaoDesembolsoBean.paginar}"
+	                    stateID="#{comissaoDesembolsoBean.viewHelper.nomeStateIdLista}">
+	                    <f:facet name="first">
+	                        <awb-br:awbCommandButton styleClass="button" value="#{msgs.label_primeira}"
+	                            title="#{msgs.label_txt_primeira}"/>
+	                    </f:facet>
+	                    <f:facet name="fastrewind">
+	                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_retrocesso}"
+	                            title="#{msgs.label_txt_retrocesso}"/>
+	                    </f:facet>
+	                    <f:facet name="previous">
+	                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_anterior}"
+	                            title="#{msgs.label_txt_anterior}"/>
+	                    </f:facet>
+	                    <f:facet name="next">
+	                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_proxima}"
+	                            title="#{msgs.label_txt_proxima}"/>
+	                    </f:facet>
+	                    <f:facet name="fastforward">
+	                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_avanco}"
+	                            title="#{msgs.label_txt_avanco}"/>
+	                    </f:facet>
+	                    <f:facet name="last">
+	                        <awb-br:awbCommandButton styleClass="button pagination-btn" value="#{msgs.label_ultima}"
+	                            title="#{msgs.label_txt_ultima}"/>
+	                    </f:facet>
+	                </awb-br:awbDataScroller>
+                </awb-h:panelGrid> 
+
+
+				<!-- LINHA DIVISÓRIA -->
+				<awb-h:panelGrid width="100%">
+					<br></br>
+					<awb-f:verbatim>
+						<hr />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- BOTOES -->
+				<awb-h:panelGrid id="pnlBotoes" columns="2" width="100%">
+					<!--rendered="#{not empty comissaoDesembolsoBean.listaPesquisa}">-->
+					<!-- VOLTAR -->
+					<awb-h:commandButton value="#{msgs.bto_voltar}"
+						styleClass="HtmlCommandButtonBradesco" action="nav_index">
+						<awb-br:submitCheckClient />
+					</awb-h:commandButton>
+					<awb-h:panelGrid style="float:right" columns="5">
+						<!-- EXCLUIR -->
+						<awb-h:commandButton id="btnExcluir"
+							styleClass="HtmlCommandButtonBradesco"
+							action="#{comissaoDesembolsoBean.excluir}"
+							value="#{msgs.bto_excluir}"
+							disabled="#{comissaoDesembolsoBean.viewHelper.disabledBtnExcluir}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+                        <!-- ALTERAR -->
+						<awb-h:commandButton id="btnAlterar"
+							styleClass="HtmlCommandButtonBradesco"
+							action="#{comissaoDesembolsoBean.alterar}"
+							value="#{msgs.bto_alterar}"
+							disabled="#{comissaoDesembolsoBean.viewHelper.disabledBtnAlterar}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+						<!-- INCLUIR -->
+						<awb-h:commandButton id="btnIncluir"
+							styleClass="HtmlCommandButtonBradesco"
+							action="#{comissaoDesembolsoBean.incluir}"
+							value="#{msgs.bto_incluir}"
+							disabled="#{comissaoDesembolsoBean.viewHelper.disabledBtnIncluir}"
+							rendered="#{empty comissaoDesembolsoBean.listaPesquisa}">
+							<awb-br:submitCheckClient />
+						</awb-h:commandButton>
+
+					</awb-h:panelGrid>
+
+					<!-- MODAL EXCLUSÃO -->
+					<ui:include src="/template/modal.xhtml">
+						<ui:param name="message" value="#{msgs.info_confirmar_exclusao}" />
+						<ui:param name="bean" value="#{comissaoDesembolsoBean}" />
+						<ui:param name="actionConfirmar" value="actionConfirmarExcluir" />
+						<ui:param name="actionFechar" value="actionFecharModal" />
+						<ui:param name="renderModal"
+							value="#{comissaoDesembolsoBean.viewHelper.renderModal}" />
+					</ui:include>
+				</awb-h:panelGrid>
+			</awb-h:form>
+		</sei:seiRegion>
+
+		<!-- SEI API -->
+		<!-- <sei:seiApi useSaveModal="true"></sei:seiApi> -->
+		<sei:seiApi id="seiApp" usePrintModal="true" />
+
+		<!-- Script para exportação -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/export.js" />
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/app.js" />
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+
+	</ui:define>
+</ui:composition>
+
+</html>

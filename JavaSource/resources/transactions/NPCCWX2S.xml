@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWX2S" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="116">
+    <register name="NPCCWX2S-HEADER">
+      <field name="NPCCWX2S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWX2S" />
+      <field name="NPCCWX2S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00116" />
+    </register>
+    <register name="NPCCWX2S-REGISTRO">
+      <field name="NPCCWX2S-CSIT-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWX2S-INFORMATIVO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </output>
+</copybook>
+

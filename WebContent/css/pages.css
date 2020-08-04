@@ -1,0 +1,245 @@
+/* Classes css sobrescritas dos estilos padrões do bradesco: */
+
+/* Origin: tiles.css */ 
+.bullet {
+    position: relative;
+    top: 0px;
+    width: 5px;
+    height: 5px;
+    vertical-align: middle; 
+    margin-right: 5px;
+}
+
+/* Origin: components.css */
+.HtmlInputTextObrigatorioBradesco{font-family: verdana; font-size: 10px; background-color: #FFFBDE;}
+.HtmlInputTextDisabled{height:18px; font-family: verdana; font-size: 10px; color: #ACA899; text-align: left; margin-top: 4px; border-color: #C6C6CB; border-style: solid; border-width: 1px;}
+.HtmlInputTextObrigNoJava{font-family: verdana; font-size: 10px; background-color: #FFFBDE;}
+
+.HtmlSelectOneMenu{font-family: verdana; font-size: 10px; max-width:300px;}
+.HtmlSelectOneMenuBradesco{font-family: verdana; font-size: 10px; min-width:300px; max-width:300px;}
+.HtmlSelectOneMenuObrigatorioBradesco{font-family: verdana; font-size: 10px; background-color:#FFFBDE; min-width:230px;}
+.HtmlSelectOneRadioBradesco{font-family: verdana; font-size: 10px}
+.HtmlSelectOneRadioObrigatorioBradesco{font-family: verdana; font-size: 10px;}
+.HtmlSelectOneMenuDesabilitado{font-family: verdana; font-size: 10px; margin-top: 4px; background-color:#55557D;}
+
+.HtmlInputTextCalendar{font-family: verdana; font-size: 10px; text-align: left; margin-right:4px; margin-top: 4px;}
+.HtmlInputTextCalendarObrigatorio{font-family: verdana; font-size: 10px;text-align: left; margin-right:4px; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlInputTextCalendarObrigNoJava{font-family: verdana; font-size: 10px;text-align: left; margin-right:4px; margin-top: 4px; background-color:#FFFBDE;}
+.HtmlCommandButtonBradesco{font-family: verdana; font-size: 10px;}
+
+.TextValidatorMessage{font-family: verdana; font-size: 9px; color: #FF0000;}
+
+.table-line-spacing-10 > input, 
+.table-line-spacing-10 > select,
+.table-line-spacing-10 > table {
+    margin-top: 10px;
+}
+
+.adjust-cnpj-helper > table:nth-child(odd) {
+    float: left;
+}
+
+.clear-float {
+    float: none !important;
+}
+
+/* Origin: components.css */
+.passSelected {font-size: 10px;padding-bottom : 2px;}
+.passNoSelected {font-size: 10px;padding-bottom : 2px;}
+
+.linhaPontilhada {border-top-style: dashed;border-top-color: #ccc;}
+
+.table-vertical-align-top > tbody > tr > td {
+    vertical-align: top;
+}
+
+.b {font-weight: bold;}
+.r {text-align: right;}
+.c {text-align: center;}
+.l {text-align: left;}
+.sep {height: 5px;}
+.right {float: right;}
+.left {float: left;}
+.espaco{margin-left: 20px;}
+
+/* ESTILOS PANEL GRID */
+
+/* PanelGrid para DataTable */
+.panelGridDataTable{width: 99%;}
+
+/* Grid com uma, três ou quatro colunas */
+.panelGridTable{width: 100%;}
+
+/* Grid com duas colunas */
+.panelGridTable2{width: 66%;}
+
+.panelGridTable50{width: 50%;}
+
+.panelGridTable45{width: 45%;}
+
+.panelGridTable40{width: 40%;}
+
+.panelGridColumn90{width: 90%;}
+
+.panelGridColumn80{width: 80%;}
+
+.panelGridColumn70{width: 70%;}
+
+.panelGridColumn60{width: 60%;}
+
+.panelGridColumn50{width: 50%;}
+
+.panelGridColumn55{width: 55%;}
+
+.panelGridColumn47{width: 47%;}
+
+.panelGridColumn40{width: 40%;}
+
+.panelGridColumn33{width: 33%;}
+
+.panelGridColumn30{width: 30%;}
+
+.panelGridColumn25{width: 25%;}
+
+.panelGridColumn20{width: 20%;}
+
+.panelGridColumn15{width: 15%;}
+
+.panelGridColumn10{width: 10%;}
+
+/* Coluna com 50% do tamanho da tabela, para tabelas com duas colunas */
+.panelGridColum50{width: 50%;}
+
+/* Coluna com 33% do tamanho da tabela, para tabelas com três colunas */
+.panelGridColum33{width: 33%;}
+
+/* Coluna com 34% do tamanho da tabela, para tabelas com três colunas */
+.panelGridColum34{width: 34%;}
+
+/* Coluna com 25% do tamanho da tabela, para tabelas com quatro colunas */
+.panelGridColum25{width: 25%;}
+
+/* Coluna com 15% do tamanho da tabela, para tabelas com quatro colunas */
+.panelGridColum15{width: 15%;}
+
+/* Componente paginação */
+.pagination{margin-right:auto; margin-left:auto; margin-top: 10px;}
+.pagination-btn{margin-left: 3px;}
+
+/*  Form para Alerta de Erro de Data*/
+.form_erro {background: none repeat scroll 0 0 #FFF7D9 !important;border: 1px dashed #BF0000 !important;margin-bottom: 15px;padding: 14px 0 !important;}
+.form_fieldset {width: auto;height: auto;padding: 10px !important;}
+.erro_input {border: 1px dashed #BF0000 !important;}
+.erro_msg {color: #BF0000;font-size: 0.92em;}
+.erro_msg:hover {text-decoration: none;}
+
+/* Style para grid de botões. */
+.gridBotao{width: 100%; margin-top: 9px; margin-bottom: 9px;}
+.gridBotaoEsquerda{text-align: left; width: 100%;}
+.gridBotaoDireita{text-align: right; width: 100%;}
+
+.textoItemAlteradoLog{
+    color: #ff7f00;
+}
+
+.UICalendarPeriod-div-calendar-period{
+    font-family: verdana; font-size: 10px
+}
+
+.highlight-label-message {
+    color: #ff7f00;
+}
+
+
+.UICalendar-calendar-subdivs > input {
+    font-family: verdana; 
+    font-size: 10px
+}
+
+.checkbox-info {
+    float:right; 
+    margin-right:50px;"
+}
+
+.margin-top-5 {
+	margin-top: 5px !important;
+}
+
+.margin-top-7 {
+	margin-top: 7px !important;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.min-width-150 {
+    min-width: 150px;
+}
+
+.scrollable-horizontal-bar > div > .UIScrollableDataTable > .normalMainDiv > .scrollableColumns > .scrollableBody {
+    overflow-x: hidden !important;
+}
+
+.overflow-auto {
+	overflow-x: auto; 
+	overflow-y: auto;
+}
+
+.footer-bar-modal {	
+	left: 0; 
+	bottom: 20px; 
+	position: absolute; 
+	width:100%;
+}
+
+
+.UISeiPrintModal-frameImprimir {
+	width: 1080px !important;
+}
+
+.UISeiPrintModal-seiPrintModalDiv{
+	width: 1120px !important;
+	margin-left: 0px !important;
+	left: 9% !important;
+}
+
+.panelGridColumnDown33{
+	vertical-align: bottom;
+	width: 33%;
+}
+
+.panelGridColumnTop33{
+    vertical-align: top;
+    width: 33%;
+}
+
+.panelGridColumnMiddle33{
+    vertical-align: middle;
+    width: 33%;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#formModalMessages > div > div > .ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+.HtmlSelectOneMenuMoeda {
+	min-width:150px !important; max-width:150px !important;
+}
+
+.textoDivergente{
+	font-family: verdana;
+	font-size: 10px;
+	color: #FF0000;
+}

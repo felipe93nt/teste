@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWK9S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="3396">
+    <register name="NPCCWK9S-HEADER">
+      <field name="NPCCWK9S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWK9S" />
+      <field name="NPCCWK9S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="03396" />
+    </register>
+    <register name="NPCCWK9S-REGISTRO">
+      <field name="NPCCWK9S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWK9S-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWK9S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWK9S-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK9S-DOCUMENTO" pic="X(004)" length="4" bytes="4" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK9S-CD-CPFCNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK9S-CD-FILIAL" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK9S-CD-CTRL-CPFCNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWK9S-NM-NOME-CLIENTE" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWK9S-QUALIFICACAO" pic="X(060)" length="60" bytes="60" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

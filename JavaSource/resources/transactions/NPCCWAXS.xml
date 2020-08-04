@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWAXS" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <output maxBytes="8365">
+    <register name="NPCCWAXS-HEADER">
+      <field name="NPCCWAXS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWAXS" />
+      <field name="NPCCWAXS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08365" />
+    </register>
+    <register name="NPCCWAXS-REGISTRO">
+      <field name="NPCCWAXS-S-QT-TARIFA" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWAXS-S-OCORRENCIA" minOccurs="0" maxOccurs="50" depends="NPCCWAXS-S-QT-TARIFA" dependsType="number">
+        <field name="NPCCWAXS-S-CCOND-ECONC" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWAXS-S-HINCL-REG" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWAXS-S-DCCOND-ECONC" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWAXS-S-CFUNCAO" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWAXS-S-DALTER" pic="X(050)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWAXS-S-CUSUAR" pic="X(009)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWAXS-S-HMANUT" pic="X(026)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

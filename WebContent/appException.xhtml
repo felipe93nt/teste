@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   lang="pt"
+ xmlns:awb-h="http://bradesco.com.br/components-html">
+<ui:composition template="/template/root/mainLayoutBasic.xhtml">
+<ui:define name="body">
+<awb-h:panelGrid columns="1" cellspacing="6" width="100%">
+	<awb-h:outputLabel value="#{msgs.exception_title_application}" styleClass="HtmlOutputTextTitleColorBradesco"/>
+	<awb-h:outputLabel value=" " styleClass="HtmlOutputTextBradesco"/>
+</awb-h:panelGrid>
+
+<awb-h:panelGrid columns="1" cellspacing="6" width="100%">
+	<awb-h:outputLabel value="#{msgs.exception_line1}" styleClass="HtmlOutputTextBradesco"/>
+	<awb-h:outputLabel value="#{msgs.exception_line2}" styleClass="HtmlOutputTextBradesco"/>
+	<awb-h:outputLabel value=" "/>
+</awb-h:panelGrid>
+
+<awb-h:panelGrid columns="1" cellspacing="4" width="100%">
+	<awb-h:outputLabel value="#{msgs.exception_summary_label}" styleClass="HtmlOutputTextBoldBradesco"/>
+	<awb-h:messages globalOnly="true" showSummary="true" showDetail="false"/>
+	<awb-h:outputLabel value="#{msgs.exception_detail_label}" styleClass="HtmlOutputTextBoldBradesco"/>
+	<awb-h:messages globalOnly="true" showSummary="false" showDetail="true"/>
+</awb-h:panelGrid>
+
+<awb-h:panelGrid columns="1" cellspacing="6" width="100%">
+	<awb-h:outputLabel value=" "/>
+	<awb-h:form id="commandLinkForm">
+		<awb-h:commandLink action="nav_index" value="#{msgs.exception_back_link}" styleClass="HtmlCommandLinkBradesco"/>
+	</awb-h:form>
+</awb-h:panelGrid>
+</ui:define>
+</ui:composition>
+</html>

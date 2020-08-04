@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+    <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlGridEmail" width="100%">
+        <awb-th:extDiv styleClass="overflow-auto full-size" id="div_dataTableEmail">
+            <awb-h:outputLabel value="#{msgs.label_email_anx}" styleClass="HtmlOutputTextBulletBoldBradesco" />
+
+            <awb-br:scrollableDataTable id="scrollable_emailAnexados" value="#{tradeFinanceBean.listaEmailAnexos}"
+                var="item" rows="10" width="100%" rowIndexVar="indexLista">
+
+                <awb-br:scrollableColumn styleClass="c">
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.label_nome}" styleClass="tableFontStyle" escape="false" />
+                    </f:facet>
+                    <awb-h:outputLink value="#{item.url}" target="_blank">
+                        <h:outputText value="#{item.nome}" />
+                    </awb-h:outputLink>
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn styleClass="c">
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.label_data_anexo}" styleClass="tableFontStyle" escape="false" />
+                    </f:facet>
+                    <awb-h:outputLabel value="#{item.data}" styleClass="HtmlMessageBradesco" />
+                </awb-br:scrollableColumn>
+
+                <awb-br:scrollableColumn styleClass="c">
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.label_operador}" styleClass="tableFontStyle" escape="false" />
+                    </f:facet>
+                    <awb-h:outputLabel value="#{item.usuario}" styleClass="HtmlMessageBradesco" />
+                </awb-br:scrollableColumn>
+            </awb-br:scrollableDataTable>
+
+        </awb-th:extDiv>
+    </awb-h:panelGrid>
+
+</ui:composition>
+</html>

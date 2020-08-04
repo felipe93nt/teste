@@ -1,0 +1,69 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<awb-f:view>
+	<awb-h:panelGrid columns="4" style="width: 100%;"
+		columnClasses="width: 25%;">
+
+		<!-- SWAP PTAX SPREAD -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_swap}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:110px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.cindcdnegocswap}" />
+		</awb-h:panelGroup>
+
+		<!-- INPUT -->
+		<awb-h:panelGroup>
+			<awb-h:selectBooleanCheckbox value="#{tradeFinanceBean.libor}"
+				disabled="true" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="Libor" styleClass="HtmlOutputLabelBradesco" />
+
+			<awb-h:selectBooleanCheckbox value="#{tradeFinanceBean.fluxo}"
+				disabled="true" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="Fluxo" styleClass="HtmlOutputLabelBradesco" />
+
+			<awb-h:selectBooleanCheckbox value="#{tradeFinanceBean.meMn}"
+				disabled="true" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="ME/MN" styleClass="HtmlOutputLabelBradesco" />
+		</awb-h:panelGroup>
+
+		<!-- PTAX -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_ptax}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; padding-right:52px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.descrptax}" />
+		</awb-h:panelGroup>
+
+		<!-- SPREAD ALL-IN -->
+		<awb-h:panelGroup>
+			<awb-h:graphicImage
+				style="position: relative; top: 0px; width: 5px; height: 5px; vertical-align: middle; padding-right: 5px;"
+				url="#{server}/images/bullet.jpg" />
+			<awb-h:outputLabel style="font-family: verdana; font-size: 10px"
+				value="#{msgs.label_det_spread_all}: " />
+			<awb-h:outputLabel
+				style="font-family: verdana; font-size: 10px; font-weight: bold; margin-right:-41px;"
+				value="#{tradeFinanceBean.tradeFinanceVO.ptxswapcmpdo}%" />
+		</awb-h:panelGroup>
+	</awb-h:panelGrid>
+</awb-f:view>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWI9S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="4296">
+    <register name="NPCCWI9S-HEADER">
+      <field name="NPCCWI9S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWI9S" />
+      <field name="NPCCWI9S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="04296" />
+    </register>
+    <register name="NPCCWI9S-REGISTRO">
+      <field name="NPCCWI9S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWI9S-LISTA" minOccurs="0" maxOccurs="40" depends="NPCCWI9S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWI9S-CMOTVO-BLETO-CMBIO" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWI9S-RMOTVO-BLETO-CMBIO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWI9S-PRONTO-FUTURO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWI9S-MESA-TRADE" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWI9S-GARANTIAS" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWI9S-CSIT-ATIVO-INATI" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

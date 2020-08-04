@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWLAS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="7364">
+    <register name="NPCCWLAS-HEADER">
+      <field name="NPCCWLAS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWLAS" />
+      <field name="NPCCWLAS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="07364" />
+    </register>
+    <register name="NPCCWLAS-REGISTRO">
+      <field name="NPCCWLAS-CINDCD-PCOBR-JUROS" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAS-CINDCD-FCOBR-COTAC" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWLAS-VPREVT-COMIS-CMBIO" pic="9(015)V9(002)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWLAS-QTDE-OCORR" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWLAS-LISTA" minOccurs="0" maxOccurs="198" depends="NPCCWLAS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWLAS-NPCELA-DSEMB-TRADE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWLAS-TDIA-NEGOC-PCELA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWLAS-DVCTO-PCELA-TRADE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWLAS-VPCELA-MESA-TRADE" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

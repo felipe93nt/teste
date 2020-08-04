@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCDWEMS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="8016">
+    <register name="NPCDWEMS-HEADER">
+      <field name="NPCDWEMS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCDWEMS" />
+      <field name="NPCDWEMS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08016" />
+    </register>
+    <register name="NPCDWEMS-REGISTRO">
+      <field name="NPCDWEMS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCDWEMS-LISTA" minOccurs="0" maxOccurs="40" depends="NPCDWEMS-QTDE-OCORR" dependsType="number">
+        <field name="NPCDWEMS-IREDZD-PSSOA-CMBIO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEMS-IPSSOA-CMBIO" pic="X(080)" length="80" bytes="80" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEMS-CUNIC-PSSOA-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCDWEMS-ICIDDE-ENDER" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCDWEMS-IPAIS-COPLT" pic="X(040)" length="40" bytes="40" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

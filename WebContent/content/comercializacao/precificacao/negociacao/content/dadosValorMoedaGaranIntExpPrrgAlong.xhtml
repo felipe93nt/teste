@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<awb-h:panelGrid columns="3" styleClass="panelGridTable"
+		columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+		
+		<awb-h:panelGrid columns="2" styleClass="panelGridTable"
+			columnClasses="panelGridColumn55,panelGridColum40">
+		
+			<!-- txt Moeda Operação -->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_moeda_operacao}: "
+						styleClass="HtmlOutputTextBulletBoldBradesco" for="comboMoedaOper" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:selectOneMenu id="comboMoedaOper" layout="pageDirection"
+						title="Moeda Operação" styleClass="HtmlSelectOneMenuBradesco"
+						value="#{bean.tradeFinNegocVO.cindcdeconmmoeda}" immediate="false">
+						<awb-f:selectItems value="#{bean.viewHelper.comboMoedaOperacao}" />
+						<f:ajax immediate="false" execute="@form" event="change"
+							render="formTrdFinNegIncl formModalMessages"
+							listener="#{bean.listenerCalcularValorLimite}" />
+					</awb-h:selectOneMenu>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			<!-- txt Valor ME -->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_det_valor_ME}: "
+						styleClass="HtmlOutputTextBulletBoldBradesco" for="txtValorME" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:inputText id="txtValorME" title="#{msgs.label_valor_ME}"
+						styleClass="HtmlInputTextObrigatorioBradesco"
+						alt="{'type':'money-dot'}" maxlength="18" size="22"
+						value="#{bean.tradeFinNegocVO.vnegocmoedaestrg}">
+						<f:ajax execute="@form" event="change"
+							render="formTrdFinNegIncl formModalMessages" immediate="false"
+							listener="#{bean.listenerTrocaValorMe}" />
+					</awb-h:inputText>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+		<awb-h:panelGrid columns="1">
+			<awb-h:panelGrid>
+				<!-- sem cabec -->
+				<awb-h:panelGroup />
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<h:outputText styleClass="HtmlOutputLabelBradesco"
+						value="Moeda do Limite: " />
+					<h:outputText styleClass="HtmlOutputTextBoldBradesco"
+						value="#{bean.tradeFinNegocVO.moedaLimite}" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+		<awb-h:panelGrid columns="1">
+			<!-- txt Prazo Prorrogação(Dias) -->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="Prazo da Prorrogação (Dias): "
+						styleClass="HtmlOutputTextBulletBoldBradesco" for="txtPrazoOper" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-h:inputText id="txtPrazoOper" title="Prazo Operação"
+						maxlength="5" size="7" alt="{'type':'integer'}"
+						styleClass="HtmlInputTextBradesco"
+						value="#{bean.tradeFinNegocVO.tdiaopercmbio}">
+						<f:ajax immediate="false" execute="@form" event="change"
+							render="formModalMessages formTrdFinNegIncl pnlComissInt dtPrevisaoProrrogacao"
+							listener="#{bean.listenerTrocaPrazoOperacao}" />
+					</awb-h:inputText>
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+
+	<awb-h:panelGrid columns="3" styleClass="panelGridTable"
+		columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+		
+		<awb-h:panelGrid columns="2" styleClass="panelGridTable"
+			columnClasses="panelGridColumn55,panelGridColum55">
+			<!-- LINHA CABEC -->
+			<awb-h:panelGrid>
+				<!-- DATA PREVISTA EMISSAO -->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_data_prevista_emiss}: "
+						styleClass="HtmlOutputTextBulletBoldBradesco"
+						for="calendPrevEmissao" />
+				</awb-h:panelGroup>
+				
+				<awb-h:panelGroup>
+	                <awb-br:calendar id="calendPrevEmissao" titulo="Calendário"
+						disableInputFields="false" clientValidationLevel="date"
+						onInputChange="limpaData('formTrdFinNegIncl:calendPrevEmissao','validarPrevEmiss')"
+						onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+						value="#{bean.tradeFinNegocVO.dprevtgarntexpdi}" />
+					<awb-h:outputLabel value=" " escape="false" />
+	                <awb-h:commandButton style="display:none;" styleClass="ajax-call validarPrevEmiss">
+	                    <f:ajax execute="@form" event="click" listener="#{bean.validarDiaUtilRecalculaPrazoOperacao}" 
+	                    	render="formModalMessages formTrdFinNegIncl divSeiModals pnlComissInt" />
+	                     <f:param name="campoData" value="9" />
+	                </awb-h:commandButton>  						
+				</awb-h:panelGroup>
+				
+			</awb-h:panelGrid>
+
+			<!-- DATA VENCIMENTO FIANCA -->
+			<awb-h:panelGrid id="pnlVencFianca" columns="1" styleClass="panelGridTable">
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="#{msgs.label_data_venc_fianc}"
+						styleClass="HtmlOutputTextBulletBoldBradesco"
+						for="calendVencFianca" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<awb-br:calendar id="calendVencFianca" titulo="Calendário" clientValidationLevel="date"
+                	    onInputChange="verificaData('listenerTrocarDataVencFianca')"
+						disableInputFields="false" onFieldFilled="errorStyleChanger"
+						onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+						value="#{bean.viewHelper.dateVencFianc}" />
+						
+	                <awb-h:commandButton style="display:none;" styleClass="ajax-call listenerTrocarDataVencFianca">
+	                    <f:ajax execute="calendVencFianca" event="click" render="formModalMessages pnlComissInt"
+	                        listener="#{bean.listenerTrocarDataVencFianca}" />
+	                </awb-h:commandButton>  						
+																		
+					<awb-h:outputLabel value=" " escape="false" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+		
+		<awb-h:panelGrid columns="1">
+			<awb-h:panelGrid>
+				<!-- sem cabec Valor Moeda Limite  -->
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<h:outputText styleClass="HtmlOutputLabelBradesco"
+						value="Valor Moeda Limite: " />
+					<h:outputText styleClass="HtmlOutputTextBoldBradesco"
+						value="#{bean.tradeFinNegocVO.vmoedalimgerc}" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+			<!-- espaço -->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup />
+				<awb-h:panelGroup />
+			</awb-h:panelGrid>
+			<!-- check box INDETERMINADO -->
+	        <awb-h:panelGroup>
+	            <awb-h:selectBooleanCheckbox id="checkIndeterminado" value="#{bean.viewHelper.indeterminado}" />
+	            <awb-h:outputLabel styleClass="HtmlOutputTextBradesco" for="checkIndeterminado" value="Indeterminado" />
+	        </awb-h:panelGroup>
+		</awb-h:panelGrid>
+		
+		<awb-h:panelGrid columns="1">
+			<!-- txt Prazo Operação(Dias) -->
+			<awb-h:panelGrid>
+				<awb-h:panelGroup>
+					<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+					<awb-h:outputLabel value="Previsão Prorrogação: " styleClass="HtmlOutputTextBulletBoldBradesco" />
+				</awb-h:panelGroup>
+				<awb-h:panelGroup>
+					<h:outputText id="dtPrevisaoProrrogacao" styleClass="HtmlOutputTextBoldBradesco" value="#{bean.tradeFinNegocVO.dprevtprorrog}" />
+				</awb-h:panelGroup>
+			</awb-h:panelGrid>
+		</awb-h:panelGrid>
+	</awb-h:panelGrid>
+</ui:composition>
+</html>

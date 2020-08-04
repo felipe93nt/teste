@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWMNE" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="419">
+    <register name="NPCCWMNE-HEADER">
+      <field name="NPCCWMNE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWMNE" />
+      <field name="NPCCWMNE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00419" />
+    </register>
+    <register name="NPCCWMNE-REGISTRO">
+      <field name="NPCCWMNE-CIDTFD-MESA-CMBIO" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-NSEQ-CONTR-LIM" pic="9(017)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-NPPSTA-PONTU-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-VNEGOC-MOEDA-ESTRG" pic="9(015)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+      <field name="NPCCWMNE-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-PSPREAD-TX-CMBIO" pic="9(004)V9(09)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      <field name="NPCCWMNE-PTX-PARIDADE" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      <field name="NPCCWMNE-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-CINDCD-NEGOC-CARTA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNE-CINDCD-CARTA-IDPDT" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNE-DPREVT-EMBRQ" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNE-DPREVT-DSEMB-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWMNE-TDIA-VALDD-CARTA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWMNE-VLIM-COBER-VAR" pic="9(006)V9(09)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      <field name="NPCCWMNE-QTDE-DESEMB" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWMNE-LISTA-SPREAD" minOccurs="0" maxOccurs="20" depends="NPCCWMNE-QTDE-DESEMB" dependsType="number">
+        <field name="NPCCWMNE-SPREAD-DESEMB" pic="9(004)V9(09)" length="13" bytes="13" usage="DISPLAY" type="NUMERIC" decimals="9" />
+      </register>
+    </register>
+  </input>
+</copybook>
+

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:awb-f="http://bradesco.com.br/components-core"
+	xmlns:awb-rf="http://bradesco.com.br/components-rf-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-br="http://bradesco.com.br/components-br">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+	<ui:param name="selection"  value="#{msgs.title_boleto_agex_incluir}" />
+	<ui:param name="passNumber" value="1" />
+	<ui:param name="pathList"   value="#{breadCrumbBean.loadCaminho('title_boleto_agex_incluir',0)}" />
+    
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinBolAgexBean.iniciar}" />
+    </f:metadata>
+	
+	<ui:define name="body">
+		<!-- css -->
+		<awb-br:stylesheet href="/css/pages.css" />
+
+		<!-- CALENDARIO -->
+		<script type="text/javascript"
+			src="#{request.contextPath}/javascript/calendarWarningStyle.js" />
+		<awb-br:bundleWriter functionName="getBundle" id="calendarioFiltro"
+			rendered="true"
+			messageKeys="error_message,day_field_name,month_field_name,year_field_name,field_message_singular,field_message_plural,represent_message_singular,represent_message_plural,and_conjunction,c_day_error,c_month_error,c_year_error,c_day_month_error,c_day_year_error,c_month_year_error,c_day_month_year_error,c_bigger_error,c_smaller_error,c_start_period_date,c_end_period_date,c_invalid_period,c_day_error_title,c_month_error_title,c_year_error_title,c_day_month_error_title,c_day_year_error_title,c_month_year_error_title,c_day_month_year_error_title,transferenciac_day_error_title">
+		</awb-br:bundleWriter>
+
+		<!--  LINHA DIVISÓRIA -->
+		<awb-h:panelGrid styleClass="panelGridTable">
+			<awb-f:verbatim>
+				<hr />
+			</awb-f:verbatim>
+		</awb-h:panelGrid>
+
+		<!-- FORM -->
+		<awb-h:form id="formTrdFinBolAgexIncl">
+
+			<awb-h:panelGrid columns="5" styleClass="panelGridTable"
+				columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25"
+				id="gridConsultas">
+				<awb-h:panelGrid columns="1" width="600px">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_cliente}: "
+							styleClass="HtmlOutputLabelBoldBradesco" for="nomeCliente" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputText styleClass="HtmlInputTextObrigatorioBradesco action-on-enter"
+							id="nomeCliente"
+							value="#{tradeFinBolAgexBean.clienteSelecaoVO.nomeCliente}"
+							title="#{msgs.label_cliente}" size="60" maxlength="50" />
+						<awb-br:brCommandSearch styleClass="nomeCliente-action">
+							<f:ajax execute="@form" event="click"
+								render="div_modalCliente formModalMessages"
+								listener="#{tradeFinBolAgexBean.listenerPesqClienteNomeIncl}" />
+						</awb-br:brCommandSearch>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="1">
+					<!-- CPF CNPJ -->
+					<awb-h:panelGrid>
+						<!-- Tipo de pesquisa CPF CNPJ -->
+						<awb-h:panelGroup>
+							<awb-h:selectOneRadio
+								styleClass="HtmlSelectOneRadioObrigatorioBradesco"
+								immediate="false"
+								value="#{tradeFinBolAgexBean.clienteSelecaoVO.codCpfCnpj}"
+								id="radioCpfCnpj">
+								<awb-f:selectItems
+									value="#{tradeFinBolAgexBean.viewHelper.tipoPesquisaCpfCnpj}" />
+								<f:ajax execute="radioCpfCnpj" event="click"
+									render="gridCpfCnpj nomeCliente" immediate="false"
+									listener="#{tradeFinBolAgexBean.listenerMudaCpfCnpjCliente}" />
+							</awb-h:selectOneRadio>
+						</awb-h:panelGroup>
+
+						<!-- CAMPOS -->
+						<awb-h:panelGrid columns="2" width="50%" id="gridCpfCnpj">
+							<awb-h:panelGroup>
+								<!-- CAMPO CNPJ -->
+								<awb-br:cnpj id="cnpjCliente"
+									value="#{tradeFinBolAgexBean.clienteSelecaoVO.cnpj}"
+									titleLabelCnpj="CNPJ" titleInputsCnpj="CNPJ"
+									styleClassInputs="HtmlInputTextBradesco"
+									rendered="#{tradeFinBolAgexBean.clienteSelecaoVO.codCpfCnpj == 2}">
+								</awb-br:cnpj>
+
+								<!-- CAMPO CPF -->
+								<awb-br:cpf id="cpfCliente"
+									value="#{tradeFinBolAgexBean.clienteSelecaoVO.cpf}"
+									titleLabelCpf="CPF" titleInputsCpf="CPF"
+									styleClassInputs="HtmlInputTextBradesco"
+									rendered="#{tradeFinBolAgexBean.clienteSelecaoVO.codCpfCnpj == 3}">
+								</awb-br:cpf>
+							</awb-h:panelGroup>
+
+							<!-- LUPA CPF CNPJ -->
+							<awb-br:brCommandSearch>
+								<f:ajax execute="@form" event="click"
+									render="div_modalCliente gridConsultas formModalMessages"
+									listener="#{tradeFinBolAgexBean.listenerPesquisarClienteCpfCnpj}" />
+							</awb-br:brCommandSearch>
+
+							<awb-h:message for="cnpjCliente" showSummary="false"
+								showDetail="true" styleClass="error"
+								rendered="#{tradeFinBolAgexBean.clienteSelecaoVO.codCpfCnpj == 2}" />
+							<awb-h:message for="cpfCliente" showSummary="false"
+								showDetail="true" styleClass="error"
+								rendered="#{tradeFinBolAgexBean.clienteSelecaoVO.codCpfCnpj == 3}" />
+						</awb-h:panelGrid>
+					</awb-h:panelGrid>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="3" styleClass="panelGridTable">
+				<awb-h:panelGroup>
+					<awb-h:panelGrid columns="1" style="width:430px">
+						<awb-h:panelGroup>
+							<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+							<awb-h:outputLabel value="#{msgs.label_produto}: "
+								styleClass="HtmlOutputLabelBoldBradesco" />
+						</awb-h:panelGroup>
+						<awb-h:selectOneMenu id="cprodtservc"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco ajax-no-loading"
+							title="#{msgs.label_produto}"
+							value="#{tradeFinBolAgexBean.filtroVO.cprodtservc}">
+							
+							<f:selectItems value="#{tradeFinBolAgexBean.produto}" />
+							
+							<f:ajax execute="@this" event="change"
+								render="gridBotoes formModalMessages"
+								listener="#{tradeFinBolAgexBean.callbackChangeComboProduto}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGrid>
+				</awb-h:panelGroup>
+
+				<!-- UNIDADE EXTERNA -->
+				<awb-h:panelGrid columns="1" id="pnlUnidExt" style="width:295px">
+				
+					<!-- LABEL - UNIDADE EXTERNA -->
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_unidade_externa}:"
+							styleClass="HtmlOutputLabelBoldBradesco" for="txtUnidExt"/>
+					</awb-h:panelGroup>
+
+					<awb-h:panelGroup>
+						<!-- CAMPO - UNIDADE EXTERNA -->
+						<awb-h:inputText id="txtUnidExt"
+							title="#{msgs.label_unidade_externa}" size="30" maxlength="70"
+							immediate="false" styleClass="HtmlInputTextBradesco action-on-enter"
+							value="#{tradeFinBolAgexBean.filtroVO.unidadeExternaVO.bancocorr}"
+							validatorMessage="Mínimo 3 e Máximo 70 caracteres">
+							<awb-f:validator validatorId="customLengthValidator" />
+							<awb-f:attribute name="minimum" value="3" />
+							<awb-f:attribute name="maximum" value="70" />
+						</awb-h:inputText>
+
+						<!-- LUPA - UNIDADE EXTERNA -->
+						<awb-br:brCommandSearch id="lupaUnidExt" styleClass="txtUnidExt-action">
+							<f:ajax execute="@form" event="click"
+								render="pnlUnidExt div_modalUnidExt formModalMessages"
+								listener="#{tradeFinBolAgexBean.openModalUnidadeExterna}" />
+                            <awb-f:attribute name="paramTelaOrigem" value="1" />
+						</awb-br:brCommandSearch>
+					</awb-h:panelGroup>
+					
+					<!-- MENSAGEM - UNIDADE EXTERNA -->
+                    <awb-h:panelGroup>
+                        <awb-h:message for="txtUnidExt" id="messageErrorUnidExt" errorClass="TextValidatorMessage" />
+                    </awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="1" width="20%">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_num_oper_exterior}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputText
+							value="#{tradeFinBolAgexBean.filtroVO.numoperexterior}"
+							title="#{msgs.label_det_num_oper_exterior}:" id="numoperexterior"
+							size="40" maxlength="12"
+							styleClass="HtmlInputTextObrigatorioBradesco" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1" styleClass="panelGridTable">
+				<awb-h:panelGrid columns="1" width="100%">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_tomador}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputText title="#{msgs.label_tomador}" size="240"
+							maxlength="300" id="txtTomador"
+							value="#{tradeFinBolAgexBean.filtroVO.tomador}" immediate="false"
+							styleClass="HtmlInputTextObrigatorioBradesco">
+						</awb-h:inputText>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!--  MOEDA -->
+			<awb-h:panelGrid columns="5" styleClass="panelGridTable"
+				columnClasses="panelGridColumn20">
+				<awb-h:panelGrid columns="1" style="width:295px">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_moeda}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:selectOneMenu title="#{msgs.label_moeda}" id="moeda"
+							style="width:205px"
+							styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+							value="#{tradeFinBolAgexBean.filtroVO.cindcdeconmmoeda}"
+							>
+							<f:selectItems value="#{tradeFinBolAgexBean.moeda}" />
+						</awb-h:selectOneMenu>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+					
+				<!--  VALOR -->		
+				<awb-h:panelGrid columns="1" width="100px">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_det_vlr_boleto}: "
+							styleClass="HtmlOutputLabelBoldBradesco" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputText title="#{msgs.label_det_vlr_boleto}:"
+							value="#{tradeFinBolAgexBean.filtroVO.valorboleto}"
+							id="valorboleto" size="20" maxlength="18"
+							 alt="{'type': 'money-dot'}"
+							styleClass="HtmlInputTextObrigatorioBradesco" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="2" width="150px">
+					<awb-h:panelGroup>
+						<h:outputText value="&nbsp;" escape="false" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<h:outputText value="&nbsp;" escape="false" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="5" styleClass="panelGridTable"
+				columnClasses="panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25, panelGridColum25">
+				<awb-h:panelGrid columns="1">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<h:outputText styleClass="HtmlOutputLabelBoldBradesco"
+							value="#{msgs.label_spread}: " />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputText id="svtxspreadnegoc" size="20" maxlength="16"
+							 alt="{'wholePartSize': 4, 'decimalPartSize': 9}"
+							styleClass="HtmlInputTextObrigatorioBradesco"
+							title="#{msgs.label_spread}"
+							value="#{tradeFinBolAgexBean.filtroVO.svtxspreadnegoc}">
+						</awb-h:inputText>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- Prazo -->
+				<awb-h:panelGrid>
+					<awb-h:panelGroup columns="1">
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_prazo}: "
+							styleClass="HtmlOutputTextBulletBoldBradesco" for="txtPrazo" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						 <awb-h:inputText id="txtPrazo" title="#{msgs.label_prazo}"
+							maxlength="3" align="center" size="5"
+							value="#{tradeFinBolAgexBean.filtroVO.tdiaprazo}" alt="numTres"
+							styleClass="HtmlInputTextObrigatorioBradesco">
+							<f:ajax immediate="false" event="change" execute="@form"
+                                render="pnlDataVencto txtPrazo formModalMessages"
+                                listener="#{tradeFinBolAgexBean.validaPrazo}" />
+						</awb-h:inputText>
+						<awb-h:outputLabel value="#{msgs.label_dias} "
+							styleClass="HtmlOutputTextBradesco" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- Data de fechamento -->
+				<awb-h:panelGrid columnClasses="panelGridColum50" id="pnlDataFechto">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_data_fechamento}: "
+							styleClass="HtmlOutputTextBulletBoldBradesco" for="txtDataFechto" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-br:calendar id="calendDataFechto"
+							titulo="#{msgs.label_data_fechamento}" disableInputFields="false"
+							onFieldFilled="errorStyleChanger" onDateSelected="verificaData('validaDatas')"
+							onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+							value="#{tradeFinBolAgexBean.filtroVO.fechamento}"/>
+							<awb-h:commandButton style="display:none;" styleClass="ajax-call validaDatas">
+                            	<f:ajax immediate="false" listener="#{tradeFinBolAgexBean.validaDatas}"
+                                	event="click" render="pnlDataVencto pnlDataFechto txtPrazo formModalMessages"
+                               		execute="@form" />
+                        	</awb-h:commandButton>	
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<!-- Data de vencimento -->
+				<awb-h:panelGrid columnClasses="panelGridColum50" id="pnlDataVencto">
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<awb-h:outputLabel value="#{msgs.label_data_vencimento}: "
+							styleClass="HtmlOutputTextBulletBoldBradesco" for="txtDataVencto" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-br:calendar id="calendDataVencto"
+							titulo="#{msgs.label_data_vencimento}" disableInputFields="false"
+							onFieldFilled="errorStyleChanger" onDateSelected="verificaData('validaDatas')"
+							onFieldFilledParameters="bundleFunction: 'getBundle', bundlePrefix: 'UICalendar'"
+							value="#{tradeFinBolAgexBean.filtroVO.vencimento}" />
+							
+						<awb-h:commandButton style="display:none;" styleClass="ajax-call validaDatas">
+                            <f:ajax immediate="false" listener="#{tradeFinBolAgexBean.validaDatas}"
+                                event="click" render="pnlDataVencto pnlDataFechto txtPrazo formModalMessages"
+                               	execute="@form" />
+                        </awb-h:commandButton>
+						<!-- styleClass="HtmlInputTextCalendarObrigatorio" -->
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+
+				<awb-h:panelGrid columns="1" width="145px">
+					<awb-h:panelGroup>
+						<h:outputText value="&nbsp;" escape="false" />
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<h:outputText value="&nbsp;" escape="false" />
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+                    <hr class="linhaPontilhada" />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<awb-h:panelGrid columns="1" styleClass="panelGridTable"
+				columnClasses="panelGridColum">
+				<!-- CAMPO OBSERVACAO-->
+				<awb-h:panelGrid>
+					<awb-h:panelGroup>
+						<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+						<h:outputText styleClass="HtmlOutputTextBoldBradesco"
+							value="#{msgs.label_obs}"></h:outputText>
+					</awb-h:panelGroup>
+					<awb-h:panelGroup>
+						<awb-h:inputTextarea 
+							id="txtObservacao" 
+							title="#{msgs.label_obs}" 
+							value="#{tradeFinBolAgexBean.filtroVO.observacao}" 
+							cols="100"
+							rows="3" 
+							width="70%" 
+							immediate="false"							
+							onkeyup="textCounter(this, 300);"
+							onkeydown="textCounter(this, 300);"
+							styleClass="HtmlInputTextBradesco">
+						</awb-h:inputTextarea>
+					</awb-h:panelGroup>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<!--  LINHA DIVISÓRIA -->
+			<awb-h:panelGrid styleClass="panelGridTable">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+
+			<!-- BOTOES -->
+			<awb-h:panelGrid id="gridBotoes" columns="2" styleClass="panelGridTable">
+
+				<!-- VOLTAR -->
+				<awb-h:commandButton value="#{msgs.bto_voltar}" action="nav_index"
+					styleClass="HtmlCommandButtonBradesco" />
+
+				<!-- CONFIRMAR - QUANDO AINDA NÃO FOI SELECIONADO O LIMITE -->
+				<awb-h:panelGrid style="float:right" columns="5" rendered="#{tradeFinBolAgexBean.limitesSelecaoVO.ncontrlim eq null or
+																			 tradeFinBolAgexBean.limitesSelecaoVO.ncontrlim eq 0}">
+					<awb-h:commandButton value="#{msgs.bto_confirmar}"
+						styleClass="HtmlCommandButtonBradesco" id="btnSelecionarLimites">
+						<f:ajax immediate="false"
+								event="click"
+								execute="@form"
+								render="@form formModalMessages"
+								listener="#{tradeFinBolAgexBean.listenerPesquisarLimites}" />
+					</awb-h:commandButton>
+				</awb-h:panelGrid>
+				
+				<!-- CONFIRMAR - QUANDO O LIMITE JÁ AINDA FOI SELECIONADO -->	
+				<awb-h:panelGrid style="float:right" columns="5" rendered="#{tradeFinBolAgexBean.limitesSelecaoVO.ncontrlim ne null and
+																			 tradeFinBolAgexBean.limitesSelecaoVO.ncontrlim ge 0}">
+					<awb-h:commandButton value="#{msgs.bto_confirmar}"
+						styleClass="HtmlCommandButtonBradesco" id="btnConfirmarIncl">
+						<f:ajax immediate="false"
+								event="click"
+								execute="@form"
+								render="@form formModalMessages"
+								listener="#{tradeFinBolAgexBean.validarForm}" />
+					</awb-h:commandButton>
+				</awb-h:panelGrid>
+			</awb-h:panelGrid>
+
+			<!-- MODAL SELECT CLIENTE -->
+			<awb-th:extDiv id="div_modalCliente">
+				<awb-br:modalContent id="modalCliente" iconUrl="info"
+					autoOpen="true" reRender="@form" resizable="true" draggable="true"
+					width="1000" height="520" closable="false" closeOnEscape="false"
+					header="Selecionar Cliente" closeId="frameForm:botaoFechar"
+					onHideServerCallback="#{tradeFinBolAgexBean.closeModal}"
+					rendered="#{tradeFinBolAgexBean.viewHelper.renderModalCliente}"
+					contentPath="#{request.contextPath}/content/global/clienteModal/modalCliente.xhtml" />
+			</awb-th:extDiv>
+
+			<!-- MODAL LIMITES -->
+			<awb-th:extDiv id="div_modalLimites">
+				<awb-br:modalContent id="modalLimite" iconUrl="info" 
+					autoOpen="true" reRender="@form" resizable="true" draggable="true" 
+					width="1000" height="480" closable="false" closeOnEscape="false"
+					header="Selecionar Limites" closeId="frameForm:botaoFechar"
+					onHideServerCallback="#{tradeFinBolAgexBean.closeModalLimitesInclusao}"
+					rendered="#{tradeFinBolAgexBean.viewHelper.renderModalLimite}"
+					contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+			</awb-th:extDiv>
+
+			<!-- MODAL UNIDADE EXTERNA -->
+			<awb-th:extDiv id="div_modalUnidExt">
+				<awb-br:modalContent id="content_modalUnidExt"
+					closeId="formTdFnNgModUniExt:botaoFechar" autoOpen="true"
+					openId="lupaUnidExt" resizable="true" draggable="true"
+					contentPath="#{request.contextPath}/content/global/unidadeExternaModal/modalUnidExtList.xhtml"
+					header="Selecionar Unidade Externa" width="500" height="350"
+					onHideServerCallback="#{unidadeExternaModalBean.closeModal}"
+					rendered="#{unidadeExternaModalBean.viewHelper.renderModal}"
+					reRender="@form" />
+			</awb-th:extDiv>
+
+			<!-- MODAL CONFIRMAÇÃO -->
+			<ui:include src="/template/modal.xhtml">
+				<ui:param name="message" value="#{msgs.info_confirmar_inclusao}" />
+				<ui:param name="bean" value="#{tradeFinBolAgexBean}" />
+				<ui:param name="actionConfirmar" value="confirmarInclusao" />
+				<ui:param name="actionFechar" value="closeModal" />
+				<ui:param name="renderModal"
+					value="#{tradeFinBolAgexBean.viewHelper.renderModal}" />
+			</ui:include>
+		</awb-h:form>
+
+		<!-- script -->
+		 <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+         <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.mask.js" />
+		 <script type="text/javascript" src="#{request.contextPath}/javascript/brq.jquery.util.js" />
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWV2E" type="CWS">
+  <properties>
+    <property name="FWO">BUSINESS</property>
+    <property name="rawText">false</property>
+  </properties>
+  <input maxBytes="1988">
+    <register name="NPCCWV2E-HEADER">
+      <field name="NPCCWV2E-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWV2E" />
+      <field name="NPCCWV2E-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="01988" />
+    </register>
+    <register name="NPCCWV2E-REGISTRO">
+      <field name="NPCCWV2E-NBLETO-NEGOC-CMBIO" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CUSUAR-MANUT" pic="X(9)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-HMANUT-REG" pic="X(26)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-NBLETO-CMBIO-ORIGE" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DANO-BASE" pic="9(4)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NBLETO-CMBIO-ANO" pic="9(9)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CADITV-BLETO-CMBIO" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DFCHTO-BLETO-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CUNIC-CLI-CMBIO" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CPRODT-SERVC" pic="9(8)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CMODLD-PRODT-CMBIO" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CPSSOA-JURID" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NSEQ-UND-ORGNZ" pic="9(8)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CINDCD-ECONM-MOEDA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CTPO-CANAL" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-VNEGOC-MOEDA-ESTRG" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-CTPO-SGMTO-CLI" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NTPO-CLASF-PSSOA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NSEQ-CONTR-LIM" pic="9(17)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CPSSOA-ANLSE-CREDT" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DANO-SOLTC-ANLSE" pic="9(4)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NSOLTC-ANLSE-CREDT" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NSEQ-SOLTC-ANLSE" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CECONM-MOEDA-LIM" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-VUTLZD-LIM-GERC" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-VSDO-LIM-SENSI" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-CSIT-BLETO-CMBIO" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CSIT-BLETO-APROV" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CMOTVO-BLETO-CMBIO" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CUSUAR-INCL" pic="X(9)" length="9" bytes="9" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-HINCL-REG" pic="X(26)" length="26" bytes="26" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CPSSOA-JURID-CLI" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NSEQ-UND-CLI" pic="9(8)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DVALDD-LIM-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CRTING" pic="X(3)" length="3" bytes="3" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-NPPSTA-PONTU-CMBIO" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CECONM-MOEDA-EQUAL" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CMOEDA-ECONM-RECTA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CECONM-MOEDA-DSEMB" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CUNIC-PSSOA-CTA" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-NCTA-BCRIA-CMBIO" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CMOD-CONTR-CMBIO" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DINIC-VALDD-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DFIM-NEGOC-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CNEGOC-CMBIO-INDMD" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DLIM-EMBRQ-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DLIM-DOCTO-EMBRQ" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DPREVT-GARNT-EXPDI" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-TDIA-OPER-CMBIO" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-TDIA-VALDD-CARTA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-TDIA-VALDD-LETRA" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-QPREVT-EMBRQ-CMBIO" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-QPRZ-MED-CMBIO" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-QREG-EXPOR-CMBIO" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DVALDD-NEGOC-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-NEGOC-SWAP" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CNEGOC-SWAP-FLUXO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CNEGOC-SWAP-ESTRG" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-NEGOC-CARTA" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CCOMIS-CARTA-NACIO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-NEGOC-ARBTR" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-EMBRQ-PCIAL" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CPERM-TRNSF-CARTA" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-CARTA-CNFDO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-CARTA-IDPDT" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CCARTA-CONVE-RECDD" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CCOBR-COMIS-ADCIO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-LASTR-CARTA" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-LASTR-AGRIC" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CSEGUR-TRNSP-MCADO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CSEGUR-MCADO-ORGNZ" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-NEGOC-LIBOR" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CPERM-VAR-CMBIO" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CTPO-COTAC-TX" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CTPO-EMBRQ-CMBIO" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CIDTFD-BNDES-PORTE" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CIDTFD-BNDES-GRP" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CTPO-NEGOC-CMBIO" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CPRZ-NEGOC-CMBIO" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CIDTFD-CARTA-CSNDO" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CTPO-JURO-TRADE" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CCOBR-COMIS-MTORI" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CIDTFD-FORMA-COMIS" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CCOBR-COMIS-AGTE" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-VMOEDA-LIM-GERC" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-VPREVT-CMBIO-EQUAL" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-VPREVT-RECTA-CMBIO" pic="S9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-VTX-SPREAD-NEGOC" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VTX-REMUN-BNDES" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VTRAVA-LIBOR-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VTX-REMUN-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VLIM-COBER-VAR" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PCOBER-VAR-PRODT" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PTX-SWAP-CMPDO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PTX-CDI-FINAN" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PCDI-MAIS-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PJURO-NEGOC-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PFIXA-JURO-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PTOT-JURO-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PCOMIS-MTORI-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PAGTE-FINCR-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-PTX-EQUAL-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VIMPST-NEGOC-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VMULTA-NEGOC-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-IORG-EXTER-CMBIO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-VIOF-NEGOC-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-VTX-MORA-CMBIO" pic="S9(3)V9(5)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" sign="implicit" />
+      <field name="NPCCWV2E-CBASE-JURO-MORA" pic="9(1)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-CFLUXO-PERDC-CMBIO" pic="9(2)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DPREVT-INIC-EMBRQ" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DPREVT-FIM-EMBRQ" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-CNTRA-GARNT" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-TDIA-CNTRA-GARNT" pic="9(5)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DVCTO-CNTRA-GARNT" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DABERT-CNTRA-GARNT" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-RENOV-CNTRA" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-QDIA-ALERT-CNTRA" pic="9(3)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-DALERT-VCTO-CNTRA" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CINDCD-CUSTO-EXTER" pic="X(1)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DPREVT-DSEMB-CMBIO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-RJUSTF-DQMTO" pic="X(1000)" length="1000" bytes="1000" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DLIM-ENVIO-RSUMO" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DINIC-VALDD-PPSTA" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-DFIM-VALDD-PPSTA" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWV2E-CIDTFD-RESP-DESP" pic="9(01)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-VTX-SPREAD-TOT" pic="9(03)V9(05)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" decimals="5" />
+      <field name="NPCCWV2E-CTPO-PRZ-CMBIO" pic="9(01)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWV2E-VAGTE-FINCR-CMBIO" pic="S9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-VBCO-MTORI-CMBIO" pic="S9(15)V9(02)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" sign="implicit" />
+      <field name="NPCCWV2E-INFO-COMPL-BNDES" pic="X(50)" length="50" bytes="50" usage="DISPLAY" type="ALPHANUM" />
+    </register>
+  </input>
+</copybook>
+

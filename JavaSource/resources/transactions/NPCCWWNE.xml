@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWWNE" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <input maxBytes="324">
+    <register name="NPCCWWNE-HEADER">
+      <field name="NPCCWWNE-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWWNE" />
+      <field name="NPCCWWNE-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00324" />
+    </register>
+    <register name="NPCCWWNE-REGISTRO">
+      <field name="NPCCWWNE-TIPO-PESQUISA" pic="9(001)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWWNE-RMCADO-OPER-CMBIO" pic="X(300)" length="300" bytes="300" usage="DISPLAY" type="ALPHANUM" />
+      <field name="NPCCWWNE-CMCADO-CMBIO-MCSUL" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </input>
+</copybook>
+

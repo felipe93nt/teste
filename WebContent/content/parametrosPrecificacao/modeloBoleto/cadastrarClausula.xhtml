@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+    xmlns:awb-h="http://bradesco.com.br/components-html" xmlns:awb-f="http://bradesco.com.br/components-core"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:prescore="http://bradesco.com.br/presentation_core">
+
+<ui:composition>
+
+    <!--   DESCRIÇÃO -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable">
+       	<awb-h:panelGroup>
+           	<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+           	<h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_descricao}: " />
+           	<h:outputText styleClass="HtmlOutputTextBoldBradesco"
+               	value="#{modeloBoletoBean.modeloBoletoVO.imodcontrcmbio}" />
+       	</awb-h:panelGroup>
+       	<awb-h:panelGroup>
+       		<awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+       		<h:outputText styleClass="HtmlOutputLabelBradesco" value="#{msgs.label_modelo_padrao}: " />
+   	   		<h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{(modeloBoletoBean.modeloBoletoVO.cindcdmodpdrao)?'Sim':'Não'}" />
+   		</awb-h:panelGroup>
+    </awb-h:panelGrid>
+
+    <awb-h:panelGrid width="100%">
+        <awb-f:verbatim>
+            <hr class="linhaPontilhada" />
+        </awb-f:verbatim>
+    </awb-h:panelGrid>
+
+    <!-- COMBOS -->
+    <awb-h:panelGrid columns="2" styleClass="panelGridTable2" columnClasses="panelGridColum50">
+
+        <!-- COMBO MODELO DE BOLETO -->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText value="#{msgs.label_produto}: " styleClass="HtmlOutputLabelBoldBradesco" />
+            </awb-h:panelGroup>
+
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="cboModeloBoleto" immediate="true"
+                    styleClass="HtmlSelectOneMenuObrigatorioBradesco" title="#{msgs.label_produto}"
+                    value="#{modeloBoletoBean.modeloBoletoVO.cprodtservc}">
+                    <awb-f:selectItems value="#{modeloBoletoBean.viewHelper.comboProdutoItens}" />
+                    <f:ajax immediate="false" execute="@this cboModeloBoleto" event="change"  />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+
+        <!--COMBO TIPO CLAUSULA -->
+        <awb-h:panelGrid>
+            <awb-h:panelGroup>
+                <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                <h:outputText styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_tipo_clausulas}: " />
+            </awb-h:panelGroup>
+            <awb-h:panelGroup>
+                <awb-h:selectOneMenu id="cboTipoClausula" styleClass="HtmlSelectOneMenuBradesco"
+                    title="#{msgs.label_tipo_clausulas}" value="#{modeloBoletoBean.viewHelper.filtroClausula}">
+                    <awb-f:selectItems value="#{modeloBoletoBean.viewHelper.comboTipoClausula}" />
+                    <f:ajax execute="@form" event="change" immediate="false" render="formModeloBoleto formModalMessages divSeiModals"
+                        listener="#{modeloBoletoBean.carregaListaClausula}" />
+                </awb-h:selectOneMenu>
+            </awb-h:panelGroup>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+
+    <!-- DUAL LIST CLAUSULA -->
+    <awb-h:panelGrid width="100%">
+        <awb-br:dualList id="dualListClausula" forceId="true" useCheckBox="true" idItem="cclauscontrcmbio"
+            valueItem="rclauscontrcmbio" leftTitle="Cláusulas à inserir"
+            leftList="#{modeloBoletoBean.viewHelper.listaEsquerdaClausula}" rightTitle="Cláusulas Inseridas"
+            rightList="#{modeloBoletoBean.viewHelper.listaDireitaClausula}">
+        </awb-br:dualList>
+    </awb-h:panelGrid>
+    
+</ui:composition>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWN2S" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="19196">
+    <register name="NPCCWN2S-HEADER">
+      <field name="NPCCWN2S-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWN2S" />
+      <field name="NPCCWN2S-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="19196" />
+    </register>
+    <register name="NPCCWN2S-REGISTRO">
+      <field name="NPCCWN2S-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWN2S-LISTA" minOccurs="0" maxOccurs="20" depends="NPCCWN2S-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWN2S-S-STATUS" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-TP-PESSOA" pic="X(001)" length="1" bytes="1" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-CPF-CNPJ" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CFLIAL-CNPJ" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CCTRL-CPF-CNPJ" pic="9(002)" length="2" bytes="2" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CUNIC-CLI-DESC" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-CUNIC-CLI-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CPRODT-SERVC" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CPRODT-DESC" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-NBLETO-NEGOC-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-DANO-BASE" pic="9(004)" length="4" bytes="4" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-NBLETO-CMBIO-ANO" pic="9(009)" length="9" bytes="9" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CBANQR-CMBIO" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-IBANQR-CMBIO" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-COPER-CMBIO-EXTER" pic="X(012)" length="12" bytes="12" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-TOMADOR" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-OBSERVACAO" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-VTX-SPREAD-NEGOC" pic="9(006)V9(9)" length="15" bytes="15" usage="DISPLAY" type="NUMERIC" decimals="9" />
+        <field name="NPCCWN2S-S-TDIA-OPER-CMBIO" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CINDCD-ECONM-MOEDA" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-ISGL-INDCD-FONTE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-VNEGOC-MOEDA-ESTRG" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-NSEQ-CONTR-LIM" pic="9(17)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-VSDO-LIM-SENSI" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-DFCHTO-BLETO-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-DFIM-NEGOC-CMBIO" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-VULT-BAIXA-CMBIO" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-VULT-ESTRN-CMBIO" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-CPRODT-LIMITE-GE" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-DES-CPRODT-LIM-GE" pic="X(100)" length="100" bytes="100" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-COD-MOEDA-GE" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-DESC-MOEDA-GE" pic="X(010)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-VALOR-LIM-GE" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-VALOR-DISP-GE" pic="9(15)V9(2)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" decimals="2" />
+        <field name="NPCCWN2S-S-DFCHTO-LIMITE-GE" pic="X(10)" length="10" bytes="10" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-CPSSOA-JURID-GE" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-CTPO-CONTR-GE" pic="9(03)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-NSEQ-CONTR-GE" pic="9(10)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-NCONTR-LIM-GE" pic="9(17)" length="17" bytes="17" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWN2S-S-DESC-STATUS" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-DESC-BANQUEIRO" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWN2S-S-DESC-GARANTIA" pic="X(030)" length="30" bytes="30" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

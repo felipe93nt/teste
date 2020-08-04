@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+    
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_cotar_custo_externo_lcImportacao}" />
+    <ui:param name="passNumber" value="#{tradeFinMonitCtcPendBean.passNumber}" />
+    <ui:param name="pathList" value="#{tradeFinMonitCtcPendBean.loadCaminho('title_tradeFinance_ctc_pendente','title_cotacao_diverg_lc','title_cotar_custo_externo_lcImportacao')}"/>
+    
+    <ui:define name="body">
+    
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <awb-h:form id="formTradeFinMonitDet">     
+               
+            <awb-h:panelGrid styleClass="panelGridTable">
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO CLIENTE  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosClienteFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO PRODUTO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosProdutoFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO VALOR DA MOEDA  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosValorMoedaFndgCons.xhtml"/>
+                
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- DADOS LC IMPORTACAO -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosLcImportacaoCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosPrecificacaoLcCons.xhtml" />
+
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosGridCustoExernoCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!--DADOS DO COMISSAO INTERNA  -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosComissaoInternaUnicaCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!--DADOS DO MERCADORIA  -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosMercadoriaCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!--DADOS DO OPERACAO VINCULADA  -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosOperacaoVinculadaCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+
+				<!-- DOCUMENTOS CONSIGNADOS -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosDocumentosConsignadosCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+                
+				<!--DADOS DO OBSERVACOES  -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosObsOutrasEspecificacoesCons.xhtml" />
+
+				<!--LINHA DIVISORIA  -->
+				<awb-h:panelGrid width="100%">
+					<awb-f:verbatim>
+						<hr class="linhaPontilhada" />
+					</awb-f:verbatim>
+				</awb-h:panelGrid>
+                
+				<!-- DADOS LC IMPORTAÇÃO -->
+				<ui:include	src="/content/comercializacao/precificacao/negociacao/content/dadosPendCustoExtLcImport.xhtml" />
+                
+                <!--  MODAL CONFIRMAÇÃO LC importacao-->
+                <ui:include src="/content/global/vincularOperacaoLcModal/vincularOperacaoLcModal.xhtml">
+                    <ui:param name="bean" value="#{tradeFinMonitCtcPendBean}" />
+                    <ui:param name="actionConfirmar" value="confirmarVincularOperacaoLC" />
+                    <ui:param name="actionFechar" value="actionFecharModalLc" />
+                </ui:include>
+             </awb-h:panelGrid>
+        </awb-h:form>
+             
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        	<!-- SCRIPT -->
+    	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />	
+        
+		<!-- Script para exportação -->
+		<script type="text/javascript" src="#{request.contextPath}/javascript/export.js" />
+	
+		<!-- SCRIPT -->
+		<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+    </ui:define>
+</ui:composition>
+</html>

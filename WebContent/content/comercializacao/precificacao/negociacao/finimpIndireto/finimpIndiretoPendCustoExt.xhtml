@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+    
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_cotar_custo_externo_fnpI}" />
+    <ui:param name="passNumber" value="#{tradeFinMonitCtcPendBean.passNumber}" />
+    <ui:param name="pathList" value="#{tradeFinMonitCtcPendBean.loadCaminho('title_tradeFinance_ctc_pendente','title_cotacao_diverg_fi','title_cotar_custo_externo_fnpI')}"/>
+    
+    <ui:define name="body">
+    
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <awb-h:form id="formTradeFinMonitDet">     
+               
+            <awb-h:panelGrid styleClass="panelGridTable">
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO CLIENTE  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosClienteFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO PRODUTO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosProdutoFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO APROVACAO DE CREDITO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosAprovCreditoFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO SWAP PTAX SPREAD  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosSwapPtaxSpreadCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO VALOR DA MOEDA  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosValorMoedaFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO FLUXO DE PAGAMENTO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosFluxoPagamentoCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO MERCADORIA  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosMercadoriaCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO STAND BY  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosStandByCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DO PRECIFICACAO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosPrecificacaoCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DA COMISSAO INTERNA PARA TELA DE FUNDING  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosComissaoInternaFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS DA OPERACAO VINCULADA -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosOperacaoVinculadaCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--DADOS TOTAL CUSTO  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/consulta/dadosCustoTotalFndgCons.xhtml"/>
+                
+                <!--LINHA DIVISORIA  -->
+                <awb-h:panelGrid width="100%">
+                   <awb-f:verbatim>
+                       <hr class="linhaPontilhada" />
+                   </awb-f:verbatim>
+                </awb-h:panelGrid>
+                
+                <!--INCLUSAO DE FUNDING  -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/content/dadosPendCustoExtUnidadeExt.xhtml"/>
+                
+             </awb-h:panelGrid>
+        </awb-h:form>
+             
+        <!-- Script geral da aplicação -->
+		<script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.mask.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+        
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:presCore="http://bradesco.com.br/presentation_core" xmlns:awb-br="http://bradesco.com.br/components-br"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:f="http://java.sun.com/jsf/core" lang="pt">
+
+<ui:composition>
+
+    <awb-br:modalContent id="modalBoleto" 
+                          iconUrl="info" 
+                          closeId="frameForm:botaoFechar" 
+                          autoOpen="true" 
+                          reRender="@form" 
+                          contentPath="#{request.contextPath}/content/global/boletoModal/contentBoletoModal.xhtml"
+                          header="Boleto" 
+                          width="1100" 
+                          height="600"
+                          onHideServerCallback="#{boletoModalBean.closeModal}"
+                          rendered="#{boletoModalBean.viewHelper.renderModal}"/>
+
+</ui:composition>
+
+</html>

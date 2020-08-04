@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWCDS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="15">
+    <register name="NPCCWCDS-HEADER">
+      <field name="NPCCWCDS-COD-LAYOUT" pic="X(008)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWCDS" />
+      <field name="NPCCWCDS-TAM-LAYOUT" pic="9(005)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="00015" />
+    </register>
+    <register name="NPCCWCDS-REGISTRO">
+      <field name="NPCCWCDS-CPILOT-CMBIO-ATIVO" pic="9(01)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+      <field name="NPCCWCDS-CPARTC-PILOT-CMBIO" pic="9(01)" length="1" bytes="1" usage="DISPLAY" type="NUMERIC" />
+    </register>
+  </output>
+</copybook>
+

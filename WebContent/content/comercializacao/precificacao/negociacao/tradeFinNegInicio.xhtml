@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core" xmlns:sei="http://bradesco.com.br/sei">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+
+    <ui:param name="selection" value="#{msgs.title_tradeFinance_negociacao}" />
+    <ui:param name="passNumber" value="1" />
+    <ui:param name="pathList" value="#{breadCrumbBean.loadCaminho('title_tradeFinance_negociacao',0)}" />
+    
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{tradeFinanceNegociacaoInclBean.iniciar}" />
+    </f:metadata>
+
+    <ui:define name="body">
+
+        <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+        
+        <!-- Componente SEI -->
+        <sei:seiRegion id="allContent">
+
+            <!-- FORM -->
+            <awb-h:form id="formTradeFinNegoc">
+            
+                <!-- Atributo hidden utilizado no javascript da página para acionar o botão gerar boleto -->
+                <awb-h:inputHidden value="#{tradeFinanceNegociacaoInclBean.gerarBoletoIncl}" id="gerarBoletoIncl" />
+    
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+    
+                <!-- Seleção de Clientes tabindex de 100 a 199 -->
+                <ui:include src="/content/comercializacao/precificacao/negociacao/tradeFinNegClieSel.xhtml">
+    				<ui:param name="bean" value="#{tradeFinanceNegociacaoInclBean}"/>
+    			</ui:include>
+    
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <awb-f:verbatim>
+                        <hr class="linhaPontilhada" />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+    
+                <awb-h:panelGrid columns="1" width="60%" id="pnlProduto">
+                    <!-- combo Produto -->
+                    <awb-h:panelGrid>
+                        <awb-h:panelGroup>
+                            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+                            <awb-h:outputLabel styleClass="HtmlOutputTextBoldBradesco" value="#{msgs.label_produto}: "
+                                for="comboProduto" />
+                        </awb-h:panelGroup>
+                        <awb-h:panelGroup>
+                            <awb-h:selectOneMenu id="comboProduto" layout="pageDirection" title="#{msgs.label_produto}" tabindex="200"
+                                styleClass="HtmlSelectOneMenuObrigatorioBradesco"
+                                value="#{tradeFinanceNegociacaoInclBean.tradeFinNegocVO.cprodtservc}" immediate="false">
+                                <awb-f:selectItems value="#{tradeFinanceNegociacaoInclBean.viewHelper.comboProduto}" />
+                                <f:ajax immediate="false" execute="@form" event="change"
+                                    render="div_modalLimites divBotoes pnlProduto formModalMessages divSeiModals"
+                                    listener="#{tradeFinanceNegociacaoInclBean.listenerTrocaProduto}" />
+                            </awb-h:selectOneMenu>
+                        </awb-h:panelGroup>
+                    </awb-h:panelGrid>
+        
+                </awb-h:panelGrid>
+    
+                <!-- LINHA DIVISÓRIA -->
+                <awb-h:panelGrid width="100%">
+                    <br></br>
+                    <awb-f:verbatim>
+                        <hr />
+                    </awb-f:verbatim>
+                </awb-h:panelGrid>
+    
+                <!-- BOTOES -->
+                <awb-h:panelGrid columns="2" width="100%" id="divBotoes">
+                    <!-- VOLTAR -->
+                    <awb-h:commandButton value="#{msgs.bto_voltar}" styleClass="HtmlCommandButtonBradesco" tabindex="203"
+                        action="nav_index">
+                        <awb-br:submitCheckClient />
+                    </awb-h:commandButton>
+                    <awb-h:panelGrid style="float:right" columns="3">
+                        
+                        <awb-h:outputLink id="btnGerarBoleto" title="Gerar Boleto"
+                            styleClass="seiBtnImprimirGrupo tab hidden">
+    
+                            <sei:seiAction id="seiAction" type="print"
+                                render="formModalMessages divSeiModals"
+                                action="#{tradeFinanceNegociacaoInclBean.gerarBoleto}"
+                                jsActionArgs="getExportPdfOnly">
+                                <sei:seiSettings pageOrientation="landscape"
+                                    pageNumberLabel="#{msgs.label_pagina}"
+                                    pageNumberPosition="bottom-center" pageNumberPadding="0px" />
+                            </sei:seiAction>
+    
+                            <awb-h:outputLabel value="#{msgs.bto_imprimir}"></awb-h:outputLabel>
+                        </awb-h:outputLink>
+                        
+                        <!-- LIMPAR -->
+                        <awb-h:commandButton id="btnLimpar" styleClass="HtmlCommandButtonBradesco clean-filters" tabindex="202"
+                            value="#{msgs.bto_limpar}">
+                            <f:ajax execute="@this radioCpfCnpjCliente" event="click" render="formModalMessages camposCpfCnpj radioCpfCnpj filtroCliente dadosClinteIni radioCpfCnpjCliente pnlProduto divSeiModals"
+                                listener="#{tradeFinanceNegociacaoInclBean.limparTela}" />
+                        </awb-h:commandButton>
+                        
+                        <awb-h:commandButton styleClass="HtmlCommandButtonBradesco" id="btoConfirmar" tabindex="201"
+                            action="#{tradeFinanceNegociacaoInclBean.actionIniciarInclusaoPorProduto}"
+                            value="#{msgs.bto_confirmar}"
+                            rendered="#{tradeFinanceNegociacaoInclBean.viewHelper.renderBtoConfirmar}">
+                        </awb-h:commandButton>
+                        
+                    </awb-h:panelGrid>
+    
+                </awb-h:panelGrid>
+                
+                <awb-th:extDiv id="div_modalAlertasCliente">
+                     <awb-br:modalContent id="content_modalAlertasCliente" 
+                                          iconUrl="info" 
+                                          closeId="mainForm:fecharModalAlerta" 
+                                          reRender="formTradeFinNegoc:div_modalLimites formModalMessages"
+                                          autoOpen="true"
+                                          contentPath="#{alertasClienteModalBean.viewHelper.url}"
+                                          header="Relatório Auditor - Alertas" 
+                                          width="1045" 
+                                          height="650"
+                                          closable="true" 
+                                          closeOnEscape="true"
+                                          onHideServerCallback="#{tradeFinanceNegociacaoInclBean.closeModalAlertasCliente}"
+                                          rendered="#{alertasClienteModalBean.viewHelper.renderModal}"/>
+                </awb-th:extDiv>
+                
+                <!-- MODAL LIMITES/PROPOSTAS -->
+                <awb-th:extDiv id="div_modalLimites">
+                    <awb-br:modalContent id="modalLimites" 
+                                         iconUrl="info" 
+                                         autoOpen="true" 
+                                         reRender="formTradeFinNegoc:divBotoes formModalMessages" 
+                                         resizable="true"
+                                         draggable="true" 
+                                         width="1000" 
+                                         height="650" 
+                                         closable="false" 
+                                         closeOnEscape="true"
+                                         header="Limites Disponíveis" closeId="frameForm:botaoFechar"                                         
+                                         onHideServerCallback="#{tradeFinanceNegociacaoInclBean.closeModalLimites}"
+                                         rendered="#{limitesModalBean.viewHelper.renderModal}"
+                                         contentPath="#{request.contextPath}/content/global/limitesModal/modalLimites.xhtml" />
+                </awb-th:extDiv>
+                
+            </awb-h:form>
+        </sei:seiRegion>
+
+        <!-- SEI API -->
+        <!-- <sei:seiApi useSaveModal="true"></sei:seiApi> -->
+        <sei:seiApi id="seiApp" usePrintModal="true" />
+
+        <!-- Script para exportação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/export.js" />
+        
+        <!-- Script geral da aplicação -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/app.js" />
+        
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/javascript/brq.jquery.util.js" />
+        
+        <!-- Script da pagina -->
+        <script type="text/javascript" src="#{request.contextPath}/javascript/comercializacao/precificacao/negociacao/tradeFinNegInicio.js" />
+        
+    </ui:define>
+</ui:composition>
+</html>

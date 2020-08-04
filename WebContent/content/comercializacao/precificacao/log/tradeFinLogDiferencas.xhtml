@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:awb-br="http://bradesco.com.br/components-br" xmlns:awb-h="http://bradesco.com.br/components-html"
+    xmlns:awb-th="http://bradesco.com.br/components-th-ext" xmlns:presCore="http://bradesco.com.br/presentation_core"
+    xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition template="/template/root/mainLayout.xhtml">
+	<ui:param name="selection" value="#{tradeFinanceLogBean.viewHelper.nomeTelaLogDiferencas}"/>
+	<ui:param name="passNumber" value="3" />
+	<ui:param name="pathList"
+		value="#{breadCrumbBean.loadCaminhoThree('title_trade_finance_log',tradeFinanceLogBean.viewHelper.telaLog,tradeFinanceLogBean.viewHelper.telaLogDiferencas)}" />
+	<ui:define name="body">
+    
+  	    <!-- css -->
+        <awb-br:stylesheet href="/css/pages.css" />
+
+        <!-- FORM -->
+        <awb-h:form id="formClienteCambio">
+
+            <!-- LINHA DIVISÓRIA BREADCRUMP -->
+			<awb-h:panelGrid width="100%">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+			
+			<awb-h:panelGrid columns="1" styleClass="panelGridTable" columnClasses="panelGridColum34,panelGridColum33,panelGridColum33">
+				<!-- DATA HORA LOG ANTES -->
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_data_hora_log_antes}: " styleClass="HtmlOutputLabelBradesco"/>
+		            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceDiferencasVO.hinclreghistFormatado}" styleClass="HtmlOutputTextBoldBradesco"/>
+		        </awb-h:panelGroup> 
+		        
+		        <!-- DATA HORA LOG DEPOIS -->
+		        <awb-h:panelGroup>
+		            <awb-h:graphicImage styleClass="bullet" url="/images/bullet.jpg" />
+		            <awb-h:outputLabel value="#{msgs.label_data_hora_log_depois}: " styleClass="HtmlOutputLabelBradesco"/>
+		            <awb-h:outputLabel value="#{tradeFinanceBean.tradeFinanceVO.hinclreghistFormatado}" styleClass="HtmlOutputTextBoldBradesco"/>
+		        </awb-h:panelGroup> 
+	        </awb-h:panelGrid>
+	        
+	         <!-- LINHA DIVISÓRIA GRID -->
+			<awb-h:panelGrid width="100%">
+				<awb-f:verbatim>
+					<hr />
+				</awb-f:verbatim>
+			</awb-h:panelGrid>
+			
+            <!-- GRID -->
+            <awb-h:panelGrid width="100%" styleClass="panelGridDataTable">
+                <awb-br:scrollableDataTable id="dataTableDetLog" var="item"
+                    rows="#{tradeFinanceLogBean.listaLogAntesDepois.size()}" width="100%"
+                    rowIndexVar="indexLista" value="#{tradeFinanceLogBean.listaLogAntesDepois}">
+
+                    <awb-br:scrollableColumn width="20%">
+                        <awb-f:facet name="header">
+                            <h:outputLabel value="#{msgs.label_descricao}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <h:outputLabel value="#{item.titulo}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="40%">
+                        <awb-f:facet name="header">
+                            <h:outputLabel value="#{msgs.label_antes}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <h:outputLabel value="#{item.antes}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn width="40%">
+                        <awb-f:facet name="header">
+                            <h:outputLabel value="#{msgs.label_depois}" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <h:outputLabel value="#{item.depois}"
+                            styleClass="#{item.houveAlteracao ? 'textoItemAlteradoLog' : ''}" />
+                    </awb-br:scrollableColumn>
+
+                </awb-br:scrollableDataTable>
+
+            </awb-h:panelGrid>
+            
+            <!-- LINHA DIVISÓRIA BOTÕES -->
+            <awb-h:panelGrid width="100%">
+                <br></br>
+                <awb-f:verbatim>
+                    <hr />
+                </awb-f:verbatim>
+            </awb-h:panelGrid>
+
+           	<!-- GRID BOTOES -->
+			<awb-h:panelGrid columns="2" width="100%">
+		
+				<!-- VOLTAR -->
+				<awb-h:commandButton value="#{msgs.bto_voltar}"
+					styleClass="HtmlCommandButtonBradesco"
+					action="#{tradeFinanceLogBean.actionVoltarLogDiferencas}" />
+		
+			</awb-h:panelGrid>
+
+        </awb-h:form>
+    </ui:define>
+</ui:composition>
+</html>

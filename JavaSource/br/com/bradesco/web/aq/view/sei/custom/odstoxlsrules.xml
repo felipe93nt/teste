@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<digester-rules>
+	<pattern value="office:document-content/office:body/office:spreadsheet">
+		<object-create-rule classname="org.apache.poi.hssf.usermodel.HSSFWorkbook" />
+		<set-properties-rule></set-properties-rule>
+		<pattern value="table:table">
+			<factory-create-rule classname="br.com.bradesco.web.aq.view.sei.converter.excel.ApplicationSheetFactoryImpl" />
+			<set-properties-rule />
+			<pattern value="table:table-row">
+				<factory-create-rule classname="br.com.bradesco.web.aq.application.sei.converter.factory.poi.impl.DefaultRowFactoryImpl" />
+				<set-properties-rule />
+				<pattern value="table:table-cell">
+					<factory-create-rule classname="br.com.bradesco.web.aq.application.sei.converter.factory.poi.impl.DefaultCellFactoryImpl" />
+					<set-properties-rule />
+					<pattern value="text:p"> 
+						<call-method-rule methodname="setCellValue"	paramcount="0" />
+					</pattern> 
+				</pattern>
+			</pattern>
+		</pattern>
+	</pattern>
+</digester-rules>

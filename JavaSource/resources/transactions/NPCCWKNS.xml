@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook name="NPCCWKNS" type="CWS" framework="false">
+  <header>
+    <property name="FWO">BUSINESS</property>
+  </header>
+  <output maxBytes="8816">
+    <register name="NPCCWKNS-HEADER">
+      <field name="NPCCWKNS-COD-LAYOUT" pic="X(08)" length="8" bytes="8" usage="DISPLAY" type="ALPHANUM" value="NPCCWKNS" />
+      <field name="NPCCWKNS-TAM-LAYOUT" pic="9(05)" length="5" bytes="5" usage="DISPLAY" type="NUMERIC" value="08816" />
+    </register>
+    <register name="NPCCWKNS-REGISTRO">
+      <field name="NPCCWKNS-QTDE-OCORR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+      <register name="NPCCWKNS-LISTA" minOccurs="0" maxOccurs="50" depends="NPCCWKNS-QTDE-OCORR" dependsType="number">
+        <field name="NPCCWKNS-CPSSOA-JURID-SUBR" pic="9(010)" length="10" bytes="10" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWKNS-NSEQ-UND-SUBR" pic="9(008)" length="8" bytes="8" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWKNS-CIDTFD-TPO-UND-SUBR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWKNS-CRCONH-UND-SUBR-M" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWKNS-CRCONH-UND-SUBR-F" pic="X(006)" length="6" bytes="6" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWKNS-IRZ-SCIAL-SUBR" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+        <field name="NPCCWKNS-CTPO-UND-ORGNZ-SUBR" pic="9(003)" length="3" bytes="3" usage="DISPLAY" type="NUMERIC" />
+        <field name="NPCCWKNS-ITPO-UND-ORGNZ-SUBR" pic="X(070)" length="70" bytes="70" usage="DISPLAY" type="ALPHANUM" />
+      </register>
+    </register>
+  </output>
+</copybook>
+

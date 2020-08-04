@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:awb-br="http://bradesco.com.br/components-br"
+	xmlns:awb-h="http://bradesco.com.br/components-html"
+	xmlns:awb-th="http://bradesco.com.br/components-th-ext"
+	xmlns:presCore="http://bradesco.com.br/presentation_core"
+	xmlns:awb-f="http://bradesco.com.br/components-core">
+
+<ui:composition>
+
+	<!-- FORFAITING COM JUROS EMBUTIDOS ou DEDUZIDOS -->
+    <awb-h:panelGrid width="97%">
+
+        <!-- GRID DADOS DE JUROS -->
+        <awb-h:panelGrid styleClass="panelGridDataTable" columnClasses="scrollable-horizontal-bar" id="pnlQuadroForfainting"
+            rendered="#{not empty tradeFinanceBean.quadroOperacaoForfaiting}">
+            <awb-th:extDiv styleClass="overflow-auto full-size" id="div_QForfainting">
+
+                <awb-br:scrollableDataTable id="tabelaOperacao" var="itemOper" rows="20" width="100%"
+                    rowIndexVar="indexListaOper" styleClass="panelGridTable"
+                    value="#{tradeFinanceBean.quadroOperacaoForfaiting}">
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Descrição" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemOper.infoCol1}" />
+                    </awb-br:scrollableColumn>
+
+                    <awb-br:scrollableColumn>
+                        <awb-f:facet name="header">
+                            <awb-h:outputLabel value="Valor" styleClass="tableFontStyle" escape="false" />
+                        </awb-f:facet>
+                        <awb-h:outputLabel value="#{itemOper.infoCol2}" />
+                    </awb-br:scrollableColumn>
+
+                </awb-br:scrollableDataTable>
+            </awb-th:extDiv>
+        </awb-h:panelGrid>
+    </awb-h:panelGrid>
+</ui:composition>
+</html>
